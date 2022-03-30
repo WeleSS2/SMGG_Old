@@ -1,0 +1,331 @@
+﻿<?xml version="1.0" encoding="utf-8"?><DEFECTS><DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\Jacob\source\repos\SMGG\Dependencies\SDL\include\</FILEPATH>
+      <FILENAME>SDL_stdinc.h</FILENAME>
+      <LINE>500</LINE>
+      <COLUMN>13</COLUMN>
+    </SFA>
+    <DEFECTCODE>26819</DEFECTCODE>
+    <DESCRIPTION>Unannotated fallthrough between switch labels (es.78).</DESCRIPTION>
+    <FUNCTION>SDL_memset4</FUNCTION>
+    <DECORATED>SDL_memset4</DECORATED>
+    <FUNCLINE>479</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\Jacob\source\repos\SMGG\Dependencies\SDL\include\</FILEPATH>
+      <FILENAME>SDL_stdinc.h</FILENAME>
+      <LINE>501</LINE>
+      <COLUMN>13</COLUMN>
+    </SFA>
+    <DEFECTCODE>26819</DEFECTCODE>
+    <DESCRIPTION>Unannotated fallthrough between switch labels (es.78).</DESCRIPTION>
+    <FUNCTION>SDL_memset4</FUNCTION>
+    <DECORATED>SDL_memset4</DECORATED>
+    <FUNCLINE>479</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\Jacob\source\repos\SMGG\Dependencies\SDL\include\</FILEPATH>
+      <FILENAME>SDL_stdinc.h</FILENAME>
+      <LINE>502</LINE>
+      <COLUMN>13</COLUMN>
+    </SFA>
+    <DEFECTCODE>26819</DEFECTCODE>
+    <DESCRIPTION>Unannotated fallthrough between switch labels (es.78).</DESCRIPTION>
+    <FUNCTION>SDL_memset4</FUNCTION>
+    <DECORATED>SDL_memset4</DECORATED>
+    <FUNCLINE>479</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\Jacob\source\repos\SMGG\Dependencies\SDL\include\</FILEPATH>
+      <FILENAME>SDL_stdinc.h</FILENAME>
+      <LINE>503</LINE>
+      <COLUMN>13</COLUMN>
+    </SFA>
+    <DEFECTCODE>26819</DEFECTCODE>
+    <DESCRIPTION>Unannotated fallthrough between switch labels (es.78).</DESCRIPTION>
+    <FUNCTION>SDL_memset4</FUNCTION>
+    <DECORATED>SDL_memset4</DECORATED>
+    <FUNCLINE>479</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\Jacob\source\repos\SMGG\Dependencies\SDL\include\</FILEPATH>
+      <FILENAME>SDL_rect.h</FILENAME>
+      <LINE>102</LINE>
+      <COLUMN>28</COLUMN>
+    </SFA>
+    <DEFECTCODE>26812</DEFECTCODE>
+    <DESCRIPTION>The enum type 'SDL_bool' is unscoped. Prefer 'enum class' over 'enum' (Enum.3).</DESCRIPTION>
+    <FUNCTION>SDL_PointInRect</FUNCTION>
+    <DECORATED>SDL_PointInRect</DECORATED>
+    <FUNCLINE>99</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\Jacob\source\repos\SMGG\Dependencies\STEAM_API\include\</FILEPATH>
+      <FILENAME>steamclientpublic.h</FILENAME>
+      <LINE>483</LINE>
+      <COLUMN>1</COLUMN>
+    </SFA>
+    <DEFECTCODE>26812</DEFECTCODE>
+    <DESCRIPTION>The enum type 'EUniverse' is unscoped. Prefer 'enum class' over 'enum' (Enum.3).</DESCRIPTION>
+    <FUNCTION>CSteamID::{ctor}</FUNCTION>
+    <DECORATED>??0CSteamID@@QAE@IW4EUniverse@@W4EAccountType@@@Z</DECORATED>
+    <FUNCLINE>483</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\Jacob\source\repos\SMGG\Dependencies\STEAM_API\include\</FILEPATH>
+      <FILENAME>steamnetworkingtypes.h</FILENAME>
+      <LINE>1595</LINE>
+      <COLUMN>13</COLUMN>
+    </SFA>
+    <DEFECTCODE>26812</DEFECTCODE>
+    <DESCRIPTION>The enum type 'ESteamNetworkingConfigValue' is unscoped. Prefer 'enum class' over 'enum' (Enum.3).</DESCRIPTION>
+    <FUNCTION>SteamNetworkingConfigValue_t::SetInt32</FUNCTION>
+    <DECORATED>?SetInt32@SteamNetworkingConfigValue_t@@QAEXW4ESteamNetworkingConfigValue@@H@Z</DECORATED>
+    <FUNCLINE>1595</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\Jacob\source\repos\SMGG\Dependencies\STEAM_API\include\</FILEPATH>
+      <FILENAME>steamnetworkingtypes.h</FILENAME>
+      <LINE>1598</LINE>
+      <COLUMN>14</COLUMN>
+    </SFA>
+    <DEFECTCODE>26812</DEFECTCODE>
+    <DESCRIPTION>The enum type 'ESteamNetworkingConfigDataType' is unscoped. Prefer 'enum class' over 'enum' (Enum.3).</DESCRIPTION>
+    <FUNCTION>SteamNetworkingConfigValue_t::SetInt32</FUNCTION>
+    <DECORATED>?SetInt32@SteamNetworkingConfigValue_t@@QAEXW4ESteamNetworkingConfigValue@@H@Z</DECORATED>
+    <FUNCLINE>1595</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\Jacob\source\repos\SMGG\Dependencies\STEAM_API\include\</FILEPATH>
+      <FILENAME>steamnetworkingtypes.h</FILENAME>
+      <LINE>1745</LINE>
+      <COLUMN>78</COLUMN>
+    </SFA>
+    <DEFECTCODE>26812</DEFECTCODE>
+    <DESCRIPTION>The enum type 'ESteamNetworkingIdentityType' is unscoped. Prefer 'enum class' over 'enum' (Enum.3).</DESCRIPTION>
+    <FUNCTION>SteamNetworkingIdentity::SetSteamID64</FUNCTION>
+    <DECORATED>?SetSteamID64@SteamNetworkingIdentity@@QAEX_K@Z</DECORATED>
+    <FUNCLINE>1745</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\Jacob\source\repos\SMGG\Dependencies\STEAM_API\include\</FILEPATH>
+      <FILENAME>isteamnetworkingutils.h</FILENAME>
+      <LINE>464</LINE>
+      <COLUMN>35</COLUMN>
+    </SFA>
+    <DEFECTCODE>26812</DEFECTCODE>
+    <DESCRIPTION>The enum type 'ESteamNetworkingConfigScope' is unscoped. Prefer 'enum class' over 'enum' (Enum.3).</DESCRIPTION>
+    <FUNCTION>ISteamNetworkingUtils::SetConfigValueStruct</FUNCTION>
+    <DECORATED>?SetConfigValueStruct@ISteamNetworkingUtils@@QAE_NABUSteamNetworkingConfigValue_t@@W4ESteamNetworkingConfigScope@@H@Z</DECORATED>
+    <FUNCLINE>464</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\Jacob\source\repos\SMGG\Dependencies\STEAM_API\include\</FILEPATH>
+      <FILENAME>isteamnetworkingutils.h</FILENAME>
+      <LINE>493</LINE>
+      <COLUMN>82</COLUMN>
+    </SFA>
+    <DEFECTCODE>26812</DEFECTCODE>
+    <DESCRIPTION>The enum type 'ESteamNetworkingFakeIPType' is unscoped. Prefer 'enum class' over 'enum' (Enum.3).</DESCRIPTION>
+    <FUNCTION>SteamNetworkingIPAddr::GetFakeIPType</FUNCTION>
+    <DECORATED>?GetFakeIPType@SteamNetworkingIPAddr@@QBE?AW4ESteamNetworkingFakeIPType@@XZ</DECORATED>
+    <FUNCLINE>493</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\</FILEPATH>
+      <FILENAME>variables.h</FILENAME>
+      <LINE>89</LINE>
+      <COLUMN>0</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'fallen_empires::exist' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>fallen_empires::{ctor}</FUNCTION>
+    <DECORATED>??0fallen_empires@@QAE@XZ</DECORATED>
+    <FUNCLINE>89</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>fallen_empires::exist</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\</FILEPATH>
+      <FILENAME>variables.h</FILENAME>
+      <LINE>113</LINE>
+      <COLUMN>0</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'leviathans::exist' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>leviathans::{ctor}</FUNCTION>
+    <DECORATED>??0leviathans@@QAE@XZ</DECORATED>
+    <FUNCLINE>113</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>leviathans::exist</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\</FILEPATH>
+      <FILENAME>classes_declaration.h</FILENAME>
+      <LINE>11</LINE>
+      <COLUMN>0</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'c_init::random_sys' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>c_init::{ctor}</FUNCTION>
+    <DECORATED>??0c_init@@QAE@XZ</DECORATED>
+    <FUNCLINE>11</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>c_init::random_sys</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\</FILEPATH>
+      <FILENAME>graphics_engine.h</FILENAME>
+      <LINE>153</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>26812</DEFECTCODE>
+    <DESCRIPTION>The enum type 'SDL_RendererFlip' is unscoped. Prefer 'enum class' over 'enum' (Enum.3).</DESCRIPTION>
+    <FUNCTION>LTexture::renderButton</FUNCTION>
+    <DECORATED>?renderButton@LTexture@@QAEXHHPAUSDL_Rect@@NPAUSDL_Point@@W4SDL_RendererFlip@@@Z</DECORATED>
+    <FUNCLINE>153</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\</FILEPATH>
+      <FILENAME>graphics_engine.h</FILENAME>
+      <LINE>239</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>26812</DEFECTCODE>
+    <DESCRIPTION>The enum type 'SDL_BlendMode' is unscoped. Prefer 'enum class' over 'enum' (Enum.3).</DESCRIPTION>
+    <FUNCTION>LTexture::setBlendMode</FUNCTION>
+    <DECORATED>?setBlendMode@LTexture@@QAEXW4SDL_BlendMode@@@Z</DECORATED>
+    <FUNCLINE>239</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\</FILEPATH>
+      <FILENAME>graphics_engine.h</FILENAME>
+      <LINE>283</LINE>
+      <COLUMN>9</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'LButton::mCurrentSprite' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>LButton::{ctor}</FUNCTION>
+    <DECORATED>??0LButton@@QAE@XZ</DECORATED>
+    <FUNCLINE>283</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>LButton::mCurrentSprite</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\</FILEPATH>
+      <FILENAME>algo.h</FILENAME>
+      <LINE>1107</LINE>
+      <COLUMN>53</COLUMN>
+    </SFA>
+    <DEFECTCODE>26451</DEFECTCODE>
+    <DESCRIPTION>Arithmetic overflow: Using operator '+' on a 4 byte value and then casting the result to a 8 byte value. Cast the value to the wider type before calling operator '+' to avoid overflow (io.2).</DESCRIPTION>
+    <FUNCTION>random_generator</FUNCTION>
+    <DECORATED>?random_generator@@YAXXZ</DECORATED>
+    <FUNCLINE>1086</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\</FILEPATH>
+      <FILENAME>algo.h</FILENAME>
+      <LINE>1107</LINE>
+      <COLUMN>44</COLUMN>
+    </SFA>
+    <DEFECTCODE>26451</DEFECTCODE>
+    <DESCRIPTION>Arithmetic overflow: Using operator '+' on a 4 byte value and then casting the result to a 8 byte value. Cast the value to the wider type before calling operator '+' to avoid overflow (io.2).</DESCRIPTION>
+    <FUNCTION>random_generator</FUNCTION>
+    <DECORATED>?random_generator@@YAXXZ</DECORATED>
+    <FUNCLINE>1086</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\</FILEPATH>
+      <FILENAME>algo.h</FILENAME>
+      <LINE>1190</LINE>
+      <COLUMN>37</COLUMN>
+    </SFA>
+    <DEFECTCODE>26451</DEFECTCODE>
+    <DESCRIPTION>Arithmetic overflow: Using operator '*' on a 4 byte value and then casting the result to a 8 byte value. Cast the value to the wider type before calling operator '*' to avoid overflow (io.2).</DESCRIPTION>
+    <FUNCTION>random_generator</FUNCTION>
+    <DECORATED>?random_generator@@YAXXZ</DECORATED>
+    <FUNCLINE>1086</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\</FILEPATH>
+      <FILENAME>algo.h</FILENAME>
+      <LINE>1192</LINE>
+      <COLUMN>68</COLUMN>
+    </SFA>
+    <DEFECTCODE>26451</DEFECTCODE>
+    <DESCRIPTION>Arithmetic overflow: Using operator '+' on a 4 byte value and then casting the result to a 8 byte value. Cast the value to the wider type before calling operator '+' to avoid overflow (io.2).</DESCRIPTION>
+    <FUNCTION>random_generator</FUNCTION>
+    <DECORATED>?random_generator@@YAXXZ</DECORATED>
+    <FUNCLINE>1086</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\</FILEPATH>
+      <FILENAME>main.cpp</FILENAME>
+      <LINE>236</LINE>
+      <COLUMN>39</COLUMN>
+    </SFA>
+    <DEFECTCODE>26812</DEFECTCODE>
+    <DESCRIPTION>The enum type 'LButtonSprite' is unscoped. Prefer 'enum class' over 'enum' (Enum.3).</DESCRIPTION>
+    <FUNCTION>LButton::handleEvent</FUNCTION>
+    <DECORATED>?handleEvent@LButton@@QAEXPATSDL_Event@@H@Z</DECORATED>
+    <FUNCLINE>108</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\</FILEPATH>
+      <FILENAME>variables.h</FILENAME>
+      <LINE>195</LINE>
+      <COLUMN>0</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'galaxy_generation::maruder_am' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>galaxy_generation::{ctor}</FUNCTION>
+    <DECORATED>??0galaxy_generation@@QAE@XZ</DECORATED>
+    <FUNCLINE>195</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>galaxy_generation::maruder_am</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\</FILEPATH>
+      <FILENAME>variables.h</FILENAME>
+      <LINE>163</LINE>
+      <COLUMN>0</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'system_data::gal_y' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>system_data::{ctor}</FUNCTION>
+    <DECORATED>??0system_data@@QAE@XZ</DECORATED>
+    <FUNCLINE>163</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>system_data::gal_y</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT></DEFECTS>
