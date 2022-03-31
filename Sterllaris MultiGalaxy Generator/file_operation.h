@@ -642,8 +642,7 @@ void SaveRandomSettings()
         file << CRS.circle_stars_to << "\n";
         file << CRS.spiral_stars_from << "\n";
         file << CRS.spiral_stars_to << "\n";
-        file << CRS.rotation_factor_from << "\n";
-        file << CRS.rotation_factor_to << "\n";
+        file << CRS.rotation_factor << "\n";
         file << CRS.arm_amount_from << "\n";
         file << CRS.arm_amount_to << "\n";
         file << CRS.square_factor << "\n";
@@ -677,40 +676,40 @@ void LoadRandomSettings()
         switch (i)
         {
         case 0:
-            std::istringstream(fromfile[i]) >> CRS.enable_spiral;
+            std::istringstream(fromfile[i]) >> CRS.enable_circle;
             break;
         case 1:
-            std::istringstream(fromfile[i]) >> CRS.enable_resizing;
+            std::istringstream(fromfile[i]) >> CRS.enable_spiral;
             break;
         case 2:
-            std::istringstream(fromfile[i]) >> CRS.size_from;
+            std::istringstream(fromfile[i]) >> CRS.enable_resizing;
             break;
         case 3:
-            std::istringstream(fromfile[i]) >> CRS.size_to;
+            std::istringstream(fromfile[i]) >> CRS.size_from;
             break;
         case 4:
-            std::istringstream(fromfile[i]) >> CRS.hyperlanes_max_length_from;
+            std::istringstream(fromfile[i]) >> CRS.size_to;
             break;
         case 5:
-            std::istringstream(fromfile[i]) >> CRS.hyperlanes_max_length_to;
+            std::istringstream(fromfile[i]) >> CRS.hyperlanes_max_length_from;
             break;
         case 6:
-            std::istringstream(fromfile[i]) >> CRS.circle_stars_from;
+            std::istringstream(fromfile[i]) >> CRS.hyperlanes_max_length_to;
             break;
         case 7:
-            std::istringstream(fromfile[i]) >> CRS.circle_stars_to;
+            std::istringstream(fromfile[i]) >> CRS.circle_stars_from;
             break;
         case 8:
-            std::istringstream(fromfile[i]) >> CRS.spiral_stars_from;
+            std::istringstream(fromfile[i]) >> CRS.circle_stars_to;
             break;
         case 9:
-            std::istringstream(fromfile[i]) >> CRS.spiral_stars_to;
+            std::istringstream(fromfile[i]) >> CRS.spiral_stars_from;
             break;
         case 10:
-            std::istringstream(fromfile[i]) >> CRS.rotation_factor_from;
+            std::istringstream(fromfile[i]) >> CRS.spiral_stars_to;
             break;
         case 11:
-            std::istringstream(fromfile[i]) >> CRS.rotation_factor_to;
+            std::istringstream(fromfile[i]) >> CRS.rotation_factor;
             break;
         case 12:
             std::istringstream(fromfile[i]) >> CRS.arm_amount_from;
@@ -719,28 +718,28 @@ void LoadRandomSettings()
             std::istringstream(fromfile[i]) >> CRS.arm_amount_to;
             break;
         case 14:
-            std::istringstream(fromfile[i]) >> CRS.square_factor;
+            std::stringstream(fromfile[i]) >> CRS.square_factor;
             break;
         case 15:
-            std::istringstream(fromfile[i]) >> CRS.arm_max_width_from;
+            std::stringstream(fromfile[i]) >> CRS.arm_max_width_from;
             break;
         case 16:
-            std::istringstream(fromfile[i]) >> CRS.arm_max_width_to;
+            std::stringstream(fromfile[i]) >> CRS.arm_max_width_to;
             break;
         case 17:
-            std::istringstream(fromfile[i]) >> CRS.arm_random_width_from;
+            std::stringstream(fromfile[i]) >> CRS.arm_random_width_from;
             break;
         case 18:
-            std::istringstream(fromfile[i]) >> CRS.arm_random_width_from;
+            std::stringstream(fromfile[i]) >> CRS.arm_random_width_to;
             break;
         case 19:
-            std::istringstream(fromfile[i]) >> CRS.size_ratio;
+            std::stringstream(fromfile[i]) >> CRS.size_ratio;
             break;
         case 20:
-            std::istringstream(fromfile[i]) >> CRS.arm_ratio;
+            std::stringstream(fromfile[i]) >> CRS.arm_ratio;
             break;
         case 21:
-            std::istringstream(fromfile[i]) >> CRS.arm_width_ratio;
+            std::stringstream(fromfile[i]) >> CRS.arm_width_ratio;
             break;
         }
     }
@@ -762,14 +761,14 @@ void RandomDefaultSettings()
         file << "13\n";
         file << "7\n";
         file << "9\n";
+        file << "6\n";
+        file << "3\n";
+        file << "5\n";
         file << "1.5\n";
         file << "0.75\n";
         file << "0.9\n";
         file << "0.01\n";
         file << "0.1\n";
-        file << "6\n";
-        file << "3\n";
-        file << "5\n";
         file << "1.25\n";
         file << "0.25\n";
         file << "0.45\n";
@@ -796,40 +795,40 @@ void LoadRandomDefaultSettings()
         switch (i)
         {
         case 0:
-            std::istringstream(fromfile[i]) >> CRS.enable_spiral;
+            std::istringstream(fromfile[i]) >> CRS.enable_circle;
             break;
         case 1:
-            std::istringstream(fromfile[i]) >> CRS.enable_resizing;
+            std::istringstream(fromfile[i]) >> CRS.enable_spiral;
             break;
         case 2:
-            std::istringstream(fromfile[i]) >> CRS.size_from;
+            std::istringstream(fromfile[i]) >> CRS.enable_resizing;
             break;
         case 3:
-            std::istringstream(fromfile[i]) >> CRS.size_to;
+            std::istringstream(fromfile[i]) >> CRS.size_from;
             break;
         case 4:
-            std::istringstream(fromfile[i]) >> CRS.hyperlanes_max_length_from;
+            std::istringstream(fromfile[i]) >> CRS.size_to;
             break;
         case 5:
-            std::istringstream(fromfile[i]) >> CRS.hyperlanes_max_length_to;
+            std::istringstream(fromfile[i]) >> CRS.hyperlanes_max_length_from;
             break;
         case 6:
-            std::istringstream(fromfile[i]) >> CRS.circle_stars_from;
+            std::istringstream(fromfile[i]) >> CRS.hyperlanes_max_length_to;
             break;
         case 7:
-            std::istringstream(fromfile[i]) >> CRS.circle_stars_to;
+            std::istringstream(fromfile[i]) >> CRS.circle_stars_from;
             break;
         case 8:
-            std::istringstream(fromfile[i]) >> CRS.spiral_stars_from;
+            std::istringstream(fromfile[i]) >> CRS.circle_stars_to;
             break;
         case 9:
-            std::istringstream(fromfile[i]) >> CRS.spiral_stars_to;
+            std::istringstream(fromfile[i]) >> CRS.spiral_stars_from;
             break;
         case 10:
-            std::istringstream(fromfile[i]) >> CRS.rotation_factor_from;
+            std::istringstream(fromfile[i]) >> CRS.spiral_stars_to;
             break;
         case 11:
-            std::istringstream(fromfile[i]) >> CRS.rotation_factor_to;
+            std::istringstream(fromfile[i]) >> CRS.rotation_factor;
             break;
         case 12:
             std::istringstream(fromfile[i]) >> CRS.arm_amount_from;
@@ -838,29 +837,54 @@ void LoadRandomDefaultSettings()
             std::istringstream(fromfile[i]) >> CRS.arm_amount_to;
             break;
         case 14:
-            std::istringstream(fromfile[i]) >> CRS.square_factor;
+            std::stringstream(fromfile[i]) >> CRS.square_factor;
             break;
         case 15:
-            std::istringstream(fromfile[i]) >> CRS.arm_max_width_from;
+            std::stringstream(fromfile[i]) >> CRS.arm_max_width_from;
             break;
         case 16:
-            std::istringstream(fromfile[i]) >> CRS.arm_max_width_to;
+            std::stringstream(fromfile[i]) >> CRS.arm_max_width_to;
             break;
         case 17:
-            std::istringstream(fromfile[i]) >> CRS.arm_random_width_from;
+            std::stringstream(fromfile[i]) >> CRS.arm_random_width_from;
             break;
         case 18:
-            std::istringstream(fromfile[i]) >> CRS.arm_random_width_from;
+            std::stringstream(fromfile[i]) >> CRS.arm_random_width_to;
             break;
         case 19:
-            std::istringstream(fromfile[i]) >> CRS.size_ratio;
+            std::stringstream(fromfile[i]) >> CRS.size_ratio;
             break;
         case 20:
-            std::istringstream(fromfile[i]) >> CRS.arm_ratio;
+            std::stringstream(fromfile[i]) >> CRS.arm_ratio;
             break;
         case 21:
-            std::istringstream(fromfile[i]) >> CRS.arm_width_ratio;
+            std::stringstream(fromfile[i]) >> CRS.arm_width_ratio;
             break;
         }
     }
+
+    /*
+    std::cout << CRS.enable_circle << std::endl;
+    std::cout << CRS.enable_spiral << std::endl; 
+    std::cout << CRS.enable_resizing << std::endl;
+    std::cout << CRS.size_from << std::endl;
+    std::cout << CRS.size_to << std::endl; 
+    std::cout << CRS.hyperlanes_max_length_from << std::endl;
+    std::cout << CRS.hyperlanes_max_length_to << std::endl; 
+    std::cout << CRS.circle_stars_from<< std::endl;
+    std::cout << CRS.circle_stars_to << std::endl;
+    std::cout << CRS.spiral_stars_from << std::endl;
+    std::cout << CRS.spiral_stars_to << std::endl;
+    std::cout << CRS.rotation_factor << std::endl; 
+    std::cout << CRS.arm_amount_from << std::endl; 
+    std::cout << CRS.arm_amount_to << std::endl;
+    std::cout << CRS.square_factor << std::endl; 
+    std::cout << CRS.arm_max_width_from << std::endl; 
+    std::cout << CRS.arm_max_width_to << std::endl; 
+    std::cout << CRS.arm_random_width_from << std::endl; 
+    std::cout << CRS.arm_random_width_from << std::endl; 
+    std::cout << CRS.size_ratio << std::endl; 
+    std::cout << CRS.arm_ratio << std::endl;
+    std::cout << CRS.arm_width_ratio << std::endl;
+    */
 }

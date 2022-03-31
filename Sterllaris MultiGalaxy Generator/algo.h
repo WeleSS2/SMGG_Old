@@ -29,6 +29,7 @@ float yand(float angle, float distance)
 
 void generate_spiral(int gal_id) 
 {
+    //std::cout << "Spiral entered" << std::endl;
     if (edit == false)
     {
         v_system_data.emplace_back();
@@ -117,7 +118,7 @@ void generate_spiral(int gal_id)
         {
             armOffset = abs(armOffset);
         }
-        float squaredArmOffset = pow(armOffset, 1.5);
+        float squaredArmOffset = pow(armOffset, CRS.square_factor);
         armOffset = squaredArmOffset;
 
         float rotation = distance * rotationFactor;
@@ -162,6 +163,7 @@ void generate_spiral(int gal_id)
         }
         if (limit == 100000)
         {
+            //std::cout << "Galaxy removed" << std::endl;
             is_ok = false;
             galaxy_canceled = true;
             rerender();
@@ -194,6 +196,7 @@ void generate_spiral(int gal_id)
     {
         sys_sum += v_galaxy_generation[gal_id].i_star;
     }
+    //std::cout << "Spiral leaved" << std::endl;
 }
 
 // Generate eclipse galaxy
@@ -243,12 +246,15 @@ void generate_elipse(int gal_id)
                     {
                         x = rand() % (2 * gsize) - (gsize - cen_posX);
                         y = rand() % (2 * gsize) - (gsize - cen_posY);
-
+                        limit++;
+                        if (limit == 100000)
+                        {
+                            break;
+                        }
                     }
                     j = 0;
                 }
             }
-            limit++;
             if (limit == 100000)
             {
                 break;
@@ -1007,8 +1013,8 @@ void c_init::min_dist_specific(int gal_id, int min_distance, int init_id)
 
 void random_generator()
 {
-    int Chance = rand() % 25,
-        R_size = rand() % 250 + 150,
+    int Chance = rand() % 3,
+        R_size = rand() % (CRS.size_to - CRS.size_from) + CRS.size_from,
         R_center_x = rand() % (1000 - (R_size * 2)) - (500 - R_size),
         R_center_y = rand() % (1000 - (R_size * 2)) - (500 - R_size),
         R_star_amount = 0;
@@ -1016,11 +1022,11 @@ void random_generator()
     bool generate = true;
     while ((R_center_x - R_size < -500) || (R_center_x + R_size > 500) || (R_center_y - R_size < -500) || (R_center_y + R_size > 500))
     {
-        R_size = rand() % 200 + 150;
+        R_size = rand() % (CRS.size_to - CRS.size_from) + CRS.size_from;
         R_center_x = rand() % (1000 - (R_size * 2)) - (500 - R_size);
         R_center_y = rand() % (1000 - (R_size * 2)) - (500 - R_size);
     }
-    int j = 0, min = 100;
+    int j = 0, min = 100, start_size = R_size;
     while (j < v_galaxy_generation.size())
     {
         while ((sqrt(
@@ -1028,7 +1034,14 @@ void random_generator()
             pow(R_center_y - v_galaxy_generation[j].i_cen_posY, 2)
         ) <= v_galaxy_generation[j].i_gsize + R_size + min))
         {
-            R_size = rand() % 200 + 150 - limit / 16;
+            if ((CRS.enable_resizing) && ((CRS.size_from - limit /5) > CRS.size_from / 5))
+            {
+                R_size = rand() % (CRS.size_to - CRS.size_from) + CRS.size_from - limit / 5;
+            }
+            else
+            {
+                R_size = rand() % (CRS.size_to - CRS.size_from) + CRS.size_from;
+            }
             R_center_x = rand() % (1000 - (R_size * 2)) - (500 - R_size);
             R_center_y = rand() % (1000 - (R_size * 2)) - (500 - R_size);
             limit++;
@@ -1058,15 +1071,18 @@ void random_generator()
             j++;
         }
     }
+    //std::cout << R_size << " " << R_center_x << " " << R_center_y << " " << CRS.size_from << " " << (CRS.size_to - CRS.size_from) <<std::endl;
     if (generate == true)
     {
-        v_galaxy_generation.emplace_back();
-        if (Chance == 0)
+        //std::cout << "Generate = true  " << v_galaxy_generation.size() << std::endl;
+        if ((Chance == 0) && (CRS.enable_circle))
         {
+            v_galaxy_generation.emplace_back();
+            //std::cout << "Circle Entered" << std::endl;
             float temp_star_am, temp_size;
-            temp_star_am = (R_size * (rand() % 4 + 9) / 10);
+            temp_star_am = (R_size * (rand() % (CRS.circle_stars_to - CRS.circle_stars_from) + CRS.circle_stars_from) / 10);
             temp_size = R_size;
-            int R_max_hyperlane_distance = (rand() % 25 + 15) * (temp_size / temp_star_am);
+            int R_max_hyperlane_distance = (rand() % (CRS.hyperlanes_max_length_to - CRS.hyperlanes_max_length_from) + CRS.hyperlanes_max_length_from) * (temp_size / temp_star_am);
             int R_star_amount = round(temp_star_am);
             current_gal_id = galaxies_am;
             v_galaxy_generation[galaxies_am].galtype = 0;
@@ -1084,15 +1100,18 @@ void random_generator()
             generate_elipse(current_gal_id);
             rerender();
             draw_galaxy();
+            galaxies_am++;
         }
-        else if (Chance > 0)
+        else if ((Chance > 0) && (CRS.enable_spiral))
         {
+            v_galaxy_generation.emplace_back();
+            //std::cout << "Spiral gen entered" << std::endl;
             std::random_device rd;
             std::default_random_engine eng(rd());
-            std::uniform_real_distribution<> distr(0.75, 0.9);
-            std::uniform_real_distribution<> random(0.01, 0.1);
-            int R_numArms = rand() % 3 + 2,
-                R_rotationFactor = rand() % 12 - 6;
+            std::uniform_real_distribution<> distr((CRS.arm_max_width_to - CRS.arm_max_width_from), CRS.arm_max_width_from);
+            std::uniform_real_distribution<> random((CRS.arm_random_width_to - CRS.arm_random_width_from), CRS.arm_random_width_from);
+            int R_numArms = rand() % (CRS.arm_amount_to - CRS.arm_amount_from) + CRS.arm_amount_from,
+                R_rotationFactor = rand() % (CRS.rotation_factor * 2) - CRS.rotation_factor;
             float R_armOffsetMax = distr(eng),
                 R_randomOffsetXY = random(eng);
             while(R_rotationFactor == 0)
@@ -1108,11 +1127,12 @@ void random_generator()
                 }
             }
             float temp_star_am, temp_size;
-            temp_star_am = (((pow(R_size, 1.25) * (rand() % 2 + 7)) / 10.0) / 500.0);
+            temp_star_am = (((pow(R_size, CRS.size_ratio) * (rand() % (CRS.spiral_stars_to - CRS.spiral_stars_from) + CRS.spiral_stars_from)) / 10.0) / 500.0);
             temp_size = R_size;
-            R_star_amount = ((temp_star_am * (rand() % 50 + 350)) * R_armOffsetMax * (pow(R_randomOffsetXY, 0.25)) * (pow(R_numArms, 0.45)));
-            int R_max_hyperlane_distance = (rand() % 25 + 15) * (temp_size / R_star_amount);
+            R_star_amount = ((temp_star_am * (rand() % 50 + 350)) * (pow(R_armOffsetMax, CRS.arm_width_ratio)) *(pow(R_numArms, CRS.arm_ratio)));
+            int R_max_hyperlane_distance = (rand() % (CRS.hyperlanes_max_length_to - CRS.hyperlanes_max_length_from) + CRS.hyperlanes_max_length_from) * (temp_size / R_star_amount);
             current_gal_id = galaxies_am;
+            //std::cout << CRS.arm_random_width_to << " " << CRS.arm_random_width_from << " " << R_star_amount << " " << R_size << " " << R_center_x << " " << R_center_y << " " << R_max_hyperlane_distance << " " << R_numArms << " " << R_rotationFactor << " " << R_armOffsetMax << " " << R_randomOffsetXY << " " << std::endl;
             v_galaxy_generation[galaxies_am].galtype = 1;
             v_galaxy_generation[galaxies_am].star = std::to_string(R_star_amount);
             v_galaxy_generation[galaxies_am].gsize = std::to_string(R_size);
@@ -1136,7 +1156,7 @@ void random_generator()
             generate_spiral(current_gal_id);
             rerender();
             draw_galaxy();
+            galaxies_am++;
         }
-        galaxies_am++;
     }
 }

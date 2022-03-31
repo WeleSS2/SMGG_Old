@@ -64,15 +64,12 @@ From 50 CUSTOM SIZE:
 123 - Arm max width to
 124 - Arm random width from
 125 - Arm random width to
-126 - Rotation factor from
-127 - Rotation factor to
+126 - Rotation factor
 128 - Arm amount from
 129 - Arm amount to
 130 - Size ratio
 131 - Arm ratio
 132 - Arm width ratio
-133 - Reset settings to deafult
-134 - 
 
 150 - 200 Boxy dla galaktyk
 
@@ -239,6 +236,18 @@ void LButton::handleEvent(SDL_Event* e, int id)
                 }
                 if (random_window == true)
                 {
+                case 110:
+                    if (x > mPosition.x + 32) { inside = false; }
+                    else if (y > mPosition.y + 32) { inside = false; }
+                    break;
+                case 111:
+                    if (x > mPosition.x + 32) { inside = false; }
+                    else if (y > mPosition.y + 32) { inside = false; }
+                    break;
+                case 112:
+                    if (x > mPosition.x + 32) { inside = false; }
+                    else if (y > mPosition.y + 32) { inside = false; }
+                    break;
                 case 113:
                     if (x > mPosition.x + 50) { inside = false; }
                     else if (y > mPosition.y + 32) { inside = false; }
@@ -763,8 +772,155 @@ void LButton::handleEvent(SDL_Event* e, int id)
                             }
                             break;
 
+                        case 110:
+                            if (CRS.enable_circle == false)
+                            {
+                                CRS.enable_circle = true;
+                                rerender();
+                            }
+                            else
+                            {
+                                CRS.enable_circle = false;
+                                rerender();
+                            }
+                            break;
+                        case 111:
+                            if (CRS.enable_spiral == false)
+                            {
+                                CRS.enable_spiral = true;
+                                rerender();
+                            }
+                            else
+                            {
+                                CRS.enable_spiral = false;
+                                rerender();
+                            }
+                            break;
+                        case 112:
+                            if (CRS.enable_resizing == false)
+                            {
+                                CRS.enable_resizing = true;
+                                rerender();
+                            }
+                            else
+                            {
+                                CRS.enable_resizing = false;
+                                rerender();
+                            }
+                            break;
+                            // SIze from
                         case 113:
-                            std::cout << "Work" << std::endl;
+                            CRS.size_from_edited = true;
+                            GE.text_input(center_width + 1403,center_height + 272, 113);
+                            CRS.size_from_edited = false;
+                            break;
+                            // Size to
+                        case 114:
+                            CRS.size_to_edited = true;
+                            GE.text_input(center_width + 1513, center_height + 272, 114);
+                            CRS.size_to_edited = false;
+                            break;
+                            // Hyperlanes from
+                        case 115:
+                            CRS.hyperlanes_max_length_from_edited = true;
+                            GE.text_input(center_width + 1560, center_height + 312, 115);
+                            CRS.hyperlanes_max_length_from_edited = false;
+                            break;
+                            // Hyperlanes to
+                        case 116:
+                            CRS.hyperlanes_max_length_to_edited = true;
+                            GE.text_input(center_width + 1680, center_height + 312, 116);
+                            CRS.hyperlanes_max_length_to_edited = false;
+                            break;
+                            // Circle stars from
+                        case 117:
+                            CRS.circle_stars_from_edited = true;
+                            GE.text_input(center_width + 1500, center_height + 392, 117);
+                            CRS.circle_stars_from_edited = false;
+                            break;
+                            // Circle stars to
+                        case 118:
+                            CRS.circle_stars_to_edited = true;
+                            GE.text_input(center_width + 1580, center_height + 392, 118);
+                            CRS.circle_stars_to_edited = false;
+                            break;
+                            // SPiral stars from
+                        case 119:
+                            CRS.spiral_stars_from_edited = true;
+                            GE.text_input(center_width + 1500, center_height + 482, 119);
+                            CRS.spiral_stars_from_edited = false;
+                            break;
+                            // SPiral stars to
+                        case 120:
+                            CRS.spiral_stars_to_edited = true;
+                            GE.text_input(center_width + 1580, center_height + 482, 120);
+                            CRS.spiral_stars_to_edited = false;
+                            break;
+                            // Square factor
+                        case 121:
+                            CRS.square_factor_edited = true;
+                            GE.text_input(center_width + 1435, center_height + 522, 121);
+                            CRS.square_factor_edited = false;
+                            break;
+                            // Arm max from
+                        case 122:
+                            CRS.arm_max_width_from_edited = true;
+                            GE.text_input(center_width + 1440, center_height + 562, 122);
+                            CRS.arm_max_width_from_edited = false;
+                            break;
+                            // Arm max to
+                        case 123:
+                            CRS.arm_max_width_to_edited = true;
+                            GE.text_input(center_width + 1580, center_height + 562, 123);
+                            CRS.arm_max_width_to_edited = false;
+                            break;
+                            // Arm random from
+                        case 124:
+                            CRS.arm_random_width_from_edited = true;
+                            GE.text_input(center_width + 1495, center_height + 602, 124);
+                            CRS.arm_random_width_from_edited = false;
+                            break;
+                            // Arm random to
+                        case 125:
+                            CRS.arm_random_width_to_edited = true;
+                            GE.text_input(center_width + 1600, center_height + 602, 125);
+                            CRS.arm_random_width_to_edited = false;
+                            break;
+                            // Rotation factor
+                        case 126:
+                            CRS.rotation_factor_edited = true;
+                            GE.text_input(center_width + 1454, center_height + 642, 126);
+                            CRS.rotation_factor_edited = false;
+                            break;
+                            // Arm amount from
+                        case 128:
+                            CRS.arm_amount_from_edited = true;
+                            GE.text_input(center_width + 1417, center_height + 682, 128);
+                            CRS.arm_amount_from_edited = false;
+                            break;
+                            // Arm amount to
+                        case 129:
+                            CRS.arm_amount_to_edited = true;
+                            GE.text_input(center_width + 1580, center_height + 682, 129);
+                            CRS.arm_amount_to_edited = false;
+                            break;
+                            // Size ratio
+                        case 130:
+                            CRS.size_ratio_edited = true;
+                            GE.text_input(center_width + 1380, center_height + 782, 130);
+                            CRS.size_ratio_edited = false;
+                            break;
+                            // Arm ratio
+                        case 131:
+                            CRS.arm_ratio_edited = true;
+                            GE.text_input(center_width + 1685, center_height + 782, 131);
+                            CRS.arm_ratio_edited = false;
+                            break;
+                            // Arm width ratio
+                        case 132:
+                            CRS.arm_width_ratio_edited = true;
+                            GE.text_input(center_width + 1460, center_height + 822, 132);
+                            CRS.arm_width_ratio_edited = false;
                             break;
                             //Settings
                         }
@@ -960,10 +1116,10 @@ void RandomSettings()
     GE.render_checkbox(111, 1791, 231, 30, 30);
     GE.line(1223, 265, 1897, 265);
 
-    GE.text_render_v2("Galaxy resizing", 1600, 270);
-    GE.render_checkbox(112, 1821, 271, 30, 30);
+    GE.text_render_v2("Galaxy resizing", 1610, 270);
+    GE.render_checkbox(112, 1831, 271, 30, 30);
     GE.text_with_button(113, "Galaxy size:", 1240, 270);
-    GE.text_with_button(114, "to:", 1460, 270);
+    GE.text_with_button(114, "to:", 1480, 270);
     GE.line(1223, 305, 1897, 305);
 
     GE.text_with_button(115, "Hyperlanes max length:", 1240, 310);
@@ -991,7 +1147,7 @@ void RandomSettings()
     GE.line(1223, 595, 1897, 595);
 
     GE.text_with_button(124, "Arm random width:", 1240, 600);
-    GE.text_with_button(125, "to:", 1540, 600);
+    GE.text_with_button(125, "to:", 1560, 600);
     GE.line(1223, 635, 1897, 635);
 
     GE.text_with_button(126, "Rotation factor:", 1240, 640);

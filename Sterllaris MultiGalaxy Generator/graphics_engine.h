@@ -605,60 +605,248 @@ void Graphics_Engine::text_input(int x, int y, int target_string_id)
     }
     else
     {
-        if (target_string_id < 100)
+        switch (target_string_id)
         {
-            switch (target_string_id)
-            {
-            case 0:
-                fucking_minus(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
-                break;
-            case 1:
-                fucking_minus(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
-                break;
-            case 2:
-                isNumber(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
-                break;
-            case 3:
-                isNumber(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
-                break;
-            case 4:
-                fucking_minus(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
-                break;
-            case 5:
-                fucking_minus(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
-                break;
-            case 6:
-                fucking_minus(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
-                break;
-            case 7:
-                fucking_minus(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
-                break;
-            case 8:
-                isNumber(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
-                break;
+        case 0:
+            fucking_minus(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+            break;
+        case 1:
+        fucking_minus(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+            break;
+        case 2:
+            isNumber(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+            break;
+        case 3:
+            isNumber(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+            break;
+        case 4:
+            fucking_minus(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+            break;
+        case 5:
+            fucking_minus(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+            break;
+        case 6:
+            fucking_minus(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+            break;
+        case 7:
+            fucking_minus(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+            break;
+        case 8:
+            isNumber(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+            break;
 
-            case 20:
-                fucking_minus(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
-                break;
-            case 21:
-                fucking_minus(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
-                break;
-            case 22:
-                fucking_minus(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
-                break;
-            case 55:
-                fucking_minus(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
-                break;
-            case 56:
-                fucking_minus(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
-                break;
-            case 99:
-                fucking_minus(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
-                break;
-            }
-        }
-        if (target_string_id == 100)
+        case 20:
+            fucking_minus(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+            break;
+        case 21:
+            fucking_minus(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+            break;
+        case 22:
+            fucking_minus(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+            break;
+        case 55:
+            fucking_minus(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+            break;
+        case 56:
+            fucking_minus(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+            break;
+        case 99:
+            fucking_minus(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+            break;
+        case 100:
             pathget = inputText;
+            break;
+        case 113:
+            if (std::stoi(inputText) > 25 && std::stoi(inputText) < 500)
+            {
+                fucking_minus(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+            }
+            else
+            {
+                wrong_text_input(x, y, target_string_id);
+            }
+            break;
+        case 114:
+            if (std::stoi(inputText) > 25 && std::stoi(inputText) < 500)
+            {
+                fucking_minus(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+            }
+            else
+            {
+                wrong_text_input(x, y, target_string_id);
+            }
+            break;
+        case 115:
+            if (std::stoi(inputText) > 0)
+            {
+                fucking_minus(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+            }
+            else
+            {
+                wrong_text_input(x, y, target_string_id);
+            }
+            break;
+        case 116:
+            if (std::stoi(inputText) > 0)
+            {
+                fucking_minus(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+            }
+            else
+            {
+                wrong_text_input(x, y, target_string_id);
+            }
+            break;
+        case 117:
+            if (std::stoi(inputText) > 0)
+            {
+                fucking_minus(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+            }
+            else
+            {
+                wrong_text_input(x, y, target_string_id);
+            }
+            break;
+        case 118:
+            if (std::stoi(inputText) > 0)
+            {
+                fucking_minus(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+            }
+            else
+            {
+                wrong_text_input(x, y, target_string_id);
+            }
+            break;
+        case 119:
+            if (std::stoi(inputText) > 0)
+            {
+                fucking_minus(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+            }
+            else
+            {
+                wrong_text_input(x, y, target_string_id);
+            }
+            break;
+        case 120:
+            if (std::stoi(inputText) > 0)
+            {
+                fucking_minus(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+            }
+            else
+            {
+                wrong_text_input(x, y, target_string_id);
+            }
+            break;
+        case 121:
+            if (std::stoi(inputText) > 0)
+            {
+                fucking_minus(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+            }
+            else
+            {
+                wrong_text_input(x, y, target_string_id);
+            }
+            break;
+        case 122:
+            if (std::stof(inputText) > 0.01 && std::stof(inputText) < 0.9999)
+            {
+                fucking_minus(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+            }
+            else
+            {
+                wrong_text_input(x, y, target_string_id);
+            }
+            break;
+        case 123:
+            if (std::stof(inputText) > 0.01 && std::stof(inputText) < 0.9999)
+            {
+                fucking_minus(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+            }
+            else
+            {
+                wrong_text_input(x, y, target_string_id);
+            }
+            break;
+        case 124:
+            if (std::stof(inputText) > 0.01 && std::stof(inputText) < 0.9999)
+            {
+                fucking_minus(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+            }
+            else
+            {
+                wrong_text_input(x, y, target_string_id);
+            }
+            break;
+        case 125:
+            if (std::stof(inputText) > 0.01 && std::stof(inputText) < 0.9999)
+            {
+                fucking_minus(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+            }
+            else
+            {
+                wrong_text_input(x, y, target_string_id);
+            }
+            break;
+        case 126:
+            if (std::stoi(inputText) > 0)
+            {
+                fucking_minus(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+            }
+            else
+            {
+                wrong_text_input(x, y, target_string_id);
+            }
+            break;
+        case 128:
+            if (std::stoi(inputText) > 0)
+            {
+                fucking_minus(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+            }
+            else
+            {
+                wrong_text_input(x, y, target_string_id);
+            }
+            break;
+        case 129:
+            if (std::stoi(inputText) > 0)
+            {
+                fucking_minus(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+            }
+            else
+            {
+                wrong_text_input(x, y, target_string_id);
+            }
+            break;
+        case 130:
+            if (std::stof(inputText) > 0)
+            {
+                fucking_minus(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+            }
+            else
+            {
+                wrong_text_input(x, y, target_string_id);
+            }
+            break;
+        case 131:
+            if (std::stof(inputText) > 0)
+            {
+                fucking_minus(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+            }
+            else
+            {
+                wrong_text_input(x, y, target_string_id);
+            }
+            break;
+        case 132:
+            if (std::stof(inputText) > 0)
+            {
+                fucking_minus(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+            }
+            else
+            {
+                wrong_text_input(x, y, target_string_id);
+            }
+            break;
+        }
 
         if (target_string_id != 100)
         {
@@ -779,7 +967,65 @@ void save_as(std::string inputText, int id)
     case 100:
         pathget = inputText;
         break;
+    case 113:
+        CRS.size_from = std::stoi(inputText);
+        break;
+    case 114:
+        CRS.size_to = std::stoi(inputText);
+        break;
+    case 115:
+        CRS.hyperlanes_max_length_from = std::stoi(inputText);
+        break;
+    case 116:
+        CRS.hyperlanes_max_length_to = std::stoi(inputText);
+        break;
+    case 117:
+        CRS.circle_stars_from = std::stoi(inputText);
+        break;
+    case 118:
+        CRS.circle_stars_to = std::stoi(inputText);
+        break;
+    case 119:
+        CRS.spiral_stars_from = std::stoi(inputText);
+        break;
+    case 120:
+        CRS.spiral_stars_to = std::stoi(inputText);
+        break;
+    case 121:
+        CRS.square_factor = std::stof(inputText);
+        break;
+    case 122:
+        CRS.arm_max_width_from = std::stof(inputText);
+        break;
+    case 123:
+        CRS.arm_max_width_to = std::stof(inputText);
+        break;
+    case 124:
+        CRS.arm_random_width_from = std::stof(inputText);
+        break;
+    case 125:
+        CRS.arm_random_width_to = std::stof(inputText);
+        break;
+    case 126:
+        CRS.rotation_factor = std::stoi(inputText);
+        break;
+    case 128:
+        CRS.arm_amount_from = std::stoi(inputText);
+        break;
+    case 129:
+        CRS.arm_amount_to = std::stoi(inputText);
+        break;
+    case 130:
+        CRS.size_ratio = std::stof(inputText);
+        break;
+    case 131:
+        CRS.arm_ratio = std::stof(inputText);
+        break;
+    case 132:
+        CRS.arm_width_ratio = std::stof(inputText);
+        break;
     }
+    rerender();
 }
 
 void Graphics_Engine::render_button_with_text(int mode, int button_id, int button_x, int button_y, std::string tekst, int text_x, int text_y)
@@ -804,6 +1050,7 @@ void Graphics_Engine::render_checkbox(int button_id, int button_x, int button_y,
 
 void render_hyperlanes()
 {
+    //std::cout << galaxies_am << std::endl;
         for (int i = 0; i < galaxies_am; i++)
         {
             if (v_galaxy_generation[i].hyperlanes_generated == true)

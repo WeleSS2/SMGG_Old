@@ -1,7 +1,7 @@
 ﻿  main.cpp
 C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\variables.h(38,18): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\graphics_engine.h(774,29): warning C4018: '>': signed/unsigned mismatch
-C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\graphics_engine.h(815,43): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\graphics_engine.h(962,29): warning C4018: '>': signed/unsigned mismatch
+C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\graphics_engine.h(1062,43): warning C4018: '<': signed/unsigned mismatch
 C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\file_operation.h(45,31): warning C4018: '<': signed/unsigned mismatch
 C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\file_operation.h(54,35): warning C4018: '<': signed/unsigned mismatch
 C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\file_operation.h(114,39): warning C4018: '<': signed/unsigned mismatch
@@ -12,69 +12,68 @@ C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\file_operation
 C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\file_operation.h(388,55): warning C4018: '<': signed/unsigned mismatch
 C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\file_operation.h(436,23): warning C4018: '<': signed/unsigned mismatch
 C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\file_operation.h(582,23): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\file_operation.h(675,23): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\file_operation.h(794,23): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(49,23): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(58,35): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(70,35): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(82,35): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(94,35): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(106,35): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(120,32): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(148,29): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(213,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(228,27): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(330,32): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(340,51): warning C4018: '>': signed/unsigned mismatch
-C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(350,36): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(364,30): warning C4018: '>': signed/unsigned mismatch
-C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(395,27): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(424,40): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(447,44): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(462,34): warning C4018: '>': signed/unsigned mismatch
-C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(493,32): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(507,30): warning C4018: '>': signed/unsigned mismatch
-C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(541,46): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(570,31): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(645,23): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(648,17): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(648,52): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(657,23): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(687,23): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(690,17): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(690,52): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(692,27): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(693,27): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(694,25): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(695,29): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(699,37): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(703,37): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(708,32): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(710,47): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(711,54): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(712,57): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(713,56): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(1024,14): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(1067,55): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(1068,25): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(1069,42): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(1070,31): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(1096,34): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(1097,34): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(1111,77): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(1112,25): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(1113,116): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(1114,42): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\main.cpp(1031,23): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\main.cpp(1033,27): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\main.cpp(1326,35): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\main.cpp(1337,31): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\main.cpp(1427,23): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\main.cpp(1445,39): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\file_operation.h(674,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\file_operation.h(793,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(50,23): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(59,35): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(71,35): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(83,35): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(95,35): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(107,35): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(149,29): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(216,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(231,27): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(336,32): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(346,51): warning C4018: '>': signed/unsigned mismatch
+C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(356,36): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(370,30): warning C4018: '>': signed/unsigned mismatch
+C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(401,27): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(430,40): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(453,44): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(468,34): warning C4018: '>': signed/unsigned mismatch
+C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(499,32): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(513,30): warning C4018: '>': signed/unsigned mismatch
+C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(547,46): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(576,31): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(651,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(654,17): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(654,52): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(663,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(693,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(696,17): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(696,52): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(698,27): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(699,27): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(700,25): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(701,29): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(705,37): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(709,37): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(714,32): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(716,47): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(717,54): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(718,57): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(719,56): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(1030,14): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(1083,119): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(1084,25): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(1085,42): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(1086,31): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(1115,34): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(1116,34): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(1130,151): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(1131,25): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(1132,112): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\algo.h(1133,42): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\main.cpp(1187,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\main.cpp(1189,27): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\main.cpp(1482,35): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\main.cpp(1493,31): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\main.cpp(1583,23): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\Jacob\source\repos\SMGG\Sterllaris MultiGalaxy Generator\main.cpp(1601,39): warning C4018: '<': signed/unsigned mismatch
   Generating code
-  2 of 1176 functions ( 0.2%) were compiled, the rest were copied from previous compilation.
+  5 of 1187 functions ( 0.4%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    20 functions had inline decision re-evaluated but remain unchanged
+    22 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   Sterllaris MultiGalaxy Generator.vcxproj -> C:\Users\Jacob\source\repos\SMGG\Release\Sterllaris MultiGalaxy Generator.exe
   0 File(s) copied

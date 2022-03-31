@@ -130,6 +130,104 @@ void base()
     if (random_window == true)
     {
         RandomSettings();
+        if (CRS.enable_circle)
+        {
+            GE.text_render_v2("X", 1436, 231);
+        }
+        if (CRS.enable_spiral)
+        {
+            GE.text_render_v2("X", 1796, 231);
+        }
+        if (CRS.enable_resizing)
+        {
+            GE.text_render_v2("X", 1836, 271);
+        }
+        std::stringstream ss;
+        std::string output;
+        if (!CRS.size_from_edited)
+        {
+            GE.text_render_v2(std::to_string(CRS.size_from), 1403, 272);
+        }
+        if (!CRS.size_to_edited)
+        {
+            GE.text_render_v2(std::to_string(CRS.size_to), 1513, 272);
+        }
+        if (!CRS.hyperlanes_max_length_from_edited)
+        {
+            GE.text_render_v2(std::to_string(CRS.hyperlanes_max_length_from), 1560, 312);
+        }
+        if(!CRS.hyperlanes_max_length_to_edited)
+        {
+            GE.text_render_v2(std::to_string(CRS.hyperlanes_max_length_to), 1680, 312);
+        }
+        if (!CRS.circle_stars_from_edited)
+        {
+            GE.text_render_v2(std::to_string(CRS.circle_stars_from), 1500, 392);
+        }
+        if (!CRS.circle_stars_to_edited)
+        {
+            GE.text_render_v2(std::to_string(CRS.circle_stars_to), 1580, 392);
+        }
+        if (!CRS.spiral_stars_from_edited)
+        {
+            GE.text_render_v2(std::to_string(CRS.spiral_stars_from), 1500, 482);
+        }
+        if (!CRS.spiral_stars_to_edited)
+        {
+            GE.text_render_v2(std::to_string(CRS.spiral_stars_to), 1580, 482);
+        }
+        if (!CRS.rotation_factor_edited)
+        {
+            GE.text_render_v2(std::to_string(CRS.rotation_factor), 1454, 642);
+        }
+        if (!CRS.arm_amount_from_edited)
+        {
+            GE.text_render_v2(std::to_string(CRS.arm_amount_from), 1417, 682);
+        }
+        if (!CRS.arm_amount_to_edited)
+        {
+            GE.text_render_v2(std::to_string(CRS.arm_amount_to), 1580, 682);
+        }
+        if (!CRS.square_factor_edited)
+        {
+            ss << CRS.square_factor; ss >> output;
+            GE.text_render_v2(output, 1435, 522);
+        }
+        if (!CRS.arm_max_width_from_edited)
+        {
+            ss.clear(); ss.str(""); ss << CRS.arm_max_width_from; ss >> output;
+            GE.text_render_v2(output, 1440, 562);
+        }
+        if (!CRS.arm_max_width_to_edited)
+        {
+            ss.clear(); ss.str(""); ss << CRS.arm_max_width_to; ss >> output;
+            GE.text_render_v2(output, 1580, 562);
+        }
+        if (!CRS.arm_random_width_from_edited)
+        {
+            ss.clear(); ss.str(""); ss << CRS.arm_random_width_from; ss >> output;
+            GE.text_render_v2(output, 1495, 602);
+        }
+        if (!CRS.arm_random_width_to_edited)
+        {
+            ss.clear(); ss.str(""); ss << CRS.arm_random_width_to; ss >> output;
+            GE.text_render_v2(output, 1600, 602);
+        }
+        if (!CRS.size_ratio_edited)
+        {
+            ss.clear(); ss.str(""); ss << CRS.size_ratio; ss >> output;
+            GE.text_render_v2(output, 1380, 782);
+        }
+        if (!CRS.arm_ratio_edited)
+        {
+            ss.clear(); ss.str(""); ss << CRS.arm_ratio; ss >> output;
+            GE.text_render_v2(output, 1685, 782);
+        }
+        if (!CRS.arm_width_ratio_edited)
+        {
+            ss.clear(); ss.str(""); ss << CRS.arm_width_ratio; ss >> output;
+            GE.text_render_v2(output, 1460, 822);
+        }
     }
         
     if (galaxies_am > 0)
