@@ -27,7 +27,10 @@ gButtons 13 = Exit
 29 - Random Galaxy
 30 - Choose Circle or Ring Shape
 31 - Choose x-ARms galaxy schape
-
+35 - Game Settings
+36 - Launcher Settings
+37 - Random Settings
+38 - Patch Settings
 From 50 CUSTOM SIZE:
 50 - Empire am
 51 - Fallen am
@@ -44,6 +47,32 @@ From 50 CUSTOM SIZE:
 98 - Checkbox initializers
 99 - Checkbox save to a game
 100 - Checkbox SMGG Hyperlanes
+
+110 - Checkbox Enable Circle
+111 - Checkbox Enable Spiral
+112 - Checkbox Galaxy Resizing
+113 - Galaxy size from
+114 - Galaxy size to
+115 - Hyperlanes max length from
+116 - Hyperlanes max length to
+117 - Circle stars from
+118 - Circle stars to
+119 - Spiral stars from
+120 - Spiral stars from
+121 - Square factor
+122 - Arm max width from
+123 - Arm max width to
+124 - Arm random width from
+125 - Arm random width to
+126 - Rotation factor from
+127 - Rotation factor to
+128 - Arm amount from
+129 - Arm amount to
+130 - Size ratio
+131 - Arm ratio
+132 - Arm width ratio
+133 - Reset settings to deafult
+134 - 
 
 150 - 200 Boxy dla galaktyk
 
@@ -142,7 +171,6 @@ void LButton::handleEvent(SDL_Event* e, int id)
             {
                 inside = false;
             }
-
             switch (id){
                 if (empiresettings_window == true){
                 case 50:
@@ -206,6 +234,89 @@ void LButton::handleEvent(SDL_Event* e, int id)
                 {
                 case 62:
                     if (x > mPosition.x + 32) { inside = false; }
+                    else if (y > mPosition.y + 32) { inside = false; }
+                    break;
+                }
+                if (random_window == true)
+                {
+                case 113:
+                    if (x > mPosition.x + 50) { inside = false; }
+                    else if (y > mPosition.y + 32) { inside = false; }
+                    break;
+                case 114:
+                    if (x > mPosition.x + 50) { inside = false; }
+                    else if (y > mPosition.y + 32) { inside = false; }
+                    break;
+                case 115:
+                    if (x > mPosition.x + 50) { inside = false; }
+                    else if (y > mPosition.y + 32) { inside = false; }
+                    break;
+                case 116:
+                    if (x > mPosition.x + 50) { inside = false; }
+                    else if (y > mPosition.y + 32) { inside = false; }
+                    break;
+                case 117:
+                    if (x > mPosition.x + 50) { inside = false; }
+                    else if (y > mPosition.y + 32) { inside = false; }
+                    break;
+                case 118:
+                    if (x > mPosition.x + 50) { inside = false; }
+                    else if (y > mPosition.y + 32) { inside = false; }
+                    break;
+                case 119:
+                    if (x > mPosition.x + 50) { inside = false; }
+                    else if (y > mPosition.y + 32) { inside = false; }
+                    break;
+                case 120:
+                    if (x > mPosition.x + 50) { inside = false; }
+                    else if (y > mPosition.y + 32) { inside = false; }
+                    break;
+                case 121:
+                    if (x > mPosition.x + 50) { inside = false; }
+                    else if (y > mPosition.y + 32) { inside = false; }
+                    break;
+                case 122:
+                    if (x > mPosition.x + 50) { inside = false; }
+                    else if (y > mPosition.y + 32) { inside = false; }
+                    break;
+                case 123:
+                    if (x > mPosition.x + 50) { inside = false; }
+                    else if (y > mPosition.y + 32) { inside = false; }
+                    break;
+                case 124:
+                    if (x > mPosition.x + 50) { inside = false; }
+                    else if (y > mPosition.y + 32) { inside = false; }
+                    break;
+                case 125:
+                    if (x > mPosition.x + 50) { inside = false; }
+                    else if (y > mPosition.y + 32) { inside = false; }
+                    break;
+                case 126:
+                    if (x > mPosition.x + 50) { inside = false; }
+                    else if (y > mPosition.y + 32) { inside = false; }
+                    break;
+                case 127:
+                    if (x > mPosition.x + 50) { inside = false; }
+                    else if (y > mPosition.y + 32) { inside = false; }
+                    break;
+                case 128:
+                    if (x > mPosition.x + 50) { inside = false; }
+                    else if (y > mPosition.y + 32) { inside = false; }
+                    break;
+                case 129:
+                    if (x > mPosition.x + 50) { inside = false; }
+                    else if (y > mPosition.y + 32) { inside = false; }
+                    break;
+                case 130:
+                    if (x > mPosition.x + 50) { inside = false; }
+                    else if (y > mPosition.y + 32) { inside = false; }
+                    break;
+                case 131:
+                    if (x > mPosition.x + 50) { inside = false; }
+                    else if (y > mPosition.y + 32) { inside = false; }
+                    break;
+                case 132:
+                    if (x > mPosition.x + 50) { inside = false; }
                     else if (y > mPosition.y + 32) { inside = false; }
                     break;
                 }
@@ -386,6 +497,7 @@ void LButton::handleEvent(SDL_Event* e, int id)
                             //Exit
                         case 13:
                             SaveSettings();
+                            SaveRandomSettings();
                             close();
                             std::exit(0);
                             break;
@@ -650,6 +762,10 @@ void LButton::handleEvent(SDL_Event* e, int id)
                                 rerender();
                             }
                             break;
+
+                        case 113:
+                            std::cout << "Work" << std::endl;
+                            break;
                             //Settings
                         }
                     }
@@ -695,7 +811,7 @@ void LButton::handleEvent(SDL_Event* e, int id)
                     switch (id)
                     {
                         // Game Settings
-                    case 7:
+                    case 35:
                         if (empiresettings_window == false)
                         {
                             DisableOtherWindows();
@@ -709,7 +825,7 @@ void LButton::handleEvent(SDL_Event* e, int id)
                         break;
 
                         // Laucher Settings
-                    case 8:
+                    case 36:
                         if (launchersettings_window == false)
                         {
                             DisableOtherWindows();
@@ -721,7 +837,19 @@ void LButton::handleEvent(SDL_Event* e, int id)
                             rerender();
                         }
                         break;
-                    case 9:
+                    case 37:
+                        if (random_window == false)
+                        {
+                            DisableOtherWindows();
+                            random_window = true;
+                            rerender();
+                        }
+                        else {
+                            random_window = false;
+                            rerender();
+                        }
+                        break;
+                    case 38:
                         if (patchsettings_window == false)
                         {
                             DisableOtherWindows();
@@ -795,18 +923,14 @@ void EmpireSettings()
 void Settings()
 {
     gModulatedTexture.setAlpha(233);
-    gModulatedTexture.render(center_width + 1440, center_height + 170, 235, 330);
-    gButtons[7].setPosition(center_width + 1470, center_height + 260);
-    gButtons[7].render();
-    gButtons[8].setPosition(center_width + 1470, center_height + 330);
-    gButtons[8].render();
-    gButtons[9].setPosition(center_width + 1470, center_height + 400);
-    gButtons[9].render();
+    gModulatedTexture.render(center_width + 1420, center_height + 170, 275, 530);
+    GE.render_button_with_text(0, 35, 1470, 260, "Game", 1525, 266);
+    GE.render_button_with_text(0, 36, 1470, 330, "Launcher", 1500, 336);
+    GE.render_button_with_text(0, 37, 1470, 400, "Random", 1507, 406);
+    GE.render_button_with_text(0, 38, 1470, 470, "Patch", 1525, 476);
 
     GE.text_render("Settings", center_width + 1500, center_height + 180);
-    GE.text_render("Game", center_width + 1525, center_height + 266);
-    GE.text_render("Launcher", center_width + 1500, center_height + 336);
-    GE.text_render("Patch", center_width + 1525, center_height + 406);
+
 }
 
 void LauncherSettings()
@@ -820,6 +944,72 @@ void LauncherSettings()
     GE.text_render("Disable random galaxy warn", center_width + 1270, center_height + 250);
     GE.text_render("Disable incorrect text warn", center_width + 1270, center_height + 290);
     GE.text_render("Launcher settings", center_width + 1460, center_height + 190);
+}
+
+void RandomSettings()
+{
+    gModulatedTexture.setAlpha(233);
+    gModulatedTexture.render(center_width + 1220, center_height + 170, 680, 900);
+
+    GE.text_render_v2("Random Generator Settings", 1360, 185);
+    GE.line(1223, 225, 1897, 225);
+
+    GE.text_render_v2("Enable Circle", 1240, 230);
+    GE.text_render_v2("Enable Spiral", 1600, 230);
+    GE.render_checkbox(110, 1431, 231, 30, 30);
+    GE.render_checkbox(111, 1791, 231, 30, 30);
+    GE.line(1223, 265, 1897, 265);
+
+    GE.text_render_v2("Galaxy resizing", 1600, 270);
+    GE.render_checkbox(112, 1821, 271, 30, 30);
+    GE.text_with_button(113, "Galaxy size:", 1240, 270);
+    GE.text_with_button(114, "to:", 1460, 270);
+    GE.line(1223, 305, 1897, 305);
+
+    GE.text_with_button(115, "Hyperlanes max length:", 1240, 310);
+    GE.text_with_button(116, "to:", 1640, 310);
+    GE.line(1223, 345, 1897, 345);
+
+    GE.line(1223, 385, 1897, 385);
+
+    GE.text_with_button(117, "Circle stars factor:", 1240, 390);
+    GE.text_with_button(118, "to:", 1540, 390);
+    GE.line(1223, 425, 1897, 425);
+
+    GE.text_render_v2("Spiral galaxies settings", 1380, 435);
+    GE.line(1223, 475, 1897, 475);
+
+    GE.text_with_button(119, "Spiral stars factor:", 1240, 480);
+    GE.text_with_button(120, "to:", 1540, 480);
+    GE.line(1223, 515, 1897, 515);
+
+    GE.text_with_button(121, "Square factor:", 1240, 520);
+    GE.line(1223, 555, 1897, 555);
+
+    GE.text_with_button(122, "Arm max width:", 1240, 560);
+    GE.text_with_button(123, "to:", 1540, 560);
+    GE.line(1223, 595, 1897, 595);
+
+    GE.text_with_button(124, "Arm random width:", 1240, 600);
+    GE.text_with_button(125, "to:", 1540, 600);
+    GE.line(1223, 635, 1897, 635);
+
+    GE.text_with_button(126, "Rotation factor:", 1240, 640);
+    GE.line(1223, 675, 1897, 675);
+
+    GE.text_with_button(128, "Arm amount:", 1240, 680);
+    GE.text_with_button(129, "to:", 1540, 680);
+    GE.line(1223, 715, 1897, 715);
+
+    GE.text_render_v2("Detailed spiral stars amount generation", 1280, 730);
+    GE.line(1223, 775, 1897, 775);
+
+    GE.text_with_button(130, "Size ratio:", 1240, 780);
+    GE.text_with_button(131, "Arm ratio:", 1540, 780);
+    GE.line(1223, 815, 1897, 815);
+
+    GE.text_with_button(132, "Arm width ratio:", 1240, 820);
+    GE.line(1223, 855, 1897, 855);
 }
 
 void PatchSettings()
@@ -1179,7 +1369,6 @@ void redraw_galaxy()
     if (v_galaxy_generation[current_gal_id].galtype == 0)
     {
         remove_galaxy(current_gal_id);
-        //window_id.erase(window_id.begin() + current_gal_id);
 
         alpha1 = 250, alpha2 = 225, alpha3 = 0;
         generate_elipse(current_gal_id);
@@ -1190,7 +1379,6 @@ void redraw_galaxy()
     else if (v_galaxy_generation[current_gal_id].galtype == 1)
     {
         remove_galaxy(current_gal_id);
-        //window_id.erase(window_id.begin() + current_gal_id);
 
         alpha1 = 250, alpha2 = 225, alpha3 = 0;
         generate_spiral(current_gal_id);
@@ -1242,12 +1430,15 @@ int main(int argc, char** args) {
                 firstrunsettings();
                 SaveSettings();
             }
+            RandomDefaultSettings();
+            LoadRandomDefaultSettings();
+            LoadRandomSettings();
             while(!quit)
             {
-                SDL_Delay(100);
                 //Handle events on queue ASSAD
                 while (SDL_WaitEvent(&e) != 0)
                 {
+                    SDL_Delay(10);
                     //Handle Keyboard events 
                     GE.handleKeyboardEvent(e);
                     //Handle button events

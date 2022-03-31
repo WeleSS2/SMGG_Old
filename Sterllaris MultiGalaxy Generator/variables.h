@@ -12,6 +12,7 @@ bool launchersettings_window = false;
 bool empiresettings_window = false;
 bool patchsettings_window = false;
 bool settings_window = false;
+bool random_window = false;
 
 
 bool no_space_found = false;

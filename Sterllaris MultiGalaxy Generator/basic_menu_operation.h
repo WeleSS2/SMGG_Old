@@ -126,6 +126,11 @@ void base()
             GE.text_render("X", center_width + 1655, center_height + 292);
         }
     }
+
+    if (random_window == true)
+    {
+        RandomSettings();
+    }
         
     if (galaxies_am > 0)
     {
@@ -206,6 +211,11 @@ void DisableOtherWindows()
     {
         launchersettings_window = false;
     }
+
+    if (random_window == true)
+    {
+        random_window = false;
+    }
 }
 
 void ThrowOutButtons()
@@ -230,6 +240,10 @@ void ThrowOutButtons()
     gButtons[29].setPosition(-1000, -1000);
     gButtons[30].setPosition(-1000, -1000);
     gButtons[31].setPosition(-1000, -1000);
+    gButtons[35].setPosition(-1000, -1000);
+    gButtons[36].setPosition(-1000, -1000);
+    gButtons[37].setPosition(-1000, -1000);
+    gButtons[38].setPosition(-1000, -1000);
     gButtons[50].setPosition(-1000, -1000);
     gButtons[51].setPosition(-1000, -1000);
     gButtons[52].setPosition(-1000, -1000);
@@ -243,6 +257,27 @@ void ThrowOutButtons()
     gButtons[98].setPosition(-1000, -1000);
     gButtons[99].setPosition(-1000, -1000);
     gButtons[100].setPosition(-1000, -1000);
+    gButtons[110].setPosition(-1000, -1000);
+    gButtons[111].setPosition(-1000, -1000);
+    gButtons[112].setPosition(-1000, -1000);
+    gButtons[113].setPosition(-1000, -1000);
+    gButtons[114].setPosition(-1000, -1000);
+    gButtons[115].setPosition(-1000, -1000);
+    gButtons[116].setPosition(-1000, -1000);
+    gButtons[117].setPosition(-1000, -1000);
+    gButtons[118].setPosition(-1000, -1000);
+    gButtons[119].setPosition(-1000, -1000);
+    gButtons[120].setPosition(-1000, -1000);
+    gButtons[121].setPosition(-1000, -1000);
+    gButtons[122].setPosition(-1000, -1000);
+    gButtons[123].setPosition(-1000, -1000);
+    gButtons[124].setPosition(-1000, -1000);
+    gButtons[125].setPosition(-1000, -1000);
+    gButtons[126].setPosition(-1000, -1000);
+    gButtons[127].setPosition(-1000, -1000);
+    gButtons[128].setPosition(-1000, -1000);
+    gButtons[129].setPosition(-1000, -1000);
+    gButtons[130].setPosition(-1000, -1000);
 }
 
 void background()

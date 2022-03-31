@@ -21,6 +21,7 @@ void SaveLoadExit();
 void EmpireSettings();
 void Settings();
 void LauncherSettings();
+void RandomSettings();
 void PatchSettings();
 void No_space_found();
 void render_hyperlanes();
@@ -68,6 +69,10 @@ void loadsettings();
 void SaveSettings();
 PWSTR LoadFile();
 PWSTR SaveFile();
+void LoadRandomDefaultSettings();
+void RandomDefaultSettings();
+void LoadRandomSettings();
+void SaveRandomSettings();
 
 
 void HideConsole();

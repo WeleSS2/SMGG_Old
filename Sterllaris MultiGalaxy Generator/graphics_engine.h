@@ -32,7 +32,7 @@ public:
 
     void render(int x, int y, int w, int h, SDL_Rect* clip = NULL);
     void renderButton(int x, int y, SDL_Rect* clip = NULL, double angle = 0.0, SDL_Point* center = NULL, SDL_RendererFlip flip = SDL_FLIP_NONE);
-
+    void renderButtonafterText(int id, int x, int y, SDL_Rect* clip = NULL, double angle = 0.0, SDL_Point* center = NULL, SDL_RendererFlip flip = SDL_FLIP_NONE);
 
     int getWidth();
     int getHeight();
@@ -43,6 +43,7 @@ private:
     int mWidth;
     int mHeight;
 };
+LTexture LT;
 
 class Graphics_Engine
 {
@@ -53,6 +54,8 @@ public:
     void text_render(std::string tekst, int x, int y);
     void text_render_v2(std::string tekst, int x, int y);
     void render_button_with_text(int mode, int button_id, int button_x, int button_y, std::string tekst, int text_x, int text_y);
+    void line(int start_x, int start_y, int end_x, int end_y);
+    void text_with_button(int button_id, std::string tekst, int x, int y);
 
     void wrong_text_input(int x, int y, int id);
     bool isNumber(const std::string& str);
@@ -173,6 +176,23 @@ void LTexture::renderButton(int x, int y, SDL_Rect* clip, double angle, SDL_Poin
 
     //Render to screen
     SDL_RenderCopyEx(gRenderer, mTexture, clip, &renderQuad, angle, center, flip);
+}
+
+void LTexture::renderButtonafterText(int id, int x, int y, SDL_Rect* clip, double angle, SDL_Point* center, SDL_RendererFlip flip)
+{
+    //Set rendering space and render to screen
+    SDL_Rect renderQuad = { x, y, mWidth, mHeight };
+
+    //Set clip rendering dimensions
+    if (clip != NULL)
+    {
+        renderQuad.w = clip->w;
+        renderQuad.h = clip->h;
+    }
+
+    //Render to screen
+    SDL_RenderCopyEx(gRenderer, mTexture, clip, &renderQuad, angle, center, flip);
+    gButtons[id].setPosition(x + renderQuad.w - 3, y - 1);
 }
 
 bool LTexture::loadFromFile(std::string path)
@@ -445,7 +465,7 @@ bool loadMedia()
     gFont = TTF_OpenFont("graphics/Orbi.ttf", 24);
     if (gFont == NULL)
     {
-        printf("Failed to load lazy font! SDL_ttf Error: %s\n", TTF_GetError());
+        printf("Failed to load font! SDL_ttf Error: %s\n", TTF_GetError());
         success = false;
     }
 
@@ -676,6 +696,12 @@ void Graphics_Engine::text_render_v2(std::string tekst, int x, int y)
     gPromptTextTexture.renderButton(center_width + x, center_height + y);
 }
 
+void Graphics_Engine::text_with_button(int button_id, std::string tekst, int x, int y)
+{
+    gPromptTextTexture.loadFromRenderedText(tekst, SilverTextColor);
+    gPromptTextTexture.renderButtonafterText(button_id, center_width + x, center_height + y);
+}
+
 void Graphics_Engine::wrong_text_input(int x, int y, int id)
 {
     wrong_text = true;
@@ -773,7 +799,7 @@ void Graphics_Engine::render_button_with_text(int mode, int button_id, int butto
 void Graphics_Engine::render_checkbox(int button_id, int button_x, int button_y, int width, int height)
 {
     gButtons[button_id].setPosition(center_width + button_x, center_height + button_y);
-    gCheckboxTexture.render(center_width + button_x, center_height + button_y, width, height);
+    gCheckboxTexture.render(center_width + button_x , center_height + button_y, width, height);
 }
 
 void render_hyperlanes()
@@ -795,4 +821,10 @@ void render_hyperlanes()
                 }
             }
         }
+}
+
+void Graphics_Engine::line(int start_x, int start_y, int end_x, int end_y)
+{
+    SDL_SetRenderDrawColor(gRenderer, 122, 122, 122, SDL_ALPHA_OPAQUE);
+    SDL_RenderDrawLine(gRenderer, start_x, start_y, end_x, end_y);
 }

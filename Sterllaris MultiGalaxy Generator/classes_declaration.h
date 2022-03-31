@@ -31,3 +31,32 @@ public:
     bool redraw_hyperlanes = false;
 };
 C_systems_hyperlanes_manipulation CSHM;
+
+class C_random_settings {
+public:
+    bool enable_circle = false,
+        enable_spiral = false,
+        enable_resizing = false;
+    int size_from,
+        size_to,
+        hyperlanes_max_length_from,
+        hyperlanes_max_length_to,
+        circle_stars_from,
+        circle_stars_to,
+        spiral_stars_from,
+        spiral_stars_to,
+        rotation_factor_from,
+        rotation_factor_to,
+        arm_amount_from,
+        arm_amount_to;
+    float square_factor,
+        arm_max_width_from,
+        arm_max_width_to,
+        arm_random_width_from,
+        arm_random_width_to,
+        size_ratio,
+        arm_ratio,
+        arm_width_ratio;
+};
+
+C_random_settings CRS;

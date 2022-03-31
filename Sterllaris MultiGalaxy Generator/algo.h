@@ -113,13 +113,14 @@ void generate_spiral(int gal_id)
         armOffset = armOffset - armOffsetMax / 2;
         armOffset = armOffset * (1 / distance);
 
-        float squaredArmOffset = pow(armOffset, 1.5);
         if (armOffset < 0)
-            squaredArmOffset = squaredArmOffset * -1;
+        {
+            armOffset = abs(armOffset);
+        }
+        float squaredArmOffset = pow(armOffset, 1.5);
         armOffset = squaredArmOffset;
 
         float rotation = distance * rotationFactor;
-
         angle = (int)(angle / armSeparationDistance) * armSeparationDistance + armOffset + rotation;
 
         // Convert polar coordinates to 2D cartesian coordinates.
@@ -128,6 +129,15 @@ void generate_spiral(int gal_id)
         float j = 1;
         float tx = xand(angle, distance) * bythe;
         float ty = yand(angle, distance) * bythe;
+
+        if (i == 1)
+        {
+            //std::cout << angle << " Angle " << std::endl;
+            //std::cout << distance << " Distance" << std::endl;
+            //std::cout << bythe << " Bythe" << std::endl;
+            //std::cout << tx << " " << ty << std::endl;
+            //std::cout << "----------------" << std::endl;
+        }
 
         int zx = static_cast<int>(tx) + v_galaxy_generation[gal_id].i_cen_posX;
         int zy = static_cast<int>(ty) + v_galaxy_generation[gal_id].i_cen_posY;
@@ -1081,7 +1091,7 @@ void random_generator()
             std::default_random_engine eng(rd());
             std::uniform_real_distribution<> distr(0.75, 0.9);
             std::uniform_real_distribution<> random(0.01, 0.1);
-            int R_numArms = rand() % 4 + 2,
+            int R_numArms = rand() % 3 + 2,
                 R_rotationFactor = rand() % 12 - 6;
             float R_armOffsetMax = distr(eng),
                 R_randomOffsetXY = random(eng);
@@ -1098,9 +1108,9 @@ void random_generator()
                 }
             }
             float temp_star_am, temp_size;
-            temp_star_am = (((R_size * (rand() % 1 + 7)) / 10.0) / 150.0);
+            temp_star_am = (((pow(R_size, 1.25) * (rand() % 2 + 7)) / 10.0) / 500.0);
             temp_size = R_size;
-            R_star_amount = ((pow(temp_star_am, 1.33) * (rand() % 50 + 350)) * R_armOffsetMax * (pow(R_randomOffsetXY, 0.25)) * (pow(R_numArms, 0.45)));
+            R_star_amount = ((temp_star_am * (rand() % 50 + 350)) * R_armOffsetMax * (pow(R_randomOffsetXY, 0.25)) * (pow(R_numArms, 0.45)));
             int R_max_hyperlane_distance = (rand() % 25 + 15) * (temp_size / R_star_amount);
             current_gal_id = galaxies_am;
             v_galaxy_generation[galaxies_am].galtype = 1;
@@ -1130,135 +1140,3 @@ void random_generator()
         galaxies_am++;
     }
 }
-
-
-
-
-/*
-Temporary Trash
-while (wave.size() > 0)
-    {
-        int number = rand() % wave.size(), a = 0;
-        int random_sys = wave[number].id;
-        for (int j = start_star; j < last_star; j++)
-        {
-            //std::cout << "part 1 -  " << j << std::endl;
-            if ((v_system_data[random_sys].gal_x - v_system_data[j].gal_x < v_galaxy_generation[current_gal_id].i_max_hyp_dis) && (v_system_data[random_sys].gal_x - v_system_data[j].gal_x > -v_galaxy_generation[current_gal_id].i_max_hyp_dis) && (v_system_data[random_sys].gal_x - v_system_data[j].gal_x != 0))
-            {
-                //std::cout << "part 2 -  " << j << std::endl;
-                if ((v_system_data[random_sys].gal_y - v_system_data[j].gal_y < v_galaxy_generation[current_gal_id].i_max_hyp_dis) && (v_system_data[random_sys].gal_y - v_system_data[j].gal_y > -v_galaxy_generation[current_gal_id].i_max_hyp_dis) && (v_system_data[random_sys].gal_y - v_system_data[j].gal_y != 0))
-                {
-                    //std::cout << "part 3 -  " << j << std::endl;
-                    //if (v_system_data[random_sys].con != 0)
-                    {
-                        //std::cout << "part 4 -  " << j << std::endl;
-                        //if (v_system_data[random_sys].con < v_system_data[random_sys].con_max)
-                        {
-                            //std::cout << "part 5 -  " << j << std::endl;
-                            //if (v_system_data[j].con < v_system_data[j].con_max)
-                            {
-                                int t_dist = sqrt(pow(v_system_data[j].gal_x - v_system_data[random_sys].gal_x, 2) + pow(v_system_data[j].gal_y - v_system_data[random_sys].gal_y, 2));
-                                v_dist_id.emplace_back();
-                                v_dist_id[a].distance = t_dist;
-                                v_dist_id[a].from = v_system_data[j].gal_id;
-                                v_dist_id[a].to = v_system_data[random_sys].gal_id;
-                                std::cout << v_dist_id[a].from << "    " << v_dist_id[a].to << std::endl;
-                                a++;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        wave.erase(wave.begin() + number);
-        std::sort(v_dist_id.begin(), v_dist_id.end(), less_than_key());
-        link_v2_wave_save(random_sys);
-    }
-
-
-
-
-
-
-std::cout << "Link_wave_check start " << gal_id << "    " << from << "    " << start_star << std::endl;
-        //std::cout << v_galaxy_generation[current_gal_id].i_max_hyp_dis << " ----------------- "  << std::endl;
-        //std::cout << v_system_data[wave[i].id].gal_id << std::endl;
-    bool found = false;
-        for (int j = from; j < start_star; j++)
-        {
-            if ((v_system_data[i].gal_x - v_system_data[j].gal_x < v_galaxy_generation[gal_id].i_max_hyp_dis * 2) && (v_system_data[i].gal_x - v_system_data[j].gal_x > -v_galaxy_generation[gal_id].i_max_hyp_dis * 2) && (v_system_data[i].gal_x - v_system_data[j].gal_x != 0))
-            {
-                if ((v_system_data[i].gal_y - v_system_data[j].gal_y < v_galaxy_generation[gal_id].i_max_hyp_dis * 2) && (v_system_data[i].gal_y - v_system_data[j].gal_y > -v_galaxy_generation[gal_id].i_max_hyp_dis * 2) && (v_system_data[i].gal_y - v_system_data[j].gal_y != 0))
-                {
-                    if (v_system_data[j].blocked == true)
-                    {
-                        int t_dist = sqrt(pow(v_system_data[j].gal_x - v_system_data[i].gal_x, 2) + pow(v_system_data[j].gal_y - v_system_data[i].gal_y, 2));
-                        v_dist_id.emplace_back();
-                        v_dist_id[0].distance = t_dist;
-                        v_dist_id[0].from = v_system_data[i].gal_id;
-                        v_dist_id[0].to = v_system_data[j].gal_id;
-                        found = true;
-                    }
-                }
-            }
-        }
-        std::sort(v_dist_id.begin(), v_dist_id.end(), less_than_key());
-        if (v_dist_id.size() > 1)
-        {
-            v_dist_id.erase(v_dist_id.begin() + 1, v_dist_id.begin() + v_dist_id.size());
-        }
-        if (found == true)
-        {
-            std::cout << "Found " << std::endl;
-            link_wave_save(i);
-            clear_hyperlanes_data();
-            link_wave(i, gal_id, from, start_star);
-            return 1;
-        }
-        else
-        {
-            return 0;
-        }
-
-
-
-            //std::cout << "Link_wave_check start " << gal_id << "    " << from << "    " << start_star << std::endl;
-        //std::cout << v_galaxy_generation[current_gal_id].i_max_hyp_dis << " ----------------- "  << std::endl;
-        //std::cout << v_system_data[wave[i].id].gal_id << std::endl;
-    int a = 0;
-    bool found = false;
-        for (int j = from; j < start_star; j++)
-        {
-            if ((v_system_data[i].gal_x - v_system_data[j].gal_x < v_galaxy_generation[gal_id].i_max_hyp_dis) && (v_system_data[i].gal_x - v_system_data[j].gal_x > -v_galaxy_generation[gal_id].i_max_hyp_dis) && (v_system_data[i].gal_x - v_system_data[j].gal_x != 0))
-            {
-                if ((v_system_data[i].gal_y - v_system_data[j].gal_y < v_galaxy_generation[gal_id].i_max_hyp_dis) && (v_system_data[i].gal_y - v_system_data[j].gal_y > -v_galaxy_generation[gal_id].i_max_hyp_dis) && (v_system_data[i].gal_y - v_system_data[j].gal_y != 0))
-                {
-                    if (v_system_data[j].con != 0)
-                    {
-                        if (v_system_data[j].con < v_system_data[j].con_max)
-                        {
-                            int t_dist = sqrt(pow(v_system_data[j].gal_x - v_system_data[i].gal_x, 2) + pow(v_system_data[j].gal_y - v_system_data[i].gal_y, 2));
-                            v_dist_id.emplace_back();
-                            v_dist_id[a].distance = t_dist;
-                            v_dist_id[a].from = v_system_data[i].gal_id;
-                            v_dist_id[a].to = v_system_data[j].gal_id;
-                            found = true;
-                        }
-                    }
-                }
-            }
-        }
-        std::sort(v_dist_id.begin(), v_dist_id.end(), less_than_key());
-        if (v_dist_id.size() > 0)
-        {
-            link_wave_save(i);
-        }
-        if (found == true)
-        {
-            return 1;
-        }
-        else
-        {
-            return 0;
-        }
-*/
