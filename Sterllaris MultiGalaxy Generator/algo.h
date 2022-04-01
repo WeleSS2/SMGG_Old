@@ -119,10 +119,12 @@ void generate_spiral(int gal_id)
             armOffset = abs(armOffset);
         }
         float squaredArmOffset = pow(armOffset, CRS.square_factor);
+        if (armOffset < 0)
+            squaredArmOffset = squaredArmOffset * -1;
         armOffset = squaredArmOffset;
-
         float rotation = distance * rotationFactor;
-        angle = (int)(angle / armSeparationDistance) * armSeparationDistance + armOffset + rotation;
+        angle = (int)(angle / armSeparationDistance) * armSeparationDistance + armOffset +rotation;
+
 
         // Convert polar coordinates to 2D cartesian coordinates.
 
@@ -317,6 +319,7 @@ void link(int mode, int gal_id)
 
 void link_wave(int mode, int gal_id, int random_sys)
 {
+    v_dist_id.clear();
     bool not_check = false;
     if (random_sys == -10)
     {
@@ -395,19 +398,20 @@ void link_wave(int mode, int gal_id, int random_sys)
         v_system_data[gal_id][random_sys].con++;
         v_system_data[gal_id][v_dist_id[i].to].con++;
     }
-    v_dist_id.clear();
     if (wave.size() > 0)
     {
         for (int i = 0; i < wave.size(); i++)
         {
             //std::cout << wave[i].id << "    " << wave.size() <<  std::endl;
         }
+        v_dist_id.clear();
         link_wave_sub(mode, gal_id, 1);
     }
 }
 
 void link_wave_sub(int mode, int gal_id, int from)
 {
+    v_dist_id.clear();
     //std::cout << "Link_wave_check start " << gal_id << "    " << from << "    " << start_star << "    " << wave.size() << std::endl;
     //std::cout << v_galaxy_generation[gal_id].i_star << "    " << start_star + v_galaxy_generation[gal_id].i_star << std::endl;
     int current_wave = wave.size();
@@ -477,12 +481,14 @@ void link_wave_sub(int mode, int gal_id, int from)
     if (wave.size() != current_wave)
     {
         //std::cout << " Now repeat " << std::endl;
+        v_dist_id.clear();
         link_wave_sub(mode, gal_id, current_wave);
     }
 }
 
 int link_wave_check(int mode, int gal_id, int mult, int i)
 {
+    v_dist_id.clear();
     //std::cout << "Link_wave_check start " << gal_id << "    " << from << "    " << start_star << std::endl;
     //std::cout << v_galaxy_generation[current_gal_id].i_max_hyp_dis << " ----------------- "  << std::endl;
     //std::cout << v_system_data[wave[i].id].gal_id << std::endl;
@@ -549,6 +555,11 @@ void link_wave_save(int mode, int gal_id, int i)
             int z = 0;
             while (v_system_data[gal_id][i].con <= v_system_data[gal_id][i].con_max)
             {
+                int t_dist = sqrt(pow(v_system_data[gal_id][i].gal_x - v_system_data[gal_id][v_dist_id[z].to].gal_x, 2) + pow(v_system_data[gal_id][i].gal_y - v_system_data[gal_id][v_dist_id[z].to].gal_y, 2));
+                if (t_dist > 50)
+                {
+                    std::cout << "Distance is above 100!" << std::endl;
+                }
                     hyperlanes pushing;
                     pushing.from = i;
                     pushing.to = v_dist_id[z].to;
@@ -575,6 +586,11 @@ void link_wave_save(int mode, int gal_id, int i)
         {
             for (int z = 0; z < v_dist_id.size(); z++)
             {
+                int t_dist = sqrt(pow(v_system_data[gal_id][i].gal_x - v_system_data[gal_id][v_dist_id[z].to].gal_x, 2) + pow(v_system_data[gal_id][i].gal_y - v_system_data[gal_id][v_dist_id[z].to].gal_y, 2));
+                if (t_dist > 50)
+                {
+                    std::cout << "Distance is above 100!" << std::endl;
+                }
                     hyperlanes pushing;
                     pushing.from = i;
                     pushing.to = v_dist_id[z].to;
@@ -1013,8 +1029,16 @@ void c_init::min_dist_specific(int gal_id, int min_distance, int init_id)
 
 void random_generator()
 {
-    int Chance = rand() % 3,
-        R_size = rand() % (CRS.size_to - CRS.size_from) + CRS.size_from,
+    int Chance = rand() % 3;
+    if (!CRS.enable_circle)
+    {
+        int Chance = rand() % 3 + 1;
+    }
+    if (!CRS.enable_spiral)
+    {
+        int Chance = 0;
+    }
+    int R_size = rand() % (CRS.size_to - CRS.size_from) + CRS.size_from,
         R_center_x = rand() % (1000 - (R_size * 2)) - (500 - R_size),
         R_center_y = rand() % (1000 - (R_size * 2)) - (500 - R_size),
         R_star_amount = 0;
@@ -1127,7 +1151,7 @@ void random_generator()
                 }
             }
             float temp_star_am, temp_size;
-            temp_star_am = (((pow(R_size, CRS.size_ratio) * (rand() % (CRS.spiral_stars_to - CRS.spiral_stars_from) + CRS.spiral_stars_from)) / 10.0) / 500.0);
+            temp_star_am = (((pow(R_size, CRS.size_ratio) * (rand() % (CRS.spiral_stars_to - CRS.spiral_stars_from) + CRS.spiral_stars_from)) / 10.0) / 1000.0);
             temp_size = R_size;
             R_star_amount = ((temp_star_am * (rand() % 50 + 350)) * (pow(R_armOffsetMax, CRS.arm_width_ratio)) *(pow(R_numArms, CRS.arm_ratio)));
             int R_max_hyperlane_distance = (rand() % (CRS.hyperlanes_max_length_to - CRS.hyperlanes_max_length_from) + CRS.hyperlanes_max_length_from) * (temp_size / R_star_amount);

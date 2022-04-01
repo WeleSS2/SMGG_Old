@@ -60,6 +60,9 @@ public:
     void wrong_text_input(int x, int y, int id);
     bool isNumber(const std::string& str);
     bool fucking_minus(const std::string& str);
+
+
+    int hyperlanes_lightness = 10;
 };
 Graphics_Engine GE;
 
@@ -747,7 +750,7 @@ void Graphics_Engine::text_input(int x, int y, int target_string_id)
             }
             break;
         case 122:
-            if (std::stof(inputText) > 0.01 && std::stof(inputText) < 0.9999)
+            if (std::stof(inputText) > 0.01 && std::stof(inputText) < 3)
             {
                 fucking_minus(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
             }
@@ -757,7 +760,7 @@ void Graphics_Engine::text_input(int x, int y, int target_string_id)
             }
             break;
         case 123:
-            if (std::stof(inputText) > 0.01 && std::stof(inputText) < 0.9999)
+            if (std::stof(inputText) > 0.01 && std::stof(inputText) < 3)
             {
                 fucking_minus(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
             }
@@ -1061,7 +1064,7 @@ void render_hyperlanes()
                     {
                         for (int j = 0; j < v_hyperlanes[i].size(); j++)
                         {
-                            SDL_SetRenderDrawColor(gRenderer, 22, 35, 35, SDL_ALPHA_OPAQUE);
+                            SDL_SetRenderDrawColor(gRenderer, 3 * GE.hyperlanes_lightness, 4 * GE.hyperlanes_lightness, 4 * GE.hyperlanes_lightness, SDL_ALPHA_OPAQUE);
                             SDL_RenderDrawLine(gRenderer, v_system_data[i][v_hyperlanes[i][j].from].gal_x + 550, v_system_data[i][v_hyperlanes[i][j].from].gal_y + 550, v_system_data[i][v_hyperlanes[i][j].to].gal_x + 550, v_system_data[i][v_hyperlanes[i][j].to].gal_y + 550);
                         }
                     }

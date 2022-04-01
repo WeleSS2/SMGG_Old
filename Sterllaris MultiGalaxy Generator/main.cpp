@@ -94,6 +94,17 @@ Zasieg
 5     3-7
 
 
+Dodac nebule 
+nebula = {
+        name = ""
+        position = {
+            x = -223.1665
+            y = -74.00922
+        }
+        radius = 30
+    }
+
+
 
 */
 
@@ -131,7 +142,7 @@ void Graphics_Engine::handleKeyboardEvent(SDL_Event& e)
 
 void LButton::handleEvent(SDL_Event* e, int id)
 {
-    if ((e->type == SDL_MOUSEBUTTONDOWN || e->type == SDL_MOUSEBUTTONUP  || e->type == SDL_MOUSEMOTION || e->type == SDL_KEYDOWN) && pathsaved == true)
+    if ((e->type == SDL_MOUSEBUTTONDOWN || e->type == SDL_MOUSEBUTTONUP  || e->type == SDL_MOUSEMOTION) && pathsaved == true)
     {
         int x, y;
         SDL_GetMouseState(&x, &y);
