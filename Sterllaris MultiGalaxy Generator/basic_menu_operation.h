@@ -62,17 +62,21 @@ void base()
     if (saveloadexit_window == true)
     {
         SaveLoadExit();
-        if (savetoagame == true)
-        {
-            GE.text_render("X", center_width + 1518, center_height + 279);
-        }
-        if (initializers == true)
+        if (export_mode_multi)
         {
             GE.text_render("X", center_width + 1518, center_height + 239);
         }
-        if (setting_hyperlanes == true)
+        if (initializers == true)
+        {
+            GE.text_render("X", center_width + 1518, center_height + 279);
+        }
+        if (savetoagame == true)
         {
             GE.text_render("X", center_width + 1518, center_height + 319);
+        }
+        if (setting_hyperlanes == true)
+        {
+            GE.text_render("X", center_width + 1518, center_height + 359);
         }
     }
 

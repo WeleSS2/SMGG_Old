@@ -43,7 +43,7 @@ From 50 CUSTOM SIZE:
 61 - Checkbox disable wrong text warn
 62 - Checkbox Show Hyperlanes
 
-
+97 - Checkbox Multiplayer
 98 - Checkbox initializers
 99 - Checkbox save to a game
 100 - Checkbox SMGG Hyperlanes
@@ -214,6 +214,10 @@ void LButton::handleEvent(SDL_Event* e, int id)
                 }
                 if (saveloadexit_window == true)
                 {
+                case 97:
+                    if (x > mPosition.x + 32) { inside = false; }
+                    else if (y > mPosition.y + 32) { inside = false; }
+                    break;
                 case 98:
                     if (x > mPosition.x + 32) { inside = false; }
                     else if (y > mPosition.y + 32) { inside = false; }
@@ -401,6 +405,10 @@ void LButton::handleEvent(SDL_Event* e, int id)
                             break;
 
                         case 1:
+                            for (int i; i < galaxies_am; i++)
+                            {
+                                std::cout << v_galaxy_generation[i].galtype << std::endl;
+                            }
                             break;
 
                             // Settings
@@ -484,6 +492,7 @@ void LButton::handleEvent(SDL_Event* e, int id)
 
                             //Play
                         case 12:
+                            //std::cout << "Play 1" << std::endl;
                             if (savetoagame == true)
                             {
                                 if (setting_hyperlanes == true)
@@ -497,17 +506,30 @@ void LButton::handleEvent(SDL_Event* e, int id)
                                     }
                                     //check_hyperlanes_for_every_galaxy();
                                 }
+                                //std::cout << "Play 2" << std::endl;
                                 //std::cout << "Work 1" << std::endl;
                                 if (initializers == true)
                                 {
                                     if (initializers_loaded == false)
                                     {
+                                        for (int i = 0; i < v_galaxy_generation.size(); i++)
+                                        {
+                                            for (int j = 0; j < v_system_data[i].size(); j++)
+                                            {
+                                                v_system_data[i][j].inicjalizer = 0;
+                                                v_system_data[i][j].init_type = 0;
+                                                v_system_data[i][j].init_number = 0;
+                                            }
+                                        }
+                                        //std::cout << "Play 3" << std::endl;
                                         Classinit.initilizers();
                                     }
                                 }
                                 //std::cout << "Work 1.5" << std::endl;
+                                //std::cout << "Play 4" << std::endl;
                                 osfile(modfolderpath);
                             }
+                            //std::cout << "Play 5" << std::endl;
                             //std::cout << "Work 2" << std::endl;
                             SteamAPI_Init();
                             SteamAPI_RestartAppIfNecessary(281990);
@@ -741,6 +763,19 @@ void LButton::handleEvent(SDL_Event* e, int id)
                             else
                             {
                                 show_hyperlanes = false;
+                                rerender();
+                            }
+                            break;
+
+                        case 97:
+                            if (!export_mode_multi)
+                            {
+                                export_mode_multi = true;
+                                rerender();
+                            }
+                            else
+                            {
+                                export_mode_multi = false;
                                 rerender();
                             }
                             break;
@@ -1039,28 +1074,21 @@ void SaveLoadExit()
 {
     gModulatedTexture.setAlpha(233);
     gModulatedTexture.render(center_width + 1230, center_height + 160, 650, 350);
-    gButtons[10].setPosition(center_width + 1610, center_height + 230);
-    gButtons[10].render(); 
-    gButtons[11].setPosition(center_width + 1610, center_height + 290);
-    gButtons[11].render();
-    gButtons[12].setPosition(center_width + 1610, center_height + 350);
-    gButtons[12].render();
-    gButtons[13].setPosition(center_width + 1610, center_height + 410);
-    gButtons[13].render();
-    gButtons[98].setPosition(center_width + 1512, center_height + 238);
-    gCheckboxTexture.render(center_width + 1513, center_height + 239, 30, 30);
-    gButtons[99].setPosition(center_width + 1512, center_height + 278);
-    gCheckboxTexture.render(center_width + 1513, center_height + 279, 30, 30);
-    gButtons[100].setPosition(center_width + 1512, center_height + 318);
-    gCheckboxTexture.render(center_width + 1513, center_height + 319, 30, 30);
-    GE.text_render("Import", center_width + 1660, center_height + 235);
-    GE.text_render("Export", center_width + 1660, center_height + 295);
-    GE.text_render("Play", center_width + 1675, center_height + 355);
-    GE.text_render("Exit", center_width + 1680, center_height + 415);
-    GE.text_render("Save", center_width + 1433, center_height + 278);
-    GE.text_render("Initializers", center_width + 1370, center_height + 238);
-    GE.text_render("SMGG Hyperlanes", center_width + 1260, center_height + 318);
-    GE.text_render("File operation and exit.", center_width + 1550, center_height + 170);
+    GE.render_button_with_text(0, 10, 1610, 230, "Import", 1660, 235);
+    GE.render_button_with_text(0, 11, 1610, 290, "Export", 1660, 295);
+    GE.render_button_with_text(0, 12, 1610, 350, "Play", 1675, 355);
+    GE.render_button_with_text(0, 13, 1610, 410, "Exit", 1680, 415);
+
+    GE.render_checkbox(97, 1512, 238, 30, 30);
+    GE.render_checkbox(98, 1512, 278, 30, 30);
+    GE.render_checkbox(99, 1512, 318, 30, 30);
+    GE.render_checkbox(100, 1512, 358, 30, 30);
+
+    GE.text_render_v2("Multiplayer", 1360, 238);
+    GE.text_render_v2("Initializers", 1370, 278);
+    GE.text_render_v2("Save", 1433, 318);
+    GE.text_render_v2("SMGG Hyperlanes", 1260, 358);
+    GE.text_render_v2("File operation and exit.", 1550, 170);
 }
 
 void EmpireSettings()
@@ -1229,7 +1257,7 @@ void add_galaxy_elipse()
     GE.text_input(center_width + 1410, center_height + 320, 3);
     GE.text_input(center_width + 1635, center_height + 350, 4);
 
-    v_galaxy_generation[current_gal_id].galtype = 1;
+    v_galaxy_generation[current_gal_id].galtype = 0;
 
     elipse_galaxy_window = false;
 
@@ -1518,6 +1546,7 @@ void clear_map()
     v_galaxy_generation.clear();
     clear_hyperlanes_data();
     v_hyperlanes.clear();
+    v_hyperlanes_copy.clear();
 
     galaxies_am = 0;
     sys_sum = 0;

@@ -27,6 +27,7 @@ bool hyperlanes_loaded = false;
 bool setting_hyperlanes = false;
 bool galaxy_canceled = false;
 
+bool export_mode_multi = false;
 bool show_hyperlanes = false;
 
 std::string appdata = getenv("APPDATA");
@@ -43,6 +44,8 @@ int current_gal_id = NULL;
 int mult = 0;
 int min_hyperlane_am = 0,
     max_hyperlane_am = 0;
+
+int export_mode = 0;
 
 int sys_sum = 0;
 
@@ -137,6 +140,7 @@ struct hyperlanes {
     int to;
 };
 std::vector <std::vector<struct hyperlanes>> v_hyperlanes;
+std::vector <hyperlanes> v_hyperlanes_copy;
 
 struct s_wave {
     int id;

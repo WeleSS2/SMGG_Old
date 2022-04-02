@@ -41,7 +41,7 @@ void generate_spiral(int gal_id)
     randomOffsetXY = v_galaxy_generation[gal_id].f_randomOffsetXY;
     armSeparationDistance = 2 * PI / numArms;
     int bythe = v_galaxy_generation[gal_id].i_gsize, temp_edit = 0;
-    int max = 0;
+    int max = 0, dist = 6, limit = 0;
     bool is_ok = true;
     for (int i = 1; i < v_galaxy_generation[gal_id].i_star; i++) {
         //std::cout << i << std::endl;
@@ -145,7 +145,6 @@ void generate_spiral(int gal_id)
         int zx = static_cast<int>(tx) + v_galaxy_generation[gal_id].i_cen_posX;
         int zy = static_cast<int>(ty) + v_galaxy_generation[gal_id].i_cen_posY;
 
-        int dist = 6, limit = 0;
         bool remove = false;
         // Minimal distance between points
         for (int j = 0; ((j < v_system_data[gal_id].size()) && (remove == false)); ++j)
@@ -158,19 +157,19 @@ void generate_spiral(int gal_id)
                     remove = true;
                 }
             }
-            if (limit == 100000)
+            if (limit == 1000000)
             {
                 break;
             }
+            limit++;
         }
-        if (limit == 100000)
+        if (limit == 1000000)
         {
-            //std::cout << "Galaxy removed" << std::endl;
+            std::cout << "Galaxy removed" << std::endl;
             is_ok = false;
             galaxy_canceled = true;
             rerender();
             SDL_Delay(2000);
-            sys_sum -= v_system_data[gal_id].size();
             v_system_data.erase(v_system_data.begin() + gal_id);
             v_galaxy_generation.erase(v_galaxy_generation.begin() + gal_id);
             galaxies_am--;
