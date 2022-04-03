@@ -37,8 +37,9 @@ void DisableOtherWindows();
 // One time rendering
 void add_galaxy_elipse();
 void add_galaxy_spiral();
-void edit_button();
-void choose_galaxy();
+void edit_button(int mode, int gal_id);
+void edit_circle(int mode, int gal_id);
+void edit_spiral(int mode, int gal_id);
 
 // Generators
 void generate_elipse(int gal_id);

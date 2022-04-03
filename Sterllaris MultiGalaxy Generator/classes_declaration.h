@@ -25,6 +25,8 @@ Chyperlanes Class_hyperlanes;
 
 class C_systems_hyperlanes_manipulation {
 public:
+    bool edit_galaxies = false;
+    bool edit_galaxies_loop = false;
     bool remove_galaxies = false;
     bool redraw_galaxies = false;
     bool remove_hyperlanes = false;
@@ -78,3 +80,17 @@ public:
 };
 
 C_random_settings CRS;
+
+class C_Edit {
+public:
+    bool star,
+        gsize,
+        posX,
+        posY,
+        max_hyp_dist,
+        num_arms,
+        arm_offset_max,
+        random_arm_offset,
+        rotation_factor;
+};
+C_Edit C_E;

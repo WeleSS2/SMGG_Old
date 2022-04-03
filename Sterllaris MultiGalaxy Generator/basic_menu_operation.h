@@ -36,7 +36,7 @@ void base()
     if (current_galaxies_window == true)
     {
         current_galaxies_buttons();
-        GE.text_render("CS:", center_width + 1290, center_height + 260);
+        GE.text_render("CS", center_width + 1290, center_height + 260);
         GE.text_render(std::to_string(sys_sum), center_width + 1345, center_height + 260);
         if (show_hyperlanes == true)
         {
@@ -55,9 +55,6 @@ void base()
             GE.text_render("Settings > Game > Hyperlanes Amount (From: x) (To: x)", center_width + 820, center_height + 340);
         }
     }
-
-    if (choose_galaxy_background_window == true)
-        choose_galaxy_background();
 
     if (saveloadexit_window == true)
     {
@@ -234,6 +231,65 @@ void base()
         }
     }
         
+    if (CSHM.edit_galaxies_loop)
+    {
+        gModulatedTexture.setAlpha(233);
+        gModulatedTexture.render(center_width + 1220, center_height + 170, 680, 390);
+        GE.text_render_v2("Currently edited galaxy " + std::to_string(current_gal_id), 1340, 200);
+
+        GE.text_with_button(140, "Systems:", 1280, 230);
+        GE.text_with_button(141, "Size (Radius):", 1280, 260);
+        GE.text_with_button(142, "Center X:", 1280, 290);
+        GE.text_with_button(143, "Center Y:", 1280, 320);
+        GE.text_with_button(144, "Max Hyperlanes Distance:", 1280, 350);
+
+        if (!C_E.star)
+        {
+            GE.text_render_v2(v_galaxy_generation[current_gal_id].star, 1420, 230);
+        }
+        if (!C_E.gsize)
+        {
+            GE.text_render_v2(v_galaxy_generation[current_gal_id].gsize, 1478, 260);
+        }
+        if (!C_E.posX)
+        {
+            GE.text_render_v2(v_galaxy_generation[current_gal_id].cen_posX, 1420, 290);
+        }
+        if (!C_E.posY)
+        {
+            GE.text_render_v2(v_galaxy_generation[current_gal_id].cen_posY, 1420, 320);
+        }
+        if (!C_E.max_hyp_dist)
+        {
+            GE.text_render_v2(v_galaxy_generation[current_gal_id].max_hyp_dis, 1650, 350);
+        }
+
+        if (v_galaxy_generation[current_gal_id].galtype == 1)
+        {
+            GE.text_with_button(145, "Number of Arms:", 1280, 380);
+            GE.text_with_button(146, "Arm Max Width:", 1280, 410);
+            GE.text_with_button(147, "Random Width:", 1280, 440);
+            GE.text_with_button(148, "Arm Rotation:", 1280, 470);
+
+            if (!C_E.num_arms)
+            {
+                GE.text_render_v2(v_galaxy_generation[current_gal_id].numArms, 1520, 380);
+            }
+            if (!C_E.arm_offset_max)
+            {
+                GE.text_render_v2(v_galaxy_generation[current_gal_id].armOffsetMax, 1498, 410);
+            }
+            if (!C_E.random_arm_offset)
+            {
+                GE.text_render_v2(v_galaxy_generation[current_gal_id].randomOffsetXY, 1480, 440);
+            }
+            if (!C_E.rotation_factor)
+            {
+                GE.text_render_v2(v_galaxy_generation[current_gal_id].rotationFactor, 1470, 470);
+            }
+        }
+    }
+
     if (galaxies_am > 0)
     {
         alpha1 = 252;
@@ -318,6 +374,19 @@ void DisableOtherWindows()
     {
         random_window = false;
     }
+
+    CSHM.redraw_hyperlanes = false;
+    CSHM.remove_galaxies = false;
+    CSHM.redraw_galaxies = false;
+    CSHM.remove_hyperlanes = false;
+    if (CSHM.edit_galaxies)
+    {
+        elipse_galaxy_window = false;
+        spiral_galaxy_window = false;
+        CSHM.edit_galaxies = false;
+        CSHM.edit_galaxies_loop = false;
+        edit = false;
+    }
 }
 
 void ThrowOutButtons()
@@ -380,6 +449,15 @@ void ThrowOutButtons()
     gButtons[128].setPosition(-1000, -1000);
     gButtons[129].setPosition(-1000, -1000);
     gButtons[130].setPosition(-1000, -1000);
+    gButtons[140].setPosition(-1000, -1000);
+    gButtons[141].setPosition(-1000, -1000);
+    gButtons[142].setPosition(-1000, -1000);
+    gButtons[143].setPosition(-1000, -1000);
+    gButtons[144].setPosition(-1000, -1000);
+    gButtons[145].setPosition(-1000, -1000);
+    gButtons[146].setPosition(-1000, -1000);
+    gButtons[147].setPosition(-1000, -1000);
+    gButtons[148].setPosition(-1000, -1000);
 }
 
 void background()

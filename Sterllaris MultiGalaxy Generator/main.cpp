@@ -71,6 +71,7 @@ From 50 CUSTOM SIZE:
 131 - Arm ratio
 132 - Arm width ratio
 
+140 - 149 Edit options
 150 - 200 Boxy dla galaktyk
 
 Inicjalizatory:
@@ -134,6 +135,14 @@ void Graphics_Engine::handleKeyboardEvent(SDL_Event& e)
             else if (CSHM.redraw_hyperlanes == true)
             {
                 CSHM.redraw_hyperlanes = false;
+            }
+            else if (CSHM.edit_galaxies == true)
+            {
+                CSHM.edit_galaxies = false;
+                CSHM.edit_galaxies_loop = false;
+                elipse_galaxy_window = false;
+                spiral_galaxy_window = false;
+                edit = false;
             }
             break;
         }
@@ -344,6 +353,48 @@ void LButton::handleEvent(SDL_Event* e, int id)
                     else if (y > mPosition.y + 32) { inside = false; }
                     break;
                 }
+                if (CSHM.edit_galaxies)
+                {
+                case 140:
+                    if (x > mPosition.x + 50) { inside = false; }
+                    else if (y > mPosition.y + 32) { inside = false; }
+                    break;
+                case 141:
+                    if (x > mPosition.x + 50) { inside = false; }
+                    else if (y > mPosition.y + 32) { inside = false; }
+                    break;
+                case 142:
+                    if (x > mPosition.x + 50) { inside = false; }
+                    else if (y > mPosition.y + 32) { inside = false; }
+                    break;
+                case 143:
+                    if (x > mPosition.x + 50) { inside = false; }
+                    else if (y > mPosition.y + 32) { inside = false; }
+                    break;
+                case 144:
+                    if (x > mPosition.x + 50) { inside = false; }
+                    else if (y > mPosition.y + 32) { inside = false; }
+                    break;
+                    if (v_galaxy_generation[current_gal_id].galtype == 1)
+                    {
+                    case 145:
+                        if (x > mPosition.x + 50) { inside = false; }
+                        else if (y > mPosition.y + 32) { inside = false; }
+                        break;
+                    case 146:
+                        if (x > mPosition.x + 50) { inside = false; }
+                        else if (y > mPosition.y + 32) { inside = false; }
+                        break;
+                    case 147:
+                        if (x > mPosition.x + 50) { inside = false; }
+                        else if (y > mPosition.y + 32) { inside = false; }
+                        break;
+                    case 148:
+                        if (x > mPosition.x + 50) { inside = false; }
+                        else if (y > mPosition.y + 32) { inside = false; }
+                        break;
+                    }
+                }
             }
         }
         else if (( id >= 150) && ( id < 200))
@@ -396,6 +447,8 @@ void LButton::handleEvent(SDL_Event* e, int id)
                                 DisableOtherWindows();
                                 current_galaxies_window = true;
                                 rerender();
+                                SDL_Delay(50);
+                                mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG;
                             }
                             else
                             {
@@ -405,10 +458,6 @@ void LButton::handleEvent(SDL_Event* e, int id)
                             break;
 
                         case 1:
-                            for (int i; i < galaxies_am; i++)
-                            {
-                                std::cout << v_galaxy_generation[i].galtype << std::endl;
-                            }
                             break;
 
                             // Settings
@@ -418,6 +467,8 @@ void LButton::handleEvent(SDL_Event* e, int id)
                                 DisableOtherWindows();
                                 settings_window = true;
                                 rerender();
+                                SDL_Delay(50);
+                                mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG;
                             }
                             else {
                                 settings_window = false;
@@ -437,6 +488,8 @@ void LButton::handleEvent(SDL_Event* e, int id)
                                 DisableOtherWindows();
                                 saveloadexit_window = true;
                                 rerender();
+                                SDL_Delay(50);
+                                mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG;
                             }
                             else {
                                 saveloadexit_window = false;
@@ -446,7 +499,6 @@ void LButton::handleEvent(SDL_Event* e, int id)
 
                             // Save Permament settings
                         case 6:
-                            SaveSettings();
                             break;
 
                             //Import
@@ -454,6 +506,8 @@ void LButton::handleEvent(SDL_Event* e, int id)
                             rerender();
                             LoadFile();
                             rerender();
+                            SDL_Delay(50);
+                            mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG;
                             break;
 
 
@@ -487,6 +541,8 @@ void LButton::handleEvent(SDL_Event* e, int id)
                                 initializers_loaded = false;
                                 hyperlanes_loaded = false;
                             }
+                            SDL_Delay(50);
+                            mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG;
                             break;
 
 
@@ -534,6 +590,8 @@ void LButton::handleEvent(SDL_Event* e, int id)
                             SteamAPI_Init();
                             SteamAPI_RestartAppIfNecessary(281990);
                             //std::cout << "Exit" << std::endl;
+                            SDL_Delay(50);
+                            mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG;
                             break;
 
                             //Exit
@@ -542,6 +600,8 @@ void LButton::handleEvent(SDL_Event* e, int id)
                             SaveRandomSettings();
                             close();
                             std::exit(0);
+                            SDL_Delay(50);
+                            mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG;
                             break;
 
                             // Generate Hyperlanes
@@ -553,12 +613,16 @@ void LButton::handleEvent(SDL_Event* e, int id)
                                     link(0, i);
                                 }
                             }
+                            SDL_Delay(50);
+                            mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG;
                             break;
 
                             // Remove Hyperlanes
                         case 16:
                             remove_hyperlanes(0, 0);
                             rerender();
+                            SDL_Delay(50);
+                            mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG;
                             break;
 
                             // Redraw Hyperlanes
@@ -572,6 +636,8 @@ void LButton::handleEvent(SDL_Event* e, int id)
                                 }
                             }
                             rerender();
+                            SDL_Delay(50);
+                            mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG;
                             break;
 
                             // Remove in Galaxy
@@ -582,7 +648,11 @@ void LButton::handleEvent(SDL_Event* e, int id)
                                 CSHM.remove_galaxies = false;
                                 CSHM.redraw_galaxies = false;
                                 CSHM.remove_hyperlanes = false;
+                                CSHM.edit_galaxies = false;
                             }
+                            rerender();
+                            SDL_Delay(50);
+                            mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG;
                             break;
 
                             // Redraw in Galaxy
@@ -593,22 +663,27 @@ void LButton::handleEvent(SDL_Event* e, int id)
                                 CSHM.remove_galaxies = false;
                                 CSHM.redraw_galaxies = false;
                                 CSHM.redraw_hyperlanes = false;
+                                CSHM.edit_galaxies = false;
                             }
+                            rerender();
+                            SDL_Delay(50);
+                            mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG;
                             break;
 
                             // Edit Selected Galaxy
                         case 20:
                             if (galaxies_am > 0)
                             {
-                                choose_galaxy_background_window = true;
-                                choose_galaxy();
-                                choose_galaxy_background_window = false;
-                                current_galaxies_window = false;
                                 edit = true;
-                                rerender();
-                                draw_galaxy();
-                                edit_button();
+                                CSHM.redraw_hyperlanes = false;
+                                CSHM.remove_galaxies = false;
+                                CSHM.redraw_galaxies = false;
+                                CSHM.remove_hyperlanes = false;
+                                CSHM.edit_galaxies = true;
                             }
+                            rerender();
+                            SDL_Delay(50);
+                            mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG;
                             break;
 
 
@@ -620,7 +695,11 @@ void LButton::handleEvent(SDL_Event* e, int id)
                                 CSHM.redraw_galaxies = false;
                                 CSHM.remove_hyperlanes = false;
                                 CSHM.redraw_hyperlanes = false;
+                                CSHM.edit_galaxies = false;
                             }
+                            rerender();
+                            SDL_Delay(50);
+                            mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG;
                             break;
 
 
@@ -632,7 +711,11 @@ void LButton::handleEvent(SDL_Event* e, int id)
                                 CSHM.remove_galaxies = false;
                                 CSHM.remove_hyperlanes = false;
                                 CSHM.redraw_hyperlanes = false;
+                                CSHM.edit_galaxies = false;
                             }
+                            rerender();
+                            SDL_Delay(50);
+                            mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG;
                             break;
 
                             // Edit steam folder patch
@@ -640,6 +723,8 @@ void LButton::handleEvent(SDL_Event* e, int id)
                             edit_patch = true;
                             firstrunsettings();
                             edit_patch = false;
+                            SDL_Delay(50);
+                            mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG;
                             break;
 
                             // Clear Map
@@ -647,13 +732,17 @@ void LButton::handleEvent(SDL_Event* e, int id)
                             alpha1 = 0,
                             clear_map();
                             rerender();
+                            SDL_Delay(50);
+                            mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG;
                             break;
 
                             // Random
                         case 29:
-                            rerender();
+                            //rerender();
                             draw_galaxy();
                             random_generator();
+                            SDL_Delay(50);
+                            mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG;
                             break;
 
                             //Choose Elipse Shape
@@ -663,16 +752,20 @@ void LButton::handleEvent(SDL_Event* e, int id)
                             DisableOtherWindows();
                             rerender();
                             add_galaxy_elipse();
+                            SDL_Delay(50);
+                            mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG;
                             break;
 
 
-                            //Choose Arms Shape
+                            //Choose Spiral Shape
                         case 31:
                             v_galaxy_generation.emplace_back();
                             galaxies_am++;
                             DisableOtherWindows();
                             rerender();
                             add_galaxy_spiral();
+                            SDL_Delay(50);
+                            mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG;
                             break;
 
 
@@ -968,6 +1061,97 @@ void LButton::handleEvent(SDL_Event* e, int id)
                             GE.text_input(center_width + 1460, center_height + 822, 132);
                             CRS.arm_width_ratio_edited = false;
                             break;
+                        case 140:
+                            C_E.star = true;
+                            GE.text_input(center_width + 1420, center_height + 230, 0);
+                            C_E.star = false;
+                            if (v_galaxy_generation[current_gal_id].galtype == 0)
+                            {
+                                edit_circle(0, current_gal_id);
+                            }
+                            else
+                            {
+                                edit_spiral(0, current_gal_id);
+                            }
+                            break;
+                        case 141:
+                            C_E.gsize = true;
+                            GE.text_input(center_width + 1478, center_height + 260, 1);
+                            C_E.gsize = false;
+                            if (v_galaxy_generation[current_gal_id].galtype == 0)
+                            {
+                                edit_circle(0, current_gal_id);
+                            }
+                            else
+                            {
+                                edit_spiral(0, current_gal_id);
+                            }
+                            break;
+                        case 142:
+                            C_E.posX = true;
+                            GE.text_input(center_width + 1420, center_height + 290, 2);
+                            C_E.posX = false;
+                            if (v_galaxy_generation[current_gal_id].galtype == 0)
+                            {
+                                edit_circle(0, current_gal_id);
+                            }
+                            else
+                            {
+                                edit_spiral(0, current_gal_id);
+                            }
+                            break;
+                        case 143:
+                            C_E.posY = true;
+                            GE.text_input(center_width + 1420, center_height + 320, 3);
+                            C_E.posY = false;
+                            if (v_galaxy_generation[current_gal_id].galtype == 0)
+                            {
+                                edit_circle(0, current_gal_id);
+                            }
+                            else
+                            {
+                                edit_spiral(0, current_gal_id);
+                            }
+                            break;
+                        case 144:
+                            C_E.max_hyp_dist = true;
+                            GE.text_input(center_width + 1650, center_height + 350, 4);
+                            C_E.max_hyp_dist = false;
+                            if (v_galaxy_generation[current_gal_id].galtype == 0)
+                            {
+                                edit_circle(0, current_gal_id);
+                            }
+                            else
+                            {
+                                edit_spiral(0, current_gal_id);
+                            }
+                            break;
+                        case 145:
+                            C_E.num_arms = true;
+                            GE.text_input(center_width + 1520, center_height + 380, 5);
+                            C_E.num_arms = false;
+                            edit_spiral(0, current_gal_id);
+                            break;
+                        case 146:
+                            C_E.arm_offset_max = true;
+                            
+                            GE.text_input(center_width + 1498, center_height + 410, 6);
+                            C_E.arm_offset_max = false;
+                            
+                            edit_spiral(0, current_gal_id);
+                            break;
+                        case 147:
+                            C_E.random_arm_offset = true;
+                            GE.text_input(center_width + 1480, center_height + 440, 7);
+                            C_E.random_arm_offset = false;
+                            edit_spiral(0, current_gal_id);
+                            break;
+                        case 148:
+                            C_E.rotation_factor = true;
+                            GE.text_input(center_width + 1470, center_height + 470, 8);
+                            C_E.rotation_factor = false;
+                            edit_spiral(0, current_gal_id);
+                            break;
                             //Settings
                         }
                     }
@@ -994,6 +1178,15 @@ void LButton::handleEvent(SDL_Event* e, int id)
                         {
                             remove_hyperlanes(1, current_gal_id);
                             link(1, current_gal_id);
+                            rerender();
+                        }
+                        else if (CSHM.edit_galaxies == true)
+                        {
+                            if (current_galaxies_window == true)
+                            {
+                                current_galaxies_window = false;
+                            }
+                            CSHM.edit_galaxies_loop = true;
                             rerender();
                         }
                     }
@@ -1402,73 +1595,62 @@ void current_galaxies_buttons()
     GE.render_checkbox(62, 1540, 605, 30, 30);
 }
 
-void choose_galaxy()
+
+void edit_button(int mode, int gal_id)
 {
-    //std::cout << "choose_galaxy in" << std::endl;
-    GE.text_render_v2("Galaxy ID", 1285, 480);
-    GE.text_input(center_width + 1320, center_height + 510, 99);
-    //std::cout << "choose_galaxy out" << std::endl;
+        gModulatedTexture.setAlpha(233);
+        gModulatedTexture.render(center_width + 1220, center_height + 170, 680, 390);
+        if (v_galaxy_generation[gal_id].galtype == 0)
+        {
+            GE.text_with_button(140, "Systems:", 1240, 230);
+            GE.text_with_button(141, "Size (Radius):", 1240, 260);
+            GE.text_with_button(142, "Center X:", 1240, 290);
+            GE.text_with_button(143, "Center Y:", 1240, 320);
+            GE.text_with_button(144, "Max Hyperlanes Distance:", 1240, 350);
+        }
+        else if (v_galaxy_generation[gal_id].galtype == 1)
+        {
+            GE.text_with_button(140, "Systems:", 1240, 230);
+            GE.text_with_button(141, "Size (Radius):", 1240, 260);
+            GE.text_with_button(142, "Center X:", 1240, 290);
+            GE.text_with_button(143, "Center Y:", 1240, 320);
+            GE.text_with_button(144, "Max Hyperlanes Distance:", 1240, 350);
+            GE.text_with_button(145, "Number of Arms:", 1240, 380);
+            GE.text_with_button(146, "Arm Max Width:", 1240, 410);
+            GE.text_with_button(147, "Random Width:", 1240, 440);
+            GE.text_with_button(148, "Arm Rotation:", 1240, 470);
+        }
+        std::cout << "Edit entered " << std::endl;
 }
 
-void choose_galaxy_background()
+void edit_circle(int mode, int gal_id)
 {
-    GE.text_render_v2("Galaxy ID", 1285, 480);
+    remove_galaxy(gal_id);
+
+    alpha1 = 250, alpha2 = 225, alpha3 = 0;
+    generate_spiral(gal_id);
+    if (v_galaxy_generation[gal_id].hyperlanes_generated)
+    {
+        link(0, gal_id);
+    }
+
+    rerender();
+    draw_galaxy();
 }
 
-void edit_button()
+void edit_spiral(int mode, int gal_id)
 {
-    if(v_galaxy_generation[current_gal_id].galtype == 0)
+    remove_galaxy(gal_id);
+
+    alpha1 = 250, alpha2 = 225, alpha3 = 0;
+    generate_spiral(gal_id);
+    if (v_galaxy_generation[gal_id].hyperlanes_generated)
     {
-        elipse_galaxy_window = true;
-        rerender();
-        draw_galaxy();
-
-        GE.text_input(center_width + 1420, center_height + 230, 0);
-        GE.text_input(center_width + 1478, center_height + 260, 1);
-        GE.text_input(center_width + 1420, center_height + 290, 2);
-        GE.text_input(center_width + 1420, center_height + 320, 3);
-        GE.text_input(center_width + 1665, center_height + 350, 4);
-
-
-        remove_galaxy(current_gal_id);
-
-        
-        alpha1 = 250, alpha2 = 225, alpha3 = 0;
-        generate_elipse(current_gal_id);
-        
-        elipse_galaxy_window = false;
-        edit = false;
-        rerender();
-        draw_galaxy();
+        link(0, gal_id);
     }
-    else if (v_galaxy_generation[current_gal_id].galtype == 1)
-    {
-        spiral_galaxy_window = true;
-        rerender();
-        draw_galaxy();
-        
 
-        GE.text_input(center_width + 1420, center_height + 230, 0);
-        GE.text_input(center_width + 1478, center_height + 260, 1);
-        GE.text_input(center_width + 1420, center_height + 290, 2);
-        GE.text_input(center_width + 1420, center_height + 320, 3);
-        GE.text_input(center_width + 1665, center_height + 350, 4);
-        GE.text_input(center_width + 1520, center_height + 380, 5);
-        GE.text_input(center_width + 1498, center_height + 410, 6);
-        GE.text_input(center_width + 1480, center_height + 440, 7);
-        GE.text_input(center_width + 1470, center_height + 470, 8);
-
-
-        remove_galaxy(current_gal_id);
-
-        alpha1 = 250, alpha2 = 225, alpha3 = 0;
-        generate_spiral(current_gal_id);
-
-        spiral_galaxy_window = false;
-        edit = false;
-        rerender();
-        draw_galaxy();
-    }
+    rerender();
+    draw_galaxy();
 }
 
 void remove_galaxy(int gal_id)
@@ -1581,6 +1763,10 @@ void redraw_galaxy()
 
         rerender();
         draw_galaxy();
+    }
+    if (v_galaxy_generation[current_gal_id].hyperlanes_generated)
+    {
+        link(0, current_gal_id);
     }
     edit = false;
 }

@@ -95,7 +95,7 @@ public:
 
 private:
     SDL_Point mPosition;
-    LButtonSprite mCurrentSprite;
+    LButtonSprite mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG;
 };
 std::vector<LButton> gButtons;
 
@@ -327,7 +327,7 @@ void LButton::setPosition(int x, int y)
 
 void LButton::render()
 {
-    gButtonSpriteSheetTexture.renderButton(mPosition.x, mPosition.y, &gSpriteClips[BUTTON_SPRITE_MOUSE_BIG]);
+    gButtonSpriteSheetTexture.renderButton(mPosition.x, mPosition.y, &gSpriteClips[mCurrentSprite]);
 }
 
 void LButton::mrender()
@@ -429,41 +429,34 @@ bool loadMedia()
         printf("Failed to load button sprite texture!\n");
         success = false;
     }
-    else
+    //Set sprites
+    for (int i = 0; i < 4; ++i)
     {
-        ;
-        //Set sprites
-        for (int i = 0; i < 4; ++i)
-        {
 
-            gSpriteClips[i].x = 0;
-            gSpriteClips[i].y = 0;
-            gSpriteClips[i].h = BUTTON_HEIGHT;
-            if (i == 0)
-            {
-                gSpriteClips[i].w = BUTTON_WIDTH;
-            }
-            else if (i == 1)
-            {
-                gSpriteClips[i].y = 45;
-                gSpriteClips[i].w = BUTTON_WIDTH;
-            }
-            else
-            {
-                gSpriteClips[i].w = BUTTON_WIDTH_SMALL;
-            }
-        }
-        for (int i = 0; i <= 500; ++i)
+        gSpriteClips[i].x = 0;
+        gSpriteClips[i].y = 0;
+        gSpriteClips[i].h = BUTTON_HEIGHT;
+        if (i == 0)
         {
-            gButtons.emplace_back();
+            gSpriteClips[i].w = BUTTON_WIDTH;
         }
-        gButtons[0].setPosition(center_width + 1245, center_height + 20);
-        gButtons[1].setPosition(center_width + 1245, center_height + 85);
-        gButtons[2].setPosition(center_width + 1465, center_height + 20);
-        gButtons[3].setPosition(center_width + 1465, center_height + 85);
-        gButtons[4].setPosition(center_width + 1690, center_height + 20);
-        gButtons[5].setPosition(center_width + 1690, center_height + 85);
+        else if (i == 1)
+        {
+            gSpriteClips[i].y = 45;
+            gSpriteClips[i].w = BUTTON_WIDTH;
+        }
+        
     }
+    for (int i = 0; i <= 500; ++i)
+    {
+        gButtons.emplace_back();
+    }
+    gButtons[0].setPosition(center_width + 1245, center_height + 20);
+    gButtons[1].setPosition(center_width + 1245, center_height + 85);
+    gButtons[2].setPosition(center_width + 1465, center_height + 20);
+    gButtons[3].setPosition(center_width + 1465, center_height + 85);
+    gButtons[4].setPosition(center_width + 1690, center_height + 20);
+    gButtons[5].setPosition(center_width + 1690, center_height + 85);
 
     gFont = TTF_OpenFont("graphics/Orbi.ttf", 24);
     if (gFont == NULL)
