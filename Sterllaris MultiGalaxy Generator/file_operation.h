@@ -489,6 +489,14 @@ PWSTR SaveFile() {
                                     //}
                                 }
                             }
+                            for (int i = 0; i < v_galaxy_generation.size(); i++)
+                            {
+                                v_galaxy_generation[i].exported = false;
+                                for (int j = 0; j < v_system_data[i].size(); j++)
+                                {
+                                    v_system_data[i][j].exported = false;
+                                }
+                            }
                             file.close();
                         }
                         CoTaskMemFree(pszFilePath);
@@ -867,20 +875,20 @@ void RandomDefaultSettings()
         file << "400\n";
         file << "25\n";
         file << "50\n";
-        file << "9\n";
         file << "13\n";
-        file << "7\n";
-        file << "9\n";
+        file << "16\n";
+        file << "3\n";
+        file << "4\n";
         file << "6\n";
         file << "3\n";
         file << "5\n";
-        file << "1.5\n";
-        file << "0.75\n";
-        file << "0.9\n";
-        file << "0.01\n";
+        file << "2.2\n";
+        file << "1\n";
+        file << "1.4\n";
+        file << "0.02\n";
         file << "0.1\n";
-        file << "1.25\n";
-        file << "0.25\n";
+        file << "1.33\n";
+        file << "0.45\n";
         file << "0.45\n";
     }
     file.close();

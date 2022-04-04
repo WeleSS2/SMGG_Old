@@ -45,6 +45,7 @@ void edit_spiral(int mode, int gal_id);
 void generate_elipse(int gal_id);
 void generate_spiral(int gal_id);
 void generate_center(int gal_id);
+void set_center(int gal_id);
 void remove_galaxy(int gal_id);
 void remove_galaxy_full(int gal_id);
 void clear_map();

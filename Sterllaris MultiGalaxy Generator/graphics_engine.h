@@ -607,13 +607,13 @@ void Graphics_Engine::text_input(int x, int y, int target_string_id)
             fucking_minus(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
             break;
         case 1:
-            if (std::stoi(inputText) < 500)
+            //if (std::stoi(inputText) < 500)
             {
                 fucking_minus(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
             }
-            else
+            //else
             {
-                wrong_text_input(x, y, target_string_id);
+                //wrong_text_input(x, y, target_string_id);
             }
             break;
         case 2:
@@ -640,26 +640,26 @@ void Graphics_Engine::text_input(int x, int y, int target_string_id)
             fucking_minus(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
             break;
         case 5:
-            fucking_minus(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+            isNumber(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
             break;
         case 6:
-            if (std::stof(inputText) > 0.01 && std::stof(inputText) < 3)
+            //if (std::stof(inputText) > 0.01 && std::stof(inputText) < 3)
             {
-                fucking_minus(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+                isNumber(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
             }
-            else
+            //else
             {
-                wrong_text_input(x, y, target_string_id);
+                //wrong_text_input(x, y, target_string_id);
             }
             break;
         case 7:
-            if (std::stof(inputText) > 0.01 && std::stof(inputText) < 0.9999)
+            //if (std::stof(inputText) > 0.01 && std::stof(inputText) < 0.9999)
             {
-                fucking_minus(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+                isNumber(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
             }
-            else
+            //else
             {
-                wrong_text_input(x, y, target_string_id);
+                //wrong_text_input(x, y, target_string_id);
             }
             break;
         case 8:
@@ -768,13 +768,13 @@ void Graphics_Engine::text_input(int x, int y, int target_string_id)
             }
             break;
         case 121:
-            if (std::stoi(inputText) > 0)
+            //if (std::stoi(inputText) > 0)
             {
-                fucking_minus(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+                isNumber(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
             }
-            else
+            //else
             {
-                wrong_text_input(x, y, target_string_id);
+                //wrong_text_input(x, y, target_string_id);
             }
             break;
         case 122:

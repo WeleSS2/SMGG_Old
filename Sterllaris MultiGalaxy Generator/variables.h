@@ -139,7 +139,7 @@ struct hyperlanes {
     int from;
     int to;
 };
-std::vector <std::vector<struct hyperlanes>> v_hyperlanes;
+std::vector <std::vector <struct hyperlanes>> v_hyperlanes;
 std::vector <hyperlanes> v_hyperlanes_copy;
 
 struct s_wave {
@@ -159,8 +159,8 @@ struct system_data {
     bool exported = false;
     bool blocked = false;
 };
-std::vector<std::vector <struct system_data>> v_system_data;
-std::vector<system_data> v_system_data_copy;
+std::vector <std::vector <struct system_data>> v_system_data;
+std::vector <system_data> v_system_data_copy;
 
 std::string temp_star, temp_gsize, temp_cen_posX, temp_cen_posY, temp_max_hyp_dis;
 struct galaxy_generation {

@@ -165,13 +165,24 @@ void generate_spiral(int gal_id)
         }
         if (limit == 1000000)
         {
-            std::cout << "Galaxy removed" << std::endl;
+            //std::cout << "Galaxy removed" << std::endl;
             is_ok = false;
             galaxy_canceled = true;
+            if (CSHM.edit_galaxies_loop)
+            {
+                CSHM.edit_galaxies_loop = false;
+            }
             rerender();
             SDL_Delay(2000);
             v_system_data.erase(v_system_data.begin() + gal_id);
             v_galaxy_generation.erase(v_galaxy_generation.begin() + gal_id);
+            if (v_hyperlanes.size() > 0)
+            {
+                if (v_hyperlanes[gal_id].size() > 0)
+                {
+                    v_hyperlanes.erase(v_hyperlanes.begin() + gal_id);
+                }
+            }
             galaxies_am--;
             galaxy_canceled = false;
             rerender();
@@ -265,11 +276,21 @@ void generate_elipse(int gal_id)
         {
             is_ok = false;
             galaxy_canceled = true;
+            if (CSHM.edit_galaxies_loop)
+            {
+                CSHM.edit_galaxies_loop = false;
+            }
             rerender();
             SDL_Delay(2000);
-            sys_sum -= v_system_data[gal_id].size();
             v_system_data.erase(v_system_data.begin() + gal_id);
             v_galaxy_generation.erase(v_galaxy_generation.begin() + gal_id);
+            if (v_hyperlanes.size() > 0)
+            {
+                if (v_hyperlanes[gal_id].size() > 0)
+                {
+                    v_hyperlanes.erase(v_hyperlanes.begin() + gal_id);
+                }
+            }
             galaxies_am--;
             galaxy_canceled = false;
             rerender();
@@ -300,6 +321,12 @@ void generate_center(int gal_id)
     v_system_data[gal_id][0].con = 0;
     v_system_data[gal_id][0].gal_x = v_galaxy_generation[gal_id].i_cen_posX;
     v_system_data[gal_id][0].gal_y = v_galaxy_generation[gal_id].i_cen_posY;
+    v_system_data[gal_id][0].inicjalizer = true;
+    v_system_data[gal_id][0].init_type = 99;
+}
+
+void set_center(int gal_id)
+{
     v_system_data[gal_id][0].inicjalizer = true;
     v_system_data[gal_id][0].init_type = 99;
 }

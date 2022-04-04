@@ -31,6 +31,7 @@ gButtons 13 = Exit
 36 - Launcher Settings
 37 - Random Settings
 38 - Patch Settings
+39 - Restore default random settings
 From 50 CUSTOM SIZE:
 50 - Empire am
 51 - Fallen am
@@ -447,7 +448,7 @@ void LButton::handleEvent(SDL_Event* e, int id)
                                 DisableOtherWindows();
                                 current_galaxies_window = true;
                                 rerender();
-                                SDL_Delay(50);
+                                SDL_Delay(80);
                                 mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG;
                             }
                             else
@@ -467,7 +468,7 @@ void LButton::handleEvent(SDL_Event* e, int id)
                                 DisableOtherWindows();
                                 settings_window = true;
                                 rerender();
-                                SDL_Delay(50);
+                                SDL_Delay(80);
                                 mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG;
                             }
                             else {
@@ -488,7 +489,7 @@ void LButton::handleEvent(SDL_Event* e, int id)
                                 DisableOtherWindows();
                                 saveloadexit_window = true;
                                 rerender();
-                                SDL_Delay(50);
+                                SDL_Delay(80);
                                 mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG;
                             }
                             else {
@@ -506,7 +507,7 @@ void LButton::handleEvent(SDL_Event* e, int id)
                             rerender();
                             LoadFile();
                             rerender();
-                            SDL_Delay(50);
+                            SDL_Delay(80);
                             mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG;
                             break;
 
@@ -541,7 +542,7 @@ void LButton::handleEvent(SDL_Event* e, int id)
                                 initializers_loaded = false;
                                 hyperlanes_loaded = false;
                             }
-                            SDL_Delay(50);
+                            SDL_Delay(80);
                             mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG;
                             break;
 
@@ -576,6 +577,7 @@ void LButton::handleEvent(SDL_Event* e, int id)
                                                 v_system_data[i][j].init_type = 0;
                                                 v_system_data[i][j].init_number = 0;
                                             }
+                                            set_center(i);
                                         }
                                         //std::cout << "Play 3" << std::endl;
                                         Classinit.initilizers();
@@ -590,7 +592,7 @@ void LButton::handleEvent(SDL_Event* e, int id)
                             SteamAPI_Init();
                             SteamAPI_RestartAppIfNecessary(281990);
                             //std::cout << "Exit" << std::endl;
-                            SDL_Delay(50);
+                            SDL_Delay(80);
                             mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG;
                             break;
 
@@ -600,7 +602,7 @@ void LButton::handleEvent(SDL_Event* e, int id)
                             SaveRandomSettings();
                             close();
                             std::exit(0);
-                            SDL_Delay(50);
+                            SDL_Delay(80);
                             mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG;
                             break;
 
@@ -613,7 +615,7 @@ void LButton::handleEvent(SDL_Event* e, int id)
                                     link(0, i);
                                 }
                             }
-                            SDL_Delay(50);
+                            SDL_Delay(80);
                             mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG;
                             break;
 
@@ -621,7 +623,7 @@ void LButton::handleEvent(SDL_Event* e, int id)
                         case 16:
                             remove_hyperlanes(0, 0);
                             rerender();
-                            SDL_Delay(50);
+                            SDL_Delay(80);
                             mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG;
                             break;
 
@@ -636,7 +638,7 @@ void LButton::handleEvent(SDL_Event* e, int id)
                                 }
                             }
                             rerender();
-                            SDL_Delay(50);
+                            SDL_Delay(80);
                             mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG;
                             break;
 
@@ -651,7 +653,7 @@ void LButton::handleEvent(SDL_Event* e, int id)
                                 CSHM.edit_galaxies = false;
                             }
                             rerender();
-                            SDL_Delay(50);
+                            SDL_Delay(80);
                             mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG;
                             break;
 
@@ -666,7 +668,7 @@ void LButton::handleEvent(SDL_Event* e, int id)
                                 CSHM.edit_galaxies = false;
                             }
                             rerender();
-                            SDL_Delay(50);
+                            SDL_Delay(80);
                             mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG;
                             break;
 
@@ -682,7 +684,7 @@ void LButton::handleEvent(SDL_Event* e, int id)
                                 CSHM.edit_galaxies = true;
                             }
                             rerender();
-                            SDL_Delay(50);
+                            SDL_Delay(80);
                             mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG;
                             break;
 
@@ -698,7 +700,7 @@ void LButton::handleEvent(SDL_Event* e, int id)
                                 CSHM.edit_galaxies = false;
                             }
                             rerender();
-                            SDL_Delay(50);
+                            SDL_Delay(80);
                             mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG;
                             break;
 
@@ -714,7 +716,7 @@ void LButton::handleEvent(SDL_Event* e, int id)
                                 CSHM.edit_galaxies = false;
                             }
                             rerender();
-                            SDL_Delay(50);
+                            SDL_Delay(80);
                             mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG;
                             break;
 
@@ -723,7 +725,7 @@ void LButton::handleEvent(SDL_Event* e, int id)
                             edit_patch = true;
                             firstrunsettings();
                             edit_patch = false;
-                            SDL_Delay(50);
+                            SDL_Delay(80);
                             mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG;
                             break;
 
@@ -732,16 +734,17 @@ void LButton::handleEvent(SDL_Event* e, int id)
                             alpha1 = 0,
                             clear_map();
                             rerender();
-                            SDL_Delay(50);
+                            SDL_Delay(80);
                             mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG;
                             break;
 
                             // Random
                         case 29:
                             //rerender();
+                            edit = false;
                             draw_galaxy();
                             random_generator();
-                            SDL_Delay(50);
+                            SDL_Delay(80);
                             mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG;
                             break;
 
@@ -749,10 +752,11 @@ void LButton::handleEvent(SDL_Event* e, int id)
                         case 30:
                             v_galaxy_generation.emplace_back();
                             galaxies_am++;
+                            edit = false;
                             DisableOtherWindows();
                             rerender();
                             add_galaxy_elipse();
-                            SDL_Delay(50);
+                            SDL_Delay(80);
                             mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG;
                             break;
 
@@ -761,13 +765,19 @@ void LButton::handleEvent(SDL_Event* e, int id)
                         case 31:
                             v_galaxy_generation.emplace_back();
                             galaxies_am++;
+                            edit = false;
                             DisableOtherWindows();
                             rerender();
                             add_galaxy_spiral();
-                            SDL_Delay(50);
+                            SDL_Delay(80);
                             mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG;
                             break;
 
+                        case 39:
+                            LoadRandomDefaultSettings();
+                            SDL_Delay(80);
+                            mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG;
+                            break;
 
 
                         case 50:
@@ -1176,7 +1186,10 @@ void LButton::handleEvent(SDL_Event* e, int id)
                         }
                         else if (CSHM.redraw_hyperlanes == true)
                         {
-                            remove_hyperlanes(1, current_gal_id);
+                            if (v_galaxy_generation[current_gal_id].hyperlanes_generated)
+                            {
+                                remove_hyperlanes(1, current_gal_id);
+                            }
                             link(1, current_gal_id);
                             rerender();
                         }
@@ -1398,6 +1411,8 @@ void RandomSettings()
 
     GE.text_with_button(132, "Arm width ratio:", 1240, 820);
     GE.line(1223, 855, 1897, 855);
+
+    GE.render_button_with_text(0, 39, 1680, 1000, "Reset", 1730, 1005);
 }
 
 void PatchSettings()
@@ -1628,7 +1643,7 @@ void edit_circle(int mode, int gal_id)
     remove_galaxy(gal_id);
 
     alpha1 = 250, alpha2 = 225, alpha3 = 0;
-    generate_spiral(gal_id);
+    generate_elipse(gal_id);
     if (v_galaxy_generation[gal_id].hyperlanes_generated)
     {
         link(0, gal_id);
