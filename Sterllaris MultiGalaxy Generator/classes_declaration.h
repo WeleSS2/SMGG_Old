@@ -1,4 +1,6 @@
 #pragma once
+// Button class
+
 class c_init {
 public:
     int random_sys, prev_star_sum = 0,
@@ -94,3 +96,90 @@ public:
         rotation_factor;
 };
 C_Edit C_E;
+
+class C_scroll {
+public:
+    bool scrolling = false;
+    bool done = 0;
+    int donex, doney, current_system, current_gal;
+    bool box_open = false;
+};
+C_scroll C_S;
+
+class Detailed_Generation {
+public:
+    bool remove_system = 0,
+        add_system = 0,
+        move_system = 0,
+        remove_hyperlanes = 0,
+        add_hyperlanes = 0,
+        add_initializer = 0,
+        remove_initializer = 0,
+        add_initializer_player = 0,
+        add_initializer_bot = 0,
+        add_initializer_fallen = 0,
+        add_initializer_marauder = 0,
+        add_initializer_mega = 0,
+        add_initializer_leviathan = 0,
+        add_initializer_mods = 0;
+    int previous_id = 0, player_am = 0;
+    /*
+    Detailed_Generation(bool con_remove_system, bool con_remove_hyperlanes, bool con_add_initializer, bool con_remove_initializer)
+    {
+        remove_system = con_remove_system,
+        remove_hyperlanes = con_remove_hyperlanes,
+        add_initializer = con_add_initializer,
+        remove_initializer = con_remove_initializer;
+    }
+    */
+    void false_all_bools()
+    {
+        remove_system = 0,
+            add_system = 0,
+            move_system = 0,
+            remove_hyperlanes = 0,
+            add_hyperlanes = 0,
+            add_initializer = 0,
+            remove_initializer = 0;
+    }
+    void false_initializers()
+    {
+        add_initializer_player = 0,
+        add_initializer_bot = 0,
+        add_initializer_fallen = 0,
+        add_initializer_marauder = 0,
+        add_initializer_mega = 0,
+        add_initializer_leviathan = 0,
+        add_initializer_mods = 0;
+    }
+
+    std::bitset<8> bits_mega{ 0b0000'0000 };
+    std::bitset<8> bits_leviathan{ 0b0000'0000 };
+
+    void reset_bits()
+    {
+        for (int i = 0; i < 8; ++i)
+        {
+            bits_mega.reset(i);
+            bits_leviathan.reset(i);
+        }
+    }
+    void set_default_button();
+};
+Detailed_Generation Det_Gen;
+
+class File_Operation {
+public:
+    struct local_maps {
+        std::string map_local;
+        bool enabled = 0;
+    };
+    std::vector <local_maps> v_local_maps;
+
+    
+    void create_folder();
+    void test();
+    void load_files_from_steammod_folder();
+    PWSTR SaveMap();
+};
+File_Operation F_O;

@@ -13,6 +13,7 @@
 #include <thread>
 #include <chrono>
 #include <thread>
+#include <bitset>
 
 #define NOMINMAX
 

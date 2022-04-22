@@ -76,6 +76,5 @@ void RandomDefaultSettings();
 void LoadRandomSettings();
 void SaveRandomSettings();
 
-
 void HideConsole();
 void ShowConsole();

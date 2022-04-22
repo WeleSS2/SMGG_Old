@@ -35,45 +35,55 @@ void base()
 
     if (current_galaxies_window == true)
     {
-        current_galaxies_buttons();
-        GE.text_render("CS", center_width + 1290, center_height + 260);
-        GE.text_render(std::to_string(sys_sum), center_width + 1345, center_height + 260);
-        if (show_hyperlanes == true)
+        if (!C_S.scrolling)
         {
-            GE.text_render_v2("X", 1545, 605);
-        }
-        if ((no_space_found == true) && (disable_failed_galaxy_warn == false))
-        {
-            No_space_found();
-        }
-        if ((min_hyperlane_am == 0) || (max_hyperlane_am == 0))
-        {
-            gModulatedTexture.setAlpha(250);
-            gModulatedTexture.render(center_width + 810, center_height + 260, 800, 200);
-            GE.text_render("You must setup maximum and minimum hyperlanes ", center_width + 820, center_height + 270);
-            GE.text_render("amount before generating a galaxies, that is in:", center_width + 820, center_height + 305);
-            GE.text_render("Settings > Game > Hyperlanes Amount (From: x) (To: x)", center_width + 820, center_height + 340);
+            current_galaxies_buttons();
+            GE.text_render("CS", center_width + 1290, center_height + 260);
+            GE.text_render(std::to_string(sys_sum), center_width + 1345, center_height + 260);
+            if (show_hyperlanes == true)
+            {
+                GE.text_render_v2("X", 1545, 605);
+            }
+            if ((no_space_found == true) && (disable_failed_galaxy_warn == false))
+            {
+                No_space_found();
+            }
+            if ((min_hyperlane_am == 0) || (max_hyperlane_am == 0))
+            {
+                gModulatedTexture.setAlpha(250);
+                gModulatedTexture.render(center_width + 810, center_height + 260, 800, 200);
+                GE.text_render("You must setup maximum and minimum hyperlanes ", center_width + 820, center_height + 270);
+                GE.text_render("amount before generating a galaxies, that is in:", center_width + 820, center_height + 305);
+                GE.text_render("Settings > Game > Hyperlanes Amount (From: x) (To: x)", center_width + 820, center_height + 340);
+            }
+            if (show_initializers)
+            {
+                GE.text_render_v2("X", 1365, 891);
+            }
         }
     }
 
     if (saveloadexit_window == true)
     {
-        SaveLoadExit();
-        if (export_mode_multi)
+        if (!C_S.scrolling)
         {
-            GE.text_render("X", center_width + 1518, center_height + 239);
-        }
-        if (initializers == true)
-        {
-            GE.text_render("X", center_width + 1518, center_height + 279);
-        }
-        if (savetoagame == true)
-        {
-            GE.text_render("X", center_width + 1518, center_height + 319);
-        }
-        if (setting_hyperlanes == true)
-        {
-            GE.text_render("X", center_width + 1518, center_height + 359);
+            SaveLoadExit();
+            if (export_mode_multi)
+            {
+                GE.text_render("X", center_width + 1518, center_height + 239);
+            }
+            if (initializers == true)
+            {
+                GE.text_render("X", center_width + 1518, center_height + 279);
+            }
+            if (savetoagame == true)
+            {
+                GE.text_render("X", center_width + 1518, center_height + 319);
+            }
+            if (setting_hyperlanes == true)
+            {
+                GE.text_render("X", center_width + 1518, center_height + 359);
+            }
         }
     }
 
@@ -112,7 +122,10 @@ void base()
 
     if (settings_window == true)
     {
+        if (!C_S.scrolling)
+        {
         Settings();
+        }
     }
 
     if (launchersettings_window == true)
@@ -147,87 +160,87 @@ void base()
         std::string output;
         if (!CRS.size_from_edited)
         {
-            GE.text_render_v2(std::to_string(CRS.size_from), 1403, 272);
+            GE.text_render_v2(std::to_string(CRS.size_from), 1403, 270);
         }
         if (!CRS.size_to_edited)
         {
-            GE.text_render_v2(std::to_string(CRS.size_to), 1513, 272);
+            GE.text_render_v2(std::to_string(CRS.size_to), 1513, 270);
         }
         if (!CRS.hyperlanes_max_length_from_edited)
         {
-            GE.text_render_v2(std::to_string(CRS.hyperlanes_max_length_from), 1560, 312);
+            GE.text_render_v2(std::to_string(CRS.hyperlanes_max_length_from), 1560, 310);
         }
         if(!CRS.hyperlanes_max_length_to_edited)
         {
-            GE.text_render_v2(std::to_string(CRS.hyperlanes_max_length_to), 1680, 312);
+            GE.text_render_v2(std::to_string(CRS.hyperlanes_max_length_to), 1680, 310);
         }
         if (!CRS.circle_stars_from_edited)
         {
-            GE.text_render_v2(std::to_string(CRS.circle_stars_from), 1500, 392);
+            GE.text_render_v2(std::to_string(CRS.circle_stars_from), 1500, 390);
         }
         if (!CRS.circle_stars_to_edited)
         {
-            GE.text_render_v2(std::to_string(CRS.circle_stars_to), 1580, 392);
+            GE.text_render_v2(std::to_string(CRS.circle_stars_to), 1580, 390);
         }
         if (!CRS.spiral_stars_from_edited)
         {
-            GE.text_render_v2(std::to_string(CRS.spiral_stars_from), 1500, 482);
+            GE.text_render_v2(std::to_string(CRS.spiral_stars_from), 1500, 480);
         }
         if (!CRS.spiral_stars_to_edited)
         {
-            GE.text_render_v2(std::to_string(CRS.spiral_stars_to), 1580, 482);
+            GE.text_render_v2(std::to_string(CRS.spiral_stars_to), 1580, 480);
         }
         if (!CRS.rotation_factor_edited)
         {
-            GE.text_render_v2(std::to_string(CRS.rotation_factor), 1454, 642);
+            GE.text_render_v2(std::to_string(CRS.rotation_factor), 1454, 640);
         }
         if (!CRS.arm_amount_from_edited)
         {
-            GE.text_render_v2(std::to_string(CRS.arm_amount_from), 1417, 682);
+            GE.text_render_v2(std::to_string(CRS.arm_amount_from), 1417, 680);
         }
         if (!CRS.arm_amount_to_edited)
         {
-            GE.text_render_v2(std::to_string(CRS.arm_amount_to), 1580, 682);
+            GE.text_render_v2(std::to_string(CRS.arm_amount_to), 1580, 680);
         }
         if (!CRS.square_factor_edited)
         {
             ss << CRS.square_factor; ss >> output;
-            GE.text_render_v2(output, 1435, 522);
+            GE.text_render_v2(output, 1435, 520);
         }
         if (!CRS.arm_max_width_from_edited)
         {
             ss.clear(); ss.str(""); ss << CRS.arm_max_width_from; ss >> output;
-            GE.text_render_v2(output, 1440, 562);
+            GE.text_render_v2(output, 1450, 560);
         }
         if (!CRS.arm_max_width_to_edited)
         {
             ss.clear(); ss.str(""); ss << CRS.arm_max_width_to; ss >> output;
-            GE.text_render_v2(output, 1580, 562);
+            GE.text_render_v2(output, 1580, 560);
         }
         if (!CRS.arm_random_width_from_edited)
         {
             ss.clear(); ss.str(""); ss << CRS.arm_random_width_from; ss >> output;
-            GE.text_render_v2(output, 1495, 602);
+            GE.text_render_v2(output, 1495, 600);
         }
         if (!CRS.arm_random_width_to_edited)
         {
             ss.clear(); ss.str(""); ss << CRS.arm_random_width_to; ss >> output;
-            GE.text_render_v2(output, 1600, 602);
+            GE.text_render_v2(output, 1620, 600);
         }
         if (!CRS.size_ratio_edited)
         {
             ss.clear(); ss.str(""); ss << CRS.size_ratio; ss >> output;
-            GE.text_render_v2(output, 1380, 782);
+            GE.text_render_v2(output, 1380, 780);
         }
         if (!CRS.arm_ratio_edited)
         {
             ss.clear(); ss.str(""); ss << CRS.arm_ratio; ss >> output;
-            GE.text_render_v2(output, 1685, 782);
+            GE.text_render_v2(output, 1685, 780);
         }
         if (!CRS.arm_width_ratio_edited)
         {
             ss.clear(); ss.str(""); ss << CRS.arm_width_ratio; ss >> output;
-            GE.text_render_v2(output, 1460, 822);
+            GE.text_render_v2(output, 1460, 820);
         }
     }
         
@@ -289,7 +302,6 @@ void base()
             }
         }
     }
-
     if (galaxies_am > 0)
     {
         alpha1 = 252;
@@ -298,11 +310,45 @@ void base()
         GE.text_render("- +", center_width + 20, center_height + 1040);
         GE.text_render("+ -", center_width + 1150, center_height + 10);
         GE.text_render("+ +", center_width + 1150, center_height + 1040);
-        if (show_hyperlanes == true)
+        if (!C_S.scrolling)
         {
-            render_hyperlanes();
+            for (int i = 0; i < SystemButtons.size(); i++)
+            {
+                for (int j = 0; j < SystemButtons[i].size(); j++)
+                {
+                    SystemButtons[i][j].setPosition(-1000, -1000);
+                }
+            }
+            if (show_hyperlanes == true)
+            {
+                render_hyperlanes();
+            }
+            draw_galaxy();
         }
-        draw_galaxy();
+        else if (C_S.scrolling)
+        {
+            for (int i = 150; i < v_galaxy_generation.size(); i++)
+            {
+                gButtons[i].setPosition(-1000, -1000);
+            }
+            GE.scrolling_function();
+            if (Det_Gen.add_initializer)
+            {
+                D_S_E.add_initializer_menu();
+                if (Det_Gen.add_initializer_mega)
+                {
+                    D_S_E.add_initializer_mega();
+                }
+                else if (Det_Gen.add_initializer_leviathan)
+                {
+                    D_S_E.add_initializer_leviathan();
+                }
+            }
+            else
+            {
+                D_S_E.menu();
+            }
+        }
     }
 }
 
@@ -391,73 +437,21 @@ void DisableOtherWindows()
 
 void ThrowOutButtons()
 {
-    gButtons[6].setPosition(-1000, -1000);
-    gButtons[7].setPosition(-1000, -1000);
-    gButtons[8].setPosition(-1000, -1000);
-    gButtons[9].setPosition(-1000, -1000);
-    gButtons[10].setPosition(-1000, -1000);
-    gButtons[11].setPosition(-1000, -1000);
-    gButtons[12].setPosition(-1000, -1000);
-    gButtons[13].setPosition(-1000, -1000);
-    gButtons[15].setPosition(-1000, -1000);
-    gButtons[16].setPosition(-1000, -1000);
-    gButtons[17].setPosition(-1000, -1000);
-    gButtons[18].setPosition(-1000, -1000);
-    gButtons[19].setPosition(-1000, -1000);
-    gButtons[20].setPosition(-1000, -1000);
-    gButtons[21].setPosition(-1000, -1000);
-    gButtons[22].setPosition(-1000, -1000);
-    gButtons[28].setPosition(-1000, -1000);
-    gButtons[29].setPosition(-1000, -1000);
-    gButtons[30].setPosition(-1000, -1000);
-    gButtons[31].setPosition(-1000, -1000);
-    gButtons[35].setPosition(-1000, -1000);
-    gButtons[36].setPosition(-1000, -1000);
-    gButtons[37].setPosition(-1000, -1000);
-    gButtons[38].setPosition(-1000, -1000);
-    gButtons[50].setPosition(-1000, -1000);
-    gButtons[51].setPosition(-1000, -1000);
-    gButtons[52].setPosition(-1000, -1000);
-    gButtons[53].setPosition(-1000, -1000);
-    gButtons[54].setPosition(-1000, -1000);
-    gButtons[55].setPosition(-1000, -1000);
-    gButtons[56].setPosition(-1000, -1000);
-    gButtons[60].setPosition(-1000, -1000);
-    gButtons[61].setPosition(-1000, -1000);
-    gButtons[62].setPosition(-1000, -1000);
-    gButtons[98].setPosition(-1000, -1000);
-    gButtons[99].setPosition(-1000, -1000);
-    gButtons[100].setPosition(-1000, -1000);
-    gButtons[110].setPosition(-1000, -1000);
-    gButtons[111].setPosition(-1000, -1000);
-    gButtons[112].setPosition(-1000, -1000);
-    gButtons[113].setPosition(-1000, -1000);
-    gButtons[114].setPosition(-1000, -1000);
-    gButtons[115].setPosition(-1000, -1000);
-    gButtons[116].setPosition(-1000, -1000);
-    gButtons[117].setPosition(-1000, -1000);
-    gButtons[118].setPosition(-1000, -1000);
-    gButtons[119].setPosition(-1000, -1000);
-    gButtons[120].setPosition(-1000, -1000);
-    gButtons[121].setPosition(-1000, -1000);
-    gButtons[122].setPosition(-1000, -1000);
-    gButtons[123].setPosition(-1000, -1000);
-    gButtons[124].setPosition(-1000, -1000);
-    gButtons[125].setPosition(-1000, -1000);
-    gButtons[126].setPosition(-1000, -1000);
-    gButtons[127].setPosition(-1000, -1000);
-    gButtons[128].setPosition(-1000, -1000);
-    gButtons[129].setPosition(-1000, -1000);
-    gButtons[130].setPosition(-1000, -1000);
-    gButtons[140].setPosition(-1000, -1000);
-    gButtons[141].setPosition(-1000, -1000);
-    gButtons[142].setPosition(-1000, -1000);
-    gButtons[143].setPosition(-1000, -1000);
-    gButtons[144].setPosition(-1000, -1000);
-    gButtons[145].setPosition(-1000, -1000);
-    gButtons[146].setPosition(-1000, -1000);
-    gButtons[147].setPosition(-1000, -1000);
-    gButtons[148].setPosition(-1000, -1000);
+    for (int i = 0; i < SystemButtons.size(); i++)
+    {
+        for (int j = 0; j < SystemButtons[i].size(); j++)
+        {
+            SystemButtons[i][j].setPosition(-1000, -1000);
+        }
+    }
+    for (int i = 0; i < D_S_E_Buttons.size(); ++i)
+    {
+        D_S_E_Buttons[i].setPosition(-1000, -1000);
+    }
+    for (int i = 6; i < 150; i++)
+    {
+        gButtons[i].setPosition(-1000, -1000);
+    }
 }
 
 void background()
