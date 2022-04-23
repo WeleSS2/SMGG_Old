@@ -52,6 +52,7 @@ class Graphics_Engine
 public:
     void handleKeyboardEvent(SDL_Event& e);
     void render_checkbox(int button_id, int button_x, int button_y, int width, int height);
+    void render_checkbox_v2(int mode, int button_id, int button_x, int button_y, int width, int height);
     void text_input(int x, int y, int target_string_id);
     void text_render(std::string tekst, int x, int y);
     void text_render_v2(std::string tekst, int x, int y);
@@ -108,6 +109,7 @@ public:
     void handleEvent(SDL_Event* e, int id);
     void handleSystemButtonEvent(SDL_Event& e, int i, int j);
     void handle_D_S_E_ButtonEvent(SDL_Event& e, int i);
+    void handleMap_Checkbox_Buttons(SDL_Event& e, int i);
     void render();
     void renderDynamic(int mode, int w, int h);
     void mrender();
@@ -119,6 +121,7 @@ private:
 std::vector<LButton> D_S_E_Buttons;
 std::vector<LButton> gButtons;
 std::vector <std::vector <LButton>> SystemButtons;
+std::vector<LButton> Map_Checkbox_Buttons;
 
 //Starts up SDL and creates window
 bool init();
@@ -585,6 +588,7 @@ void Graphics_Engine::text_input(int x, int y, int target_string_id)
     rerender();
     while (!quit)
     {
+
         SDL_Delay(100);
         bool renderText = false;
 
@@ -643,6 +647,7 @@ void Graphics_Engine::text_input(int x, int y, int target_string_id)
 
         //Render text textures
         gInputTextTexture.renderButton(x, y);
+        GE.render_color_box(255, 255, 255, x - 3, y + 4, 1, 24);
         SDL_RenderPresent(gRenderer);
     }
     if (inputText == "")
@@ -724,6 +729,9 @@ void Graphics_Engine::text_input(int x, int y, int target_string_id)
             break;
         case 22:
             fucking_minus(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+            break;
+        case 30:
+            save_as(inputText, target_string_id);
             break;
         case 55:
             fucking_minus(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
@@ -1032,6 +1040,10 @@ void save_as(std::string inputText, int id)
     case 22:
         maruder_am = std::stoi(inputText);
         break;
+    case 30:
+        F_O.mapname = inputText;
+        map_name_bool = false;
+        break;
     case 55:
         min_hyperlane_am = std::stoi(inputText);
         break;
@@ -1157,6 +1169,19 @@ void Graphics_Engine::render_checkbox(int button_id, int button_x, int button_y,
 {
     gButtons[button_id].setPosition(center_width + button_x, center_height + button_y);
     gCheckboxTexture.render(center_width + button_x , center_height + button_y, width, height);
+}
+
+void Graphics_Engine::render_checkbox_v2(int mode, int button_id, int button_x, int button_y, int width, int height)
+{
+    if (mode == 1)
+    {
+        gButtons[button_id].setPosition(center_width + button_x, center_height + button_y);
+        gCheckboxTexture.render(center_width + button_x, center_height + button_y, width, height);
+    }
+    else if (mode == 2)
+    {
+        Map_Checkbox_Buttons[button_id].setPosition(center_width + button_x, center_height + button_y);
+    }
 }
 
 void render_hyperlanes()

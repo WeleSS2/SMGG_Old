@@ -65,7 +65,7 @@ void remove_hyperlanes(int mode, int gal_id);
 void firstrunsettings();
 void firstrunbackground();
 void firstrun_create_directory();
-void osfile(std::string path);
+void osfile(std::string path, std::string name);
 void savepath();
 void loadsettings();
 void SaveSettings();

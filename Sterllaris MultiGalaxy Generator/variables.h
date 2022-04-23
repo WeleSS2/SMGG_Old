@@ -32,6 +32,9 @@ bool show_hyperlanes = false;
 bool show_initializers = false;
 bool local_maps_created = false;
 
+bool map_name_bool = false;
+bool maps_menu_bool = false;
+
 std::string appdata = getenv("APPDATA");
 std::string constpath = appdata + "\\SMGGLocal";
 std::string modfolderpath;

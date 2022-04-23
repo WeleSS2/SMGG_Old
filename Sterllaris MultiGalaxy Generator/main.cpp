@@ -24,6 +24,7 @@ gButtons 13 = Exit
 22 = redraw galaxy
 23 - Edit Patch button
 24 - Generate Initializers
+27 - Add Map to local
 28 - Clear Map
 29 - Random Galaxy
 30 - Choose Circle or Ring Shape
@@ -46,6 +47,8 @@ From 50 CUSTOM SIZE:
 62 - Checkbox Show Hyperlanes
 63 - Checkbox Show Initializers
 
+
+75 = ID CHECKER
 97 - Checkbox Multiplayer
 98 - Checkbox initializers
 99 - Checkbox save to a game
@@ -147,6 +150,108 @@ nebula = {
 */
 
 #include "include.h"
+
+void LButton::handleMap_Checkbox_Buttons(SDL_Event& e, int id)
+{
+    int x, y;
+    SDL_GetMouseState(&x, &y);
+
+    bool inside = true;
+
+    if (x < Map_Checkbox_Buttons[id].mPosition.x)
+    {
+        inside = false;
+    }
+
+    else if (x > Map_Checkbox_Buttons[id].mPosition.x + 25)
+    {
+        inside = false;
+    }
+    else if (y < Map_Checkbox_Buttons[id].mPosition.y)
+    {
+        inside = false;
+    }
+    else if (y > Map_Checkbox_Buttons[id].mPosition.y + 25)
+    {
+        inside = false;
+    }
+
+    if (inside)
+    {
+        if (e.button.button == SDL_BUTTON_LEFT)
+        {
+            if (e.type == SDL_MOUSEBUTTONDOWN)
+            {
+                if (F_O.v_local_maps[id].enabled)
+                {
+                    std::string path_local = F_O.v_local_maps[id].map_steam;
+                    for (int i = 0; i < path_local.length(); ++i)
+                    {
+                        if (path_local[i] == 47)
+                        {
+                            path_local[i] = 92;
+                            path_local.insert(i, "\\");
+                        }
+                    }
+                    std::filesystem::remove(path_local);
+                    F_O.v_local_maps[id].enabled = false;
+                }
+                else
+                {
+                    std::string path_local = F_O.v_local_maps[id].map_steam;
+                    for (int i = 0; i < path_local.length(); ++i)
+                    {
+                        if (path_local[i] == 47)
+                        {
+                            path_local[i] = 92;
+                            path_local.insert(i, "\\");
+                        }
+                    }
+                    std::string temp_path = constpath + "/Maps/" + F_O.v_local_maps[id].map_local;
+                    for (int i = 0; i < temp_path.length(); ++i)
+                    {
+                        if (temp_path[i] == 47)
+                        {
+                            temp_path[i] = 92;
+                            temp_path.insert(i, "\\");
+                        }
+                    }
+                    std::filesystem::copy(temp_path, path_local);
+                    
+                    F_O.v_local_maps[id].enabled = true;
+                }
+            }
+        }
+        if (e.button.button == SDL_BUTTON_MIDDLE)
+        {
+            if (e.type == SDL_MOUSEBUTTONDOWN)
+            {
+                std::string path_local = F_O.v_local_maps[id].map_steam;
+                for (int i = 0; i < path_local.length(); ++i)
+                {
+                    if (path_local[i] == 47)
+                    {
+                        path_local[i] = 92;
+                        path_local.insert(i, "\\");
+                    }
+                }
+                std::string temp_path = constpath + "/Maps/" + F_O.v_local_maps[id].map_local;
+                for (int i = 0; i < temp_path.length(); ++i)
+                {
+                    if (temp_path[i] == 47)
+                    {
+                        temp_path[i] = 92;
+                        temp_path.insert(i, "\\");
+                    }
+                }
+                std::filesystem::remove(path_local);
+                std::filesystem::remove(temp_path);
+                F_O.v_local_maps.erase(F_O.v_local_maps.begin() + id);
+                Map_Checkbox_Buttons.erase(Map_Checkbox_Buttons.begin() + id);
+            }
+        }
+    }
+}
 
 void LButton::handle_D_S_E_ButtonEvent(SDL_Event& e, int id)
 {
@@ -489,7 +594,10 @@ void LButton::handleSystemButtonEvent(SDL_Event& e, int i, int j)
                 case SDL_MOUSEBUTTONDOWN:
                     if (Det_Gen.remove_system)
                     {
+                        //std::cout << "Enter 1  " << j << "   " << v_system_data[i].size() << "   " << SystemButtons[i].size() << std::endl;
+                        //std::cout << "Enter 1a  " << j << "   " << v_system_data[i].size() << "   " << SystemButtons[i].size() << std::endl;
                         v_system_data[i].erase(v_system_data[i].begin() + j);
+                        SystemButtons[i].erase(SystemButtons[i].begin() + j);
                         for (int a = 0; a < v_system_data[i].size(); ++a)
                         {
                             if (v_system_data[i][a].gal_id >= j)
@@ -497,6 +605,7 @@ void LButton::handleSystemButtonEvent(SDL_Event& e, int i, int j)
                                 v_system_data[i][a].gal_id -= 1;
                             }
                         }
+                        //std::cout << "Enter 2" << std::endl;
                         if (v_galaxy_generation[i].hyperlanes_generated)
                         {
                             v_hyperlanes[i].erase(v_hyperlanes[i].begin() + j);
@@ -525,6 +634,7 @@ void LButton::handleSystemButtonEvent(SDL_Event& e, int i, int j)
                                 //std::cout << "----------" << std::endl;
                             }
                         }
+                        //std::cout << "Enter 3" << std::endl;
                         v_galaxy_generation[i].i_star--;
                         v_galaxy_generation[i].star = std::to_string(v_galaxy_generation[i].i_star);
                         sys_sum--;
@@ -615,6 +725,12 @@ void LButton::handleSystemButtonEvent(SDL_Event& e, int i, int j)
                             v_system_data[i][j].init_number = 0;
                             v_system_data[i][j].init_type = 0;
                             v_system_data[i][j].player_id = 0;
+                        }
+                        else if (v_system_data[i][j].init_type == 4)
+                        {
+                            v_system_data[i][j].inicjalizer = false;
+                            v_system_data[i][j].init_number = 0;
+                            v_system_data[i][j].init_type = 0;
                         }
 
                     }
@@ -778,6 +894,26 @@ void LButton::handleEvent(SDL_Event* e, int id)
                 }
 
                 else if (x > mPosition.x + 300)
+                {
+                    inside = false;
+                }
+                else if (y < mPosition.y)
+                {
+                    inside = false;
+                }
+                else if (y > mPosition.y + BUTTON_HEIGHT)
+                {
+                    inside = false;
+                }
+            }
+            else if (id == 25)
+            {
+                if (x < mPosition.x)
+                {
+                    inside = false;
+                }
+
+                else if (x > mPosition.x + 240)
                 {
                     inside = false;
                 }
@@ -1123,6 +1259,17 @@ void LButton::handleEvent(SDL_Event* e, int id)
                             //std::cout << rand() % 20 << std::endl;
                             //F_O.load_files_from_steammod_folder();
                             //F_O.create_folder();
+                            if (!maps_menu_bool)
+                            {
+                                DisableOtherWindows();
+                                maps_menu_bool = true;
+                                rerender();
+                            }
+                            else
+                            {
+                                maps_menu_bool = false;
+                                rerender();
+                            }
                             break;
 
                             // Settings
@@ -1147,7 +1294,14 @@ void LButton::handleEvent(SDL_Event* e, int id)
                             break;
 
                         case 3:
-                            F_O.SaveMap();
+                            //F_O.SaveMap();
+                            for (int i = 0; i < F_O.v_local_maps.size(); ++i)
+                            {
+                                std::cout << F_O.v_local_maps[i].map_steam << " " 
+                                    << F_O.v_local_maps[i].map_local << " " 
+                                    << F_O.v_local_maps[i].map_name << " " 
+                                    << F_O.v_local_maps[i].enabled << "\n";
+                            }
                             break;
 
                         case 4:
@@ -1259,7 +1413,7 @@ void LButton::handleEvent(SDL_Event* e, int id)
                                 }
                                 //std::cout << "Work 1.5" << std::endl;
                                 //std::cout << "Play 4" << std::endl;
-                                osfile(modfolderpath);
+                                osfile(modfolderpath, "MultiGalaxy");
                             }
                             //std::cout << "Play 5" << std::endl;
                             //std::cout << "Work 2" << std::endl;
@@ -1273,6 +1427,7 @@ void LButton::handleEvent(SDL_Event* e, int id)
                         case 13:
                             SaveSettings();
                             SaveRandomSettings();
+                            F_O.save_maps();
                             close();
                             std::exit(0);
                             GE.click_effect_remove(id);
@@ -1280,12 +1435,15 @@ void LButton::handleEvent(SDL_Event* e, int id)
 
                             // Generate Hyperlanes
                         case 15:
-                            for (int i = 0; i < galaxies_am; i++)
-                            {
-                                if (v_galaxy_generation[i].hyperlanes_generated == false)
+                            if (galaxies_am > 0) {
+                                for (int i = 0; i < galaxies_am; i++)
                                 {
-                                    link(0, i);
+                                    if (v_galaxy_generation[i].hyperlanes_generated == false)
+                                    {
+                                        link(0, i);
+                                    }
                                 }
+
                             }
                             GE.click_effect_remove(id);
                             break;
@@ -1389,8 +1547,41 @@ void LButton::handleEvent(SDL_Event* e, int id)
 
                             // Generate Initializers
                         case 24:
-                            Classinit.initilizers();
-                            initializers_loaded = true;
+                            if (v_galaxy_generation.size() > 0)
+                            {
+                                if (!initializers_loaded)
+                                {
+                                    Classinit.initilizers();
+                                    initializers_loaded = true;
+                                }
+                            }
+                            break;
+
+                            // CLear Initializers
+                        case 25:
+                            if (v_galaxy_generation.size() > 0)
+                            {
+                                if (initializers_loaded)
+                                {
+                                    for (int i = 0; i < v_system_data.size(); ++i)
+                                    {
+                                        for (int j = 0; j < v_system_data[i].size(); ++j)
+                                        {
+                                            if (v_system_data[i][j].init_type != 99)
+                                            {
+                                                v_system_data[i][j].inicjalizer = false;
+                                                v_system_data[i][j].init_number = 0;
+                                                v_system_data[i][j].init_type = 0;
+                                                v_system_data[i][j].player_id = -1;
+                                            }
+                                        }
+                                    }
+                                    initializers_loaded = false;
+                                }
+                            }
+                            break;
+                        case 27:
+                            F_O.map_name();
                             break;
                             // Clear Map
                         case 28:
@@ -1948,7 +2139,7 @@ void LButton::handleEvent(SDL_Event* e, int id)
                     }
                 break;
             case SDL_MOUSEWHEEL:
-                if ((x < 1200) && (y < 1080))
+                if ((x < 1200) && (y < 1080) && (current_galaxies_window))
                 {
                     if (e->wheel.y > 0)
                     {
@@ -1971,6 +2162,28 @@ void LButton::handleEvent(SDL_Event* e, int id)
                         GE.system_box_y = -1000;
                         C_S.done = false;
                         current_galaxies_window = true;
+                    }
+                }
+                else if (maps_menu_bool)
+                {
+                    if(id == 75)
+                    {
+                        // Whell down
+                        if (e->wheel.y < 0)
+                        {
+                            if (F_O.top_showed < F_O.v_local_maps.size() - 15)
+                            {
+                                F_O.top_showed++;
+                            }
+                        }
+                        // Whell up
+                        else if (e->wheel.y > 0)
+                        {
+                            if (F_O.top_showed > 0)
+                            {
+                                F_O.top_showed--;
+                            }
+                        }
                     }
                 }
                 break;
@@ -2342,6 +2555,7 @@ void current_galaxies_buttons()
     GE.render_checkbox(62, 1540, 605, 30, 30);
     GE.text_render_v2("Initializers", 1500, 780);
     GE.render_button_with_text_dynamic(0, 24, 1260, 830, 300, 45, "Generate Initializers", 1277, 835);
+    GE.render_button_with_text_dynamic(0, 25, 1580, 830, 240, 45, "Clear Initializers", 1597, 835);
     GE.text_render_v2("Show", 1280, 890);
     GE.render_checkbox(63, 1360, 890, 30, 30);
 }
@@ -2634,6 +2848,13 @@ int main(int argc, char** args) {
                             D_S_E_Buttons[i].handle_D_S_E_ButtonEvent(e, i);
                         }
                     }
+                    for (int i = 0; i < Map_Checkbox_Buttons.size(); ++i)
+                    {
+                        if ((e.type == SDL_MOUSEBUTTONDOWN || e.type == SDL_MOUSEBUTTONUP || e.type == SDL_MOUSEWHEEL) && maps_menu_bool)
+                        {
+                            Map_Checkbox_Buttons[i].handleMap_Checkbox_Buttons(e, i);
+                        }
+                    }
                     rerender();
                 }
             }
@@ -2657,3 +2878,5 @@ bool IsConsoleVisible()
 {
     return ::IsWindowVisible(::GetConsoleWindow()) != FALSE;
 }
+
+    

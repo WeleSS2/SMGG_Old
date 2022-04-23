@@ -350,6 +350,14 @@ void base()
             }
         }
     }
+    if (maps_menu_bool)
+    {
+        F_O.maps_menu();
+    }
+    if (map_name_bool)
+    {
+        GE.text_render_v2("Map name: ", center_width + 1240, center_height + 190);
+    }
 }
 
 void layer_1()
@@ -381,6 +389,10 @@ void layer_1()
 
 void DisableOtherWindows()
 {
+    ThrowOutButtons();
+    Det_Gen.false_all_bools();
+    Det_Gen.false_initializers();
+    Det_Gen.reset_bits();
     if (current_galaxies_window == true)
     {
         current_galaxies_window = false;
@@ -433,6 +445,18 @@ void DisableOtherWindows()
         CSHM.edit_galaxies_loop = false;
         edit = false;
     }
+    if (map_name_bool)
+    {
+        map_name_bool = false;
+    }
+    if (maps_menu_bool)
+    {
+        maps_menu_bool = false;
+    }
+    if (C_S.scrolling)
+    {
+        C_S.scrolling = false;
+    }
 }
 
 void ThrowOutButtons()
@@ -451,6 +475,10 @@ void ThrowOutButtons()
     for (int i = 6; i < 150; i++)
     {
         gButtons[i].setPosition(-1000, -1000);
+    }
+    for (int i = 0; i < Map_Checkbox_Buttons.size(); ++i)
+    {
+        Map_Checkbox_Buttons[i].setPosition(-1000, -1000);
     }
 }
 
@@ -484,6 +512,7 @@ void buttons_render()
         gButtons[i].render();
     }
     GE.text_render("Galaxies", center_width + 1275, center_height + 25);
+    GE.text_render("Maps", center_width + 1300, center_height + 90);
     GE.text_render("Settings", center_width + 1500, center_height + 25);
     GE.text_render("Files&Exit", center_width + 1715, center_height + 90);
 }
