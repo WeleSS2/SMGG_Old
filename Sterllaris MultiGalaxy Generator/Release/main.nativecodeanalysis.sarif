@@ -1,93 +1,9 @@
 {
   "version": "2.1.0",
-  "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.4.json",
+  "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
   "runs": [
     {
       "results": [
-        {
-          "ruleId": "C26819",
-          "message": {
-            "text": "Unannotated fallthrough between switch labels (es.78)."
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Dependencies/SDL/include/SDL_stdinc.h"
-                },
-                "region": {
-                  "startLine": 500,
-                  "startColumn": 14,
-                  "endLine": 500,
-                  "endColumn": 14
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "C26819",
-          "message": {
-            "text": "Unannotated fallthrough between switch labels (es.78)."
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Dependencies/SDL/include/SDL_stdinc.h"
-                },
-                "region": {
-                  "startLine": 501,
-                  "startColumn": 14,
-                  "endLine": 501,
-                  "endColumn": 14
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "C26819",
-          "message": {
-            "text": "Unannotated fallthrough between switch labels (es.78)."
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Dependencies/SDL/include/SDL_stdinc.h"
-                },
-                "region": {
-                  "startLine": 502,
-                  "startColumn": 14,
-                  "endLine": 502,
-                  "endColumn": 14
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "C26819",
-          "message": {
-            "text": "Unannotated fallthrough between switch labels (es.78)."
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Dependencies/SDL/include/SDL_stdinc.h"
-                },
-                "region": {
-                  "startLine": 503,
-                  "startColumn": 14,
-                  "endLine": 503,
-                  "endColumn": 14
-                }
-              }
-            }
-          ]
-        },
         {
           "ruleId": "C26812",
           "message": {
@@ -106,9 +22,36 @@
               },
               "logicalLocations": [
                 {
-                  "name": "SDL_PointInRect",
                   "fullyQualifiedName": "SDL_PointInRect",
                   "decoratedName": "SDL_PointInRect",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26812",
+          "message": {
+            "text": "The enum type 'ESteamIPType' is unscoped. Prefer 'enum class' over 'enum' (Enum.3)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Dependencies/STEAM_API/include/steamtypes.h"
+                },
+                "region": {
+                  "startLine": 136,
+                  "startColumn": 30,
+                  "endLine": 136,
+                  "endColumn": 30
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "SteamIPAddress_t::IsSet",
+                  "decoratedName": "?IsSet@SteamIPAddress_t@@QBE_NXZ",
                   "kind": "function"
                 }
               ]
@@ -132,7 +75,14 @@
                   "endLine": 483,
                   "endColumn": 2
                 }
-              }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "CSteamID::{ctor}",
+                  "decoratedName": "??0CSteamID@@QAE@IW4EUniverse@@W4EAccountType@@@Z",
+                  "kind": "function"
+                }
+              ]
             }
           ]
         },
@@ -153,7 +103,42 @@
                   "endLine": 483,
                   "endColumn": 2
                 }
-              }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "CSteamID::{ctor}",
+                  "decoratedName": "??0CSteamID@@QAE@IW4EUniverse@@W4EAccountType@@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26812",
+          "message": {
+            "text": "The enum type 'ESteamNetworkingFakeIPType' is unscoped. Prefer 'enum class' over 'enum' (Enum.3)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Dependencies/STEAM_API/include/steamnetworkingtypes.h"
+                },
+                "region": {
+                  "startLine": 249,
+                  "startColumn": 33,
+                  "endLine": 249,
+                  "endColumn": 46
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "SteamNetworkingIPAddr::IsFakeIP",
+                  "decoratedName": "?IsFakeIP@SteamNetworkingIPAddr@@QBE_NXZ",
+                  "kind": "function"
+                }
+              ]
             }
           ]
         },
@@ -174,7 +159,14 @@
                   "endLine": 1595,
                   "endColumn": 14
                 }
-              }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "SteamNetworkingConfigValue_t::SetInt32",
+                  "decoratedName": "?SetInt32@SteamNetworkingConfigValue_t@@QAEXW4ESteamNetworkingConfigValue@@H@Z",
+                  "kind": "function"
+                }
+              ]
             }
           ]
         },
@@ -195,7 +187,14 @@
                   "endLine": 1598,
                   "endColumn": 17
                 }
-              }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "SteamNetworkingConfigValue_t::SetInt32",
+                  "decoratedName": "?SetInt32@SteamNetworkingConfigValue_t@@QAEXW4ESteamNetworkingConfigValue@@H@Z",
+                  "kind": "function"
+                }
+              ]
             }
           ]
         },
@@ -211,12 +210,19 @@
                   "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Dependencies/STEAM_API/include/steamnetworkingtypes.h"
                 },
                 "region": {
-                  "startLine": 1745,
-                  "startColumn": 71,
-                  "endLine": 1745,
-                  "endColumn": 81
+                  "startLine": 1742,
+                  "startColumn": 58,
+                  "endLine": 1742,
+                  "endColumn": 76
                 }
-              }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "SteamNetworkingIdentity::IsInvalid",
+                  "decoratedName": "?IsInvalid@SteamNetworkingIdentity@@QBE_NXZ",
+                  "kind": "function"
+                }
+              ]
             }
           ]
         },
@@ -237,28 +243,14 @@
                   "endLine": 464,
                   "endColumn": 36
                 }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "C26812",
-          "message": {
-            "text": "The enum type 'ESteamNetworkingFakeIPType' is unscoped. Prefer 'enum class' over 'enum' (Enum.3)."
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Dependencies/STEAM_API/include/isteamnetworkingutils.h"
-                },
-                "region": {
-                  "startLine": 493,
-                  "startColumn": 83,
-                  "endLine": 493,
-                  "endColumn": 152
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ISteamNetworkingUtils::SetConfigValueStruct",
+                  "decoratedName": "?SetConfigValueStruct@ISteamNetworkingUtils@@QAE_NABUSteamNetworkingConfigValue_t@@W4ESteamNetworkingConfigScope@@H@Z",
+                  "kind": "function"
                 }
-              }
+              ]
             }
           ]
         },
@@ -274,12 +266,19 @@
                   "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/variables.h"
                 },
                 "region": {
-                  "startLine": 89,
+                  "startLine": 87,
                   "startColumn": 1,
-                  "endLine": 89,
+                  "endLine": 87,
                   "endColumn": 1
                 }
-              }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "fallen_empires::{ctor}",
+                  "decoratedName": "??0fallen_empires@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
             }
           ],
           "properties": {
@@ -298,12 +297,19 @@
                   "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/variables.h"
                 },
                 "region": {
-                  "startLine": 113,
+                  "startLine": 111,
                   "startColumn": 1,
-                  "endLine": 113,
+                  "endLine": 111,
                   "endColumn": 1
                 }
-              }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "leviathans::{ctor}",
+                  "decoratedName": "??0leviathans@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
             }
           ],
           "properties": {
@@ -313,370 +319,7 @@
         {
           "ruleId": "C26495",
           "message": {
-            "text": "Variable 'c_init::random_sys' is uninitialized. Always initialize a member variable (type.6)."
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/classes_declaration.h"
-                },
-                "region": {
-                  "startLine": 11,
-                  "startColumn": 1,
-                  "endLine": 11,
-                  "endColumn": 1
-                }
-              }
-            }
-          ],
-          "properties": {
-            "targetSymbol": "c_init::random_sys"
-          }
-        },
-        {
-          "ruleId": "C26495",
-          "message": {
-            "text": "Variable 'c_init::dist' is uninitialized. Always initialize a member variable (type.6)."
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/classes_declaration.h"
-                },
-                "region": {
-                  "startLine": 11,
-                  "startColumn": 1,
-                  "endLine": 11,
-                  "endColumn": 1
-                }
-              }
-            }
-          ],
-          "properties": {
-            "targetSymbol": "c_init::dist"
-          }
-        },
-        {
-          "ruleId": "C26495",
-          "message": {
-            "text": "Variable 'c_init::fallen_dist' is uninitialized. Always initialize a member variable (type.6)."
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/classes_declaration.h"
-                },
-                "region": {
-                  "startLine": 11,
-                  "startColumn": 1,
-                  "endLine": 11,
-                  "endColumn": 1
-                }
-              }
-            }
-          ],
-          "properties": {
-            "targetSymbol": "c_init::fallen_dist"
-          }
-        },
-        {
-          "ruleId": "C26495",
-          "message": {
-            "text": "Variable 'c_init::leviathan_dist' is uninitialized. Always initialize a member variable (type.6)."
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/classes_declaration.h"
-                },
-                "region": {
-                  "startLine": 11,
-                  "startColumn": 1,
-                  "endLine": 11,
-                  "endColumn": 1
-                }
-              }
-            }
-          ],
-          "properties": {
-            "targetSymbol": "c_init::leviathan_dist"
-          }
-        },
-        {
-          "ruleId": "C26495",
-          "message": {
-            "text": "Variable 'c_init::marauder_dist' is uninitialized. Always initialize a member variable (type.6)."
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/classes_declaration.h"
-                },
-                "region": {
-                  "startLine": 11,
-                  "startColumn": 1,
-                  "endLine": 11,
-                  "endColumn": 1
-                }
-              }
-            }
-          ],
-          "properties": {
-            "targetSymbol": "c_init::marauder_dist"
-          }
-        },
-        {
-          "ruleId": "C26495",
-          "message": {
-            "text": "Variable 'c_init::placed' is uninitialized. Always initialize a member variable (type.6)."
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/classes_declaration.h"
-                },
-                "region": {
-                  "startLine": 11,
-                  "startColumn": 1,
-                  "endLine": 11,
-                  "endColumn": 1
-                }
-              }
-            }
-          ],
-          "properties": {
-            "targetSymbol": "c_init::placed"
-          }
-        },
-        {
-          "ruleId": "C26495",
-          "message": {
-            "text": "Variable 'c_init::specific_init' is uninitialized. Always initialize a member variable (type.6)."
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/classes_declaration.h"
-                },
-                "region": {
-                  "startLine": 11,
-                  "startColumn": 1,
-                  "endLine": 11,
-                  "endColumn": 1
-                }
-              }
-            }
-          ],
-          "properties": {
-            "targetSymbol": "c_init::specific_init"
-          }
-        },
-        {
-          "ruleId": "C26495",
-          "message": {
-            "text": "Variable 'c_init::everything_filled' is uninitialized. Always initialize a member variable (type.6)."
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/classes_declaration.h"
-                },
-                "region": {
-                  "startLine": 11,
-                  "startColumn": 1,
-                  "endLine": 11,
-                  "endColumn": 1
-                }
-              }
-            }
-          ],
-          "properties": {
-            "targetSymbol": "c_init::everything_filled"
-          }
-        },
-        {
-          "ruleId": "C26812",
-          "message": {
-            "text": "The enum type 'SDL_RendererFlip' is unscoped. Prefer 'enum class' over 'enum' (Enum.3)."
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/graphics_engine.h"
-                },
-                "region": {
-                  "startLine": 153,
-                  "startColumn": 16,
-                  "endLine": 153,
-                  "endColumn": 16
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "C26812",
-          "message": {
-            "text": "The enum type 'SDL_BlendMode' is unscoped. Prefer 'enum class' over 'enum' (Enum.3)."
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/graphics_engine.h"
-                },
-                "region": {
-                  "startLine": 239,
-                  "startColumn": 16,
-                  "endLine": 239,
-                  "endColumn": 16
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "C26495",
-          "message": {
-            "text": "Variable 'LButton::mCurrentSprite' is uninitialized. Always initialize a member variable (type.6)."
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/graphics_engine.h"
-                },
-                "region": {
-                  "startLine": 283,
-                  "startColumn": 10,
-                  "endLine": 283,
-                  "endColumn": 10
-                }
-              }
-            }
-          ],
-          "properties": {
-            "targetSymbol": "LButton::mCurrentSprite"
-          }
-        },
-        {
-          "ruleId": "C26451",
-          "message": {
-            "text": "Arithmetic overflow: Using operator '+' on a 4 byte value and then casting the result to a 8 byte value. Cast the value to the wider type before calling operator '+' to avoid overflow (io.2)."
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/algo.h"
-                },
-                "region": {
-                  "startLine": 1107,
-                  "startColumn": 14,
-                  "endLine": 1107,
-                  "endColumn": 56
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "C26451",
-          "message": {
-            "text": "Arithmetic overflow: Using operator '+' on a 4 byte value and then casting the result to a 8 byte value. Cast the value to the wider type before calling operator '+' to avoid overflow (io.2)."
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/algo.h"
-                },
-                "region": {
-                  "startLine": 1107,
-                  "startColumn": 14,
-                  "endLine": 1107,
-                  "endColumn": 47
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "C26451",
-          "message": {
-            "text": "Arithmetic overflow: Using operator '*' on a 4 byte value and then casting the result to a 8 byte value. Cast the value to the wider type before calling operator '*' to avoid overflow (io.2)."
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/algo.h"
-                },
-                "region": {
-                  "startLine": 1190,
-                  "startColumn": 31,
-                  "endLine": 1190,
-                  "endColumn": 54
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "C26451",
-          "message": {
-            "text": "Arithmetic overflow: Using operator '+' on a 4 byte value and then casting the result to a 8 byte value. Cast the value to the wider type before calling operator '+' to avoid overflow (io.2)."
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/algo.h"
-                },
-                "region": {
-                  "startLine": 1192,
-                  "startColumn": 57,
-                  "endLine": 1192,
-                  "endColumn": 71
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "C26812",
-          "message": {
-            "text": "The enum type 'LButtonSprite' is unscoped. Prefer 'enum class' over 'enum' (Enum.3)."
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/main.cpp"
-                },
-                "region": {
-                  "startLine": 236,
-                  "startColumn": 25,
-                  "endLine": 236,
-                  "endColumn": 42
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "C26495",
-          "message": {
-            "text": "Variable 'galaxy_generation::maruder_am' is uninitialized. Always initialize a member variable (type.6)."
+            "text": "Variable 'system_data::con_max' is uninitialized. Always initialize a member variable (type.6)."
           },
           "locations": [
             {
@@ -685,304 +328,23 @@
                   "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/variables.h"
                 },
                 "region": {
-                  "startLine": 195,
+                  "startLine": 154,
                   "startColumn": 1,
-                  "endLine": 195,
+                  "endLine": 154,
                   "endColumn": 1
                 }
-              }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "system_data::{ctor}",
+                  "decoratedName": "??0system_data@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
             }
           ],
           "properties": {
-            "targetSymbol": "galaxy_generation::maruder_am"
-          }
-        },
-        {
-          "ruleId": "C26495",
-          "message": {
-            "text": "Variable 'galaxy_generation::i_max_hyp_dis' is uninitialized. Always initialize a member variable (type.6)."
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/variables.h"
-                },
-                "region": {
-                  "startLine": 195,
-                  "startColumn": 1,
-                  "endLine": 195,
-                  "endColumn": 1
-                }
-              }
-            }
-          ],
-          "properties": {
-            "targetSymbol": "galaxy_generation::i_max_hyp_dis"
-          }
-        },
-        {
-          "ruleId": "C26495",
-          "message": {
-            "text": "Variable 'galaxy_generation::empire_am' is uninitialized. Always initialize a member variable (type.6)."
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/variables.h"
-                },
-                "region": {
-                  "startLine": 195,
-                  "startColumn": 1,
-                  "endLine": 195,
-                  "endColumn": 1
-                }
-              }
-            }
-          ],
-          "properties": {
-            "targetSymbol": "galaxy_generation::empire_am"
-          }
-        },
-        {
-          "ruleId": "C26495",
-          "message": {
-            "text": "Variable 'galaxy_generation::i_cen_posX' is uninitialized. Always initialize a member variable (type.6)."
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/variables.h"
-                },
-                "region": {
-                  "startLine": 195,
-                  "startColumn": 1,
-                  "endLine": 195,
-                  "endColumn": 1
-                }
-              }
-            }
-          ],
-          "properties": {
-            "targetSymbol": "galaxy_generation::i_cen_posX"
-          }
-        },
-        {
-          "ruleId": "C26495",
-          "message": {
-            "text": "Variable 'galaxy_generation::i_star' is uninitialized. Always initialize a member variable (type.6)."
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/variables.h"
-                },
-                "region": {
-                  "startLine": 195,
-                  "startColumn": 1,
-                  "endLine": 195,
-                  "endColumn": 1
-                }
-              }
-            }
-          ],
-          "properties": {
-            "targetSymbol": "galaxy_generation::i_star"
-          }
-        },
-        {
-          "ruleId": "C26495",
-          "message": {
-            "text": "Variable 'galaxy_generation::f_rotationFactor' is uninitialized. Always initialize a member variable (type.6)."
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/variables.h"
-                },
-                "region": {
-                  "startLine": 195,
-                  "startColumn": 1,
-                  "endLine": 195,
-                  "endColumn": 1
-                }
-              }
-            }
-          ],
-          "properties": {
-            "targetSymbol": "galaxy_generation::f_rotationFactor"
-          }
-        },
-        {
-          "ruleId": "C26495",
-          "message": {
-            "text": "Variable 'galaxy_generation::fallen_am' is uninitialized. Always initialize a member variable (type.6)."
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/variables.h"
-                },
-                "region": {
-                  "startLine": 195,
-                  "startColumn": 1,
-                  "endLine": 195,
-                  "endColumn": 1
-                }
-              }
-            }
-          ],
-          "properties": {
-            "targetSymbol": "galaxy_generation::fallen_am"
-          }
-        },
-        {
-          "ruleId": "C26495",
-          "message": {
-            "text": "Variable 'galaxy_generation::i_gsize' is uninitialized. Always initialize a member variable (type.6)."
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/variables.h"
-                },
-                "region": {
-                  "startLine": 195,
-                  "startColumn": 1,
-                  "endLine": 195,
-                  "endColumn": 1
-                }
-              }
-            }
-          ],
-          "properties": {
-            "targetSymbol": "galaxy_generation::i_gsize"
-          }
-        },
-        {
-          "ruleId": "C26495",
-          "message": {
-            "text": "Variable 'galaxy_generation::f_randomOffsetXY' is uninitialized. Always initialize a member variable (type.6)."
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/variables.h"
-                },
-                "region": {
-                  "startLine": 195,
-                  "startColumn": 1,
-                  "endLine": 195,
-                  "endColumn": 1
-                }
-              }
-            }
-          ],
-          "properties": {
-            "targetSymbol": "galaxy_generation::f_randomOffsetXY"
-          }
-        },
-        {
-          "ruleId": "C26495",
-          "message": {
-            "text": "Variable 'galaxy_generation::i_numArms' is uninitialized. Always initialize a member variable (type.6)."
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/variables.h"
-                },
-                "region": {
-                  "startLine": 195,
-                  "startColumn": 1,
-                  "endLine": 195,
-                  "endColumn": 1
-                }
-              }
-            }
-          ],
-          "properties": {
-            "targetSymbol": "galaxy_generation::i_numArms"
-          }
-        },
-        {
-          "ruleId": "C26495",
-          "message": {
-            "text": "Variable 'galaxy_generation::density' is uninitialized. Always initialize a member variable (type.6)."
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/variables.h"
-                },
-                "region": {
-                  "startLine": 195,
-                  "startColumn": 1,
-                  "endLine": 195,
-                  "endColumn": 1
-                }
-              }
-            }
-          ],
-          "properties": {
-            "targetSymbol": "galaxy_generation::density"
-          }
-        },
-        {
-          "ruleId": "C26495",
-          "message": {
-            "text": "Variable 'galaxy_generation::i_cen_posY' is uninitialized. Always initialize a member variable (type.6)."
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/variables.h"
-                },
-                "region": {
-                  "startLine": 195,
-                  "startColumn": 1,
-                  "endLine": 195,
-                  "endColumn": 1
-                }
-              }
-            }
-          ],
-          "properties": {
-            "targetSymbol": "galaxy_generation::i_cen_posY"
-          }
-        },
-        {
-          "ruleId": "C26495",
-          "message": {
-            "text": "Variable 'galaxy_generation::f_armOffsetMax' is uninitialized. Always initialize a member variable (type.6)."
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/variables.h"
-                },
-                "region": {
-                  "startLine": 195,
-                  "startColumn": 1,
-                  "endLine": 195,
-                  "endColumn": 1
-                }
-              }
-            }
-          ],
-          "properties": {
-            "targetSymbol": "galaxy_generation::f_armOffsetMax"
+            "targetSymbol": "system_data::con_max"
           }
         },
         {
@@ -997,12 +359,19 @@
                   "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/variables.h"
                 },
                 "region": {
-                  "startLine": 163,
+                  "startLine": 154,
                   "startColumn": 1,
-                  "endLine": 163,
+                  "endLine": 154,
                   "endColumn": 1
                 }
-              }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "system_data::{ctor}",
+                  "decoratedName": "??0system_data@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
             }
           ],
           "properties": {
@@ -1021,12 +390,19 @@
                   "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/variables.h"
                 },
                 "region": {
-                  "startLine": 163,
+                  "startLine": 154,
                   "startColumn": 1,
-                  "endLine": 163,
+                  "endLine": 154,
                   "endColumn": 1
                 }
-              }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "system_data::{ctor}",
+                  "decoratedName": "??0system_data@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
             }
           ],
           "properties": {
@@ -1045,12 +421,19 @@
                   "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/variables.h"
                 },
                 "region": {
-                  "startLine": 163,
+                  "startLine": 154,
                   "startColumn": 1,
-                  "endLine": 163,
+                  "endLine": 154,
                   "endColumn": 1
                 }
-              }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "system_data::{ctor}",
+                  "decoratedName": "??0system_data@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
             }
           ],
           "properties": {
@@ -1069,12 +452,19 @@
                   "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/variables.h"
                 },
                 "region": {
-                  "startLine": 163,
+                  "startLine": 154,
                   "startColumn": 1,
-                  "endLine": 163,
+                  "endLine": 154,
                   "endColumn": 1
                 }
-              }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "system_data::{ctor}",
+                  "decoratedName": "??0system_data@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
             }
           ],
           "properties": {
@@ -1084,7 +474,1218 @@
         {
           "ruleId": "C26495",
           "message": {
-            "text": "Variable 'system_data::con_max' is uninitialized. Always initialize a member variable (type.6)."
+            "text": "Variable 'c_init::marauder_dist' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/classes_declaration.h"
+                },
+                "region": {
+                  "startLine": 13,
+                  "startColumn": 1,
+                  "endLine": 13,
+                  "endColumn": 1
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "c_init::{ctor}",
+                  "decoratedName": "??0c_init@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "c_init::marauder_dist"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'c_init::random_sys' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/classes_declaration.h"
+                },
+                "region": {
+                  "startLine": 13,
+                  "startColumn": 1,
+                  "endLine": 13,
+                  "endColumn": 1
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "c_init::{ctor}",
+                  "decoratedName": "??0c_init@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "c_init::random_sys"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'c_init::dist' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/classes_declaration.h"
+                },
+                "region": {
+                  "startLine": 13,
+                  "startColumn": 1,
+                  "endLine": 13,
+                  "endColumn": 1
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "c_init::{ctor}",
+                  "decoratedName": "??0c_init@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "c_init::dist"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'c_init::placed' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/classes_declaration.h"
+                },
+                "region": {
+                  "startLine": 13,
+                  "startColumn": 1,
+                  "endLine": 13,
+                  "endColumn": 1
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "c_init::{ctor}",
+                  "decoratedName": "??0c_init@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "c_init::placed"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'c_init::everything_filled' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/classes_declaration.h"
+                },
+                "region": {
+                  "startLine": 13,
+                  "startColumn": 1,
+                  "endLine": 13,
+                  "endColumn": 1
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "c_init::{ctor}",
+                  "decoratedName": "??0c_init@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "c_init::everything_filled"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'c_init::specific_init' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/classes_declaration.h"
+                },
+                "region": {
+                  "startLine": 13,
+                  "startColumn": 1,
+                  "endLine": 13,
+                  "endColumn": 1
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "c_init::{ctor}",
+                  "decoratedName": "??0c_init@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "c_init::specific_init"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'c_init::fallen_dist' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/classes_declaration.h"
+                },
+                "region": {
+                  "startLine": 13,
+                  "startColumn": 1,
+                  "endLine": 13,
+                  "endColumn": 1
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "c_init::{ctor}",
+                  "decoratedName": "??0c_init@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "c_init::fallen_dist"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'c_init::leviathan_dist' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/classes_declaration.h"
+                },
+                "region": {
+                  "startLine": 13,
+                  "startColumn": 1,
+                  "endLine": 13,
+                  "endColumn": 1
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "c_init::{ctor}",
+                  "decoratedName": "??0c_init@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "c_init::leviathan_dist"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'C_random_settings::square_factor' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/classes_declaration.h"
+                },
+                "region": {
+                  "startLine": 82,
+                  "startColumn": 1,
+                  "endLine": 82,
+                  "endColumn": 1
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "C_random_settings::{ctor}",
+                  "decoratedName": "??0C_random_settings@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "C_random_settings::square_factor"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'C_random_settings::circle_stars_to' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/classes_declaration.h"
+                },
+                "region": {
+                  "startLine": 82,
+                  "startColumn": 1,
+                  "endLine": 82,
+                  "endColumn": 1
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "C_random_settings::{ctor}",
+                  "decoratedName": "??0C_random_settings@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "C_random_settings::circle_stars_to"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'C_random_settings::spiral_stars_from' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/classes_declaration.h"
+                },
+                "region": {
+                  "startLine": 82,
+                  "startColumn": 1,
+                  "endLine": 82,
+                  "endColumn": 1
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "C_random_settings::{ctor}",
+                  "decoratedName": "??0C_random_settings@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "C_random_settings::spiral_stars_from"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'C_random_settings::rotation_factor' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/classes_declaration.h"
+                },
+                "region": {
+                  "startLine": 82,
+                  "startColumn": 1,
+                  "endLine": 82,
+                  "endColumn": 1
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "C_random_settings::{ctor}",
+                  "decoratedName": "??0C_random_settings@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "C_random_settings::rotation_factor"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'C_random_settings::spiral_stars_to' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/classes_declaration.h"
+                },
+                "region": {
+                  "startLine": 82,
+                  "startColumn": 1,
+                  "endLine": 82,
+                  "endColumn": 1
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "C_random_settings::{ctor}",
+                  "decoratedName": "??0C_random_settings@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "C_random_settings::spiral_stars_to"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'C_random_settings::arm_width_ratio' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/classes_declaration.h"
+                },
+                "region": {
+                  "startLine": 82,
+                  "startColumn": 1,
+                  "endLine": 82,
+                  "endColumn": 1
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "C_random_settings::{ctor}",
+                  "decoratedName": "??0C_random_settings@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "C_random_settings::arm_width_ratio"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'C_random_settings::arm_amount_from' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/classes_declaration.h"
+                },
+                "region": {
+                  "startLine": 82,
+                  "startColumn": 1,
+                  "endLine": 82,
+                  "endColumn": 1
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "C_random_settings::{ctor}",
+                  "decoratedName": "??0C_random_settings@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "C_random_settings::arm_amount_from"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'C_random_settings::arm_amount_to' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/classes_declaration.h"
+                },
+                "region": {
+                  "startLine": 82,
+                  "startColumn": 1,
+                  "endLine": 82,
+                  "endColumn": 1
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "C_random_settings::{ctor}",
+                  "decoratedName": "??0C_random_settings@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "C_random_settings::arm_amount_to"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'C_random_settings::arm_ratio' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/classes_declaration.h"
+                },
+                "region": {
+                  "startLine": 82,
+                  "startColumn": 1,
+                  "endLine": 82,
+                  "endColumn": 1
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "C_random_settings::{ctor}",
+                  "decoratedName": "??0C_random_settings@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "C_random_settings::arm_ratio"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'C_random_settings::size_ratio' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/classes_declaration.h"
+                },
+                "region": {
+                  "startLine": 82,
+                  "startColumn": 1,
+                  "endLine": 82,
+                  "endColumn": 1
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "C_random_settings::{ctor}",
+                  "decoratedName": "??0C_random_settings@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "C_random_settings::size_ratio"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'C_random_settings::arm_random_width_to' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/classes_declaration.h"
+                },
+                "region": {
+                  "startLine": 82,
+                  "startColumn": 1,
+                  "endLine": 82,
+                  "endColumn": 1
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "C_random_settings::{ctor}",
+                  "decoratedName": "??0C_random_settings@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "C_random_settings::arm_random_width_to"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'C_random_settings::arm_random_width_from' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/classes_declaration.h"
+                },
+                "region": {
+                  "startLine": 82,
+                  "startColumn": 1,
+                  "endLine": 82,
+                  "endColumn": 1
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "C_random_settings::{ctor}",
+                  "decoratedName": "??0C_random_settings@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "C_random_settings::arm_random_width_from"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'C_random_settings::arm_max_width_to' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/classes_declaration.h"
+                },
+                "region": {
+                  "startLine": 82,
+                  "startColumn": 1,
+                  "endLine": 82,
+                  "endColumn": 1
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "C_random_settings::{ctor}",
+                  "decoratedName": "??0C_random_settings@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "C_random_settings::arm_max_width_to"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'C_random_settings::arm_max_width_from' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/classes_declaration.h"
+                },
+                "region": {
+                  "startLine": 82,
+                  "startColumn": 1,
+                  "endLine": 82,
+                  "endColumn": 1
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "C_random_settings::{ctor}",
+                  "decoratedName": "??0C_random_settings@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "C_random_settings::arm_max_width_from"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'C_random_settings::hyperlanes_max_length_to' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/classes_declaration.h"
+                },
+                "region": {
+                  "startLine": 82,
+                  "startColumn": 1,
+                  "endLine": 82,
+                  "endColumn": 1
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "C_random_settings::{ctor}",
+                  "decoratedName": "??0C_random_settings@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "C_random_settings::hyperlanes_max_length_to"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'C_random_settings::hyperlanes_max_length_from' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/classes_declaration.h"
+                },
+                "region": {
+                  "startLine": 82,
+                  "startColumn": 1,
+                  "endLine": 82,
+                  "endColumn": 1
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "C_random_settings::{ctor}",
+                  "decoratedName": "??0C_random_settings@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "C_random_settings::hyperlanes_max_length_from"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'C_random_settings::size_to' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/classes_declaration.h"
+                },
+                "region": {
+                  "startLine": 82,
+                  "startColumn": 1,
+                  "endLine": 82,
+                  "endColumn": 1
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "C_random_settings::{ctor}",
+                  "decoratedName": "??0C_random_settings@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "C_random_settings::size_to"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'C_random_settings::size_from' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/classes_declaration.h"
+                },
+                "region": {
+                  "startLine": 82,
+                  "startColumn": 1,
+                  "endLine": 82,
+                  "endColumn": 1
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "C_random_settings::{ctor}",
+                  "decoratedName": "??0C_random_settings@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "C_random_settings::size_from"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'C_random_settings::circle_stars_from' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/classes_declaration.h"
+                },
+                "region": {
+                  "startLine": 82,
+                  "startColumn": 1,
+                  "endLine": 82,
+                  "endColumn": 1
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "C_random_settings::{ctor}",
+                  "decoratedName": "??0C_random_settings@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "C_random_settings::circle_stars_from"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'C_scroll::current_system' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/classes_declaration.h"
+                },
+                "region": {
+                  "startLine": 106,
+                  "startColumn": 1,
+                  "endLine": 106,
+                  "endColumn": 1
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "C_scroll::{ctor}",
+                  "decoratedName": "??0C_scroll@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "C_scroll::current_system"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'C_scroll::doney' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/classes_declaration.h"
+                },
+                "region": {
+                  "startLine": 106,
+                  "startColumn": 1,
+                  "endLine": 106,
+                  "endColumn": 1
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "C_scroll::{ctor}",
+                  "decoratedName": "??0C_scroll@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "C_scroll::doney"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'C_scroll::donex' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/classes_declaration.h"
+                },
+                "region": {
+                  "startLine": 106,
+                  "startColumn": 1,
+                  "endLine": 106,
+                  "endColumn": 1
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "C_scroll::{ctor}",
+                  "decoratedName": "??0C_scroll@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "C_scroll::donex"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'C_scroll::current_gal' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/classes_declaration.h"
+                },
+                "region": {
+                  "startLine": 106,
+                  "startColumn": 1,
+                  "endLine": 106,
+                  "endColumn": 1
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "C_scroll::{ctor}",
+                  "decoratedName": "??0C_scroll@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "C_scroll::current_gal"
+          }
+        },
+        {
+          "ruleId": "C26812",
+          "message": {
+            "text": "The enum type 'SDL_RendererFlip' is unscoped. Prefer 'enum class' over 'enum' (Enum.3)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/graphics_engine.h"
+                },
+                "region": {
+                  "startLine": 186,
+                  "startColumn": 16,
+                  "endLine": 186,
+                  "endColumn": 16
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "LTexture::renderButton",
+                  "decoratedName": "?renderButton@LTexture@@QAEXHHPAUSDL_Rect@@NPAUSDL_Point@@W4SDL_RendererFlip@@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26812",
+          "message": {
+            "text": "The enum type 'SDL_BlendMode' is unscoped. Prefer 'enum class' over 'enum' (Enum.3)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/graphics_engine.h"
+                },
+                "region": {
+                  "startLine": 291,
+                  "startColumn": 16,
+                  "endLine": 291,
+                  "endColumn": 16
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "LTexture::setBlendMode",
+                  "decoratedName": "?setBlendMode@LTexture@@QAEXW4SDL_BlendMode@@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26812",
+          "message": {
+            "text": "The enum type 'LButtonSprite' is unscoped. Prefer 'enum class' over 'enum' (Enum.3)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/graphics_engine.h"
+                },
+                "region": {
+                  "startLine": 111,
+                  "startColumn": 36
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "LButton::{ctor}",
+                  "decoratedName": "??0LButton@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26812",
+          "message": {
+            "text": "The enum type 'SDL_Keymod' is unscoped. Prefer 'enum class' over 'enum' (Enum.3)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/graphics_engine.h"
+                },
+                "region": {
+                  "startLine": 579,
+                  "startColumn": 56,
+                  "endLine": 579,
+                  "endColumn": 71
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "Graphics_Engine::text_input",
+                  "decoratedName": "?text_input@Graphics_Engine@@QAEXHHH@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "Arithmetic overflow: Using operator '+' on a 4 byte value and then casting the result to a 8 byte value. Cast the value to the wider type before calling operator '+' to avoid overflow (io.2)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/algo.h"
+                },
+                "region": {
+                  "startLine": 1093,
+                  "startColumn": 14,
+                  "endLine": 1093,
+                  "endColumn": 56
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "random_generator",
+                  "decoratedName": "?random_generator@@YAXXZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "Arithmetic overflow: Using operator '+' on a 4 byte value and then casting the result to a 8 byte value. Cast the value to the wider type before calling operator '+' to avoid overflow (io.2)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/algo.h"
+                },
+                "region": {
+                  "startLine": 1093,
+                  "startColumn": 14,
+                  "endLine": 1093,
+                  "endColumn": 47
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "random_generator",
+                  "decoratedName": "?random_generator@@YAXXZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "Arithmetic overflow: Using operator '-' on a 4 byte value and then casting the result to a 8 byte value. Cast the value to the wider type before calling operator '-' to avoid overflow (io.2)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/algo.h"
+                },
+                "region": {
+                  "startLine": 1169,
+                  "startColumn": 53,
+                  "endLine": 1169,
+                  "endColumn": 79
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "random_generator",
+                  "decoratedName": "?random_generator@@YAXXZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "Arithmetic overflow: Using operator '-' on a 4 byte value and then casting the result to a 8 byte value. Cast the value to the wider type before calling operator '-' to avoid overflow (io.2)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/algo.h"
+                },
+                "region": {
+                  "startLine": 1170,
+                  "startColumn": 54,
+                  "endLine": 1170,
+                  "endColumn": 83
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "random_generator",
+                  "decoratedName": "?random_generator@@YAXXZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "Arithmetic overflow: Using operator '+' on a 4 byte value and then casting the result to a 8 byte value. Cast the value to the wider type before calling operator '+' to avoid overflow (io.2)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/algo.h"
+                },
+                "region": {
+                  "startLine": 1188,
+                  "startColumn": 62,
+                  "endLine": 1188,
+                  "endColumn": 122
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "random_generator",
+                  "decoratedName": "?random_generator@@YAXXZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'galaxy_generation::maruder_am' is uninitialized. Always initialize a member variable (type.6)."
           },
           "locations": [
             {
@@ -1093,16 +1694,426 @@
                   "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/variables.h"
                 },
                 "region": {
-                  "startLine": 163,
+                  "startLine": 187,
                   "startColumn": 1,
-                  "endLine": 163,
+                  "endLine": 187,
                   "endColumn": 1
                 }
-              }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "galaxy_generation::{ctor}",
+                  "decoratedName": "??0galaxy_generation@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
             }
           ],
           "properties": {
-            "targetSymbol": "system_data::con_max"
+            "targetSymbol": "galaxy_generation::maruder_am"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'galaxy_generation::fallen_am' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/variables.h"
+                },
+                "region": {
+                  "startLine": 187,
+                  "startColumn": 1,
+                  "endLine": 187,
+                  "endColumn": 1
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "galaxy_generation::{ctor}",
+                  "decoratedName": "??0galaxy_generation@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "galaxy_generation::fallen_am"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'galaxy_generation::empire_am' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/variables.h"
+                },
+                "region": {
+                  "startLine": 187,
+                  "startColumn": 1,
+                  "endLine": 187,
+                  "endColumn": 1
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "galaxy_generation::{ctor}",
+                  "decoratedName": "??0galaxy_generation@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "galaxy_generation::empire_am"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'galaxy_generation::density' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/variables.h"
+                },
+                "region": {
+                  "startLine": 187,
+                  "startColumn": 1,
+                  "endLine": 187,
+                  "endColumn": 1
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "galaxy_generation::{ctor}",
+                  "decoratedName": "??0galaxy_generation@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "galaxy_generation::density"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'galaxy_generation::i_cen_posX' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/variables.h"
+                },
+                "region": {
+                  "startLine": 187,
+                  "startColumn": 1,
+                  "endLine": 187,
+                  "endColumn": 1
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "galaxy_generation::{ctor}",
+                  "decoratedName": "??0galaxy_generation@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "galaxy_generation::i_cen_posX"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'galaxy_generation::i_max_hyp_dis' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/variables.h"
+                },
+                "region": {
+                  "startLine": 187,
+                  "startColumn": 1,
+                  "endLine": 187,
+                  "endColumn": 1
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "galaxy_generation::{ctor}",
+                  "decoratedName": "??0galaxy_generation@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "galaxy_generation::i_max_hyp_dis"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'galaxy_generation::i_star' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/variables.h"
+                },
+                "region": {
+                  "startLine": 187,
+                  "startColumn": 1,
+                  "endLine": 187,
+                  "endColumn": 1
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "galaxy_generation::{ctor}",
+                  "decoratedName": "??0galaxy_generation@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "galaxy_generation::i_star"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'galaxy_generation::f_armOffsetMax' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/variables.h"
+                },
+                "region": {
+                  "startLine": 187,
+                  "startColumn": 1,
+                  "endLine": 187,
+                  "endColumn": 1
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "galaxy_generation::{ctor}",
+                  "decoratedName": "??0galaxy_generation@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "galaxy_generation::f_armOffsetMax"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'galaxy_generation::i_numArms' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/variables.h"
+                },
+                "region": {
+                  "startLine": 187,
+                  "startColumn": 1,
+                  "endLine": 187,
+                  "endColumn": 1
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "galaxy_generation::{ctor}",
+                  "decoratedName": "??0galaxy_generation@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "galaxy_generation::i_numArms"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'galaxy_generation::galtype' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/variables.h"
+                },
+                "region": {
+                  "startLine": 187,
+                  "startColumn": 1,
+                  "endLine": 187,
+                  "endColumn": 1
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "galaxy_generation::{ctor}",
+                  "decoratedName": "??0galaxy_generation@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "galaxy_generation::galtype"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'galaxy_generation::f_rotationFactor' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/variables.h"
+                },
+                "region": {
+                  "startLine": 187,
+                  "startColumn": 1,
+                  "endLine": 187,
+                  "endColumn": 1
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "galaxy_generation::{ctor}",
+                  "decoratedName": "??0galaxy_generation@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "galaxy_generation::f_rotationFactor"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'galaxy_generation::i_cen_posY' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/variables.h"
+                },
+                "region": {
+                  "startLine": 187,
+                  "startColumn": 1,
+                  "endLine": 187,
+                  "endColumn": 1
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "galaxy_generation::{ctor}",
+                  "decoratedName": "??0galaxy_generation@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "galaxy_generation::i_cen_posY"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'galaxy_generation::f_randomOffsetXY' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/variables.h"
+                },
+                "region": {
+                  "startLine": 187,
+                  "startColumn": 1,
+                  "endLine": 187,
+                  "endColumn": 1
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "galaxy_generation::{ctor}",
+                  "decoratedName": "??0galaxy_generation@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "galaxy_generation::f_randomOffsetXY"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'galaxy_generation::i_gsize' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/variables.h"
+                },
+                "region": {
+                  "startLine": 187,
+                  "startColumn": 1,
+                  "endLine": 187,
+                  "endColumn": 1
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "galaxy_generation::{ctor}",
+                  "decoratedName": "??0galaxy_generation@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "galaxy_generation::i_gsize"
           }
         }
       ],
@@ -1110,2947 +2121,806 @@
         "driver": {
           "name": "PREfast",
           "fullName": "PREfast Code Analysis",
-          "version": "14.27.29112.0"
+          "version": "14.31.31106.2",
+          "informationUri": "https://aka.ms/cpp/ca"
         }
       },
       "invocations": [
         {
-          "commandLine": "\"C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.27.29110\\bin\\HostX86\\x86\\c1xx.dll\" -ACf{1F7B090C-16DB-4822-966A-A93D26ED4681} -ACpmspft140.dll -Alint -D_PREFAST_ -D_AST_FE_ -Analyze -zm0x00D18190 -il C:\\Users\\Jacob\\AppData\\Local\\Temp\\_CL_14f5d0fcast -typedil -f main.cpp -Ze -D_MSC_EXTENSIONS -Zp8 -Gs -pc \\:/ -D_MSC_VER=1927 -D_MSC_FULL_VER=192729112 -D_MSC_BUILD=0 -D_WIN32 -D_M_IX86=600 -D_M_IX86_FP=2 -GR -D_CPPRTTI -I C:\\Users\\Jacob\\source\\repos\\SMGG\\Dependencies\\SDL\\include -I C:\\Users\\Jacob\\source\\repos\\SMGG\\Dependencies\\SDL_image\\include -I C:\\Users\\Jacob\\source\\repos\\SMGG\\Dependencies\\SDL_TFF\\include -I C:\\Users\\Jacob\\source\\repos\\SMGG\\Dependencies\\STEAM_API\\include -nologo -W 3 -diagnostics:column -GF -Og -Ot -Oi -ltcg -DCODE_ANALYSIS -DWIN32 -DNDEBUG -D_CONSOLE -D_UNICODE -DUNICODE -D_CRT_SECURE_NO_WARNINGS -EHs -D_CPPUNWIND -EHc -MD -D_MT -D_DLL -GS -D_M_FP_PRECISE -permissive- -Zc:wchar_t -Zc:forScope -std:c++17 -FoRelease\\main.obj -FdRelease\\vc142.pdb -Gd -analyze:projectdirectory C:\\Users\\Jacob\\source\\repos\\SMGG\\Sterllaris MultiGalaxy Generator\\ -analyze:rulesetdirectory ;C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\Team Tools\\Static Analysis Tools\\\\Rule Sets; -analyze:ruleset C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\Team Tools\\Static Analysis Tools\\Rule Sets\\NativeRecommendedRules.ruleset -analyze:quiet -analyze:plugin C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.27.29110\\bin\\HostX86\\x86\\EspXEngine.dll -FC -errorreport:prompt -I C:\\Users\\Jacob\\source\\repos\\SMGG\\Dependencies\\SDL\\include -I C:\\Users\\Jacob\\source\\repos\\SMGG\\Dependencies\\SDL_image\\include -I C:\\Users\\Jacob\\source\\repos\\SMGG\\Dependencies\\SDL_TFF\\include -I C:\\Users\\Jacob\\source\\repos\\SMGG\\Dependencies\\STEAM_API\\include -I C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.27.29110\\include -I C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.27.29110\\atlmfc\\include -I C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Auxiliary\\VS\\include -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.18362.0\\ucrt -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.18362.0\\um -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.18362.0\\shared -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.18362.0\\winrt -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.18362.0\\cppwinrt -I C:\\Program Files (x86)\\Windows Kits\\NETFXSDK\\4.8\\Include\\um",
-          "executionSuccessful": true,
-          "ruleConfigurationOverrides": [
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6001"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6011"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6029"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6031"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6053"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6054"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6059"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6063"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6064"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6066"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6067"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6101"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6200"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6201"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6214"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6215"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6216"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6217"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6220"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6226"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6230"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6235"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6236"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6237"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6242"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6248"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6250"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6255"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6258"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6259"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6260"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6262"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6263"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6268"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6269"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6270"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6271"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6272"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6273"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6274"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6276"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6277"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6278"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6279"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6280"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6281"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6282"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6283"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6284"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6285"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6286"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6287"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6288"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6289"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6290"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6291"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6292"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6293"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6294"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6295"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6296"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6297"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6299"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6302"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6303"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6305"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6306"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6308"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6310"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6312"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6314"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6317"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6318"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6319"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6324"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6328"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6331"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6332"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6333"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6335"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6381"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6383"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6384"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6385"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6386"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6387"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6388"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6500"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6501"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6503"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6504"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6505"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6506"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6508"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6509"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6510"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6511"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6513"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6514"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6515"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6516"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6517"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6518"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6522"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6525"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6527"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6530"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6540"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6551"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6552"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6701"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6702"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6703"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6704"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6705"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6706"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6993"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6995"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C6997"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C26100"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C26101"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C26110"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C26111"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C26112"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C26115"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C26116"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C26117"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C26140"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C26437"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C26439"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C26441"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C26444"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C26449"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C26450"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C26451"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C26452"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C26453"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C26454"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C26478"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C26495"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C26498"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C26812"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C26815"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C26816"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C26817"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C26819"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C26820"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28020"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28021"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28022"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28023"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28024"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28039"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28112"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28113"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28125"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28137"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28138"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28159"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28160"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28163"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28164"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28182"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28183"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28193"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28196"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28202"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28203"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28205"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28206"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28207"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28209"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28210"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28211"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28212"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28213"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28214"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28215"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28216"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28217"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28218"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28219"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28220"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28221"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28222"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28223"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28224"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28225"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28226"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28227"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28228"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28229"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28230"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28231"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28232"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28233"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28234"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28235"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28236"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28237"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28238"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28239"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28240"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28241"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28243"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28244"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28245"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28246"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28250"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28251"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28252"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28253"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28254"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28262"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28263"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28267"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28272"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28273"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28275"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28279"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28280"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28282"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28285"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28286"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28287"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28288"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28289"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28290"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28291"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28300"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28301"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28302"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28303"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28304"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28305"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28306"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28307"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28308"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28309"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28350"
-              }
-            },
-            {
-              "configuration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "descriptor": {
-                "id": "C28351"
-              }
-            }
-          ]
+          "commandLine": "\"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.31.31103\\bin\\HostX86\\x86\\c1xx.dll\" -ACf{1F7B090C-16DB-4822-966A-A93D26ED4681} -ACpmspft140.dll -Alint -D_PREFAST_ -D_AST_FE_ -Analyze -zm0x00C361F0 -il C:\\Users\\Jacob\\AppData\\Local\\Temp\\_CL_aa1d4265ast -typedil -f main.cpp -Ze -D_MSC_EXTENSIONS -Zp8 -Gs -pc \\:/ -D_MSC_VER=1931 -D_MSC_FULL_VER=193131106 -D_MSC_BUILD=2 -D_WIN32 -D_M_IX86=600 -D_M_IX86_FP=2 -GR -D_CPPRTTI -I C:\\Users\\Jacob\\source\\repos\\SMGG\\Dependencies\\SDL\\include -I C:\\Users\\Jacob\\source\\repos\\SMGG\\Dependencies\\SDL_image\\include -I C:\\Users\\Jacob\\source\\repos\\SMGG\\Dependencies\\SDL_TFF\\include -I C:\\Users\\Jacob\\source\\repos\\SMGG\\Dependencies\\STEAM_API\\include -nologo -W 3 -diagnostics:column -GF -Og -Ot -Oi -ltcg -DCODE_ANALYSIS -DWIN32 -DNDEBUG -D_CONSOLE -D_UNICODE -DUNICODE -D_CRT_SECURE_NO_WARNINGS -EHs -D_CPPUNWIND -EHc -MD -D_MT -D_DLL -GS -D_M_FP_PRECISE -Zc:wchar_t -Zc:forScope -std:c++20 -permissive- -FoRelease\\main.obj -FdRelease\\vc143.pdb -external:W 3 -Gd -analyze:projectdirectory C:\\Users\\Jacob\\source\\repos\\SMGG\\Sterllaris MultiGalaxy Generator -analyze:rulesetdirectory ;C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Team Tools\\Static Analysis Tools\\\\Rule Sets; -analyze:ruleset C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Team Tools\\Static Analysis Tools\\Rule Sets\\NativeRecommendedRules.ruleset -analyze:quiet -analyze:plugin C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.31.31103\\bin\\HostX86\\x86\\EspXEngine.dll -FC -errorreport:prompt -I C:\\Users\\Jacob\\source\\repos\\SMGG\\Dependencies\\SDL\\include -I C:\\Users\\Jacob\\source\\repos\\SMGG\\Dependencies\\SDL_image\\include -I C:\\Users\\Jacob\\source\\repos\\SMGG\\Dependencies\\SDL_TFF\\include -I C:\\Users\\Jacob\\source\\repos\\SMGG\\Dependencies\\STEAM_API\\include -I C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.31.31103\\include -I C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.31.31103\\atlmfc\\include -I C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Auxiliary\\VS\\include -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\ucrt -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\um -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\shared -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\winrt -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\cppwinrt -I C:\\Program Files (x86)\\Windows Kits\\NETFXSDK\\4.8\\Include\\um -external:I C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.31.31103\\include -I C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.31.31103\\include -external:I C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.31.31103\\atlmfc\\include -I C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.31.31103\\atlmfc\\include -external:I C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Auxiliary\\VS\\include -I C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Auxiliary\\VS\\include -external:I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\ucrt -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\ucrt -external:I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\um -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\um -external:I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\shared -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\shared -external:I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\winrt -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\winrt -external:I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\cppwinrt -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\cppwinrt -external:I C:\\Program Files (x86)\\Windows Kits\\NETFXSDK\\4.8\\Include\\um -I C:\\Program Files (x86)\\Windows Kits\\NETFXSDK\\4.8\\Include\\um",
+          "executionSuccessful": true
         }
       ],
       "artifacts": [
         {
           "location": {
-            "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/sdl/include/sdl_pixels.h"
+            "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Dependencies/SDL/include/SDL_rect.h"
           },
           "roles": [
             "resultFile"
-          ]
+          ],
+          "hashes": {
+            "sha-256": "df44438f3eb481f90aa3a72a4895aff979434f4f8f45d495ad255a6265c931cc"
+          }
         },
         {
           "location": {
-            "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/sdl/include/sdl_filesystem.h"
+            "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Dependencies/STEAM_API/include/steamtypes.h"
           },
           "roles": [
             "resultFile"
-          ]
+          ],
+          "hashes": {
+            "sha-256": "5912b018935d1df133a71669a5460c8257bef0acfb298db333fc246bcdfbba9e"
+          }
         },
         {
           "location": {
-            "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/sdl/include/sdl_main.h"
+            "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Dependencies/STEAM_API/include/steamclientpublic.h"
           },
           "roles": [
             "resultFile"
-          ]
+          ],
+          "hashes": {
+            "sha-256": "69c110e1abefb5d9e09450b6923564e396617938ca20aa60fa509aa22b7b02d5"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Dependencies/STEAM_API/include/steamnetworkingtypes.h"
+          },
+          "roles": [
+            "resultFile"
+          ],
+          "hashes": {
+            "sha-256": "c548f3bf90ef709ddca20221fbb55bb371eb80618bc33cd4a9c4bbc7b7879fda"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Dependencies/STEAM_API/include/isteamnetworkingutils.h"
+          },
+          "roles": [
+            "resultFile"
+          ],
+          "hashes": {
+            "sha-256": "510fd579dacfb64b5d5342817e1b4f83159b9c56b5fdffe9a814fe77a11461b2"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/variables.h"
+          },
+          "roles": [
+            "resultFile"
+          ],
+          "hashes": {
+            "sha-256": "97da486100562a6d07085086635024e8c4b3651780c2e3d1a31ab2d39503f86b"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/classes_declaration.h"
+          },
+          "roles": [
+            "resultFile"
+          ],
+          "hashes": {
+            "sha-256": "8350f3c8fc6b87d7138f912e914a82517945330ea27d97a08c565dda876eea89"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/graphics_engine.h"
+          },
+          "roles": [
+            "resultFile"
+          ],
+          "hashes": {
+            "sha-256": "501f8c017ea60421dd67bd90df0f6b3005841083d77d08c3cbc88bfb35ca7604"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/Users/Jacob/source/repos/SMGG/Sterllaris MultiGalaxy Generator/algo.h"
+          },
+          "roles": [
+            "resultFile"
+          ],
+          "hashes": {
+            "sha-256": "a4dfcc3f79d92da382e269e943107b7cdddcb3df494c1043bdb3c822a0abe511"
+          }
         },
         {
           "location": {
             "uri": "file:///c:/users/jacob/source/repos/smgg/sterllaris multigalaxy generator/main.cpp"
           },
           "roles": [
-            "analysisTarget",
-            "resultFile"
-          ]
-        },
-        {
-          "location": {
-            "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/sdl/include/sdl_platform.h"
-          },
-          "roles": [
-            "resultFile"
-          ]
-        },
-        {
-          "location": {
-            "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/sdl/include/sdl_events.h"
-          },
-          "roles": [
-            "resultFile"
-          ]
-        },
-        {
-          "location": {
-            "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/sdl/include/sdl_stdinc.h"
-          },
-          "roles": [
-            "resultFile"
-          ]
-        },
-        {
-          "location": {
-            "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/sdl_image/include/sdl_image.h"
-          },
-          "roles": [
-            "resultFile"
-          ]
-        },
-        {
-          "location": {
-            "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/sdl/include/sdl_timer.h"
-          },
-          "roles": [
-            "resultFile"
-          ]
-        },
-        {
-          "location": {
-            "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/sdl/include/sdl.h"
-          },
-          "roles": [
-            "resultFile"
-          ]
-        },
-        {
-          "location": {
-            "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/sdl/include/sdl_power.h"
-          },
-          "roles": [
-            "resultFile"
-          ]
-        },
-        {
-          "location": {
-            "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/sdl/include/sdl_gesture.h"
-          },
-          "roles": [
-            "resultFile"
-          ]
+            "analysisTarget"
+          ],
+          "hashes": {
+            "sha-256": "00cb7cbff6084da0c4a5b8df6bda292f6ad42ab38b9eed7746bf22ebf3e74c9a"
+          }
         },
         {
           "location": {
             "uri": "file:///c:/users/jacob/source/repos/smgg/sterllaris multigalaxy generator/include.h"
           },
-          "roles": [
-            "resultFile"
-          ]
+          "hashes": {
+            "sha-256": "f3c30e039b4aabf6ce93b788c93842b5fb90d9e60402cd56b70d4c7aa6874d23"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/sdl/include/sdl.h"
+          },
+          "hashes": {
+            "sha-256": "f4d6b0cd180b0e6e1423fac314a1bef93f0f9d4f21891e496d8c9de95dccc7b9"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/sdl/include/sdl_main.h"
+          },
+          "hashes": {
+            "sha-256": "035da815471872fae30fbc7df5e9278e8a15c595bb9e4bb50bd0af946edd006c"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/sdl/include/sdl_stdinc.h"
+          },
+          "hashes": {
+            "sha-256": "15c7a6606f941a0bd0247571ff468590fc6e0daf7d2e7cf37f252f48ce403001"
+          }
         },
         {
           "location": {
             "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/sdl/include/sdl_config.h"
           },
-          "roles": [
-            "resultFile"
-          ]
+          "hashes": {
+            "sha-256": "b94e73005108988f4528e5919b56f07ccbf022bbccc21263b3b83b409fe1440c"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/sdl/include/sdl_platform.h"
+          },
+          "hashes": {
+            "sha-256": "d876860250fe8df6eb49051b761da292130920881a4b26586381e3f10c3c9caf"
+          }
         },
         {
           "location": {
             "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/sdl/include/begin_code.h"
           },
-          "roles": [
-            "resultFile"
-          ]
-        },
-        {
-          "location": {
-            "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/sdl/include/sdl_mouse.h"
-          },
-          "roles": [
-            "resultFile"
-          ]
+          "hashes": {
+            "sha-256": "a83356664b68b11cd53eda4af7ee8c90ff8e20640d52b208a6eed6535d5c23b8"
+          }
         },
         {
           "location": {
             "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/sdl/include/close_code.h"
           },
-          "roles": [
-            "resultFile"
-          ]
+          "hashes": {
+            "sha-256": "f49100335e21a43455ead0e742f7c816d0494171ce10948e3637b9abf3ca953a"
+          }
         },
         {
           "location": {
             "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/sdl/include/sdl_assert.h"
           },
-          "roles": [
-            "resultFile"
-          ]
-        },
-        {
-          "location": {
-            "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/steam_api/include/steamuniverse.h"
-          },
-          "roles": [
-            "resultFile"
-          ]
-        },
-        {
-          "location": {
-            "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/steam_api/include/steam_api_common.h"
-          },
-          "roles": [
-            "resultFile"
-          ]
+          "hashes": {
+            "sha-256": "537353fa26102f232ec8bf02f6c44ec8611f9d66794860e75b6cef3f17d600a1"
+          }
         },
         {
           "location": {
             "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/sdl/include/sdl_atomic.h"
           },
-          "roles": [
-            "resultFile"
-          ]
+          "hashes": {
+            "sha-256": "d9f667d640581e1a0a4685b03541e5096103629d4a1cc489a427e612a8f8d793"
+          }
         },
         {
           "location": {
             "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/sdl/include/sdl_audio.h"
           },
-          "roles": [
-            "resultFile"
-          ]
+          "hashes": {
+            "sha-256": "c0b81743c7385739c96aa358034ccf0ce14cd503c48a577b81edce099a771b1c"
+          }
         },
         {
           "location": {
             "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/sdl/include/sdl_error.h"
           },
-          "roles": [
-            "resultFile"
-          ]
-        },
-        {
-          "location": {
-            "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/sdl/include/sdl_rwops.h"
-          },
-          "roles": [
-            "resultFile"
-          ]
+          "hashes": {
+            "sha-256": "470f04a4562305966d7705b774c1e85fb6e9e8ce4c136f2669bd4cc2cc6c922f"
+          }
         },
         {
           "location": {
             "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/sdl/include/sdl_endian.h"
           },
-          "roles": [
-            "resultFile"
-          ]
+          "hashes": {
+            "sha-256": "923e19be1d0bf8ea7d0bc9420955da5870d9efac976e719c136371cad81890db"
+          }
         },
         {
           "location": {
             "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/sdl/include/sdl_mutex.h"
           },
-          "roles": [
-            "resultFile"
-          ]
-        },
-        {
-          "location": {
-            "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/sdl/include/sdl_metal.h"
-          },
-          "roles": [
-            "resultFile"
-          ]
+          "hashes": {
+            "sha-256": "3a656b533b97a5527a89fcfbb709c37024f7ed293d942a6a3f9ce068273f42d0"
+          }
         },
         {
           "location": {
             "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/sdl/include/sdl_thread.h"
           },
-          "roles": [
-            "resultFile"
-          ]
+          "hashes": {
+            "sha-256": "799af54b869db2d7c739ab4dee8865525f8b9d537e857527edecc1897d9a7294"
+          }
         },
         {
           "location": {
-            "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/sdl/include/sdl_sensor.h"
+            "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/sdl/include/sdl_rwops.h"
           },
-          "roles": [
-            "resultFile"
-          ]
+          "hashes": {
+            "sha-256": "3f844c7425c5ffd2bde779ba43e7aa557442915cd5015fa15db3a87b77b803a3"
+          }
         },
         {
           "location": {
             "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/sdl/include/sdl_clipboard.h"
           },
-          "roles": [
-            "resultFile"
-          ]
-        },
-        {
-          "location": {
-            "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/steam_api/include/isteamuser.h"
-          },
-          "roles": [
-            "resultFile"
-          ]
+          "hashes": {
+            "sha-256": "f632d628d78712a4ab23d9159e1c2dc5e91b1fc784c1aeb859d27eadce3044e6"
+          }
         },
         {
           "location": {
             "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/sdl/include/sdl_cpuinfo.h"
           },
-          "roles": [
-            "resultFile"
-          ]
+          "hashes": {
+            "sha-256": "3a8d6a5710aaf9d93193d9447f4bf4ab03e68db09e2c04cb1f85711b6c9b3108"
+          }
         },
         {
           "location": {
-            "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/sdl/include/sdl_quit.h"
+            "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/sdl/include/sdl_events.h"
           },
-          "roles": [
-            "resultFile"
-          ]
+          "hashes": {
+            "sha-256": "8eb0d7acb115da008f70ea5e2d00e6437afd5621a0a6a0ac7df5f96b3148be5f"
+          }
         },
         {
           "location": {
             "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/sdl/include/sdl_video.h"
           },
-          "roles": [
-            "resultFile"
-          ]
+          "hashes": {
+            "sha-256": "0cfbc20ec21063441388f7923126cb45c40e5ac4f4a0aba98ab703dcec894772"
+          }
         },
         {
           "location": {
-            "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/sdl/include/sdl_hints.h"
+            "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/sdl/include/sdl_pixels.h"
           },
-          "roles": [
-            "resultFile"
-          ]
-        },
-        {
-          "location": {
-            "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/steam_api/include/isteamvideo.h"
-          },
-          "roles": [
-            "resultFile"
-          ]
-        },
-        {
-          "location": {
-            "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/sdl/include/sdl_rect.h"
-          },
-          "roles": [
-            "resultFile"
-          ]
-        },
-        {
-          "location": {
-            "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/sdl/include/sdl_system.h"
-          },
-          "roles": [
-            "resultFile"
-          ]
+          "hashes": {
+            "sha-256": "b1ea3870abcf21584a520e41cdca0e32d957b87c0afb8cdafac95dda80e1810c"
+          }
         },
         {
           "location": {
             "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/sdl/include/sdl_surface.h"
           },
-          "roles": [
-            "resultFile"
-          ]
-        },
-        {
-          "location": {
-            "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/sdl/include/sdl_keycode.h"
-          },
-          "roles": [
-            "resultFile"
-          ]
+          "hashes": {
+            "sha-256": "939f0134665cf7775bbf23f8a323041cbecb4cc0a77041d29bb11d711f3bf30e"
+          }
         },
         {
           "location": {
             "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/sdl/include/sdl_blendmode.h"
           },
-          "roles": [
-            "resultFile"
-          ]
+          "hashes": {
+            "sha-256": "cf176d4d282c8e0a2c9d99ad93a28e6242e2c43fda61e31dabc5e86d94ab86f3"
+          }
         },
         {
           "location": {
             "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/sdl/include/sdl_keyboard.h"
           },
-          "roles": [
-            "resultFile"
-          ]
+          "hashes": {
+            "sha-256": "22011cf7a3b57418397d0a6985819d6a04f3d8e4c4e15eeb0b0896e2b9cce609"
+          }
         },
         {
           "location": {
-            "uri": "file:///c:/users/jacob/source/repos/smgg/sterllaris multigalaxy generator/debug.h"
+            "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/sdl/include/sdl_keycode.h"
           },
-          "roles": [
-            "resultFile"
-          ]
+          "hashes": {
+            "sha-256": "6e94ee3828d8ea54507221fd00cc2e5316fad77522d067ca88d3d368e7e21023"
+          }
         },
         {
           "location": {
             "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/sdl/include/sdl_scancode.h"
           },
-          "roles": [
-            "resultFile"
-          ]
+          "hashes": {
+            "sha-256": "38bdd13500f65fdebe931b14d32447e1aa52c7fb4a862dc1c51979d8e1406129"
+          }
         },
         {
           "location": {
-            "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/sdl/include/sdl_version.h"
+            "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/sdl/include/sdl_mouse.h"
           },
-          "roles": [
-            "resultFile"
-          ]
-        },
-        {
-          "location": {
-            "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/sdl/include/sdl_loadso.h"
-          },
-          "roles": [
-            "resultFile"
-          ]
+          "hashes": {
+            "sha-256": "9685fd425fc4acd4af0824862b56949eb8293c44139f6e8833a8e1b0457ff7a3"
+          }
         },
         {
           "location": {
             "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/sdl/include/sdl_joystick.h"
           },
-          "roles": [
-            "resultFile"
-          ]
-        },
-        {
-          "location": {
-            "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/sdl/include/sdl_render.h"
-          },
-          "roles": [
-            "resultFile"
-          ]
+          "hashes": {
+            "sha-256": "f759f33d87dfba6993acea802e89ccccebfaf7f6189d377009d8bf604c1dcaaa"
+          }
         },
         {
           "location": {
             "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/sdl/include/sdl_gamecontroller.h"
           },
-          "roles": [
-            "resultFile"
-          ]
+          "hashes": {
+            "sha-256": "c7492846b791ef5f4ffa139b3fe35dd059f7e72fe74525e3d359dd03a9498bef"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/sdl/include/sdl_sensor.h"
+          },
+          "hashes": {
+            "sha-256": "5e66263151bad5fce025f8fbee6191393cb0b8c5ac36044b1b9f7b6e1cfea5e6"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/sdl/include/sdl_quit.h"
+          },
+          "hashes": {
+            "sha-256": "a2fd94238708d48b3262af2a93bfff470ae663939b021a7b2a4453d1ca7c5d53"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/sdl/include/sdl_gesture.h"
+          },
+          "hashes": {
+            "sha-256": "9fc58622bc0194b0d6766ea56fe32db47c0b199f35b007e370d1d0a88012acf8"
+          }
         },
         {
           "location": {
             "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/sdl/include/sdl_touch.h"
           },
-          "roles": [
-            "resultFile"
-          ]
+          "hashes": {
+            "sha-256": "7471eb1df160ad0f904c4ba7b6036c96e02a372930c2bfb7cb7996f9a85cfdaa"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/sdl/include/sdl_filesystem.h"
+          },
+          "hashes": {
+            "sha-256": "79488f1cca5904faa69c6dfeb8efe8f6360ded8eee103f1611ba7e9bacdfcfed"
+          }
         },
         {
           "location": {
             "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/sdl/include/sdl_haptic.h"
           },
-          "roles": [
-            "resultFile"
-          ]
+          "hashes": {
+            "sha-256": "ae535dfd03e7d2d52435965de6eb5cd200157fd721200ecc3a401b0cec0f65ad"
+          }
         },
         {
           "location": {
             "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/sdl/include/sdl_hidapi.h"
           },
-          "roles": [
-            "resultFile"
-          ]
+          "hashes": {
+            "sha-256": "f13f679c630c3910d63982d3ff44a9ab0b17892da2a93cfc2a1bf93d65a7b1c4"
+          }
         },
         {
           "location": {
-            "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/sdl_tff/include/sdl_ttf.h"
+            "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/sdl/include/sdl_hints.h"
           },
-          "roles": [
-            "resultFile"
-          ]
+          "hashes": {
+            "sha-256": "088e90552b98272d6f95fa3c678fee0be1707e699ad2fa53284e5029b88944d6"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/sdl/include/sdl_loadso.h"
+          },
+          "hashes": {
+            "sha-256": "8e4d0357ad6c8069cd7de68201736065500a8c7b2384e7fd65d4ee4d160091cb"
+          }
         },
         {
           "location": {
             "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/sdl/include/sdl_log.h"
           },
-          "roles": [
-            "resultFile"
-          ]
+          "hashes": {
+            "sha-256": "5b1827929c323cdfd2e7dca4458fb286d3d39f04bd2b4e1c200567ba788efb58"
+          }
         },
         {
           "location": {
             "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/sdl/include/sdl_messagebox.h"
           },
-          "roles": [
-            "resultFile"
-          ]
+          "hashes": {
+            "sha-256": "9f8e01efd07295e6d0f4ef3350bd217ada6996591c2022b7f9163fbfdfe67eef"
+          }
         },
         {
           "location": {
-            "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/steam_api/include/steam_api_internal.h"
+            "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/sdl/include/sdl_metal.h"
           },
-          "roles": [
-            "resultFile"
-          ]
+          "hashes": {
+            "sha-256": "1c5751d678e64f3f15dec1620c4b7661b37ebe74399e9d953df8186bfa1a4269"
+          }
         },
         {
           "location": {
-            "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/steam_api/include/isteaminput.h"
+            "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/sdl/include/sdl_power.h"
           },
-          "roles": [
-            "resultFile"
-          ]
+          "hashes": {
+            "sha-256": "93ae2fad778ff057a582f4940cc83864b4991aeaeaeb5c94f3bc30ebfe6633ef"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/sdl/include/sdl_render.h"
+          },
+          "hashes": {
+            "sha-256": "e656354d0d569c4e20ba9dfc9a0479679cf8dfbdd92e779bf3aef3c5cb09e490"
+          }
         },
         {
           "location": {
             "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/sdl/include/sdl_shape.h"
           },
-          "roles": [
-            "resultFile"
-          ]
+          "hashes": {
+            "sha-256": "1d35455675397d3dcd27bef13c62ec4c4c40b2211c27d589af23bfccb6492fa7"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/sdl/include/sdl_system.h"
+          },
+          "hashes": {
+            "sha-256": "b0cc50f61c759ad31a24d5213aeca07c3a50dc4fb5f17ed04959506628055d09"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/sdl/include/sdl_timer.h"
+          },
+          "hashes": {
+            "sha-256": "190af3b762fd203ce25c17eda9fb31d698bd75957f59d4ce7cc21671e8a2403a"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/sdl/include/sdl_version.h"
+          },
+          "hashes": {
+            "sha-256": "f80c39638d72f2b903a991b3fc133309e0150d150e55d957e5d107201c4d34b8"
+          }
         },
         {
           "location": {
             "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/sdl/include/sdl_locale.h"
           },
-          "roles": [
-            "resultFile"
-          ]
+          "hashes": {
+            "sha-256": "9919ace207fad203b24ac916c92b529f74088ed14c797760a32e05b76c6058ec"
+          }
         },
         {
           "location": {
             "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/sdl/include/sdl_misc.h"
           },
-          "roles": [
-            "resultFile"
-          ]
+          "hashes": {
+            "sha-256": "ee696c2a1135d0110ce6c9efe0d67f9a9e8ec400f6f00c2b53247995193f96ec"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/sdl_image/include/sdl_image.h"
+          },
+          "hashes": {
+            "sha-256": "180792a5b429f891d7af256c526edf4a4e82118bc778ddeff9dbc93485028009"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/sdl_tff/include/sdl_ttf.h"
+          },
+          "hashes": {
+            "sha-256": "d8812df3f415637d49ea647d66d10d4ba7cead505445a5d8e6d089a92052d58b"
+          }
         },
         {
           "location": {
             "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/steam_api/include/steam_api.h"
           },
-          "roles": [
-            "resultFile"
-          ]
+          "hashes": {
+            "sha-256": "80a0e0439b5b1a2128f60d14a6780b0b9e52fb63f3c3606f3651190f6da9c8cb"
+          }
         },
         {
           "location": {
-            "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/steam_api/include/steamtypes.h"
+            "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/steam_api/include/steam_api_common.h"
           },
-          "roles": [
-            "resultFile"
-          ]
+          "hashes": {
+            "sha-256": "5b01cf9f9b172e91486a71dd1029b4413630ab63fb004555c03746778871cb88"
+          }
         },
         {
           "location": {
-            "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/steam_api/include/isteamfriends.h"
+            "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/steam_api/include/steamuniverse.h"
           },
-          "roles": [
-            "resultFile"
-          ]
+          "hashes": {
+            "sha-256": "91b43f660be112f6496eb26480732b28a9981fc7a48c78a41c90966e802b05a3"
+          }
         },
         {
           "location": {
-            "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/steam_api/include/steamclientpublic.h"
+            "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/steam_api/include/steam_api_internal.h"
           },
-          "roles": [
-            "resultFile"
-          ]
+          "hashes": {
+            "sha-256": "66a6b71399710b34bcabd5a1c147b1006d76c800d79a7a005ee74c71bf57010d"
+          }
         },
         {
           "location": {
             "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/steam_api/include/isteamclient.h"
           },
-          "roles": [
-            "resultFile"
-          ]
+          "hashes": {
+            "sha-256": "a911b4a0fe4a9baa8eea890723eb57c473b4fabb4fb6d7af818a201be695ad01"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/steam_api/include/isteamuser.h"
+          },
+          "hashes": {
+            "sha-256": "82d685c0eeca51b20763c41044659f215ff3f8927e35f69b12f66ca7cfd6acc7"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/steam_api/include/isteamfriends.h"
+          },
+          "hashes": {
+            "sha-256": "f4e798240b6e6f490aaad5981519c3be1834a49892e2c2ec7bda37750362adfb"
+          }
         },
         {
           "location": {
             "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/steam_api/include/isteamutils.h"
           },
-          "roles": [
-            "resultFile"
-          ]
+          "hashes": {
+            "sha-256": "cda5ea089bba3624bb92c61c6ba9b7dfc19a3b0379cd1df5d7d36f2d6dc4a81c"
+          }
         },
         {
           "location": {
             "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/steam_api/include/isteammatchmaking.h"
           },
-          "roles": [
-            "resultFile"
-          ]
+          "hashes": {
+            "sha-256": "558519ec59a12a246e532d563eba56710c06f684846074c628a8c113ca2bae0e"
+          }
         },
         {
           "location": {
             "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/steam_api/include/matchmakingtypes.h"
           },
-          "roles": [
-            "resultFile"
-          ]
+          "hashes": {
+            "sha-256": "9bea063b4f6b783a2c07cf4cd6b7725cdf73391ef17d7bc0699ec54da31c468a"
+          }
         },
         {
           "location": {
             "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/steam_api/include/isteamuserstats.h"
           },
-          "roles": [
-            "resultFile"
-          ]
+          "hashes": {
+            "sha-256": "48510f3b399cde89bc4262f2a733921602d00030cb1e0897cec0a8a9c4b2527a"
+          }
         },
         {
           "location": {
             "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/steam_api/include/isteamremotestorage.h"
           },
-          "roles": [
-            "resultFile"
-          ]
+          "hashes": {
+            "sha-256": "2bd42692cd398d6550fd85d21879d5bbd94f02d332277865895682814f06c8ad"
+          }
         },
         {
           "location": {
             "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/steam_api/include/isteamapps.h"
           },
-          "roles": [
-            "resultFile"
-          ]
+          "hashes": {
+            "sha-256": "51b010aa605426d414211fd79bb2dfa705037a3b9893f1f1f9cdfb23fb74f509"
+          }
         },
         {
           "location": {
             "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/steam_api/include/isteamnetworking.h"
           },
-          "roles": [
-            "resultFile"
-          ]
+          "hashes": {
+            "sha-256": "a770bd908cbf435d7642e721d3943fc70a9792a3afd3ee2c7b1dc42385a06590"
+          }
         },
         {
           "location": {
             "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/steam_api/include/isteamscreenshots.h"
           },
-          "roles": [
-            "resultFile"
-          ]
+          "hashes": {
+            "sha-256": "010c01baefccdcd44fd9b14d537728d55a3f409187dfbee25c6df9ab804a936a"
+          }
         },
         {
           "location": {
             "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/steam_api/include/isteammusic.h"
           },
-          "roles": [
-            "resultFile"
-          ]
+          "hashes": {
+            "sha-256": "fe1ec934fee3c83658ed7ce65f52994454582b8b373ad35bc085657861c8bac9"
+          }
         },
         {
           "location": {
             "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/steam_api/include/isteammusicremote.h"
           },
-          "roles": [
-            "resultFile"
-          ]
+          "hashes": {
+            "sha-256": "03de4304f025f19e8ee7f2c7132628584b7403c2eb18963f52e5994c1cb3e08f"
+          }
         },
         {
           "location": {
             "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/steam_api/include/isteamhttp.h"
           },
-          "roles": [
-            "resultFile"
-          ]
+          "hashes": {
+            "sha-256": "20e6e41d3fdf59a5c61d5a28df76df5d8473487ad4df19999ba4a084c6b2e312"
+          }
         },
         {
           "location": {
             "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/steam_api/include/steamhttpenums.h"
           },
-          "roles": [
-            "resultFile"
-          ]
+          "hashes": {
+            "sha-256": "793c2fed9966a9f5b155a23b6b94282c6243f978a135be28b3f0db57af21eca3"
+          }
         },
         {
           "location": {
             "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/steam_api/include/isteamcontroller.h"
           },
-          "roles": [
-            "resultFile"
-          ]
+          "hashes": {
+            "sha-256": "1c123a70815747af40ff2b10d6f1a644be87b225d268212d9a9479db2603f480"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/steam_api/include/isteaminput.h"
+          },
+          "hashes": {
+            "sha-256": "8b9411f4f0f94105968caf42ca6af42cff0f52f60da9f87610548b26818bf5af"
+          }
         },
         {
           "location": {
             "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/steam_api/include/isteamugc.h"
           },
-          "roles": [
-            "resultFile"
-          ]
+          "hashes": {
+            "sha-256": "46b34aaf0a8583b7b1c4734581c7e7672297c53f6c823309c2ac59cb59bd9c5c"
+          }
         },
         {
           "location": {
             "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/steam_api/include/isteamapplist.h"
           },
-          "roles": [
-            "resultFile"
-          ]
+          "hashes": {
+            "sha-256": "beabc66e3da5e6dcbaa04720fdd25c7b12579f6ecd170ae8e06afbff65874845"
+          }
         },
         {
           "location": {
             "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/steam_api/include/isteamhtmlsurface.h"
           },
-          "roles": [
-            "resultFile"
-          ]
+          "hashes": {
+            "sha-256": "054c1b963dc48cd86045c99d74b87827f9910df1150920de3928ec9eeecca223"
+          }
         },
         {
           "location": {
             "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/steam_api/include/isteaminventory.h"
           },
-          "roles": [
-            "resultFile"
-          ]
+          "hashes": {
+            "sha-256": "17e3b5a7ea299a9dacb976719400d1d52292fe1c49c6f6fd42b4be6b3cfef2e9"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/steam_api/include/isteamvideo.h"
+          },
+          "hashes": {
+            "sha-256": "59f27b1594d81b86fc4150b7f0414e2af9510957b4c39c81524e032070506449"
+          }
         },
         {
           "location": {
             "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/steam_api/include/isteamparentalsettings.h"
           },
-          "roles": [
-            "resultFile"
-          ]
+          "hashes": {
+            "sha-256": "56431c4031fd6a73c131f082cc07dc66f9e2902446e5cb443f1bf9835dc17dfe"
+          }
         },
         {
           "location": {
             "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/steam_api/include/isteamremoteplay.h"
           },
-          "roles": [
-            "resultFile"
-          ]
+          "hashes": {
+            "sha-256": "f4d59a74e4ac3339bcaf538ed037f370258ac647875b9f31c3f42a6dfffe7a9f"
+          }
         },
         {
           "location": {
             "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/steam_api/include/isteamnetworkingmessages.h"
           },
-          "roles": [
-            "resultFile"
-          ]
-        },
-        {
-          "location": {
-            "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/steam_api/include/steamnetworkingtypes.h"
-          },
-          "roles": [
-            "resultFile"
-          ]
+          "hashes": {
+            "sha-256": "47efce1d02ddf729738fd0894cca96d4044e36d99b6f1fb741f05aa6a135158d"
+          }
         },
         {
           "location": {
             "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/steam_api/include/isteamnetworkingsockets.h"
           },
-          "roles": [
-            "resultFile"
-          ]
-        },
-        {
-          "location": {
-            "uri": "file:///c:/users/jacob/source/repos/smgg/dependencies/steam_api/include/isteamnetworkingutils.h"
-          },
-          "roles": [
-            "resultFile"
-          ]
-        },
-        {
-          "location": {
-            "uri": "file:///c:/users/jacob/source/repos/smgg/sterllaris multigalaxy generator/variables.h"
-          },
-          "roles": [
-            "resultFile"
-          ]
-        },
-        {
-          "location": {
-            "uri": "file:///c:/users/jacob/source/repos/smgg/sterllaris multigalaxy generator/classes_declaration.h"
-          },
-          "roles": [
-            "resultFile"
-          ]
+          "hashes": {
+            "sha-256": "0fbc7cdc3eb5ece7deee55d3770dbdf33c5e414a45112c75d0f1f7e831489523"
+          }
         },
         {
           "location": {
             "uri": "file:///c:/users/jacob/source/repos/smgg/sterllaris multigalaxy generator/function_dec.h"
           },
-          "roles": [
-            "resultFile"
-          ]
-        },
-        {
-          "location": {
-            "uri": "file:///c:/users/jacob/source/repos/smgg/sterllaris multigalaxy generator/graphics_engine.h"
-          },
-          "roles": [
-            "resultFile"
-          ]
+          "hashes": {
+            "sha-256": "ced4e4e9f66b83b7829e478556d6a81820ef539ce9eca6fbeb6c32b596a6632b"
+          }
         },
         {
           "location": {
             "uri": "file:///c:/users/jacob/source/repos/smgg/sterllaris multigalaxy generator/file_operation.h"
           },
-          "roles": [
-            "resultFile"
-          ]
+          "hashes": {
+            "sha-256": "4c89d7443f28ae010c9377fc4fc82b004988fb1cd61417a958f74303d40b1a5e"
+          }
         },
         {
           "location": {
             "uri": "file:///c:/users/jacob/source/repos/smgg/sterllaris multigalaxy generator/basic_menu_operation.h"
           },
-          "roles": [
-            "resultFile"
-          ]
+          "hashes": {
+            "sha-256": "3d52c564e105bd5dcf11cb7c1f301410c56f747ceebe949988b71c3720e6de7a"
+          }
         },
         {
           "location": {
-            "uri": "file:///c:/users/jacob/source/repos/smgg/sterllaris multigalaxy generator/algo.h"
+            "uri": "file:///c:/users/jacob/source/repos/smgg/sterllaris multigalaxy generator/debug.h"
           },
-          "roles": [
-            "resultFile"
-          ]
+          "hashes": {
+            "sha-256": "d3ae7db973476f3ec61eb846435641e45a793c4bc95652521b48ec0717eeb370"
+          }
         }
       ]
     }

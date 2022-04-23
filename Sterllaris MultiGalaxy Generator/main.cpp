@@ -23,6 +23,7 @@ gButtons 13 = Exit
 21 = remove
 22 = redraw galaxy
 23 - Edit Patch button
+24 - Generate Initializers
 28 - Clear Map
 29 - Random Galaxy
 30 - Choose Circle or Ring Shape
@@ -43,6 +44,7 @@ From 50 CUSTOM SIZE:
 60 - Checkbox disable failed generate warn
 61 - Checkbox disable wrong text warn
 62 - Checkbox Show Hyperlanes
+63 - Checkbox Show Initializers
 
 97 - Checkbox Multiplayer
 98 - Checkbox initializers
@@ -82,6 +84,7 @@ Inicjalizatory:
 3 - Leviathany
 4 - Mega
 5 - Maruderzy
+10 - player
 
 Laczenie hiperliniami
 Zasieg
@@ -95,6 +98,39 @@ Zasieg
 4.5   3-6
 5     3-7
 
+
+    Detailed Edit buttons 2-3 corrupted WTF
+    0 - System Remove +
+    1 - Hyperlane Remove +
+    8 - Initializer Remove
+    9 - Initializer Add
+    4 - System Add + 
+    5 - System Move ---
+    6 - Hyperlane Add + 
+    7 - Initializer Change
+
+    11 - "Player", 131
+    12 - "Bot", 1310,
+    13 - "Fallen", 131
+    14 - "Marauder", 1
+    15 - "Ruined Mega"
+    16 - "Leviathan",
+    17 - "Mods", 1310,
+
+    20 - "dyson_sphere_init_01",
+    21 - "science_nexus_init_01",
+    22 - "sentry_array_init_01",
+    23 - "ring_world_init_01",
+
+
+    30 - "guardians_init_stellarites",
+    31 - "guardians_init_dragon",
+    32 - "guardians_init_horror",
+    33 - "guardians_init_dreadnought",
+    34 - "guardians_init_hive",
+    35 - "guardians_init_technosphere",
+    36 - "guardians_init_fortress",
+    37 - "guardians_init_wraith",
 
 Dodac nebule 
 nebula = {
@@ -110,56 +146,16 @@ nebula = {
 
 */
 
-
-
 #include "include.h"
 
-void Graphics_Engine::handleKeyboardEvent(SDL_Event& e)
+void LButton::handle_D_S_E_ButtonEvent(SDL_Event& e, int id)
 {
-    if (e.type == SDL_KEYDOWN)
-    {
-        switch (e.key.keysym.sym)
-        {
-        case SDLK_ESCAPE:
-            if (CSHM.remove_galaxies == true)
-            {
-                CSHM.remove_galaxies = false;
-            }
-            else if (CSHM.redraw_galaxies == true)
-            {
-                CSHM.redraw_galaxies = false;
-            }
-            else if (CSHM.remove_hyperlanes == true)
-            {
-                CSHM.remove_hyperlanes = false;
-            }
-            else if (CSHM.redraw_hyperlanes == true)
-            {
-                CSHM.redraw_hyperlanes = false;
-            }
-            else if (CSHM.edit_galaxies == true)
-            {
-                CSHM.edit_galaxies = false;
-                CSHM.edit_galaxies_loop = false;
-                elipse_galaxy_window = false;
-                spiral_galaxy_window = false;
-                edit = false;
-            }
-            break;
-        }
-    }
-}
-
-void LButton::handleEvent(SDL_Event* e, int id)
-{
-    if ((e->type == SDL_MOUSEBUTTONDOWN || e->type == SDL_MOUSEBUTTONUP  || e->type == SDL_MOUSEMOTION) && pathsaved == true)
-    {
         int x, y;
         SDL_GetMouseState(&x, &y);
 
         bool inside = true;
 
-        if (id < 50)
+        if (id < 500)
         {
             if (x < mPosition.x)
             {
@@ -177,6 +173,642 @@ void LButton::handleEvent(SDL_Event* e, int id)
             else if (y > mPosition.y + BUTTON_HEIGHT)
             {
                 inside = false;
+            }
+        }
+        if (!inside)
+        {
+            if (!Det_Gen.remove_system)
+            {
+                D_S_E_Buttons[0].mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG;
+            }
+            if (!Det_Gen.add_system)
+            {
+                D_S_E_Buttons[4].mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG;
+            }
+            if (!Det_Gen.remove_hyperlanes)
+            {
+                D_S_E_Buttons[1].mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG;
+            }
+            if (!Det_Gen.add_initializer)
+            {
+                D_S_E_Buttons[9].mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG;
+            }
+            if (!Det_Gen.remove_initializer)
+            {
+                D_S_E_Buttons[8].mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG;
+            }
+            if (!Det_Gen.add_hyperlanes ){ D_S_E_Buttons[6].mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG; }
+
+            if (!Det_Gen.add_initializer_player)   { D_S_E_Buttons[11].mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG; }
+            if (!Det_Gen.add_initializer_bot)      { D_S_E_Buttons[12].mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG; }
+            if (!Det_Gen.add_initializer_fallen)   { D_S_E_Buttons[13].mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG; }
+            if (!Det_Gen.add_initializer_marauder) { D_S_E_Buttons[14].mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG; }
+            if (!Det_Gen.add_initializer_mega)     { D_S_E_Buttons[15].mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG; }
+            if (!Det_Gen.add_initializer_leviathan){ D_S_E_Buttons[16].mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG; }
+            if (!Det_Gen.add_initializer_mods)     { D_S_E_Buttons[17].mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG; }
+            for (int i = 0; i < 8; ++i)
+            {
+                if (!Det_Gen.bits_leviathan.test(i))
+                {
+                    D_S_E_Buttons[30 + i].mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG;
+                }
+            }
+            for (int i = 0; i < 4; ++i)
+            {
+                if (!Det_Gen.bits_mega.test(i))
+                {
+                    D_S_E_Buttons[20 + i].mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG;
+                }
+            }
+        }
+        else
+        {
+            if (e.button.button == SDL_BUTTON_LEFT)
+            {
+                if (id < 500)
+                {
+                    switch (e.type)
+                    {
+                    case SDL_MOUSEBUTTONDOWN:
+                        switch (id)
+                        {
+                            Det_Gen.set_default_button();
+                        case 0:
+                            //std::cout << "Work" << std::endl;
+                            Det_Gen.false_all_bools();
+                            Det_Gen.remove_system = true;
+                            //std::cout << Det_Gen.remove_system << std::endl;
+                            break;
+                        case 1:
+                            Det_Gen.false_all_bools();
+                            Det_Gen.remove_hyperlanes = true;
+                            break;
+                        case 8:
+                            Det_Gen.false_all_bools();
+                            Det_Gen.remove_initializer = true;
+                            break;
+                        case 9:
+                            Det_Gen.false_all_bools();
+                            Det_Gen.add_initializer = true;
+                            break;
+                        case 4:
+                            Det_Gen.false_all_bools();
+                            Det_Gen.add_system = true;
+                            break;
+                        case 5:
+                            Det_Gen.false_all_bools();
+                            //Det_Gen.move_system = true;
+                            break;
+                        case 6:
+                            Det_Gen.previous_id = 0;
+                            Det_Gen.false_all_bools();
+                            Det_Gen.add_hyperlanes = true;
+                            break;
+                        case 7:
+                            Det_Gen.false_all_bools();
+                            break;
+                            /*
+                            11 - "Player", 131
+                                12 - "Bot", 1310,
+                                13 - "Fallen", 131
+                                14 - "Marauder", 1
+                                15 - "Ruined Mega"
+                                16 - "Leviathan",
+                                17 - "Mods", 1310,
+                            */                        
+                        case 11:
+                            Det_Gen.false_initializers();
+                            Det_Gen.add_initializer_player = true;
+                            break;
+                        case 12:
+                            Det_Gen.false_initializers();
+                            Det_Gen.add_initializer_bot = true;
+                            break;
+                        case 13:
+                            Det_Gen.false_initializers();
+                            Det_Gen.add_initializer_fallen = true;
+                            break;
+                        case 14:
+                            Det_Gen.false_initializers();
+                            Det_Gen.add_initializer_marauder = true;
+                            break;
+                        case 15:
+                            Det_Gen.false_initializers();
+                            Det_Gen.add_initializer_mega = true;
+                            break;
+                        case 16:
+                            Det_Gen.false_initializers();
+                            Det_Gen.add_initializer_leviathan = true;
+                            break;
+                        case 17:
+                            Det_Gen.false_initializers();
+                            Det_Gen.add_initializer_mods = true;
+                            break;
+
+
+                        case 20:
+                            Det_Gen.reset_bits();
+                            Det_Gen.bits_mega.set(0);
+                            break;
+                        case 21:
+                            Det_Gen.reset_bits();
+                            Det_Gen.bits_mega.set(1);
+                            break;
+                        case 22:
+                            Det_Gen.reset_bits();
+                            Det_Gen.bits_mega.set(2);
+                            break;
+                        case 23:
+                            Det_Gen.reset_bits();
+                            Det_Gen.bits_mega.set(3);
+                            break;
+
+
+                        case 30:
+                            Det_Gen.reset_bits();
+                            Det_Gen.bits_leviathan.set(0);
+                            break;
+                        case 31:
+                            Det_Gen.reset_bits();
+                            Det_Gen.bits_leviathan.set(1);
+                            break;
+                        case 32:
+                            Det_Gen.reset_bits();
+                            Det_Gen.bits_leviathan.set(2);
+                            break;
+                        case 33:
+                            Det_Gen.reset_bits();
+                            Det_Gen.bits_leviathan.set(3);
+                            break;
+                        case 34:
+                            Det_Gen.reset_bits();
+                            Det_Gen.bits_leviathan.set(4);
+                            break;
+                        case 35:
+                            Det_Gen.reset_bits();
+                            Det_Gen.bits_leviathan.set(5);
+                            break;
+                        case 36:
+                            Det_Gen.reset_bits();
+                            Det_Gen.bits_leviathan.set(6);
+                            break;
+                        case 37:
+                            Det_Gen.reset_bits();
+                            Det_Gen.bits_leviathan.set(7);
+                            break;
+                        }
+                        D_S_E_Buttons[id].mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG_PRESSED;
+                        break;
+                    }
+                }
+            }
+        }
+}
+
+void LButton::handleSystemButtonEvent(SDL_Event& e, int i, int j)
+{
+        int x, y;
+        SDL_GetMouseState(&x, &y);
+        bool inside = true;
+
+        if (x < SystemButtons[i][j].mPosition.x - 10)
+        {
+            inside = false;
+        }
+        else if (x > SystemButtons[i][j].mPosition.x + 15)
+        {
+            inside = false;
+        }
+        else if (y < SystemButtons[i][j].mPosition.y - 10)
+        {
+            inside = false;
+        }
+        else if (y > SystemButtons[i][j].mPosition.y + 15)
+        {
+            inside = false;
+        }
+
+        if (!inside)
+        {
+            if (e.type == SDL_MOUSEBUTTONDOWN)
+            {
+                if (e.button.button == SDL_BUTTON_LEFT)
+                {
+                    if (Det_Gen.add_system)
+                    {
+                        if ((i == 0)&&(j == 0))
+                        {
+                            int sys_x = (C_S.donex - 1210) + (x / 5) + 550,
+                                sys_y = (C_S.doney - 1210) + (y / 5) + 550;
+                            for (int i = 0; i < v_galaxy_generation.size(); ++i)
+                            {
+                                int dyst = sqrt(pow(sys_x - v_galaxy_generation[i].i_cen_posX, 2) + (pow(sys_y - v_galaxy_generation[i].i_cen_posY, 2)));
+                                //std::cout << dyst << " " << v_galaxy_generation[i].i_gsize << std::endl;
+                                if (dyst < v_galaxy_generation[i].i_gsize)
+                                {
+                                    int con_m = rand() % max_hyperlane_am + min_hyperlane_am;
+                                    v_system_data[i].emplace_back();
+                                    SystemButtons[i].emplace_back();
+                                    v_hyperlanes[i].emplace_back();
+                                    v_system_data[i][v_galaxy_generation[i].i_star].blocked = false;
+                                    v_system_data[i][v_galaxy_generation[i].i_star].con = 0;
+                                    v_system_data[i][v_galaxy_generation[i].i_star].con_max = con_m;
+                                    v_system_data[i][v_galaxy_generation[i].i_star].exported = false;
+                                    v_system_data[i][v_galaxy_generation[i].i_star].gal_id = v_galaxy_generation[i].i_star;
+                                    v_system_data[i][v_galaxy_generation[i].i_star].gal_x = sys_x;
+                                    v_system_data[i][v_galaxy_generation[i].i_star].gal_y = sys_y;
+                                    v_system_data[i][v_galaxy_generation[i].i_star].inicjalizer = false;
+                                    v_system_data[i][v_galaxy_generation[i].i_star].init_number = 0;
+                                    v_system_data[i][v_galaxy_generation[i].i_star].init_type = 0;
+                                    v_galaxy_generation[i].i_star++;
+                                    sys_sum++;
+                                }
+                            }
+                        }
+                    }
+                    if (Det_Gen.move_system)
+                    {
+                        /*
+                        if ((i == 0) && (j == 0))
+                        {
+                            
+                            int sys_x = (C_S.donex - 1210) + (x / 5) + 550,
+                                sys_y = (C_S.doney - 1210) + (y / 5) + 550;
+                            system_data pushing;
+                            pushing.blocked = move_holder.blocked;
+                            pushing.con = move_holder.con;
+                            pushing.con_max = move_holder.con_max;
+                            pushing.exported = move_holder.exported;
+                            pushing.gal_id = move_holder.gal_id;
+                            pushing.gal_x = sys_x;
+                            pushing.gal_y = sys_y;
+                            pushing.inicjalizer = move_holder.inicjalizer;
+                            pushing.init_number = move_holder.init_number;
+                            pushing.init_type = move_holder.init_type;
+                            v_system_data[i].insert(v_system_data[i].begin() + move_holder.gal_id, 1, pushing);
+                             std::cout << move_holder.gal_id << " Outside " << move_holder.gal_x << " " << move_holder.gal_y << std::endl;
+                             std::cout << v_system_data[i][j].gal_id << " " << v_system_data[i][j].gal_x << " " << v_system_data[i][j].gal_y << std::endl;
+
+                        }
+                        */
+                    }
+                }
+                if (e.button.button == SDL_BUTTON_RIGHT)
+                {
+                    C_S.box_open = false;
+                    ThrowOutButtons();
+                }
+                if (e.button.button == SDL_BUTTON_MIDDLE)
+                {
+                    if ((i == 0) && (j == 0))
+                    {
+                        if (C_S.scrolling)
+                        {
+                            if (C_S.done)
+                            {
+                                C_S.box_open = false;
+                                ThrowOutButtons();
+                                Det_Gen.false_all_bools();
+                                C_S.done = false;
+                            }
+                            else
+                            {
+                                C_S.done = true;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        else 
+        {
+            if (e.button.button == SDL_BUTTON_LEFT)
+            {
+                switch (e.type)
+                {
+                case SDL_MOUSEBUTTONDOWN:
+                    if (Det_Gen.remove_system)
+                    {
+                        v_system_data[i].erase(v_system_data[i].begin() + j);
+                        for (int a = 0; a < v_system_data[i].size(); ++a)
+                        {
+                            if (v_system_data[i][a].gal_id >= j)
+                            {
+                                v_system_data[i][a].gal_id -= 1;
+                            }
+                        }
+                        if (v_galaxy_generation[i].hyperlanes_generated)
+                        {
+                            v_hyperlanes[i].erase(v_hyperlanes[i].begin() + j);
+                            for (int a = 0; a < v_hyperlanes[i].size(); ++a)
+                            {
+                                //std::cout << "-----------" << std::endl;
+                                //std::cout << v_hyperlanes[i][a].size() << std::endl;
+                                for (int b = 0; b < v_hyperlanes[i][a].size(); ++b)
+                                {
+                                    //std::cout << j << "  " << v_hyperlanes[i][a][b].from << "    " << v_hyperlanes[i][a][b].to << std::endl;
+                                    if (v_hyperlanes[i][a][b].to == j)
+                                    {
+                                        v_hyperlanes[i][a].erase(v_hyperlanes[i][a].begin() + b);
+                                    }
+                                    if (v_hyperlanes[i][a][b].to >= j)
+                                    {
+                                        v_hyperlanes[i][a][b].to -= 1;
+                                    }
+                                    if (v_hyperlanes[i][a][b].from >= j)
+                                    {
+                                        v_hyperlanes[i][a][b].from -= 1;
+                                    }
+
+                                    //std::cout << j << "  " << v_hyperlanes[i][a][b].from << "    " << v_hyperlanes[i][a][b].to << std::endl;
+                                }
+                                //std::cout << "----------" << std::endl;
+                            }
+                        }
+                        v_galaxy_generation[i].i_star--;
+                        v_galaxy_generation[i].star = std::to_string(v_galaxy_generation[i].i_star);
+                        sys_sum--;
+                        //rerender();
+                    }
+                    else if (Det_Gen.remove_hyperlanes)
+                    {
+                        if (Det_Gen.previous_id != 0)
+                        {
+                            for (int a = 0; a < v_hyperlanes[i][j].size(); ++a)
+                            {
+                                if (v_hyperlanes[i][j][a].from == Det_Gen.previous_id)
+                                {
+                                    v_hyperlanes[i][j].erase(v_hyperlanes[i][j].begin() + a);
+                                }
+                                if (v_hyperlanes[i][j][a].to == Det_Gen.previous_id)
+                                {
+                                    v_hyperlanes[i][j].erase(v_hyperlanes[i][j].begin() + a);
+                                }
+                            }
+                            for (int a = 0; a < v_hyperlanes[i][Det_Gen.previous_id].size(); ++a)
+                            {
+                                if (v_hyperlanes[i][Det_Gen.previous_id][a].from == j)
+                                {
+                                    v_hyperlanes[i][Det_Gen.previous_id].erase(v_hyperlanes[i][Det_Gen.previous_id].begin() + a);
+                                }
+                                if (v_hyperlanes[i][Det_Gen.previous_id][a].to == j)
+                                {
+                                    v_hyperlanes[i][Det_Gen.previous_id].erase(v_hyperlanes[i][Det_Gen.previous_id].begin() + a);
+                                }
+                            }
+                        }
+                        Det_Gen.previous_id = v_system_data[i][j].gal_id;
+                    }
+                    else if (Det_Gen.remove_initializer)
+                    {
+                        if (v_system_data[i][j].init_type == 99)
+                        {
+
+                        }
+                        else if (v_system_data[i][j].init_type == 1)
+                        {
+                            empire_am--;
+                            v_galaxy_generation[i].empire_am--;
+                            v_system_data[i][j].inicjalizer = false;
+                            v_system_data[i][j].init_number = 0;
+                            v_system_data[i][j].init_type = 0;
+                        }
+                        else if (v_system_data[i][j].init_type == 2)
+                        {
+                            fallen_am--;
+                            v_galaxy_generation[i].fallen_am--;
+                            v_system_data[i][j].inicjalizer = false;
+                            v_system_data[i][j].init_number = 0;
+                            v_system_data[i][j].init_type = 0;
+                        }
+                        else if (v_system_data[i][j].init_type == 5)
+                        {
+                            maruder_am--;
+                            v_galaxy_generation[i].maruder_am--;
+                            v_system_data[i][j].inicjalizer = false;
+                            v_system_data[i][j].init_number = 0;
+                            v_system_data[i][j].init_type = 0;
+                        }
+                        else if (v_system_data[i][j].init_type == 3)
+                        {
+                            Class_lev.exist[v_system_data[i][j].init_number] = false;
+                            v_system_data[i][j].inicjalizer = false;
+                            v_system_data[i][j].init_number = 0;
+                            v_system_data[i][j].init_type = 0;
+                        }
+                        else if (v_system_data[i][j].init_type == 10)
+                        {
+                            Det_Gen.player_am--;
+                            empire_am--;
+                            for (int a = 0; a < v_system_data.size(); ++a)
+                            {
+                                for (int b = 0; b < v_system_data[a].size(); ++b)
+                                {
+                                    if (v_system_data[a][b].player_id > v_system_data[i][j].player_id)
+                                    {
+                                        v_system_data[a][b].player_id--;
+                                    }
+                                }
+                            }
+                            v_galaxy_generation[i].players_am--;
+                            v_system_data[i][j].inicjalizer = false;
+                            v_system_data[i][j].init_number = 0;
+                            v_system_data[i][j].init_type = 0;
+                            v_system_data[i][j].player_id = 0;
+                        }
+
+                    }
+                    else if (Det_Gen.add_hyperlanes)
+                    {
+                        if (Det_Gen.previous_id == 0)
+                        {
+                            Det_Gen.previous_id = v_system_data[i][j].gal_id;
+                        }
+                        else
+                        {
+                            hyperlanes pushing;
+                            pushing.from = Det_Gen.previous_id;
+                            pushing.to = v_system_data[i][j].gal_id;
+                            v_hyperlanes[i][j].push_back(pushing);
+                            Det_Gen.previous_id = 0;
+                        }
+                    }
+                    else if (Det_Gen.add_initializer_player)
+                    {
+                        Det_Gen.player_am++;
+                        empire_am++;
+                        v_galaxy_generation[i].players_am++;
+                        v_system_data[i][j].inicjalizer = true;
+                        v_system_data[i][j].init_number = rand() % 6;
+                        v_system_data[i][j].init_type = 10;
+                        v_system_data[i][j].player_id = Det_Gen.player_am;
+                    }
+                    else if (Det_Gen.add_initializer_bot)
+                    {
+                        empire_am++;
+                        v_galaxy_generation[i].empire_am++;
+                        v_system_data[i][j].inicjalizer = true;
+                        v_system_data[i][j].init_number = rand() % 6;
+                        v_system_data[i][j].init_type = 1;
+                    }
+                    else if (Det_Gen.add_initializer_fallen)
+                    {
+                        fallen_am++;
+                        v_galaxy_generation[i].fallen_am++;
+                        v_system_data[i][j].inicjalizer = true;
+                        v_system_data[i][j].init_number = rand() % 3;
+                        v_system_data[i][j].init_type = 2;
+                    }
+                    else if (Det_Gen.add_initializer_marauder)
+                    {
+                        maruder_am++;
+                        v_galaxy_generation[i].maruder_am++;
+                        v_system_data[i][j].inicjalizer = true;
+                        v_system_data[i][j].init_number = rand() % 3;
+                        v_system_data[i][j].init_type = 5;
+                    }
+                    else if (Det_Gen.add_initializer_mega)
+                    {
+                        int temp_number = 0;
+                        if (Det_Gen.bits_mega.test(0)) { temp_number = 0; }
+                        else if (Det_Gen.bits_mega.test(1)) { temp_number = 1; }
+                        else if (Det_Gen.bits_mega.test(2)) { temp_number = 2; }
+                        else if (Det_Gen.bits_mega.test(3)) { temp_number = 3; }
+                        v_system_data[i][j].inicjalizer = true;
+                        v_system_data[i][j].init_number = temp_number;
+                        v_system_data[i][j].init_type = 4;
+                    }
+                    else if (Det_Gen.add_initializer_leviathan)
+                    {
+                        int temp_number = 0;
+                        if (Det_Gen.bits_leviathan.test(0)) { temp_number = 0; }
+                        else if (Det_Gen.bits_leviathan.test(1)) { temp_number = 1; }
+                        else if (Det_Gen.bits_leviathan.test(2)) { temp_number = 2; }
+                        else if (Det_Gen.bits_leviathan.test(3)) { temp_number = 3; }
+                        else if (Det_Gen.bits_leviathan.test(4)) { temp_number = 4; }
+                        else if (Det_Gen.bits_leviathan.test(5)) { temp_number = 5; }
+                        else if (Det_Gen.bits_leviathan.test(6)) { temp_number = 6; }
+                        else if (Det_Gen.bits_leviathan.test(7)) { temp_number = 7; }
+                        v_system_data[i][j].inicjalizer = true;
+                        v_system_data[i][j].init_number = temp_number;
+                        v_system_data[i][j].init_type = 3;
+                    }
+                    else if (Det_Gen.add_initializer_mods)
+                    {
+                        
+                    }
+                    else
+                    {
+                        C_S.box_open = true;
+                        C_S.current_system = v_system_data[i][j].gal_id;
+                        C_S.current_gal = i;
+                        ThrowOutButtons();
+                        GE.system_box_x = center_width + ((v_system_data[i][j].gal_x - (C_S.donex - 550)) * 5) + 554;
+                        GE.system_box_y = center_height + ((v_system_data[i][j].gal_y - (C_S.doney - 550)) * 5) + 550;
+
+                    }
+                    break;
+                }
+            }
+        }
+}
+void Graphics_Engine::handleKeyboardEvent(SDL_Event& e)
+{
+        switch (e.key.keysym.sym)
+        {
+        case SDLK_ESCAPE:
+            //std::cout << "Esc entered" << std::endl;
+            for (int i = 0; i < D_S_E_Buttons.size(); ++i)
+            {
+                D_S_E_Buttons[i].mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG;
+            }
+            Det_Gen.false_all_bools();
+            Det_Gen.false_initializers();
+            Det_Gen.reset_bits();
+            Det_Gen.previous_id = 0;
+            gButtons[21].mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG;
+            CSHM.remove_galaxies = false;
+            gButtons[22].mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG;
+            CSHM.redraw_galaxies = false;
+            gButtons[19].mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG;
+            CSHM.remove_hyperlanes = false;
+            gButtons[18].mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG;
+            CSHM.redraw_hyperlanes = false;
+            if (CSHM.edit_galaxies)
+            {
+                gButtons[20].mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG;
+                CSHM.edit_galaxies = false;
+                CSHM.edit_galaxies_loop = false;
+                elipse_galaxy_window = false;
+                spiral_galaxy_window = false;
+                edit = false;
+            }
+            else if (C_S.box_open == true)
+            {
+                C_S.box_open = false;
+                system_box_x = -1000;
+                system_box_y = -1000;
+            }
+            rerender();
+            break;
+        }
+}
+
+void LButton::handleEvent(SDL_Event* e, int id)
+{
+    /*
+    File_Operation F_O;
+    File_Operation* F_O_ptr;
+    F_O_ptr = &F_O;
+    */
+
+
+        int x, y;
+        SDL_GetMouseState(&x, &y);
+
+        bool inside = true;
+
+        if (id < 50)
+        {
+            if (id == 24)
+            {
+                if (x < mPosition.x)
+                {
+                    inside = false;
+                }
+
+                else if (x > mPosition.x + 300)
+                {
+                    inside = false;
+                }
+                else if (y < mPosition.y)
+                {
+                    inside = false;
+                }
+                else if (y > mPosition.y + BUTTON_HEIGHT)
+                {
+                    inside = false;
+                }
+            }
+            else
+            {
+                if (x < mPosition.x)
+                {
+                    inside = false;
+                }
+
+                else if (x > mPosition.x + BUTTON_WIDTH)
+                {
+                    inside = false;
+                }
+                else if (y < mPosition.y)
+                {
+                    inside = false;
+                }
+                else if (y > mPosition.y + BUTTON_HEIGHT)
+                {
+                    inside = false;
+                }
             }
         }
         else if ((id >= 50) && (id < 150))
@@ -274,11 +906,11 @@ void LButton::handleEvent(SDL_Event* e, int id)
                     else if (y > mPosition.y + 32) { inside = false; }
                     break;
                 case 113:
-                    if (x > mPosition.x + 50) { inside = false; }
+                    if (x > mPosition.x + 60) { inside = false; }
                     else if (y > mPosition.y + 32) { inside = false; }
                     break;
                 case 114:
-                    if (x > mPosition.x + 50) { inside = false; }
+                    if (x > mPosition.x + 60) { inside = false; }
                     else if (y > mPosition.y + 32) { inside = false; }
                     break;
                 case 115:
@@ -318,11 +950,11 @@ void LButton::handleEvent(SDL_Event* e, int id)
                     else if (y > mPosition.y + 32) { inside = false; }
                     break;
                 case 124:
-                    if (x > mPosition.x + 50) { inside = false; }
+                    if (x > mPosition.x + 60) { inside = false; }
                     else if (y > mPosition.y + 32) { inside = false; }
                     break;
                 case 125:
-                    if (x > mPosition.x + 50) { inside = false; }
+                    if (x > mPosition.x + 60) { inside = false; }
                     else if (y > mPosition.y + 32) { inside = false; }
                     break;
                 case 126:
@@ -342,60 +974,65 @@ void LButton::handleEvent(SDL_Event* e, int id)
                     else if (y > mPosition.y + 32) { inside = false; }
                     break;
                 case 130:
-                    if (x > mPosition.x + 50) { inside = false; }
+                    if (x > mPosition.x + 60) { inside = false; }
                     else if (y > mPosition.y + 32) { inside = false; }
                     break;
                 case 131:
-                    if (x > mPosition.x + 50) { inside = false; }
+                    if (x > mPosition.x + 60) { inside = false; }
                     else if (y > mPosition.y + 32) { inside = false; }
                     break;
                 case 132:
-                    if (x > mPosition.x + 50) { inside = false; }
+                    if (x > mPosition.x + 60) { inside = false; }
                     else if (y > mPosition.y + 32) { inside = false; }
                     break;
                 }
                 if (CSHM.edit_galaxies)
                 {
                 case 140:
-                    if (x > mPosition.x + 50) { inside = false; }
+                    if (x > mPosition.x + 100) { inside = false; }
                     else if (y > mPosition.y + 32) { inside = false; }
                     break;
                 case 141:
-                    if (x > mPosition.x + 50) { inside = false; }
+                    if (x > mPosition.x + 100) { inside = false; }
                     else if (y > mPosition.y + 32) { inside = false; }
                     break;
                 case 142:
-                    if (x > mPosition.x + 50) { inside = false; }
+                    if (x > mPosition.x + 100) { inside = false; }
                     else if (y > mPosition.y + 32) { inside = false; }
                     break;
                 case 143:
-                    if (x > mPosition.x + 50) { inside = false; }
+                    if (x > mPosition.x + 100) { inside = false; }
                     else if (y > mPosition.y + 32) { inside = false; }
                     break;
                 case 144:
-                    if (x > mPosition.x + 50) { inside = false; }
+                    if (x > mPosition.x + 100) { inside = false; }
                     else if (y > mPosition.y + 32) { inside = false; }
                     break;
                     if (v_galaxy_generation[current_gal_id].galtype == 1)
                     {
                     case 145:
-                        if (x > mPosition.x + 50) { inside = false; }
+                        if (x > mPosition.x + 100) { inside = false; }
                         else if (y > mPosition.y + 32) { inside = false; }
                         break;
                     case 146:
-                        if (x > mPosition.x + 50) { inside = false; }
+                        if (x > mPosition.x + 100) { inside = false; }
                         else if (y > mPosition.y + 32) { inside = false; }
                         break;
                     case 147:
-                        if (x > mPosition.x + 50) { inside = false; }
+                        if (x > mPosition.x + 100) { inside = false; }
                         else if (y > mPosition.y + 32) { inside = false; }
                         break;
                     case 148:
-                        if (x > mPosition.x + 50) { inside = false; }
+                        if (x > mPosition.x + 100) { inside = false; }
                         else if (y > mPosition.y + 32) { inside = false; }
                         break;
                     }
                 }
+            }
+            if (id == 63)
+            {
+                if (x > mPosition.x + 30) { inside = false; }
+                else if (y > mPosition.y + 30) { inside = false; }
             }
         }
         else if (( id >= 150) && ( id < 200))
@@ -423,10 +1060,27 @@ void LButton::handleEvent(SDL_Event* e, int id)
             if (id < 1000)
             {
                 mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG;
-            }
-            else
-            {
-                mCurrentSprite = BUTTON_SPRITE_MOUSE_SMALL;
+                if (CSHM.remove_galaxies == true)
+                {
+                    gButtons[21].mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG_PRESSED;
+
+                }
+                else if (CSHM.redraw_galaxies == true)
+                {
+                    gButtons[22].mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG_PRESSED;
+                }
+                else if (CSHM.remove_hyperlanes == true)
+                {
+                    gButtons[19].mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG_PRESSED;
+                }
+                else if (CSHM.redraw_hyperlanes == true)
+                {
+                    gButtons[18].mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG_PRESSED;
+                }
+                else if (CSHM.edit_galaxies == true)
+                {
+                    gButtons[20].mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG_PRESSED;
+                }
             }
         }
         else
@@ -443,13 +1097,18 @@ void LButton::handleEvent(SDL_Event* e, int id)
                         {
                             // Galaxies
                         case 0:
+                            if (C_S.scrolling)
+                            {
+                                C_S.scrolling = false;
+                                Det_Gen.false_all_bools();
+                                C_S.box_open = false;
+                            }
                             if (current_galaxies_window == false)
                             {
                                 DisableOtherWindows();
                                 current_galaxies_window = true;
                                 rerender();
-                                SDL_Delay(80);
-                                mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG;
+                                GE.click_effect_remove(id);
                             }
                             else
                             {
@@ -459,17 +1118,27 @@ void LButton::handleEvent(SDL_Event* e, int id)
                             break;
 
                         case 1:
+                            //Classinit.initilizers();
+                            //initializers_loaded = true;
+                            //std::cout << rand() % 20 << std::endl;
+                            //F_O.load_files_from_steammod_folder();
+                            //F_O.create_folder();
                             break;
 
                             // Settings
                         case 2:
+                            if (C_S.scrolling)
+                            {
+                                C_S.scrolling = false;
+                                Det_Gen.false_all_bools();
+                                C_S.box_open = false;
+                            }
                             if (settings_window == false)
                             {
                                 DisableOtherWindows();
                                 settings_window = true;
                                 rerender();
-                                SDL_Delay(80);
-                                mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG;
+                                GE.click_effect_remove(id);
                             }
                             else {
                                 settings_window = false;
@@ -478,20 +1147,27 @@ void LButton::handleEvent(SDL_Event* e, int id)
                             break;
 
                         case 3:
+                            F_O.SaveMap();
                             break;
 
                         case 4:
                             break;
                             // File & Exit
                         case 5:
+                            if (C_S.scrolling)
+                            {
+                                C_S.scrolling = false;
+                                Det_Gen.false_all_bools();
+                                C_S.box_open = false;
+                            }
                             if (saveloadexit_window == false)
                             {
                                 DisableOtherWindows();
                                 saveloadexit_window = true;
                                 rerender();
-                                SDL_Delay(80);
-                                mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG;
+                                GE.click_effect_remove(id);
                             }
+
                             else {
                                 saveloadexit_window = false;
                                 rerender();
@@ -507,8 +1183,7 @@ void LButton::handleEvent(SDL_Event* e, int id)
                             rerender();
                             LoadFile();
                             rerender();
-                            SDL_Delay(80);
-                            mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG;
+                            GE.click_effect_remove(id);
                             break;
 
 
@@ -542,8 +1217,7 @@ void LButton::handleEvent(SDL_Event* e, int id)
                                 initializers_loaded = false;
                                 hyperlanes_loaded = false;
                             }
-                            SDL_Delay(80);
-                            mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG;
+                            GE.click_effect_remove(id);
                             break;
 
 
@@ -592,8 +1266,7 @@ void LButton::handleEvent(SDL_Event* e, int id)
                             SteamAPI_Init();
                             SteamAPI_RestartAppIfNecessary(281990);
                             //std::cout << "Exit" << std::endl;
-                            SDL_Delay(80);
-                            mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG;
+                            GE.click_effect_remove(id);
                             break;
 
                             //Exit
@@ -602,8 +1275,7 @@ void LButton::handleEvent(SDL_Event* e, int id)
                             SaveRandomSettings();
                             close();
                             std::exit(0);
-                            SDL_Delay(80);
-                            mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG;
+                            GE.click_effect_remove(id);
                             break;
 
                             // Generate Hyperlanes
@@ -615,16 +1287,14 @@ void LButton::handleEvent(SDL_Event* e, int id)
                                     link(0, i);
                                 }
                             }
-                            SDL_Delay(80);
-                            mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG;
+                            GE.click_effect_remove(id);
                             break;
 
                             // Remove Hyperlanes
                         case 16:
                             remove_hyperlanes(0, 0);
                             rerender();
-                            SDL_Delay(80);
-                            mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG;
+                            GE.click_effect_remove(id);
                             break;
 
                             // Redraw Hyperlanes
@@ -638,8 +1308,7 @@ void LButton::handleEvent(SDL_Event* e, int id)
                                 }
                             }
                             rerender();
-                            SDL_Delay(80);
-                            mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG;
+                            GE.click_effect_remove(id);
                             break;
 
                             // Remove in Galaxy
@@ -653,8 +1322,6 @@ void LButton::handleEvent(SDL_Event* e, int id)
                                 CSHM.edit_galaxies = false;
                             }
                             rerender();
-                            SDL_Delay(80);
-                            mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG;
                             break;
 
                             // Redraw in Galaxy
@@ -668,8 +1335,6 @@ void LButton::handleEvent(SDL_Event* e, int id)
                                 CSHM.edit_galaxies = false;
                             }
                             rerender();
-                            SDL_Delay(80);
-                            mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG;
                             break;
 
                             // Edit Selected Galaxy
@@ -684,8 +1349,6 @@ void LButton::handleEvent(SDL_Event* e, int id)
                                 CSHM.edit_galaxies = true;
                             }
                             rerender();
-                            SDL_Delay(80);
-                            mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG;
                             break;
 
 
@@ -700,8 +1363,6 @@ void LButton::handleEvent(SDL_Event* e, int id)
                                 CSHM.edit_galaxies = false;
                             }
                             rerender();
-                            SDL_Delay(80);
-                            mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG;
                             break;
 
 
@@ -716,8 +1377,6 @@ void LButton::handleEvent(SDL_Event* e, int id)
                                 CSHM.edit_galaxies = false;
                             }
                             rerender();
-                            SDL_Delay(80);
-                            mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG;
                             break;
 
                             // Edit steam folder patch
@@ -725,17 +1384,20 @@ void LButton::handleEvent(SDL_Event* e, int id)
                             edit_patch = true;
                             firstrunsettings();
                             edit_patch = false;
-                            SDL_Delay(80);
-                            mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG;
+                            GE.click_effect_remove(id);
                             break;
 
+                            // Generate Initializers
+                        case 24:
+                            Classinit.initilizers();
+                            initializers_loaded = true;
+                            break;
                             // Clear Map
                         case 28:
                             alpha1 = 0,
                             clear_map();
                             rerender();
-                            SDL_Delay(80);
-                            mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG;
+                            GE.click_effect_remove(id);
                             break;
 
                             // Random
@@ -744,8 +1406,7 @@ void LButton::handleEvent(SDL_Event* e, int id)
                             edit = false;
                             draw_galaxy();
                             random_generator();
-                            SDL_Delay(80);
-                            mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG;
+                            GE.click_effect_remove(id);
                             break;
 
                             //Choose Elipse Shape
@@ -756,8 +1417,7 @@ void LButton::handleEvent(SDL_Event* e, int id)
                             DisableOtherWindows();
                             rerender();
                             add_galaxy_elipse();
-                            SDL_Delay(80);
-                            mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG;
+                            GE.click_effect_remove(id);
                             break;
 
 
@@ -769,14 +1429,12 @@ void LButton::handleEvent(SDL_Event* e, int id)
                             DisableOtherWindows();
                             rerender();
                             add_galaxy_spiral();
-                            SDL_Delay(80);
-                            mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG;
+                            GE.click_effect_remove(id);
                             break;
 
                         case 39:
                             LoadRandomDefaultSettings();
-                            SDL_Delay(80);
-                            mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG;
+                            GE.click_effect_remove(id);
                             break;
 
 
@@ -866,6 +1524,18 @@ void LButton::handleEvent(SDL_Event* e, int id)
                             else
                             {
                                 show_hyperlanes = false;
+                                rerender();
+                            }
+                            break;
+                        case 63:
+                            if (show_initializers == false)
+                            {
+                                show_initializers = true;
+                                rerender();
+                            }
+                            else
+                            {
+                                show_initializers = false;
                                 rerender();
                             }
                             break;
@@ -960,115 +1630,115 @@ void LButton::handleEvent(SDL_Event* e, int id)
                             // SIze from
                         case 113:
                             CRS.size_from_edited = true;
-                            GE.text_input(center_width + 1403,center_height + 272, 113);
+                            GE.text_input(center_width + 1403,center_height + 270, 113);
                             CRS.size_from_edited = false;
                             break;
                             // Size to
                         case 114:
                             CRS.size_to_edited = true;
-                            GE.text_input(center_width + 1513, center_height + 272, 114);
+                            GE.text_input(center_width + 1513, center_height + 270, 114);
                             CRS.size_to_edited = false;
                             break;
                             // Hyperlanes from
                         case 115:
                             CRS.hyperlanes_max_length_from_edited = true;
-                            GE.text_input(center_width + 1560, center_height + 312, 115);
+                            GE.text_input(center_width + 1560, center_height + 310, 115);
                             CRS.hyperlanes_max_length_from_edited = false;
                             break;
                             // Hyperlanes to
                         case 116:
                             CRS.hyperlanes_max_length_to_edited = true;
-                            GE.text_input(center_width + 1680, center_height + 312, 116);
+                            GE.text_input(center_width + 1680, center_height + 310, 116);
                             CRS.hyperlanes_max_length_to_edited = false;
                             break;
                             // Circle stars from
                         case 117:
                             CRS.circle_stars_from_edited = true;
-                            GE.text_input(center_width + 1500, center_height + 392, 117);
+                            GE.text_input(center_width + 1500, center_height + 390, 117);
                             CRS.circle_stars_from_edited = false;
                             break;
                             // Circle stars to
                         case 118:
                             CRS.circle_stars_to_edited = true;
-                            GE.text_input(center_width + 1580, center_height + 392, 118);
+                            GE.text_input(center_width + 1580, center_height + 390, 118);
                             CRS.circle_stars_to_edited = false;
                             break;
                             // SPiral stars from
                         case 119:
                             CRS.spiral_stars_from_edited = true;
-                            GE.text_input(center_width + 1500, center_height + 482, 119);
+                            GE.text_input(center_width + 1500, center_height + 480, 119);
                             CRS.spiral_stars_from_edited = false;
                             break;
                             // SPiral stars to
                         case 120:
                             CRS.spiral_stars_to_edited = true;
-                            GE.text_input(center_width + 1580, center_height + 482, 120);
+                            GE.text_input(center_width + 1580, center_height + 480, 120);
                             CRS.spiral_stars_to_edited = false;
                             break;
                             // Square factor
                         case 121:
                             CRS.square_factor_edited = true;
-                            GE.text_input(center_width + 1435, center_height + 522, 121);
+                            GE.text_input(center_width + 1435, center_height + 520, 121);
                             CRS.square_factor_edited = false;
                             break;
                             // Arm max from
                         case 122:
                             CRS.arm_max_width_from_edited = true;
-                            GE.text_input(center_width + 1440, center_height + 562, 122);
+                            GE.text_input(center_width + 1440, center_height + 560, 122);
                             CRS.arm_max_width_from_edited = false;
                             break;
                             // Arm max to
                         case 123:
                             CRS.arm_max_width_to_edited = true;
-                            GE.text_input(center_width + 1580, center_height + 562, 123);
+                            GE.text_input(center_width + 1580, center_height + 560, 123);
                             CRS.arm_max_width_to_edited = false;
                             break;
                             // Arm random from
                         case 124:
                             CRS.arm_random_width_from_edited = true;
-                            GE.text_input(center_width + 1495, center_height + 602, 124);
+                            GE.text_input(center_width + 1505, center_height + 600, 124);
                             CRS.arm_random_width_from_edited = false;
                             break;
                             // Arm random to
                         case 125:
                             CRS.arm_random_width_to_edited = true;
-                            GE.text_input(center_width + 1600, center_height + 602, 125);
+                            GE.text_input(center_width + 1600, center_height + 600, 125);
                             CRS.arm_random_width_to_edited = false;
                             break;
                             // Rotation factor
                         case 126:
                             CRS.rotation_factor_edited = true;
-                            GE.text_input(center_width + 1454, center_height + 642, 126);
+                            GE.text_input(center_width + 1454, center_height + 640, 126);
                             CRS.rotation_factor_edited = false;
                             break;
                             // Arm amount from
                         case 128:
                             CRS.arm_amount_from_edited = true;
-                            GE.text_input(center_width + 1417, center_height + 682, 128);
+                            GE.text_input(center_width + 1417, center_height + 680, 128);
                             CRS.arm_amount_from_edited = false;
                             break;
                             // Arm amount to
                         case 129:
                             CRS.arm_amount_to_edited = true;
-                            GE.text_input(center_width + 1580, center_height + 682, 129);
+                            GE.text_input(center_width + 1580, center_height + 680, 129);
                             CRS.arm_amount_to_edited = false;
                             break;
                             // Size ratio
                         case 130:
                             CRS.size_ratio_edited = true;
-                            GE.text_input(center_width + 1380, center_height + 782, 130);
+                            GE.text_input(center_width + 1380, center_height + 780, 130);
                             CRS.size_ratio_edited = false;
                             break;
                             // Arm ratio
                         case 131:
                             CRS.arm_ratio_edited = true;
-                            GE.text_input(center_width + 1685, center_height + 782, 131);
+                            GE.text_input(center_width + 1685, center_height + 780, 131);
                             CRS.arm_ratio_edited = false;
                             break;
                             // Arm width ratio
                         case 132:
                             CRS.arm_width_ratio_edited = true;
-                            GE.text_input(center_width + 1460, center_height + 822, 132);
+                            GE.text_input(center_width + 1460, center_height + 820, 132);
                             CRS.arm_width_ratio_edited = false;
                             break;
                         case 140:
@@ -1167,40 +1837,46 @@ void LButton::handleEvent(SDL_Event* e, int id)
                     }
                     if ((id >= 150) && (id < 200))
                     {
-                        current_gal_id = id - 150;
-                        if (CSHM.remove_galaxies == true)
+                        if (!C_S.scrolling)
                         {
-                            remove_galaxy_full(current_gal_id);
-                            std::cout << "-----" << std::endl;
-                            rerender();
-                        }
-                        else if (CSHM.redraw_galaxies == true)
-                        {
-                            redraw_galaxy();
-                            rerender();
-                        }
-                        else if (CSHM.remove_hyperlanes == true)
-                        {
-                            remove_hyperlanes(1, current_gal_id);
-                            rerender();
-                        }
-                        else if (CSHM.redraw_hyperlanes == true)
-                        {
-                            if (v_galaxy_generation[current_gal_id].hyperlanes_generated)
+                            current_gal_id = id - 150;
+                            if (CSHM.remove_galaxies == true)
                             {
-                                remove_hyperlanes(1, current_gal_id);
+                                gButtons.erase(gButtons.begin() + id);
+                                remove_galaxy_full(current_gal_id);
+                                rerender();
                             }
-                            link(1, current_gal_id);
-                            rerender();
-                        }
-                        else if (CSHM.edit_galaxies == true)
-                        {
-                            if (current_galaxies_window == true)
+                            else if (CSHM.redraw_galaxies == true)
                             {
-                                current_galaxies_window = false;
+                                redraw_galaxy();
+                                rerender();
                             }
-                            CSHM.edit_galaxies_loop = true;
-                            rerender();
+                            else if (CSHM.remove_hyperlanes == true)
+                            {
+                                if (v_galaxy_generation[current_gal_id].hyperlanes_generated)
+                                {
+                                    remove_hyperlanes(1, current_gal_id);
+                                }
+                                rerender();
+                            }
+                            else if (CSHM.redraw_hyperlanes == true)
+                            {
+                                if (v_galaxy_generation[current_gal_id].hyperlanes_generated)
+                                {
+                                    remove_hyperlanes(1, current_gal_id);
+                                }
+                                link(1, current_gal_id);
+                                rerender();
+                            }
+                            else if (CSHM.edit_galaxies == true)
+                            {
+                                if (current_galaxies_window == true)
+                                {
+                                    current_galaxies_window = false;
+                                }
+                                CSHM.edit_galaxies_loop = true;
+                                rerender();
+                            }
                         }
                     }
                 }
@@ -1271,9 +1947,35 @@ void LButton::handleEvent(SDL_Event* e, int id)
                         break;
                     }
                 break;
+            case SDL_MOUSEWHEEL:
+                if ((x < 1200) && (y < 1080))
+                {
+                    if (e->wheel.y > 0)
+                    {
+                        DisableOtherWindows();
+                        C_S.scrolling = true;
+                        SDL_GetMouseState(&C_S.donex, &C_S.doney);
+                        C_S.done = true;
+                    }
+                    if (e->wheel.y < 0)
+                    {
+                        C_S.scrolling = false;
+                        Det_Gen.false_initializers();
+                        Det_Gen.false_all_bools();
+                        for (int i = 0; i < D_S_E_Buttons.size(); ++i)
+                        {
+                            D_S_E_Buttons[i].mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG;
+                        }
+                        C_S.box_open = false;
+                        GE.system_box_x = -1000;
+                        GE.system_box_y = -1000;
+                        C_S.done = false;
+                        current_galaxies_window = true;
+                    }
+                }
+                break;
             }
         }
-    }
 }
 // Different Windows/Surfaces ------------------------------------------------
 void SaveLoadExit()
@@ -1392,7 +2094,7 @@ void RandomSettings()
     GE.line(1223, 595, 1897, 595);
 
     GE.text_with_button(124, "Arm random width:", 1240, 600);
-    GE.text_with_button(125, "to:", 1560, 600);
+    GE.text_with_button(125, "to:", 1580, 600);
     GE.line(1223, 635, 1897, 635);
 
     GE.text_with_button(126, "Rotation factor:", 1240, 640);
@@ -1430,12 +2132,42 @@ void PatchSettings()
 
 void draw_galaxy()
 {
-    SDL_SetRenderDrawColor(gRenderer, 255, 255, 0, 0);
     for (int i = 0; i < v_system_data.size(); i++)
     {
         for (int j = 0; j < v_system_data[i].size(); j++)
         {
+            SDL_SetRenderDrawColor(gRenderer, 255, 255, 0, 0);
             SDL_RenderDrawPoint(gRenderer, center_width + (v_system_data[i][j].gal_x + 550), center_height + (v_system_data[i][j].gal_y + 550));
+            if (show_initializers)
+            {
+                if (v_system_data[i][j].inicjalizer)
+                {
+                    if (v_system_data[i][j].init_type == 1)
+                    {
+                        GE.render_color_box(255, 170, 170, (v_system_data[i][j].gal_x + 550), (v_system_data[i][j].gal_y + 550), 3, 3);
+                    }
+                    else if (v_system_data[i][j].init_type == 2)
+                    {
+                        GE.render_color_box(255, 0, 255, (v_system_data[i][j].gal_x + 550), (v_system_data[i][j].gal_y + 550), 3, 3);
+                    }
+                    else if (v_system_data[i][j].init_type == 3)
+                    {
+                        GE.render_color_box(255, 81, 0, (v_system_data[i][j].gal_x + 550), (v_system_data[i][j].gal_y + 550), 3, 3);
+                    }
+                    else if (v_system_data[i][j].init_type == 4)
+                    {
+                        GE.render_color_box(0, 255, 255, (v_system_data[i][j].gal_x + 550), (v_system_data[i][j].gal_y + 550), 3, 3);
+                    }
+                    else if (v_system_data[i][j].init_type == 5)
+                    {
+                        GE.render_color_box(255, 0, 0, (v_system_data[i][j].gal_x + 550), (v_system_data[i][j].gal_y + 550), 3, 3);
+                    }
+                    else if (v_system_data[i][j].init_type == 10)
+                    {
+                        GE.render_color_box(0, 255, 0, (v_system_data[i][j].gal_x + 550), (v_system_data[i][j].gal_y + 550), 3, 3);
+                    }
+                }
+            }
         }
     }
     if (v_system_data.size() > 0)
@@ -1608,6 +2340,10 @@ void current_galaxies_buttons()
     GE.render_button_with_text(0, 18, 1660, 590, "G. Redraw", 1680, 595);
     GE.render_button_with_text(0, 19, 1660, 650, "G. Remove", 1677, 655);
     GE.render_checkbox(62, 1540, 605, 30, 30);
+    GE.text_render_v2("Initializers", 1500, 780);
+    GE.render_button_with_text_dynamic(0, 24, 1260, 830, 300, 45, "Generate Initializers", 1277, 835);
+    GE.text_render_v2("Show", 1280, 890);
+    GE.render_checkbox(63, 1360, 890, 30, 30);
 }
 
 
@@ -1635,7 +2371,7 @@ void edit_button(int mode, int gal_id)
             GE.text_with_button(147, "Random Width:", 1240, 440);
             GE.text_with_button(148, "Arm Rotation:", 1240, 470);
         }
-        std::cout << "Edit entered " << std::endl;
+        //std::cout << "Edit entered " << std::endl;
 }
 
 void edit_circle(int mode, int gal_id)
@@ -1674,6 +2410,7 @@ void remove_galaxy(int gal_id)
     {
         sys_sum -= v_system_data[gal_id].size();
         v_system_data[gal_id].clear();
+        SystemButtons[gal_id].clear();
         if (v_hyperlanes.size() > 0)
         {
             if (v_hyperlanes[gal_id].size() > 0)
@@ -1691,6 +2428,7 @@ void remove_galaxy_full(int gal_id)
     {
         sys_sum -= v_system_data[gal_id].size();
         v_system_data.erase(v_system_data.begin() + gal_id);
+        SystemButtons.erase(SystemButtons.begin() + gal_id);
         v_galaxy_generation.erase(v_galaxy_generation.begin() + gal_id);
         if (v_hyperlanes.size() > 0)
         {
@@ -1722,6 +2460,14 @@ void remove_hyperlanes(int mode, int gal_id)
                 }
                 v_galaxy_generation[i].hyperlanes_generated = false;
             }
+            for (int i = 0; i < v_galaxy_generation.size(); i++)
+            {
+                v_hyperlanes.emplace_back();
+                for (int j = 0; j < v_system_data[i].size(); j++)
+                {
+                    v_hyperlanes[i].emplace_back();
+                }
+            }
         }
         else if (mode == 1)
         {
@@ -1731,6 +2477,10 @@ void remove_hyperlanes(int mode, int gal_id)
                 v_system_data[gal_id][j].blocked = false;
                 v_system_data[gal_id][j].con = 0;
             }
+            for (int j = 0; j < v_system_data[gal_id].size(); j++)
+            {
+                v_hyperlanes[gal_id].emplace_back();
+            }
             v_galaxy_generation[gal_id].hyperlanes_generated = false;
         }
     }
@@ -1738,12 +2488,17 @@ void remove_hyperlanes(int mode, int gal_id)
 
 void clear_map()
 {
+    for (int i = 0; i < galaxies_am; ++i)
+    {
+        gButtons.erase(gButtons.begin() + 150 + i);
+    }
     v_system_data.clear();
     v_system_data_copy.clear();
     v_galaxy_generation.clear();
     clear_hyperlanes_data();
     v_hyperlanes.clear();
     v_hyperlanes_copy.clear();
+    SystemButtons.clear();
 
     galaxies_am = 0;
     sys_sum = 0;
@@ -1754,6 +2509,7 @@ void clear_map()
     initializers_loaded = false;
     hyperlanes_loaded = false;
     mult = 0;
+    Det_Gen.player_am = 0;
 }
 
 void redraw_galaxy()
@@ -1796,6 +2552,13 @@ int main(int argc, char** args) {
         // End the program
         return 1;
     }
+    /*
+    File_Operation F_O;
+    File_Operation* F_O_ptr;
+    F_O_ptr = &F_O;
+    */
+
+
     HideConsole();
     debug();
     SDL_DisplayMode DM;
@@ -1827,22 +2590,49 @@ int main(int argc, char** args) {
                 firstrunsettings();
                 SaveSettings();
             }
+            if (!local_maps_created)
+            {
+                F_O.create_folder();
+            }
             RandomDefaultSettings();
             LoadRandomDefaultSettings();
             LoadRandomSettings();
             while(!quit)
             {
+                SDL_Delay(33);
                 //Handle events on queue ASSAD
-                while (SDL_WaitEvent(&e) != 0)
+                while(SDL_PollEvent(&e))
                 {
-                    SDL_Delay(10);
                     //Handle Keyboard events 
-                    GE.handleKeyboardEvent(e);
+                    if (e.type == SDL_KEYDOWN)
+                    {
+                        GE.handleKeyboardEvent(e);
+                    }
+
                     //Handle button events
                     for (int i = 0; i < gButtons.size(); ++i)
                     {
-                        gButtons[i].handleEvent(&e, i);
-                        //mButtons[i].handleEvent(&e, i + 1000);
+                        if ((e.type == SDL_MOUSEBUTTONDOWN || e.type == SDL_MOUSEBUTTONUP || e.type == SDL_MOUSEWHEEL) && pathsaved == true)
+                        {
+                            gButtons[i].handleEvent(&e, i);
+                        }
+                    }
+                    for (int i = 0; i < SystemButtons.size(); ++i)
+                    {
+                        for (int j = 0; j < SystemButtons[i].size(); ++j)
+                        {
+                            if (e.type == SDL_MOUSEBUTTONDOWN || e.type == SDL_MOUSEBUTTONUP)
+                            {
+                                SystemButtons[i][j].handleSystemButtonEvent(e, i, j);
+                            }
+                        }
+                    }
+                    for (int i = 0; i < D_S_E_Buttons.size(); i++)
+                    {
+                        if ((e.type == SDL_MOUSEBUTTONDOWN) || (e.type == SDL_MOUSEBUTTONUP))
+                        {
+                            D_S_E_Buttons[i].handle_D_S_E_ButtonEvent(e, i);
+                        }
                     }
                     rerender();
                 }

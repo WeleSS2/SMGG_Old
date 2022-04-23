@@ -29,6 +29,8 @@ bool galaxy_canceled = false;
 
 bool export_mode_multi = false;
 bool show_hyperlanes = false;
+bool show_initializers = false;
+bool local_maps_created = false;
 
 std::string appdata = getenv("APPDATA");
 std::string constpath = appdata + "\\SMGGLocal";
@@ -118,15 +120,6 @@ float armOffsetMax;
 float rotationFactor;
 float randomOffsetXY;
 
-struct temp_gal
-{
-    int con_max;
-    int con;
-    int gal_id;
-    int gal_x;
-    int gal_y;
-};
-std::vector<temp_gal> v_temp;
 // Temp Over
 struct dist_id {
     int distance,
@@ -139,7 +132,7 @@ struct hyperlanes {
     int from;
     int to;
 };
-std::vector <std::vector <struct hyperlanes>> v_hyperlanes;
+std::vector <std::vector < std::vector <struct hyperlanes> > > v_hyperlanes;
 std::vector <hyperlanes> v_hyperlanes_copy;
 
 struct s_wave {
@@ -156,11 +149,13 @@ struct system_data {
     bool inicjalizer = false;
     int init_type = 0;
     int init_number = 0;
+    int player_id = 0;
     bool exported = false;
     bool blocked = false;
 };
 std::vector <std::vector <struct system_data>> v_system_data;
 std::vector <system_data> v_system_data_copy;
+system_data move_holder;
 
 std::string temp_star, temp_gsize, temp_cen_posX, temp_cen_posY, temp_max_hyp_dis;
 struct galaxy_generation {
@@ -182,7 +177,8 @@ struct galaxy_generation {
         i_numArms,
         empire_am,
         fallen_am,
-        maruder_am;
+        maruder_am,
+        players_am = 0;
     float   f_armOffsetMax,
         f_rotationFactor,
         f_randomOffsetXY,

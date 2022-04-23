@@ -32,7 +32,14 @@ void generate_spiral(int gal_id)
     //std::cout << "Spiral entered" << std::endl;
     if (edit == false)
     {
+        SystemButtons.emplace_back();
         v_system_data.emplace_back();
+        
+    }
+    v_hyperlanes.emplace_back();
+    for (int i = 0; i < v_galaxy_generation[gal_id].i_star; ++i)
+    {
+        v_hyperlanes[gal_id].emplace_back();
     }
     generate_center(gal_id);
     numArms = v_galaxy_generation[gal_id].i_numArms;
@@ -192,6 +199,7 @@ void generate_spiral(int gal_id)
         {
             // Now we can assign xy coords.
             int con_m = rand() % max_hyperlane_am + min_hyperlane_am;
+            SystemButtons[gal_id].emplace_back();
             v_system_data[gal_id].emplace_back();
             v_system_data[gal_id][i].gal_id = i;
             v_system_data[gal_id][i].con_max = con_m;
@@ -216,7 +224,13 @@ void generate_elipse(int gal_id)
 {
     if (edit == false)
     {
+        SystemButtons.emplace_back();
         v_system_data.emplace_back();
+    }
+    v_hyperlanes.emplace_back();
+    for (int i = 0; i < v_galaxy_generation[gal_id].i_star; ++i)
+    {
+        v_hyperlanes[gal_id].emplace_back();
     }
     generate_center(gal_id);
     int border = 500, temp_edit = 0;
@@ -297,6 +311,7 @@ void generate_elipse(int gal_id)
             break;
         }
         int con_m = rand() % max_hyperlane_am + min_hyperlane_am;
+        SystemButtons[gal_id].emplace_back();
         v_system_data[gal_id].emplace_back();
         v_system_data[gal_id][i].gal_id = i;
         v_system_data[gal_id][i].con_max = con_m;
@@ -316,6 +331,7 @@ void generate_center(int gal_id)
 {
     int con_m = rand() % max_hyperlane_am + min_hyperlane_am;
     v_system_data[gal_id].emplace_back();
+    SystemButtons[gal_id].emplace_back();
     v_system_data[gal_id][0].gal_id = 0;
     v_system_data[gal_id][0].con_max = con_m;
     v_system_data[gal_id][0].con = 0;
@@ -335,8 +351,7 @@ void set_center(int gal_id)
 // Stellaris like linking (Closest + 1 random)
 void link(int mode, int gal_id)
 {
-    v_hyperlanes.emplace_back();
-    link_wave(mode, gal_id, -10);
+    link_wave(mode, gal_id, 0);
     clear_hyperlanes_data();
     check_systems(mode, gal_id);
     clear_hyperlanes_data();
@@ -346,13 +361,6 @@ void link(int mode, int gal_id)
 void link_wave(int mode, int gal_id, int random_sys)
 {
     v_dist_id.clear();
-    bool not_check = false;
-    if (random_sys == -10)
-    {
-        not_check = true;
-        random_sys = 0;
-        
-    }
     int a = 0;
     for (int j = 0; j < v_galaxy_generation[gal_id].i_star; j++)
     {
@@ -360,7 +368,7 @@ void link_wave(int mode, int gal_id, int random_sys)
         {
             if ((v_system_data[gal_id][random_sys].gal_y - v_system_data[gal_id][j].gal_y < v_galaxy_generation[gal_id].i_max_hyp_dis) && (v_system_data[gal_id][random_sys].gal_y - v_system_data[gal_id][j].gal_y > -v_galaxy_generation[gal_id].i_max_hyp_dis) && (v_system_data[gal_id][random_sys].gal_y - v_system_data[gal_id][j].gal_y != 0))
             {
-                if (v_system_data[gal_id][j].con < v_system_data[gal_id][j].con_max)
+                if (v_system_data[gal_id][j].con < v_system_data[gal_id][j].con_max * 2)
                 {
                     int t_dist = sqrt(pow(v_system_data[gal_id][j].gal_x - v_system_data[gal_id][random_sys].gal_x, 2) + pow(v_system_data[gal_id][j].gal_y - v_system_data[gal_id][random_sys].gal_y, 2));
                     v_dist_id.emplace_back();
@@ -380,7 +388,7 @@ void link_wave(int mode, int gal_id, int random_sys)
             {
                 if ((v_system_data[gal_id][random_sys].gal_y - v_system_data[gal_id][j].gal_y < v_galaxy_generation[gal_id].i_max_hyp_dis * 2) && (v_system_data[gal_id][random_sys].gal_y - v_system_data[gal_id][j].gal_y > -v_galaxy_generation[gal_id].i_max_hyp_dis * 2) && (v_system_data[gal_id][random_sys].gal_y - v_system_data[gal_id][j].gal_y != 0))
                 {
-                    if (v_system_data[gal_id][j].con < v_system_data[gal_id][j].con_max)
+                    if (v_system_data[gal_id][j].con < v_system_data[gal_id][j].con_max * 2)
                     {
                         int t_dist = sqrt(pow(v_system_data[gal_id][j].gal_x - v_system_data[gal_id][random_sys].gal_x, 2) + pow(v_system_data[gal_id][j].gal_y - v_system_data[gal_id][random_sys].gal_y, 2));
                         v_dist_id.emplace_back();
@@ -400,20 +408,21 @@ void link_wave(int mode, int gal_id, int random_sys)
         {
             v_dist_id.erase(v_dist_id.begin() + rand() % v_system_data[gal_id][random_sys].con_max);
         }
+        else if (v_dist_id.size() > 1)
+        {
+            v_dist_id.erase(v_dist_id.begin() + 1);
+        }
     }
     wave.clear();
 
     //std::cout << "Work correctly " << std::endl;
-    s_wave wave_push;
-    wave_push.id = random_sys;
-    wave.push_back(wave_push);
 
     for (int i = 0; i < v_system_data[gal_id][random_sys].con_max; i++)
     {
         hyperlanes pushing;
         pushing.from = random_sys;
         pushing.to = v_dist_id[i].to;
-        v_hyperlanes[gal_id].push_back(pushing);
+        v_hyperlanes[gal_id][random_sys].push_back(pushing);
 
         s_wave wave_push;
         wave_push.id = v_dist_id[i].to;
@@ -431,7 +440,7 @@ void link_wave(int mode, int gal_id, int random_sys)
             //std::cout << wave[i].id << "    " << wave.size() <<  std::endl;
         }
         v_dist_id.clear();
-        link_wave_sub(mode, gal_id, 1);
+        link_wave_sub(mode, gal_id, 0);
     }
 }
 
@@ -449,13 +458,13 @@ void link_wave_sub(int mode, int gal_id, int from)
         //std::cout << v_system_data[wave[i].id].gal_id << std::endl;
         for (int j = 0; j < v_galaxy_generation[gal_id].i_star; j++)
         {
-            if ((v_system_data[gal_id][wave[i].id].blocked == false) && (v_system_data[gal_id][j].blocked == false))
+            if ((v_system_data[gal_id][wave[i].id].blocked == false))
             {
                 if ((v_system_data[gal_id][wave[i].id].gal_x - v_system_data[gal_id][j].gal_x < v_galaxy_generation[gal_id].i_max_hyp_dis) && (v_system_data[gal_id][wave[i].id].gal_x - v_system_data[gal_id][j].gal_x > -v_galaxy_generation[gal_id].i_max_hyp_dis) && (v_system_data[gal_id][wave[i].id].gal_x - v_system_data[gal_id][j].gal_x != 0))
                 {
                     if ((v_system_data[gal_id][wave[i].id].gal_y - v_system_data[gal_id][j].gal_y < v_galaxy_generation[gal_id].i_max_hyp_dis) && (v_system_data[gal_id][wave[i].id].gal_y - v_system_data[gal_id][j].gal_y > -v_galaxy_generation[gal_id].i_max_hyp_dis) && (v_system_data[gal_id][wave[i].id].gal_y - v_system_data[gal_id][j].gal_y != 0))
                     {
-                        if (v_system_data[gal_id][j].con < v_system_data[gal_id][j].con_max)
+                        if (v_system_data[gal_id][j].con < v_system_data[gal_id][j].con_max * 2)
                         {
                             int t_dist = sqrt(pow(v_system_data[gal_id][j].gal_x - v_system_data[gal_id][wave[i].id].gal_x, 2) + pow(v_system_data[gal_id][j].gal_y - v_system_data[gal_id][wave[i].id].gal_y, 2));
                             v_dist_id.emplace_back();
@@ -472,13 +481,13 @@ void link_wave_sub(int mode, int gal_id, int from)
         {
             for (int j = 0; j < v_galaxy_generation[gal_id].i_star; j++)
             {
-                if ((v_system_data[gal_id][wave[i].id].blocked == false) && (v_system_data[gal_id][j].blocked == false))
+                if ((v_system_data[gal_id][wave[i].id].blocked == false))
                 {
                     if ((v_system_data[gal_id][wave[i].id].gal_x - v_system_data[gal_id][j].gal_x < v_galaxy_generation[gal_id].i_max_hyp_dis) && (v_system_data[gal_id][wave[i].id].gal_x - v_system_data[gal_id][j].gal_x > -v_galaxy_generation[gal_id].i_max_hyp_dis) && (v_system_data[gal_id][wave[i].id].gal_x - v_system_data[gal_id][j].gal_x != 0))
                     {
                         if ((v_system_data[gal_id][wave[i].id].gal_y - v_system_data[gal_id][j].gal_y < v_galaxy_generation[gal_id].i_max_hyp_dis) && (v_system_data[gal_id][wave[i].id].gal_y - v_system_data[gal_id][j].gal_y > -v_galaxy_generation[gal_id].i_max_hyp_dis) && (v_system_data[gal_id][wave[i].id].gal_y - v_system_data[gal_id][j].gal_y != 0))
                         {
-                            if (v_system_data[gal_id][j].con < v_system_data[gal_id][j].con_max)
+                            if (v_system_data[gal_id][j].con < v_system_data[gal_id][j].con_max * 2)
                             {
                                 int t_dist = sqrt(pow(v_system_data[gal_id][j].gal_x - v_system_data[gal_id][wave[i].id].gal_x, 2) + pow(v_system_data[gal_id][j].gal_y - v_system_data[gal_id][wave[i].id].gal_y, 2));
                                 v_dist_id.emplace_back();
@@ -498,6 +507,10 @@ void link_wave_sub(int mode, int gal_id, int from)
             if (v_dist_id.size() > v_system_data[gal_id][wave[i].id].con_max)
             {
                 v_dist_id.erase(v_dist_id.begin() + rand() % v_system_data[gal_id][wave[i].id].con_max);
+            }
+            else if (v_dist_id.size() > 1)
+            {
+                v_dist_id.erase(v_dist_id.begin() + 1);
             }
         }
         //std::cout << " Now save " << std::endl;
@@ -549,12 +562,9 @@ int link_wave_check(int mode, int gal_id, int mult, int i)
                 v_dist_id.erase(v_dist_id.begin() + rand() % v_system_data[gal_id][i].con_max);
             }
         }
-    }
-    else
-    {
-        if (v_dist_id.size() > 1)
+        else if (v_dist_id.size() > 1)
         {
-            v_dist_id.erase(v_dist_id.begin() + 1, v_dist_id.begin() + v_dist_id.size());
+            v_dist_id.erase(v_dist_id.begin() + 1);
         }
     }
     if (found == true)
@@ -578,18 +588,15 @@ void link_wave_save(int mode, int gal_id, int i)
     {
         if (v_system_data[gal_id][i].con_max < v_dist_id.size())
         {
+            //std::cout << i << std::endl;
             int z = 0;
             while (v_system_data[gal_id][i].con <= v_system_data[gal_id][i].con_max)
             {
                 int t_dist = sqrt(pow(v_system_data[gal_id][i].gal_x - v_system_data[gal_id][v_dist_id[z].to].gal_x, 2) + pow(v_system_data[gal_id][i].gal_y - v_system_data[gal_id][v_dist_id[z].to].gal_y, 2));
-                if (t_dist > 50)
-                {
-                    std::cout << "Distance is above 100!" << std::endl;
-                }
                     hyperlanes pushing;
                     pushing.from = i;
                     pushing.to = v_dist_id[z].to;
-                    v_hyperlanes[gal_id].push_back(pushing);
+                    v_hyperlanes[gal_id][i].push_back(pushing);
 
                     s_wave wave_push;
                     wave_push.id = v_dist_id[z].to;
@@ -602,25 +609,22 @@ void link_wave_save(int mode, int gal_id, int i)
                     {
                         v_system_data[gal_id][v_dist_id[z].to].blocked = true;
                     }
-
-                    mult++;
-                    z++;
-                //std::cout << "Error " << z << std::endl;
+                //std::cout << "Error ZZZZ  " << z << "  " << i << "  " << v_dist_id[z].to << std::endl;
+                //std::cout << "Error " << z << "  " << v_hyperlanes[gal_id][i][z].from << "  " << v_hyperlanes[gal_id][i][z].to << std::endl;
+                mult++;
+                z++;
             }
         }
         else
         {
+            //std::cout << i << std::endl;
             for (int z = 0; z < v_dist_id.size(); z++)
             {
                 int t_dist = sqrt(pow(v_system_data[gal_id][i].gal_x - v_system_data[gal_id][v_dist_id[z].to].gal_x, 2) + pow(v_system_data[gal_id][i].gal_y - v_system_data[gal_id][v_dist_id[z].to].gal_y, 2));
-                if (t_dist > 50)
-                {
-                    std::cout << "Distance is above 100!" << std::endl;
-                }
                     hyperlanes pushing;
                     pushing.from = i;
                     pushing.to = v_dist_id[z].to;
-                    v_hyperlanes[gal_id].push_back(pushing);
+                    v_hyperlanes[gal_id][i].push_back(pushing);
 
                     s_wave wave_push;
                     wave_push.id = v_dist_id[z].to;
@@ -635,9 +639,12 @@ void link_wave_save(int mode, int gal_id, int i)
                     }
 
                     mult++;
+                    //std::cout << z << "  " << v_hyperlanes[gal_id][i][z].from << "  " << v_hyperlanes[gal_id][i][z].to << std::endl;
             }
         }
         v_system_data[gal_id][i].blocked = true;
+        //std::cout << v_system_data[gal_id][i].con << std::endl;
+        //std::cout << v_hyperlanes[gal_id][i].size() << std::endl;
     }
 }
 
@@ -670,6 +677,7 @@ void check_systems(int mode, int gal_id)
             if (check == 1)
             {
                 j = 0;
+                v_system_data[gal_id][j].blocked = true;
             }
             //std::cout << v_system_data[j].con << "   " << v_system_data[j].con_max << std::endl;
             //std::cout << j << std::endl;
