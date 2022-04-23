@@ -1,13 +1,13 @@
 #pragma once
 
 
-void osfile(std::string path)
+void osfile(std::string path, std::string name)
 {
     std::ofstream file(path);
     if (file.is_open())
     {
         file << "static_galaxy_scenario = { \n";
-        file << "name = \"MultiGalaxy\" \n";
+        file << "name = \"" + name + "\" \n";
         file << "priority = 10 \n";
         file << "radius = 500 \n";
         file << "num_empires = { min = " + std::to_string(empire_am) + " max = " + std::to_string(empire_am) + " } \n";
@@ -37,7 +37,7 @@ void osfile(std::string path)
             file << "yes \n";
         }
         file << "core_radius = 0 \n";
-        //std::cout << initializers_loaded << "  " << hyperlanes_loaded << std::endl;
+        std::cout << initializers_loaded << "  " << export_mode_multi << std::endl;
         if (!export_mode_multi)
         {
             int id = 0, current_player = 1;
@@ -152,6 +152,9 @@ void osfile(std::string path)
                     case 5:
                         file << "initializer = " << marauder_init_tab[v_system_data[random_gal][export_local].init_number];
                         break;
+                    case 10:
+                        file << "initializer = " << empire_init_tab[v_system_data[random_gal][export_local].init_number] << " spawn_weight = { base = 1 }";
+                        break;
                     case 99:
                         file << "initializer = smgg_central_black_hole";
                         break;
@@ -216,6 +219,9 @@ void osfile(std::string path)
                     break;
                 case 5:
                     file << "initializer = " << marauder_init_tab[v_system_data_copy[i].init_number];
+                    break;
+                case 10:
+                    file << "initializer = " << empire_init_tab[v_system_data_copy[i].init_number] << " spawn_weight = { base = 1 }";
                     break;
                 case 99:
                     file << "initializer = smgg_central_black_hole";
@@ -303,10 +309,9 @@ PWSTR LoadFile() {
                         //std::cout << "Galaxy number before galaxy " << gal_type << std::endl;
                         if (gal_type == 0)
                         {
-                            file >> v_galaxy_generation[i].star >> v_galaxy_generation[i].gsize
+                            file >> v_galaxy_generation[current_gal_id].star >> v_galaxy_generation[i].gsize
                                 >> v_galaxy_generation[i].cen_posX >> v_galaxy_generation[i].cen_posY
                                 >> v_galaxy_generation[i].max_hyp_dis;
-
                             v_galaxy_generation[current_gal_id].i_star = std::stoi(v_galaxy_generation[current_gal_id].star);
                             v_galaxy_generation[current_gal_id].i_gsize = std::stoi(v_galaxy_generation[current_gal_id].gsize);
                             v_galaxy_generation[current_gal_id].i_cen_posX = std::stoi(v_galaxy_generation[current_gal_id].cen_posX);
@@ -315,7 +320,6 @@ PWSTR LoadFile() {
                         }
                         else
                         {
-
                             file >> v_galaxy_generation[i].star >> v_galaxy_generation[i].gsize
                                 >> v_galaxy_generation[i].cen_posX >> v_galaxy_generation[i].cen_posY
                                 >> v_galaxy_generation[i].max_hyp_dis >> v_galaxy_generation[i].numArms
@@ -483,7 +487,7 @@ PWSTR SaveFile() {
                                     << " " << v_galaxy_generation[random_gal].cen_posX << " " << v_galaxy_generation[random_gal].cen_posY
                                     << " " << v_galaxy_generation[random_gal].max_hyp_dis << " " << v_galaxy_generation[random_gal].numArms
                                     << " " << v_galaxy_generation[random_gal].armOffsetMax << " " << v_galaxy_generation[random_gal].rotationFactor
-                                    << " " << v_galaxy_generation[random_gal].randomOffsetXY;
+                                    << " " << v_galaxy_generation[random_gal].randomOffsetXY << " ";
                                 if (mapversion >= 60)
                                 {
                                     file << v_galaxy_generation[random_gal].players_am;
@@ -1256,13 +1260,35 @@ void File_Operation::create_folder()
 
     if (file.is_open())
     {
-        file << pathget + "/workshop/content/281990/2602794523/map/setup_scenarios/sps_multigalaxy.txt" << "    " << "1" << "\n";
+        file << "Path" << " " << "TXTName" << " " << "Name" << " " << "Status" << "\n";
+        file << pathget + "/workshop/content/281990/2602794523/map/setup_scenarios/sps_multigalaxy.txt" << " " << "sps_multigalaxy.txt" << " " << "MultiGalaxy" << " " << "1" << "\n";
     }
     file.close();
 
     std::ifstream src(pathget + "/workshop/content/281990/2602794523/map/setup_scenarios/sps_multigalaxy.txt", std::ios::binary);
     std::ofstream dest(constpath + "/Maps/sps_multigalaxy.txt", std::ios::binary);
     dest << src.rdbuf();
+    local_maps_created = true;
+}
+
+void File_Operation::save_maps()
+{
+    std::string path = constpath + "/Maps/Maps_Data.txt";
+    std::fstream file(path, std::ios_base::out);
+    if (file.is_open())
+    {
+        file << "Path" << " " << "TXTName" << " " << "Name" << " " << "Status" << std::endl;
+        for (int i = 0; i < v_local_maps.size(); ++i)
+        {
+            file << v_local_maps[i].map_steam << " " << v_local_maps[i].map_local << " " << v_local_maps[i].map_name << " " << v_local_maps[i].enabled << std::endl;
+        }
+    }
+    file.close();
+}
+
+void File_Operation::add_map()
+{
+    GE.text_render_v2("Galaxy name", 1020, 200);
 }
 
 void File_Operation::load_files_from_steammod_folder()
@@ -1302,14 +1328,126 @@ void File_Operation::load_files_from_steammod_folder()
     }
 }
 
-void File_Operation::test()
+void File_Operation::map_name()
 {
-    std::string path = constpath + "/Maps/Maps_Data.txt";
-    std::fstream file(path, std::ios_base::out);
+    map_name_bool = true;
+    GE.text_render_v2("Map name: ", 1240, 190);
+    GE.text_input(center_width + 1420, center_height + 190, 30);
+    std::cout << mapname << "--- " << std::endl;
+    std::string temp = mapname;
+    for (int i = 0; i < temp.length(); ++i)
+    {
+        if (temp[i] == 32)
+        {
+            temp.replace(i, 1, "_");
+        }
+    }
+    std::cout << temp << "\n";
+    local_maps pushing;
+    pushing.map_steam = pathget + "/workshop/content/281990/2602794523/map/setup_scenarios/" + temp + ".txt";
+    pushing.map_local = temp + ".txt";
+    pushing.map_name = temp;
+    pushing.map_name_with_spaces = mapname;
+    pushing.enabled = "1";
+    F_O.v_local_maps.push_back(pushing);
+    Map_Checkbox_Buttons.emplace_back();
+    save_maps();
+    osfile(pathget + "/workshop/content/281990/2602794523/map/setup_scenarios/" + temp + ".txt", mapname);
+    osfile(constpath + "/Maps/" + temp + ".txt", mapname);
+}
 
+void File_Operation::overwrite_data_map()
+{
+
+}
+
+void File_Operation::maps_menu()
+{
+    if (!local_maps_created)
+    {
+        create_folder();
+    }
+    if (!mapsloaded)
+    {
+        load_maps();
+    }
+    gModulatedTexture.setAlpha(233);
+    gModulatedTexture.render(center_width + 160, center_height + 120, 1660, 840);
+    GE.text_render_v2("Maps", 900, 130);
+    GE.text_render_v2("Name", 300, 165);
+    GE.text_render_v2("Status", 500, 165);
+    GE.render_button_with_text(0, 27, 860, 200, "Save As", 890, 204);
+    if (F_O.v_local_maps.size() > 0)
+    {
+        if (F_O.v_local_maps.size() < 15)
+        {
+            for (int i = 0; i < F_O.v_local_maps.size(); ++i)
+            {
+                GE.text_render_v2(F_O.v_local_maps[i].map_name_with_spaces, 240, 210 + (45 * i) - (F_O.top_showed * 45));
+                if (F_O.v_local_maps[i].enabled)
+                {
+                    GE.render_checkbox_v2(2, i, 530, 210 + (45 * i) - (F_O.top_showed * 45), 35, 35);
+                    GE.render_color_box(0, 255, 0, 530, 210 + (45 * i) - (F_O.top_showed * 45), 20, 20);
+                }
+                else
+                {
+                    GE.render_checkbox_v2(2, i, 530, 210 + (45 * i) - (F_O.top_showed * 45), 35, 35);
+                    GE.render_color_box(255, 0, 0, 530, 210 + (45 * i) - (F_O.top_showed * 45), 20, 20);
+                }
+            }
+        }
+        else
+        {
+            for (int i = F_O.top_showed; i < F_O.top_showed + 15; ++i)
+            {
+                GE.text_render_v2(F_O.v_local_maps[i].map_name_with_spaces, 240, 210 + (45 * i) - (F_O.top_showed * 45));
+                if (F_O.v_local_maps[i].enabled)
+                {
+                    GE.render_checkbox_v2(2, i, 530, 210 + (45 * i) - (F_O.top_showed * 45), 35, 35);
+                    GE.render_color_box(0, 255, 0, 530, 210 + (45 * i) - (F_O.top_showed * 45), 20, 20);
+                }
+                else
+                {
+                    GE.render_checkbox_v2(2, i, 530, 210 + (45 * i) - (F_O.top_showed * 45), 35, 35);
+                    GE.render_color_box(255, 0, 0, 530, 210 + (45 * i) - (F_O.top_showed * 45), 20, 20);
+                }
+            }
+        }
+    }
+}
+// constpath + "\\Maps"
+
+void File_Operation::load_maps()
+{
+    mapsloaded = true;
+    std::vector <std::string> hold;
+    std::string line = "";
+    std::string path = constpath + "\\Maps\\Maps_Data.txt";
+    int i = 0;
+    std::ifstream file(path);
     if (file.is_open())
     {
-        file << pathget + "/workshop/content/281990/2602794523/map/setup_scenarios/sps_multigalaxy.txt" << "    " << "1" << "\n";
+        while (getline(file, line))
+        {
+            std::string temp = "";
+            local_maps pushing;
+            file >> pushing.map_steam >> pushing.map_local >> 
+                temp >> pushing.enabled;
+            pushing.map_name = temp;
+            for (int i = 0; i < temp.length(); ++i)
+            {
+                if (temp[i] == 95)
+                {
+                    temp.replace(i, 1, " ");
+                }
+            }
+            pushing.map_name_with_spaces = temp;
+            if (pushing.map_steam != "")
+            {
+                v_local_maps.push_back(pushing);
+                Map_Checkbox_Buttons.emplace_back();
+            }
+        }
     }
     file.close();
 }

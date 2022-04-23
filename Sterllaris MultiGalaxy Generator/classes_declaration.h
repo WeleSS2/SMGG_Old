@@ -171,15 +171,25 @@ Detailed_Generation Det_Gen;
 class File_Operation {
 public:
     struct local_maps {
+        std::string map_steam;
         std::string map_local;
+        std::string map_name;
+        std::string map_name_with_spaces;
         bool enabled = 0;
     };
     std::vector <local_maps> v_local_maps;
+    std::string mapname;
+    bool mapsloaded = false;
+    int top_showed = 0;
 
-    
     void create_folder();
-    void test();
+    void map_name();
+    void maps_menu();
     void load_files_from_steammod_folder();
+    void load_maps();
+    void save_maps();
+    void add_map();
+    void overwrite_data_map();
     PWSTR SaveMap();
 };
 File_Operation F_O;
