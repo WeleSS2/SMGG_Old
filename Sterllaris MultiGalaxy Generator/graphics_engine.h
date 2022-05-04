@@ -65,13 +65,13 @@ public:
 
     void wrong_text_input(int x, int y, int id);
     bool isNumber(const std::string& str);
-    bool fucking_minus(const std::string& str);
+    bool isNumber_not_negative(const std::string& str);
     void render_color_box(int R, int G, int B, int x, int y, int w, int h);
     
 
     void scrolling_function();
     int hyperlanes_lightness = 13;
-    int system_box_x = -1000, system_box_y = -1000;
+    int system_box_x = ( -200 * scrolling_level), system_box_y = ( -200 * scrolling_level);
 };
 Graphics_Engine GE;
 
@@ -639,12 +639,6 @@ void Graphics_Engine::text_input(int x, int y, int target_string_id)
                 gInputTextTexture.loadFromRenderedText(" ", SilverTextColor);
             }
         }
-
-        if (target_string_id != 100)
-        {
-            draw_galaxy();
-        }
-
         //Render text textures
         gInputTextTexture.renderButton(x, y);
         GE.render_color_box(255, 255, 255, x - 3, y + 4, 1, 24);
@@ -659,12 +653,12 @@ void Graphics_Engine::text_input(int x, int y, int target_string_id)
         switch (target_string_id)
         {
         case 0:
-            fucking_minus(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+            isNumber_not_negative(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
             break;
         case 1:
             //if (std::stoi(inputText) < 500)
             {
-                fucking_minus(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+                isNumber_not_negative(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
             }
             //else
             {
@@ -692,7 +686,7 @@ void Graphics_Engine::text_input(int x, int y, int target_string_id)
             }
             break;
         case 4:
-            fucking_minus(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+            isNumber_not_negative(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
             break;
         case 5:
             isNumber(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
@@ -722,25 +716,28 @@ void Graphics_Engine::text_input(int x, int y, int target_string_id)
             break;
 
         case 20:
-            fucking_minus(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+            isNumber_not_negative(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
             break;
         case 21:
-            fucking_minus(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+            isNumber_not_negative(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
             break;
         case 22:
-            fucking_minus(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+            isNumber_not_negative(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
             break;
         case 30:
             save_as(inputText, target_string_id);
             break;
         case 55:
-            fucking_minus(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+            isNumber_not_negative(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
             break;
         case 56:
-            fucking_minus(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+            isNumber_not_negative(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+            break;
+        case 98:
+            save_as(inputText, target_string_id);
             break;
         case 99:
-            fucking_minus(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+            isNumber_not_negative(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
             break;
         case 100:
             pathget = inputText;
@@ -748,7 +745,7 @@ void Graphics_Engine::text_input(int x, int y, int target_string_id)
         case 113:
             if (std::stoi(inputText) > 25 && std::stoi(inputText) < 500)
             {
-                fucking_minus(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+                isNumber_not_negative(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
             }
             else
             {
@@ -758,7 +755,7 @@ void Graphics_Engine::text_input(int x, int y, int target_string_id)
         case 114:
             if (std::stoi(inputText) > 25 && std::stoi(inputText) < 500)
             {
-                fucking_minus(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+                isNumber_not_negative(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
             }
             else
             {
@@ -768,7 +765,7 @@ void Graphics_Engine::text_input(int x, int y, int target_string_id)
         case 115:
             if (std::stoi(inputText) > 0)
             {
-                fucking_minus(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+                isNumber_not_negative(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
             }
             else
             {
@@ -778,7 +775,7 @@ void Graphics_Engine::text_input(int x, int y, int target_string_id)
         case 116:
             if (std::stoi(inputText) > 0)
             {
-                fucking_minus(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+                isNumber_not_negative(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
             }
             else
             {
@@ -788,7 +785,7 @@ void Graphics_Engine::text_input(int x, int y, int target_string_id)
         case 117:
             if (std::stoi(inputText) > 0)
             {
-                fucking_minus(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+                isNumber_not_negative(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
             }
             else
             {
@@ -798,7 +795,7 @@ void Graphics_Engine::text_input(int x, int y, int target_string_id)
         case 118:
             if (std::stoi(inputText) > 0)
             {
-                fucking_minus(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+                isNumber_not_negative(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
             }
             else
             {
@@ -808,7 +805,7 @@ void Graphics_Engine::text_input(int x, int y, int target_string_id)
         case 119:
             if (std::stoi(inputText) > 0)
             {
-                fucking_minus(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+                isNumber_not_negative(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
             }
             else
             {
@@ -818,7 +815,7 @@ void Graphics_Engine::text_input(int x, int y, int target_string_id)
         case 120:
             if (std::stoi(inputText) > 0)
             {
-                fucking_minus(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+                isNumber_not_negative(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
             }
             else
             {
@@ -838,7 +835,7 @@ void Graphics_Engine::text_input(int x, int y, int target_string_id)
         case 122:
             if (std::stof(inputText) > 0.01 && std::stof(inputText) < 3)
             {
-                fucking_minus(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+                isNumber_not_negative(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
             }
             else
             {
@@ -848,7 +845,7 @@ void Graphics_Engine::text_input(int x, int y, int target_string_id)
         case 123:
             if (std::stof(inputText) > 0.01 && std::stof(inputText) < 3)
             {
-                fucking_minus(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+                isNumber_not_negative(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
             }
             else
             {
@@ -858,7 +855,7 @@ void Graphics_Engine::text_input(int x, int y, int target_string_id)
         case 124:
             if (std::stof(inputText) > 0.01 && std::stof(inputText) < 0.9999)
             {
-                fucking_minus(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+                isNumber_not_negative(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
             }
             else
             {
@@ -868,7 +865,7 @@ void Graphics_Engine::text_input(int x, int y, int target_string_id)
         case 125:
             if (std::stof(inputText) > 0.01 && std::stof(inputText) < 0.9999)
             {
-                fucking_minus(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+                isNumber_not_negative(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
             }
             else
             {
@@ -878,7 +875,7 @@ void Graphics_Engine::text_input(int x, int y, int target_string_id)
         case 126:
             if (std::stoi(inputText) > 0)
             {
-                fucking_minus(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+                isNumber_not_negative(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
             }
             else
             {
@@ -888,7 +885,7 @@ void Graphics_Engine::text_input(int x, int y, int target_string_id)
         case 128:
             if (std::stoi(inputText) > 0)
             {
-                fucking_minus(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+                isNumber_not_negative(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
             }
             else
             {
@@ -898,7 +895,7 @@ void Graphics_Engine::text_input(int x, int y, int target_string_id)
         case 129:
             if (std::stoi(inputText) > 0)
             {
-                fucking_minus(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+                isNumber_not_negative(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
             }
             else
             {
@@ -908,7 +905,7 @@ void Graphics_Engine::text_input(int x, int y, int target_string_id)
         case 130:
             if (std::stof(inputText) > 0)
             {
-                fucking_minus(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+                isNumber_not_negative(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
             }
             else
             {
@@ -918,7 +915,7 @@ void Graphics_Engine::text_input(int x, int y, int target_string_id)
         case 131:
             if (std::stof(inputText) > 0)
             {
-                fucking_minus(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+                isNumber_not_negative(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
             }
             else
             {
@@ -928,7 +925,7 @@ void Graphics_Engine::text_input(int x, int y, int target_string_id)
         case 132:
             if (std::stof(inputText) > 0)
             {
-                fucking_minus(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+                isNumber_not_negative(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
             }
             else
             {
@@ -956,7 +953,7 @@ bool Graphics_Engine::isNumber(const std::string& str)
     return str.find_first_not_of("0123456789.-") == std::string::npos;
 }
 
-bool Graphics_Engine::fucking_minus(const std::string & str)
+bool Graphics_Engine::isNumber_not_negative(const std::string & str)
 {
     return str.find_first_not_of("0123456789.") == std::string::npos;
 }
@@ -1041,14 +1038,16 @@ void save_as(std::string inputText, int id)
         maruder_am = std::stoi(inputText);
         break;
     case 30:
-        F_O.mapname = inputText;
-        map_name_bool = false;
         break;
     case 55:
         min_hyperlane_am = std::stoi(inputText);
         break;
     case 56:
         max_hyperlane_am = std::stoi(inputText);
+        break;
+    case 98:
+        F_O.mapname = inputText;
+        map_name_bool = false;
         break;
     case 99:
         current_gal_id = std::stoi(inputText);
@@ -1189,7 +1188,7 @@ void render_hyperlanes()
     //std::cout << galaxies_am << std::endl;
         for (int i = 0; i < galaxies_am; i++)
         {
-            if (v_galaxy_generation[i].hyperlanes_generated == true)
+            //if (v_galaxy_generation[i].hyperlanes_generated == true)
             {
                 if (v_hyperlanes.size() != 0)
                 {
@@ -1236,19 +1235,15 @@ void Graphics_Engine::scrolling_function()
                     {
                         for (int z = 0; z < v_hyperlanes[i][j].size(); z++)
                         {
-                            if ((center_width + ((v_system_data[i][v_hyperlanes[i][j][z].from].gal_x - (C_S.donex - 550)) * 5) + 550 > -50)
-                                && (center_width + ((v_system_data[i][v_hyperlanes[i][j][z].from].gal_x - (C_S.donex - 550)) * 5) + 550 < 1199))
+                            if ((center_width + ((v_system_data[i][v_hyperlanes[i][j][z].from].gal_x - (C_S.donex - 550)) * scrolling_level) + 550 > -50)
+                                && (center_width + ((v_system_data[i][v_hyperlanes[i][j][z].from].gal_x - (C_S.donex - 550)) * scrolling_level) + 550 < 1199))
                             {
-                                if ((center_width + ((v_system_data[i][v_hyperlanes[i][j][z].to].gal_x - (C_S.donex - 550)) * 5) + 550 > -50)
-                                    && (center_width + ((v_system_data[i][v_hyperlanes[i][j][z].to].gal_x - (C_S.donex - 550)) * 5) + 550 < 1199))
-                                {
-                                    SDL_SetRenderDrawColor(gRenderer, 3 * GE.hyperlanes_lightness, 4 * GE.hyperlanes_lightness, 4 * GE.hyperlanes_lightness, SDL_ALPHA_OPAQUE);
-                                    SDL_RenderDrawLine(gRenderer,
-                                        center_width + ((v_system_data[i][v_hyperlanes[i][j][z].from].gal_x - (C_S.donex - 550)) * 5) + 550,
-                                        center_width + ((v_system_data[i][v_hyperlanes[i][j][z].from].gal_y - (C_S.doney - 550)) * 5) + 550,
-                                        center_height + ((v_system_data[i][v_hyperlanes[i][j][z].to].gal_x - (C_S.donex - 550)) * 5) + 550,
-                                        center_height + ((v_system_data[i][v_hyperlanes[i][j][z].to].gal_y - (C_S.doney - 550)) * 5) + 550);
-                                }
+                                SDL_SetRenderDrawColor(gRenderer, 3 * GE.hyperlanes_lightness, 4 * GE.hyperlanes_lightness, 4 * GE.hyperlanes_lightness, SDL_ALPHA_OPAQUE);
+                                SDL_RenderDrawLine(gRenderer,
+                                    center_width + ((v_system_data[i][v_hyperlanes[i][j][z].from].gal_x - (C_S.donex - 550)) * scrolling_level) + 550,
+                                    center_width + ((v_system_data[i][v_hyperlanes[i][j][z].from].gal_y - (C_S.doney - 550)) * scrolling_level) + 550,
+                                    center_height + ((v_system_data[i][v_hyperlanes[i][j][z].to].gal_x - (C_S.donex - 550)) * scrolling_level) + 550,
+                                    center_height + ((v_system_data[i][v_hyperlanes[i][j][z].to].gal_y - (C_S.doney - 550)) * scrolling_level) + 550);
                             }
                         }
                     }
@@ -1258,20 +1253,152 @@ void Graphics_Engine::scrolling_function()
         for (int j = 0; j < SystemButtons[i].size(); j++)
         {
             //std::cout << v_system_data[i][j].gal_x + 550 << " " << x << std::endl;
-            if ((v_system_data[i][j].gal_x + 527 - C_S.donex < 100) && (v_system_data[i][j].gal_x + 550 - C_S.donex > -100))
+            int x_base_formula{ (center_width + ((v_system_data[i][j].gal_x - (C_S.donex - 550)) * scrolling_level))},
+                y_base_formula{ (center_height + ((v_system_data[i][j].gal_y - (C_S.doney - 550)) * scrolling_level))};
+            int limit = 100;
+            if (((x_base_formula + 550)> -50)
+                && ((x_base_formula + 550) < 1199))
             {
-                if ((v_system_data[i][j].gal_y + 527 - C_S.doney < 100) && (v_system_data[i][j].gal_y + 550 - C_S.doney > -100))
+                if (((y_base_formula + 550) > -50)
+                    && ((y_base_formula + 550) < 1199))
                 {
                     SDL_SetRenderDrawColor(gRenderer, 255, 255, 0, 0);
                     SDL_Rect Rect;
-                    Rect.x = center_width + ((v_system_data[i][j].gal_x - (C_S.donex - 550)) * 5) + 548;
-                    Rect.y = center_height + ((v_system_data[i][j].gal_y - (C_S.doney - 550)) * 5) + 548;
-                    Rect.w = 5;
-                    Rect.h = 5;
+                    Rect.x = x_base_formula + 548 - scrolling_level;
+                    Rect.y = y_base_formula + 548 - scrolling_level;
+                    Rect.w = (scrolling_level * 2 - 1);
+                    Rect.h = (scrolling_level * 2 - 1);
                     SDL_RenderDrawRect(gRenderer, &Rect);
                     SystemButtons[i][j].setPosition(
-                        center_width + ((v_system_data[i][j].gal_x - (C_S.donex - 550)) * 5) + 548,
-                        center_height + ((v_system_data[i][j].gal_y - (C_S.doney - 550)) * 5) + 548
+                        x_base_formula + 548,
+                        y_base_formula + 548
+                    );
+                    if (show_initializers)
+                    {
+                        if (v_system_data[i][j].inicjalizer)
+                        {
+                            int static_X_cord_ini_boxes{ x_base_formula + 546 - scrolling_level },
+                                static_Y_cord_ini_boxes{ y_base_formula + 546 - scrolling_level },
+                                box_width = (scrolling_level * 2) + 2,
+                                box_height = (scrolling_level * 2) + 2;
+                            if (v_system_data[i][j].init_type == 1)
+                            {
+
+                                GE.render_color_box(255, 170, 170, static_X_cord_ini_boxes, static_Y_cord_ini_boxes, box_width, box_height);
+                            }
+                            else if (v_system_data[i][j].init_type == 2)
+                            {
+                                GE.render_color_box(255, 0, 255, static_X_cord_ini_boxes, static_Y_cord_ini_boxes, box_width, box_height);
+                            }
+                            else if (v_system_data[i][j].init_type == 3)
+                            {
+                                GE.render_color_box(255, 81, 0, static_X_cord_ini_boxes, static_Y_cord_ini_boxes, box_width, box_height);
+                            }
+                            else if (v_system_data[i][j].init_type == 4)
+                            {
+                                GE.render_color_box(0, 255, 255, static_X_cord_ini_boxes, static_Y_cord_ini_boxes, box_width, box_height);
+                            }
+                            else if (v_system_data[i][j].init_type == 5)
+                            {
+                                GE.render_color_box(255, 0, 0, static_X_cord_ini_boxes, static_Y_cord_ini_boxes, box_width, box_height);
+                            }
+                            else if (v_system_data[i][j].init_type == 10)
+                            {
+                                GE.render_color_box(0, 255, 0, static_X_cord_ini_boxes, static_Y_cord_ini_boxes, box_width, box_height);
+                            }
+                            else if (v_system_data[i][j].init_type == 99)
+                            {
+                                GE.render_color_box(122, 122, 122, static_X_cord_ini_boxes, static_Y_cord_ini_boxes, box_width, box_height);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        if (C_S.box_open)
+        {
+
+            gModulatedTexture.setAlpha(233);
+            if (GE.system_box_y > 750)
+            {
+                if (GE.system_box_x > 850)
+                {
+                    system_box_info(i, 380, 300);
+                }
+                else
+                {
+                    system_box_info(i, 0, 300);
+                }
+
+            }
+            else
+            {
+                if (GE.system_box_x > 850)
+                {
+                    system_box_info(i, 380, 0);
+                }
+                else
+                {
+                    system_box_info(i, 0, 0);
+                }
+            }
+        }
+    }
+}
+/*
+void Graphics_Engine::scrolling_function()
+{
+    if (!C_S.done)
+    {
+        SDL_GetMouseState(&C_S.donex, &C_S.doney);
+    }
+    for (int i = 0; i < SystemButtons.size(); i++)
+    {
+        if (v_galaxy_generation[i].hyperlanes_generated == true)
+        {
+            if (v_hyperlanes.size() != 0)
+            {
+                if (v_hyperlanes[i].size() != 0)
+                {
+                    for (int j = 0; j < v_hyperlanes[i].size(); j++)
+                    {
+                        for (int z = 0; z < v_hyperlanes[i][j].size(); z++)
+                        {
+                            if ((center_width + ((v_system_data[i][v_hyperlanes[i][j][z].from].gal_x - (C_S.donex - 550)) * scrolling_level) + 550 > -50)
+                                && (center_width + ((v_system_data[i][v_hyperlanes[i][j][z].from].gal_x - (C_S.donex - 550)) * scrolling_level) + 550 < 1199))
+                            {
+                                SDL_SetRenderDrawColor(gRenderer, 3 * GE.hyperlanes_lightness, 4 * GE.hyperlanes_lightness, 4 * GE.hyperlanes_lightness, SDL_ALPHA_OPAQUE);
+                                SDL_RenderDrawLine(gRenderer,
+                                    center_width + ((v_system_data[i][v_hyperlanes[i][j][z].from].gal_x - (C_S.donex - 550)) * scrolling_level) + 550,
+                                    center_width + ((v_system_data[i][v_hyperlanes[i][j][z].from].gal_y - (C_S.doney - 550)) * scrolling_level) + 550,
+                                    center_height + ((v_system_data[i][v_hyperlanes[i][j][z].to].gal_x - (C_S.donex - 550)) * scrolling_level) + 550,
+                                    center_height + ((v_system_data[i][v_hyperlanes[i][j][z].to].gal_y - (C_S.doney - 550)) * scrolling_level) + 550);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        for (int j = 0; j < SystemButtons[i].size(); j++)
+        {
+            //std::cout << v_system_data[i][j].gal_x + 550 << " " << x << std::endl;
+            int limit = 100;
+            if ((center_width + ((v_system_data[i][j].gal_x - (C_S.donex - 550)) * scrolling_level) + 550 > -50) 
+                && (center_width + ((v_system_data[i][j].gal_x - (C_S.donex - 550)) * scrolling_level) + 550 < 1199))
+            {
+                if ((center_width + ((v_system_data[i][j].gal_y - (C_S.doney - 550)) * scrolling_level) + 550 > -50) 
+                    && (center_width + ((v_system_data[i][j].gal_y - (C_S.doney - 550)) * scrolling_level) + 550 < 1199))
+                {
+                    SDL_SetRenderDrawColor(gRenderer, 255, 255, 0, 0);
+                    SDL_Rect Rect;
+                    Rect.x = center_width + ((v_system_data[i][j].gal_x - (C_S.donex - 550)) * scrolling_level) + 548 - scrolling_level;
+                    Rect.y = center_height + ((v_system_data[i][j].gal_y - (C_S.doney - 550)) * scrolling_level) + 548 - scrolling_level;
+                    Rect.w = (scrolling_level * 2 - 1);
+                    Rect.h = (scrolling_level * 2 - 1);
+                    SDL_RenderDrawRect(gRenderer, &Rect);
+                    SystemButtons[i][j].setPosition(
+                        center_width + ((v_system_data[i][j].gal_x - (C_S.donex - 550)) * scrolling_level) + 548,
+                        center_height + ((v_system_data[i][j].gal_y - (C_S.doney - 550)) * scrolling_level) + 548
                     );
                     if (show_initializers)
                     {
@@ -1279,27 +1406,40 @@ void Graphics_Engine::scrolling_function()
                         {
                             if (v_system_data[i][j].init_type == 1)
                             {
-                                GE.render_color_box(255, 170, 170, ((v_system_data[i][j].gal_x - (C_S.donex - 550)) * 5) + 546, ((v_system_data[i][j].gal_y - (C_S.doney - 550)) * 5) + 546, 9, 9);
+
+                                GE.render_color_box(255, 170, 170, ((v_system_data[i][j].gal_x - (C_S.donex - 550)) * scrolling_level) + 546 - scrolling_level, 
+                                    ((v_system_data[i][j].gal_y - (C_S.doney - 550)) * scrolling_level) + 546 - scrolling_level,
+                                    (scrolling_level * 2), (scrolling_level * 2));
                             }
                             else if (v_system_data[i][j].init_type == 2)
                             {
-                                GE.render_color_box(255, 0, 255, ((v_system_data[i][j].gal_x - (C_S.donex - 550)) * 5) + 546, ((v_system_data[i][j].gal_y - (C_S.doney - 550)) * 5) + 546, 9, 9);
+                                GE.render_color_box(255, 0, 255, ((v_system_data[i][j].gal_x - (C_S.donex - 550)) * scrolling_level) + 546 - scrolling_level, 
+                                    ((v_system_data[i][j].gal_y - (C_S.doney - 550)) * scrolling_level) + 546 - scrolling_level, 
+                                    (scrolling_level * 2), (scrolling_level * 2));
                             }
                             else if (v_system_data[i][j].init_type == 3)
                             {
-                                GE.render_color_box(255, 81, 0, ((v_system_data[i][j].gal_x - (C_S.donex - 550)) * 5) + 546, ((v_system_data[i][j].gal_y - (C_S.doney - 550)) * 5) + 546, 9, 9);
+                                GE.render_color_box(255, 81, 0, ((v_system_data[i][j].gal_x - (C_S.donex - 550)) * scrolling_level) + 546 - scrolling_level, 
+                                    ((v_system_data[i][j].gal_y - (C_S.doney - 550)) * scrolling_level) + 546 - scrolling_level, 
+                                    (scrolling_level * 2), (scrolling_level * 2));
                             }
                             else if (v_system_data[i][j].init_type == 4)
                             {
-                                GE.render_color_box(0, 255, 255, ((v_system_data[i][j].gal_x - (C_S.donex - 550)) * 5) + 546, ((v_system_data[i][j].gal_y - (C_S.doney - 550)) * 5) + 546, 9, 9);
+                                GE.render_color_box(0, 255, 255, ((v_system_data[i][j].gal_x - (C_S.donex - 550)) * scrolling_level) + 546 - scrolling_level, 
+                                    ((v_system_data[i][j].gal_y - (C_S.doney - 550)) * scrolling_level) + 546 - scrolling_level, 
+                                    (scrolling_level * 2), (scrolling_level * 2));
                             }
                             else if (v_system_data[i][j].init_type == 5)
                             {
-                                GE.render_color_box(255, 0, 0, ((v_system_data[i][j].gal_x - (C_S.donex - 550)) * 5) + 546, ((v_system_data[i][j].gal_y - (C_S.doney - 550)) * 5) + 546, 9, 9);
+                                GE.render_color_box(255, 0, 0, ((v_system_data[i][j].gal_x - (C_S.donex - 550)) * scrolling_level) + 546 - scrolling_level, 
+                                    ((v_system_data[i][j].gal_y - (C_S.doney - 550)) * scrolling_level) + 546 - scrolling_level, 
+                                    (scrolling_level * 2), (scrolling_level * 2));
                             }
                             else if (v_system_data[i][j].init_type == 10)
                             {
-                                GE.render_color_box(0, 255, 0, ((v_system_data[i][j].gal_x - (C_S.donex - 550)) * 5) + 546, ((v_system_data[i][j].gal_y - (C_S.doney - 550)) * 5) + 546, 9, 9);
+                                GE.render_color_box(0, 255, 0, ((v_system_data[i][j].gal_x - (C_S.donex - 550)) * scrolling_level) + 546 - scrolling_level, 
+                                    ((v_system_data[i][j].gal_y - (C_S.doney - 550)) * scrolling_level) + 546 - scrolling_level, 
+                                    (scrolling_level * 2), (scrolling_level * 2));
                             }
                         }
                     }
@@ -1336,13 +1476,20 @@ void Graphics_Engine::scrolling_function()
         }
     }
 }
+*/
 
-void Graphics_Engine::system_box_info(int i, int offsetX, int offset)
+void Graphics_Engine::system_box_info(int i, int offsetX, int offsetY)
 {
-    gModulatedTexture.render(GE.system_box_x - offsetX, GE.system_box_y - offset, 380, 300);
-    GE.text_render_v2("Current system " + std::to_string(C_S.current_system), GE.system_box_x - offsetX + 10, GE.system_box_y - offset + 10);
-    GE.text_render_v2("X position " + std::to_string(v_system_data[C_S.current_gal][C_S.current_system].gal_x), GE.system_box_x - offsetX + 10, GE.system_box_y - offset + 50);
-    GE.text_render_v2("Y position " + std::to_string(v_system_data[C_S.current_gal][C_S.current_system].gal_y), GE.system_box_x - offsetX + 10, GE.system_box_y - offset + 90);
+    //         (center_width + ((v_system_data[i][j].gal_x - (C_S.donex - 550)) * scrolling_level) + 550
+    //gModulatedTexture.render(GE.system_box_x - offsetX, GE.system_box_y - offset, 380, 300);
+    int static_X_cord{ (center_width + ((v_system_data[C_S.current_gal][C_S.current_system].gal_x - (C_S.donex - 550)) * scrolling_level) + 550) },
+        static_Y_cord{ (center_width + ((v_system_data[C_S.current_gal][C_S.current_system].gal_y - (C_S.doney - 550)) * scrolling_level) + 550) };
+    gModulatedTexture.render(static_X_cord - offsetX,
+        static_Y_cord - offsetY,
+        380, 300);
+    GE.text_render_v2("Current system " + std::to_string(C_S.current_system), static_X_cord - offsetX + (2 * scrolling_level), static_Y_cord - offsetY + (2 * scrolling_level));
+    GE.text_render_v2("X position " + std::to_string(v_system_data[C_S.current_gal][C_S.current_system].gal_x), static_X_cord - offsetX + (2 * scrolling_level), static_Y_cord - offsetY + 50);
+    GE.text_render_v2("Y position " + std::to_string(v_system_data[C_S.current_gal][C_S.current_system].gal_y), static_X_cord - offsetX + (2 * scrolling_level), static_Y_cord - offsetY + 90);
     if (v_system_data[C_S.current_gal][C_S.current_system].inicjalizer)
     {
        /*
@@ -1354,11 +1501,11 @@ void Graphics_Engine::system_box_info(int i, int offsetX, int offset)
        */
         if (v_system_data[C_S.current_gal][C_S.current_system].init_type == 1)
         {
-            GE.text_render_v2("Empire initializer", GE.system_box_x - offsetX + 10, GE.system_box_y - offset + 130);
+            GE.text_render_v2("Empire initializer", static_X_cord - offsetX + (2 * scrolling_level), static_Y_cord - offsetY + 130);
         }
         else if (v_system_data[C_S.current_gal][C_S.current_system].init_type == 2)
         {
-            GE.text_render_v2("Fallen initializer", GE.system_box_x - offsetX + 10, GE.system_box_y - offset + 130);
+            GE.text_render_v2("Fallen initializer", static_X_cord - offsetX + (2 * scrolling_level), static_Y_cord - offsetY + 130);
         }
         else if (v_system_data[C_S.current_gal][C_S.current_system].init_type == 3)
         {
@@ -1401,7 +1548,7 @@ void Graphics_Engine::system_box_info(int i, int offsetX, int offset)
                 break;
 
             }
-            GE.text_render_v2("Leviathan - " + lev_type, GE.system_box_x - offsetX + 10, GE.system_box_y - offset + 130);
+            GE.text_render_v2("Leviathan - " + lev_type, static_X_cord - offsetX + (2 * scrolling_level), static_Y_cord - offsetY + 130);
         }
         else if (v_system_data[C_S.current_gal][C_S.current_system].init_type == 4)
         {
@@ -1427,16 +1574,20 @@ void Graphics_Engine::system_box_info(int i, int offsetX, int offset)
                 mega_type = "Ring World";
                 break;
             }
-            GE.text_render_v2("Ruined megaconstruction:", GE.system_box_x - offsetX + 10, GE.system_box_y - offset + 130);
-            GE.text_render_v2(mega_type, GE.system_box_x - offsetX + 10, GE.system_box_y - offset + 170);
+            GE.text_render_v2("Ruined megaconstruction:", static_X_cord - offsetX + (2 * scrolling_level), static_Y_cord - offsetY + 130);
+            GE.text_render_v2(mega_type, static_X_cord - offsetX + (2 * scrolling_level), static_Y_cord - offsetY + 170);
         }
         else if (v_system_data[C_S.current_gal][C_S.current_system].init_type == 5)
         {
-            GE.text_render_v2("Marauder initializer", GE.system_box_x - offsetX + 10, GE.system_box_y - offset + 130);
+            GE.text_render_v2("Marauder initializer", static_X_cord - offsetX + (2 * scrolling_level), static_Y_cord - offsetY + 130);
         }
         else if (v_system_data[C_S.current_gal][C_S.current_system].init_type == 10)
         {
-            GE.text_render_v2("Player initializer " + std::to_string(v_system_data[C_S.current_gal][C_S.current_system].player_id), GE.system_box_x - offsetX + 10, GE.system_box_y - offset + 130);
+            GE.text_render_v2("Player initializer " + std::to_string(v_system_data[C_S.current_gal][C_S.current_system].player_id), static_X_cord - offsetX + (2 * scrolling_level), static_Y_cord - offsetY + 130);
+        }
+        else if (v_system_data[C_S.current_gal][C_S.current_system].init_type == 99)
+        {
+            GE.text_render_v2("Cental black hole", static_X_cord - offsetX + (2 * scrolling_level), static_Y_cord - offsetY + 130);
         }
     }
 }

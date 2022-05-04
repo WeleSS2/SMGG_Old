@@ -50,9 +50,9 @@ From 50 CUSTOM SIZE:
 
 75 = ID CHECKER
 97 - Checkbox Multiplayer
-98 - Checkbox initializers
+98 - Name box
 99 - Checkbox save to a game
-100 - Checkbox SMGG Hyperlanes
+100 - 
 
 110 - Checkbox Enable Circle
 111 - Checkbox Enable Spiral
@@ -88,6 +88,7 @@ Inicjalizatory:
 4 - Mega
 5 - Maruderzy
 10 - player
+99 - black hole in center
 
 Laczenie hiperliniami
 Zasieg
@@ -184,39 +185,15 @@ void LButton::handleMap_Checkbox_Buttons(SDL_Event& e, int id)
             {
                 if (F_O.v_local_maps[id].enabled)
                 {
-                    std::string path_local = F_O.v_local_maps[id].map_steam;
-                    for (int i = 0; i < path_local.length(); ++i)
-                    {
-                        if (path_local[i] == 47)
-                        {
-                            path_local[i] = 92;
-                            path_local.insert(i, "\\");
-                        }
-                    }
-                    std::filesystem::remove(path_local);
+                    std::filesystem::remove(F_O.slash_to_backslashes(F_O.v_local_maps[id].map_steam));
                     F_O.v_local_maps[id].enabled = false;
                 }
                 else
                 {
-                    std::string path_local = F_O.v_local_maps[id].map_steam;
-                    for (int i = 0; i < path_local.length(); ++i)
-                    {
-                        if (path_local[i] == 47)
-                        {
-                            path_local[i] = 92;
-                            path_local.insert(i, "\\");
-                        }
-                    }
-                    std::string temp_path = constpath + "/Maps/" + F_O.v_local_maps[id].map_local;
-                    for (int i = 0; i < temp_path.length(); ++i)
-                    {
-                        if (temp_path[i] == 47)
-                        {
-                            temp_path[i] = 92;
-                            temp_path.insert(i, "\\");
-                        }
-                    }
-                    std::filesystem::copy(temp_path, path_local);
+                    std::filesystem::copy(
+                        F_O.slash_to_backslashes(constpath + "/Maps/" + F_O.v_local_maps[id].map_local), 
+                        F_O.slash_to_backslashes(F_O.v_local_maps[id].map_steam)
+                    );
                     
                     F_O.v_local_maps[id].enabled = true;
                 }
@@ -226,28 +203,31 @@ void LButton::handleMap_Checkbox_Buttons(SDL_Event& e, int id)
         {
             if (e.type == SDL_MOUSEBUTTONDOWN)
             {
-                std::string path_local = F_O.v_local_maps[id].map_steam;
-                for (int i = 0; i < path_local.length(); ++i)
+                if (F_O.v_local_maps[id].map_local != "sps_multigalaxy.txt")
                 {
-                    if (path_local[i] == 47)
-                    {
-                        path_local[i] = 92;
-                        path_local.insert(i, "\\");
-                    }
+                    std::string modify = F_O.v_local_maps[id].map_local;
+                    modify.erase(modify.length() - 4, 4);
+                    std::filesystem::remove(F_O.slash_to_backslashes(F_O.v_local_maps[id].map_steam));
+                    std::filesystem::remove(F_O.slash_to_backslashes(constpath + "/Maps/" + F_O.v_local_maps[id].map_local));
+                    std::filesystem::remove(F_O.slash_to_backslashes(constpath + "/Maps/" + modify + "_data.txt"));
+                    F_O.v_local_maps.erase(F_O.v_local_maps.begin() + id);
+                    Map_Checkbox_Buttons.erase(Map_Checkbox_Buttons.begin() + id);
                 }
-                std::string temp_path = constpath + "/Maps/" + F_O.v_local_maps[id].map_local;
-                for (int i = 0; i < temp_path.length(); ++i)
+            }
+        }
+        if (e.button.button == SDL_BUTTON_RIGHT)
+        {
+            if (e.type == SDL_MOUSEBUTTONDOWN)
+            {
+                if (F_O.v_local_maps[id].map_local != "sps_multigalaxy.txt")
                 {
-                    if (temp_path[i] == 47)
-                    {
-                        temp_path[i] = 92;
-                        temp_path.insert(i, "\\");
-                    }
+                    std::string modify = F_O.v_local_maps[id].map_local;
+                    modify.erase(modify.length() - 4, 4);
+                    F_O.import_map(F_O.slash_to_backslashes(constpath + "/Maps/" + modify + "_data.txt"));
+                    maps_menu_bool = false;
+                    current_galaxies_window = true;
+                    rerender();
                 }
-                std::filesystem::remove(path_local);
-                std::filesystem::remove(temp_path);
-                F_O.v_local_maps.erase(F_O.v_local_maps.begin() + id);
-                Map_Checkbox_Buttons.erase(Map_Checkbox_Buttons.begin() + id);
             }
         }
     }
@@ -476,19 +456,19 @@ void LButton::handleSystemButtonEvent(SDL_Event& e, int i, int j)
         SDL_GetMouseState(&x, &y);
         bool inside = true;
 
-        if (x < SystemButtons[i][j].mPosition.x - 10)
+        if (x < SystemButtons[i][j].mPosition.x - (2 * scrolling_level))
         {
             inside = false;
         }
-        else if (x > SystemButtons[i][j].mPosition.x + 15)
+        else if (x > SystemButtons[i][j].mPosition.x + (3 * scrolling_level))
         {
             inside = false;
         }
-        else if (y < SystemButtons[i][j].mPosition.y - 10)
+        else if (y < SystemButtons[i][j].mPosition.y - (2 * scrolling_level))
         {
             inside = false;
         }
-        else if (y > SystemButtons[i][j].mPosition.y + 15)
+        else if (y > SystemButtons[i][j].mPosition.y + (3 * scrolling_level))
         {
             inside = false;
         }
@@ -503,12 +483,11 @@ void LButton::handleSystemButtonEvent(SDL_Event& e, int i, int j)
                     {
                         if ((i == 0)&&(j == 0))
                         {
-                            int sys_x = (C_S.donex - 1210) + (x / 5) + 550,
-                                sys_y = (C_S.doney - 1210) + (y / 5) + 550;
+                            int sys_x = center_width + (C_S.donex - 550) + ((x - 550) / scrolling_level),
+                                sys_y = center_height + (C_S.doney - 550) + ((y - 550) / scrolling_level);
                             for (int i = 0; i < v_galaxy_generation.size(); ++i)
                             {
                                 int dyst = sqrt(pow(sys_x - v_galaxy_generation[i].i_cen_posX, 2) + (pow(sys_y - v_galaxy_generation[i].i_cen_posY, 2)));
-                                //std::cout << dyst << " " << v_galaxy_generation[i].i_gsize << std::endl;
                                 if (dyst < v_galaxy_generation[i].i_gsize)
                                 {
                                     int con_m = rand() % max_hyperlane_am + min_hyperlane_am;
@@ -551,8 +530,6 @@ void LButton::handleSystemButtonEvent(SDL_Event& e, int i, int j)
                             pushing.init_number = move_holder.init_number;
                             pushing.init_type = move_holder.init_type;
                             v_system_data[i].insert(v_system_data[i].begin() + move_holder.gal_id, 1, pushing);
-                             std::cout << move_holder.gal_id << " Outside " << move_holder.gal_x << " " << move_holder.gal_y << std::endl;
-                             std::cout << v_system_data[i][j].gal_id << " " << v_system_data[i][j].gal_x << " " << v_system_data[i][j].gal_y << std::endl;
 
                         }
                         */
@@ -568,7 +545,7 @@ void LButton::handleSystemButtonEvent(SDL_Event& e, int i, int j)
                     if ((i == 0) && (j == 0))
                     {
                         if (C_S.scrolling)
-                        {
+                        {;
                             if (C_S.done)
                             {
                                 C_S.box_open = false;
@@ -594,51 +571,54 @@ void LButton::handleSystemButtonEvent(SDL_Event& e, int i, int j)
                 case SDL_MOUSEBUTTONDOWN:
                     if (Det_Gen.remove_system)
                     {
-                        //std::cout << "Enter 1  " << j << "   " << v_system_data[i].size() << "   " << SystemButtons[i].size() << std::endl;
-                        //std::cout << "Enter 1a  " << j << "   " << v_system_data[i].size() << "   " << SystemButtons[i].size() << std::endl;
-                        v_system_data[i].erase(v_system_data[i].begin() + j);
-                        SystemButtons[i].erase(SystemButtons[i].begin() + j);
-                        for (int a = 0; a < v_system_data[i].size(); ++a)
+                        if (v_system_data[i][j].init_type != 99)
                         {
-                            if (v_system_data[i][a].gal_id >= j)
+                            //std::cout << "Enter 1  " << j << "   " << v_system_data[i].size() << "   " << SystemButtons[i].size() << std::endl;
+                            //std::cout << "Enter 1a  " << j << "   " << v_system_data[i].size() << "   " << SystemButtons[i].size() << std::endl;
+                            v_system_data[i].erase(v_system_data[i].begin() + j);
+                            SystemButtons[i].erase(SystemButtons[i].begin() + j);
+                            for (int a = 0; a < v_system_data[i].size(); ++a)
                             {
-                                v_system_data[i][a].gal_id -= 1;
-                            }
-                        }
-                        //std::cout << "Enter 2" << std::endl;
-                        if (v_galaxy_generation[i].hyperlanes_generated)
-                        {
-                            v_hyperlanes[i].erase(v_hyperlanes[i].begin() + j);
-                            for (int a = 0; a < v_hyperlanes[i].size(); ++a)
-                            {
-                                //std::cout << "-----------" << std::endl;
-                                //std::cout << v_hyperlanes[i][a].size() << std::endl;
-                                for (int b = 0; b < v_hyperlanes[i][a].size(); ++b)
+                                if (v_system_data[i][a].gal_id >= j)
                                 {
-                                    //std::cout << j << "  " << v_hyperlanes[i][a][b].from << "    " << v_hyperlanes[i][a][b].to << std::endl;
-                                    if (v_hyperlanes[i][a][b].to == j)
-                                    {
-                                        v_hyperlanes[i][a].erase(v_hyperlanes[i][a].begin() + b);
-                                    }
-                                    if (v_hyperlanes[i][a][b].to >= j)
-                                    {
-                                        v_hyperlanes[i][a][b].to -= 1;
-                                    }
-                                    if (v_hyperlanes[i][a][b].from >= j)
-                                    {
-                                        v_hyperlanes[i][a][b].from -= 1;
-                                    }
-
-                                    //std::cout << j << "  " << v_hyperlanes[i][a][b].from << "    " << v_hyperlanes[i][a][b].to << std::endl;
+                                    v_system_data[i][a].gal_id -= 1;
                                 }
-                                //std::cout << "----------" << std::endl;
                             }
+                            //std::cout << "Enter 2" << std::endl;
+                            if (v_galaxy_generation[i].hyperlanes_generated)
+                            {
+                                v_hyperlanes[i].erase(v_hyperlanes[i].begin() + j);
+                                for (int a = 0; a < v_hyperlanes[i].size(); ++a)
+                                {
+                                    //std::cout << "-----------" << std::endl;
+                                    //std::cout << v_hyperlanes[i][a].size() << std::endl;
+                                    for (int b = 0; b < v_hyperlanes[i][a].size(); ++b)
+                                    {
+                                        //std::cout << j << "  " << v_hyperlanes[i][a][b].from << "    " << v_hyperlanes[i][a][b].to << std::endl;
+                                        if (v_hyperlanes[i][a][b].to == j)
+                                        {
+                                            v_hyperlanes[i][a].erase(v_hyperlanes[i][a].begin() + b);
+                                        }
+                                        if (v_hyperlanes[i][a][b].to >= j)
+                                        {
+                                            v_hyperlanes[i][a][b].to -= 1;
+                                        }
+                                        if (v_hyperlanes[i][a][b].from >= j)
+                                        {
+                                            v_hyperlanes[i][a][b].from -= 1;
+                                        }
+
+                                        //std::cout << j << "  " << v_hyperlanes[i][a][b].from << "    " << v_hyperlanes[i][a][b].to << std::endl;
+                                    }
+                                    //std::cout << "----------" << std::endl;
+                                }
+                            }
+                            //std::cout << "Enter 3" << std::endl;
+                            v_galaxy_generation[i].i_star--;
+                            v_galaxy_generation[i].star = std::to_string(v_galaxy_generation[i].i_star);
+                            sys_sum--;
+                            //rerender();
                         }
-                        //std::cout << "Enter 3" << std::endl;
-                        v_galaxy_generation[i].i_star--;
-                        v_galaxy_generation[i].star = std::to_string(v_galaxy_generation[i].i_star);
-                        sys_sum--;
-                        //rerender();
                     }
                     else if (Det_Gen.remove_hyperlanes)
                     {
@@ -865,6 +845,10 @@ void Graphics_Engine::handleKeyboardEvent(SDL_Event& e)
                 system_box_x = -1000;
                 system_box_y = -1000;
             }
+            else if (maps_menu_bool)
+            {
+                maps_menu_bool = false;
+            }
             rerender();
             break;
         }
@@ -997,8 +981,8 @@ void LButton::handleEvent(SDL_Event* e, int id)
                     else if (y > mPosition.y + 32) { inside = false; }
                     break;
                 case 98:
-                    if (x > mPosition.x + 32) { inside = false; }
-                    else if (y > mPosition.y + 32) { inside = false; }
+                    if (x > mPosition.x + 200) { inside = false; }
+                    else if (y > mPosition.y + 40) { inside = false; }
                     break;
                 case 99:
                     if (x > mPosition.x + 32) { inside = false; }
@@ -1237,6 +1221,7 @@ void LButton::handleEvent(SDL_Event* e, int id)
                             {
                                 C_S.scrolling = false;
                                 Det_Gen.false_all_bools();
+                                scrolling_level = 0;
                                 C_S.box_open = false;
                             }
                             if (current_galaxies_window == false)
@@ -1254,11 +1239,6 @@ void LButton::handleEvent(SDL_Event* e, int id)
                             break;
 
                         case 1:
-                            //Classinit.initilizers();
-                            //initializers_loaded = true;
-                            //std::cout << rand() % 20 << std::endl;
-                            //F_O.load_files_from_steammod_folder();
-                            //F_O.create_folder();
                             if (!maps_menu_bool)
                             {
                                 DisableOtherWindows();
@@ -1276,6 +1256,7 @@ void LButton::handleEvent(SDL_Event* e, int id)
                         case 2:
                             if (C_S.scrolling)
                             {
+                                scrolling_level = 0;
                                 C_S.scrolling = false;
                                 Det_Gen.false_all_bools();
                                 C_S.box_open = false;
@@ -1295,13 +1276,6 @@ void LButton::handleEvent(SDL_Event* e, int id)
 
                         case 3:
                             //F_O.SaveMap();
-                            for (int i = 0; i < F_O.v_local_maps.size(); ++i)
-                            {
-                                std::cout << F_O.v_local_maps[i].map_steam << " " 
-                                    << F_O.v_local_maps[i].map_local << " " 
-                                    << F_O.v_local_maps[i].map_name << " " 
-                                    << F_O.v_local_maps[i].enabled << "\n";
-                            }
                             break;
 
                         case 4:
@@ -1310,6 +1284,7 @@ void LButton::handleEvent(SDL_Event* e, int id)
                         case 5:
                             if (C_S.scrolling)
                             {
+                                scrolling_level = 0;
                                 C_S.scrolling = false;
                                 Det_Gen.false_all_bools();
                                 C_S.box_open = false;
@@ -1345,31 +1320,11 @@ void LButton::handleEvent(SDL_Event* e, int id)
                         case 11:
                             if (galaxies_am != 0)
                             {
-                                if (initializers_loaded == false)
+                                if (v_hyperlanes.size() > 0)
                                 {
-                                    if (initializers == true)
-                                    {
-                                        Classinit.initilizers();
-                                        initializers_loaded = true;
-                                    }
-                                }
-                                if (hyperlanes_loaded == false)
-                                {
-                                    if (setting_hyperlanes == true)
-                                    {
-                                        hyperlanes_loaded = true;
-                                        for (int i = 0; i < galaxies_am; i++)
-                                        {
-                                            if (v_galaxy_generation[i].hyperlanes_generated == false)
-                                            {
-                                                link(0, i);
-                                            }
-                                        }
-                                    }
+                                    hyperlanes_loaded = 1;
                                 }
                                 SaveFile();
-                                initializers_loaded = false;
-                                hyperlanes_loaded = false;
                             }
                             GE.click_effect_remove(id);
                             break;
@@ -1393,9 +1348,9 @@ void LButton::handleEvent(SDL_Event* e, int id)
                                 }
                                 //std::cout << "Play 2" << std::endl;
                                 //std::cout << "Work 1" << std::endl;
-                                if (initializers == true)
+                                if (initializers)
                                 {
-                                    if (initializers_loaded == false)
+                                    if (!initializers_loaded)
                                     {
                                         for (int i = 0; i < v_galaxy_generation.size(); i++)
                                         {
@@ -1409,6 +1364,7 @@ void LButton::handleEvent(SDL_Event* e, int id)
                                         }
                                         //std::cout << "Play 3" << std::endl;
                                         Classinit.initilizers();
+
                                     }
                                 }
                                 //std::cout << "Work 1.5" << std::endl;
@@ -1427,7 +1383,10 @@ void LButton::handleEvent(SDL_Event* e, int id)
                         case 13:
                             SaveSettings();
                             SaveRandomSettings();
-                            F_O.save_maps();
+                            if (F_O.mapsloaded)
+                            {
+                                F_O.save_maps();
+                            }
                             close();
                             std::exit(0);
                             GE.click_effect_remove(id);
@@ -1445,6 +1404,7 @@ void LButton::handleEvent(SDL_Event* e, int id)
                                 }
 
                             }
+                            hyperlanes_loaded = true;
                             GE.click_effect_remove(id);
                             break;
 
@@ -1452,6 +1412,7 @@ void LButton::handleEvent(SDL_Event* e, int id)
                         case 16:
                             remove_hyperlanes(0, 0);
                             rerender();
+                            hyperlanes_loaded = false;
                             GE.click_effect_remove(id);
                             break;
 
@@ -1553,6 +1514,7 @@ void LButton::handleEvent(SDL_Event* e, int id)
                                 {
                                     Classinit.initilizers();
                                     initializers_loaded = true;
+
                                 }
                             }
                             break;
@@ -1745,15 +1707,11 @@ void LButton::handleEvent(SDL_Event* e, int id)
                             break;
 
                         case 98:
-                            if (initializers == false)
+                            if (galaxies_am > 0)
                             {
-                                initializers = true;
-                                rerender();
-                            }
-                            else
-                            {
-                                initializers = false;
-                                rerender();
+                                F_O.mapname_input_on = true;
+                                GE.text_input(center_width + 1200, center_height + 200, 98);
+                                F_O.mapname_input_on = false;
                             }
                             break;
 
@@ -1770,16 +1728,7 @@ void LButton::handleEvent(SDL_Event* e, int id)
                             }
                             break;
                         case 100:
-                            if (setting_hyperlanes == false)
-                            {
-                                setting_hyperlanes = true;
-                                rerender();
-                            }
-                            else
-                            {
-                                setting_hyperlanes = false;
-                                rerender();
-                            }
+                            
                             break;
 
                         case 110:
@@ -2139,49 +2088,67 @@ void LButton::handleEvent(SDL_Event* e, int id)
                     }
                 break;
             case SDL_MOUSEWHEEL:
-                if ((x < 1200) && (y < 1080) && (current_galaxies_window))
+                if ((x < 1200) && (y < 1080) && (galaxies_am > 0) && (!maps_menu_bool) && (id == 75))
                 {
                     if (e->wheel.y > 0)
                     {
-                        DisableOtherWindows();
-                        C_S.scrolling = true;
-                        SDL_GetMouseState(&C_S.donex, &C_S.doney);
-                        C_S.done = true;
+                        if (scrolling_level > 0)
+                        {
+                            scrolling_level++;
+                        }
+                        else
+                        {
+                            DisableOtherWindows();
+                            C_S.scrolling = true;
+                            scrolling_level++;
+                            SDL_GetMouseState(&C_S.donex, &C_S.doney);
+                            C_S.done = true;
+                        }
                     }
                     if (e->wheel.y < 0)
                     {
-                        C_S.scrolling = false;
-                        Det_Gen.false_initializers();
-                        Det_Gen.false_all_bools();
-                        for (int i = 0; i < D_S_E_Buttons.size(); ++i)
+                        if (scrolling_level != 0)
                         {
-                            D_S_E_Buttons[i].mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG;
+                            scrolling_level--;
                         }
-                        C_S.box_open = false;
-                        GE.system_box_x = -1000;
-                        GE.system_box_y = -1000;
-                        C_S.done = false;
-                        current_galaxies_window = true;
+                        else
+                        {
+                            C_S.scrolling = false;
+                            Det_Gen.false_initializers();
+                            Det_Gen.false_all_bools();
+                            for (int i = 0; i < D_S_E_Buttons.size(); ++i)
+                            {
+                                D_S_E_Buttons[i].mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG;
+                            }
+                            C_S.box_open = false;
+                            GE.system_box_x = -1000;
+                            GE.system_box_y = -1000;
+                            C_S.done = false;
+                            current_galaxies_window = true;
+                        }
                     }
                 }
                 else if (maps_menu_bool)
                 {
                     if(id == 75)
                     {
-                        // Whell down
-                        if (e->wheel.y < 0)
+                        if (F_O.v_local_maps.size() > 15)
                         {
-                            if (F_O.top_showed < F_O.v_local_maps.size() - 15)
+                            // Whell down
+                            if (e->wheel.y < 0)
                             {
-                                F_O.top_showed++;
+                                if (F_O.top_showed < F_O.v_local_maps.size() - 15)
+                                {
+                                    F_O.top_showed++;
+                                }
                             }
-                        }
-                        // Whell up
-                        else if (e->wheel.y > 0)
-                        {
-                            if (F_O.top_showed > 0)
+                            // Whell up
+                            else if (e->wheel.y > 0)
                             {
-                                F_O.top_showed--;
+                                if (F_O.top_showed > 0)
+                                {
+                                    F_O.top_showed--;
+                                }
                             }
                         }
                     }
@@ -2194,22 +2161,9 @@ void LButton::handleEvent(SDL_Event* e, int id)
 void SaveLoadExit()
 {
     gModulatedTexture.setAlpha(233);
-    gModulatedTexture.render(center_width + 1230, center_height + 160, 650, 350);
-    GE.render_button_with_text(0, 10, 1610, 230, "Import", 1660, 235);
-    GE.render_button_with_text(0, 11, 1610, 290, "Export", 1660, 295);
-    GE.render_button_with_text(0, 12, 1610, 350, "Play", 1675, 355);
-    GE.render_button_with_text(0, 13, 1610, 410, "Exit", 1680, 415);
-
-    GE.render_checkbox(97, 1512, 238, 30, 30);
-    GE.render_checkbox(98, 1512, 278, 30, 30);
-    GE.render_checkbox(99, 1512, 318, 30, 30);
-    GE.render_checkbox(100, 1512, 358, 30, 30);
-
-    GE.text_render_v2("Multiplayer", 1360, 238);
-    GE.text_render_v2("Initializers", 1370, 278);
-    GE.text_render_v2("Save", 1433, 318);
-    GE.text_render_v2("SMGG Hyperlanes", 1260, 358);
-    GE.text_render_v2("File operation and exit.", 1550, 170);
+    gModulatedTexture.render(center_width + 1580, center_height + 160, 250, 150);
+    GE.render_button_with_text(0, 12, 1610, 180, "Play", 1675, 185);
+    GE.render_button_with_text(0, 13, 1610, 240, "Exit", 1680, 245);
 }
 
 void EmpireSettings()
@@ -2613,7 +2567,6 @@ void edit_spiral(int mode, int gal_id)
     {
         link(0, gal_id);
     }
-
     rerender();
     draw_galaxy();
 }

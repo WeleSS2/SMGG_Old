@@ -643,6 +643,9 @@ void link_wave_save(int mode, int gal_id, int i)
             }
         }
         v_system_data[gal_id][i].blocked = true;
+        //SDL_Delay(2000);
+        //render_hyperlanes();
+        //std::cout << "Saved" << std::endl;
         //std::cout << v_system_data[gal_id][i].con << std::endl;
         //std::cout << v_hyperlanes[gal_id][i].size() << std::endl;
     }

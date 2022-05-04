@@ -68,22 +68,6 @@ void base()
         if (!C_S.scrolling)
         {
             SaveLoadExit();
-            if (export_mode_multi)
-            {
-                GE.text_render("X", center_width + 1518, center_height + 239);
-            }
-            if (initializers == true)
-            {
-                GE.text_render("X", center_width + 1518, center_height + 279);
-            }
-            if (savetoagame == true)
-            {
-                GE.text_render("X", center_width + 1518, center_height + 319);
-            }
-            if (setting_hyperlanes == true)
-            {
-                GE.text_render("X", center_width + 1518, center_height + 359);
-            }
         }
     }
 
@@ -353,10 +337,18 @@ void base()
     if (maps_menu_bool)
     {
         F_O.maps_menu();
+        if (export_mode_multi)
+        {
+            GE.text_render_v2("X", 1230, 267);
+        }
+        if (savetoagame == true)
+        {
+            GE.text_render_v2("X", 1230, 325);
+        }
     }
     if (map_name_bool)
     {
-        GE.text_render_v2("Map name: ", center_width + 1240, center_height + 190);
+        GE.text_render_v2("Map name: ", 1050, 200);
     }
 }
 
@@ -456,6 +448,7 @@ void DisableOtherWindows()
     if (C_S.scrolling)
     {
         C_S.scrolling = false;
+        scrolling_level = 0;
     }
 }
 
@@ -514,7 +507,7 @@ void buttons_render()
     GE.text_render("Galaxies", center_width + 1275, center_height + 25);
     GE.text_render("Maps", center_width + 1300, center_height + 90);
     GE.text_render("Settings", center_width + 1500, center_height + 25);
-    GE.text_render("Files&Exit", center_width + 1715, center_height + 90);
+    GE.text_render("Play&Exit", center_width + 1715, center_height + 90);
 }
 
 void No_space_found()

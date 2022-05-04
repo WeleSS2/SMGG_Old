@@ -281,133 +281,9 @@ PWSTR LoadFile() {
                 hr = pItem->GetDisplayName(SIGDN_FILESYSPATH, &pszFilePath);
                 if (SUCCEEDED(hr))
                 {
-                    clear_map();
-                    //std::cout << "Import open" << std::endl;
-                    std::ifstream file(pszFilePath);
-                    int mapversion = 0;
-                    file >> mapversion;
-                    file >> export_mode;
-                    file >> initializers_loaded;
-                    file >> hyperlanes_loaded;
-                    file >> galaxies_am;
-                    file >> empire_am;
-                    file >> fallen_am;
-                    file >> maruder_am;
-                    if (mapversion >= 60)
-                    {
-                        file >> Det_Gen.player_am;
-                    }
-                    for (int i = 0; i < galaxies_am; i++)
-                    {
-                        //std::cout << "Galaxy number " << i << std::endl;
-                        current_gal_id = i;
-                        v_galaxy_generation.emplace_back();
-                        SystemButtons.emplace_back();
-                        int gal_type = 0;
-                        file >> gal_type;
-                        v_galaxy_generation[i].galtype = gal_type;
-                        //std::cout << "Galaxy number before galaxy " << gal_type << std::endl;
-                        if (gal_type == 0)
-                        {
-                            file >> v_galaxy_generation[current_gal_id].star >> v_galaxy_generation[i].gsize
-                                >> v_galaxy_generation[i].cen_posX >> v_galaxy_generation[i].cen_posY
-                                >> v_galaxy_generation[i].max_hyp_dis;
-                            v_galaxy_generation[current_gal_id].i_star = std::stoi(v_galaxy_generation[current_gal_id].star);
-                            v_galaxy_generation[current_gal_id].i_gsize = std::stoi(v_galaxy_generation[current_gal_id].gsize);
-                            v_galaxy_generation[current_gal_id].i_cen_posX = std::stoi(v_galaxy_generation[current_gal_id].cen_posX);
-                            v_galaxy_generation[current_gal_id].i_cen_posY = std::stoi(v_galaxy_generation[current_gal_id].cen_posY);
-                            v_galaxy_generation[current_gal_id].i_max_hyp_dis = std::stoi(v_galaxy_generation[current_gal_id].max_hyp_dis);
-                        }
-                        else
-                        {
-                            file >> v_galaxy_generation[i].star >> v_galaxy_generation[i].gsize
-                                >> v_galaxy_generation[i].cen_posX >> v_galaxy_generation[i].cen_posY
-                                >> v_galaxy_generation[i].max_hyp_dis >> v_galaxy_generation[i].numArms
-                                >> v_galaxy_generation[i].armOffsetMax >> v_galaxy_generation[i].rotationFactor
-                                >> v_galaxy_generation[i].randomOffsetXY;
-
-                            v_galaxy_generation[current_gal_id].i_star = std::stoi(v_galaxy_generation[current_gal_id].star);
-                            v_galaxy_generation[current_gal_id].i_gsize = std::stoi(v_galaxy_generation[current_gal_id].gsize);
-                            v_galaxy_generation[current_gal_id].i_cen_posX = std::stoi(v_galaxy_generation[current_gal_id].cen_posX);
-                            v_galaxy_generation[current_gal_id].i_cen_posY = std::stoi(v_galaxy_generation[current_gal_id].cen_posY);
-                            v_galaxy_generation[current_gal_id].i_max_hyp_dis = std::stoi(v_galaxy_generation[current_gal_id].max_hyp_dis);
-
-
-                            v_galaxy_generation[current_gal_id].i_numArms = std::stoi(v_galaxy_generation[current_gal_id].numArms);
-                            v_galaxy_generation[current_gal_id].f_armOffsetMax = std::stof(v_galaxy_generation[current_gal_id].armOffsetMax);
-                            v_galaxy_generation[current_gal_id].f_randomOffsetXY = std::stof(v_galaxy_generation[current_gal_id].randomOffsetXY);
-                            v_galaxy_generation[current_gal_id].f_rotationFactor = std::stof(v_galaxy_generation[current_gal_id].rotationFactor);
-                        }
-                        if (mapversion >= 60)
-                        {
-                            file >> v_galaxy_generation[i].players_am;
-                        }
-                        v_system_data.emplace_back();
-                        //std::cout << "Galaxy number before systems " << i << std::endl;
-                        for (int j = 0; j < v_galaxy_generation[i].i_star; j++)
-                        {
-                            SystemButtons[i].emplace_back();
-                            //std::cout << j << std::endl;
-                            system_data pushing;
-                            file >> pushing.gal_id >> pushing.gal_x
-                                >> pushing.gal_y >> pushing.con
-                                >> pushing.con_max;
-
-                            v_system_data[i].push_back(pushing);
-
-                            if (initializers_loaded == true)
-                            {
-                                file >> v_system_data[i][j].inicjalizer
-                                    >> v_system_data[i][j].init_type >> v_system_data[i][j].init_number;
-                            }
-                        }
-                        //std::cout << "Galaxy number before hyperlanes " << i << std::endl;
-                        if (hyperlanes_loaded == true)
-                        {
-                            v_galaxy_generation[i].hyperlanes_generated = true;
-                            v_hyperlanes.emplace_back();
-                            int amount = 0;
-                            file >> amount;
-                            for (int j = 0; j < amount; j++)
-                            {
-                                v_hyperlanes[i].emplace_back();
-                                int amount_2 = 0;
-                                file >> amount_2;
-                                for (int k = 0; k < amount_2; ++k)
-                                {
-                                    v_hyperlanes[i][j].emplace_back();
-                                    file >> v_hyperlanes[i][j][k].from >> v_hyperlanes[i][j][k].to;
-                                }
-                            }
-                        }
-                        sys_sum += std::stoi(v_galaxy_generation[i].star);
-                    }
-                    //std::cout << "Export mode below" << std::endl;
-                    if ((export_mode_multi) && (export_mode == 1))
-                    {
-                        int size = 0;
-                        file >> size;
-                        for (int i = 0; i < size; i++)
-                        {
-                            v_system_data_copy.emplace_back();
-                            file >> v_system_data_copy[i].gal_id >> v_system_data_copy[i].gal_x
-                                >> v_system_data_copy[i].gal_y >> v_system_data_copy[i].con
-                                >> v_system_data_copy[i].con_max ;
-                            if (initializers_loaded)
-                            {
-                                file >> v_system_data_copy[i].inicjalizer
-                                    >> v_system_data_copy[i].init_type >> v_system_data_copy[i].init_number;
-                            }
-                        }
-                        int size_hyperlanes = 0;
-                        file >> size_hyperlanes;
-                        for (int i = 0; i < size_hyperlanes; i++)
-                        {
-                            v_hyperlanes_copy.emplace_back();
-                            file >> v_hyperlanes_copy[i].from;
-                            file >> v_hyperlanes_copy[i].to;
-                        }
-                    }
+                    std::wstring ws(pszFilePath);
+                    std::string path(ws.begin(), ws.end());
+                    F_O.import_map(path);
                 }
             }
         }
@@ -449,208 +325,8 @@ PWSTR SaveFile() {
                         wcstombs(buffer, pszFilePath, 500);
                         path = buffer;
 
+                        F_O.export_file(path);
 
-                        std::ofstream file(path);
-                        if (file.is_open())
-                        {
-                            if (export_mode_multi)
-                            {
-                                export_mode = 1;
-                            }
-                            int mapversion = 60;
-                            file << mapversion << std::endl;
-                            file << export_mode << std::endl;
-                            std::vector <int> gal_init_1_id;
-                            std::vector <bool> gal_init_1_id_exported;
-                            file << initializers_loaded << std::endl;
-                            file << hyperlanes_loaded << std::endl;
-                            file << v_galaxy_generation.size() << std::endl;
-                            file << empire_am << std::endl;
-                            file << fallen_am << std::endl;
-                            file << maruder_am << std::endl;
-                            if (mapversion >= 60)
-                            {
-                                file << Det_Gen.player_am << std::endl;
-                            }
-                            int sum = 0, hyper_sum = 0;
-                            for (int i = 0; i < v_galaxy_generation.size(); i++)
-                            {
-                                int random_gal = rand() % v_system_data.size();
-                                while (v_galaxy_generation[random_gal].exported)
-                                {
-                                    random_gal = rand() % v_system_data.size();
-                                }
-                                v_galaxy_generation[random_gal].exported = true;
-
-                                file << v_galaxy_generation[random_gal].galtype << " " << v_galaxy_generation[random_gal].star
-                                    << " " << v_galaxy_generation[random_gal].gsize
-                                    << " " << v_galaxy_generation[random_gal].cen_posX << " " << v_galaxy_generation[random_gal].cen_posY
-                                    << " " << v_galaxy_generation[random_gal].max_hyp_dis << " " << v_galaxy_generation[random_gal].numArms
-                                    << " " << v_galaxy_generation[random_gal].armOffsetMax << " " << v_galaxy_generation[random_gal].rotationFactor
-                                    << " " << v_galaxy_generation[random_gal].randomOffsetXY << " ";
-                                if (mapversion >= 60)
-                                {
-                                    file << v_galaxy_generation[random_gal].players_am;
-                                }
-                                file <<  std::endl;
-                                for (int j = 0; j < v_galaxy_generation[random_gal].i_star; j++)
-                                {
-                                    //std::cout << v_galaxy_generation[random_gal].i_star << "    " << v_system_data[random_gal].size() << std::endl;
-                                    file << v_system_data[random_gal][j].gal_id << " " << v_system_data[random_gal][j].gal_x
-                                        << " " << v_system_data[random_gal][j].gal_y << " " << v_system_data[random_gal][j].con
-                                        << " " << v_system_data[random_gal][j].con_max << " ";
-                                    if (initializers_loaded)
-                                    {
-                                        file << v_system_data[random_gal][j].inicjalizer
-                                            << " " << v_system_data[random_gal][j].init_type << " " << v_system_data[random_gal][j].init_number << std::endl;
-                                    }
-                                    else
-                                    {
-                                        file << std::endl;
-                                    }
-                                    if (export_mode_multi)
-                                    {
-                                        v_system_data_copy.emplace_back();
-                                        //std::cout << sum << std::endl;
-                                        v_system_data_copy[sum + j] = v_system_data[random_gal][j];
-                                        v_system_data_copy[sum + j].gal_id = v_system_data[random_gal][j].gal_id + sum;
-                                    }
-                                    v_system_data[random_gal][j].exported = true;
-                                }
-                                if ((!export_mode_multi)&&(setting_hyperlanes))
-                                {
-                                    file << v_hyperlanes[random_gal].size() << std::endl;
-                                    for (int j = 0; j < v_hyperlanes[random_gal].size(); j++)
-                                    {
-                                        file << v_hyperlanes[random_gal][j].size() << std::endl;
-                                        for (int k = 0; k < v_hyperlanes[random_gal][j].size(); ++k)
-                                        {
-                                            file << v_hyperlanes[random_gal][j][k].from << "  " << v_hyperlanes[random_gal][j][k].to << std::endl;
-                                        }
-                                    }
-                                }
-                                else
-                                {
-                                    int k_sum = 0;
-                                    file << v_hyperlanes[random_gal].size() << std::endl;
-                                    for (int j = 0; j < v_hyperlanes[random_gal].size(); j++)
-                                    {
-                                        file << v_hyperlanes[random_gal][j].size() << std::endl;
-                                        for (int k = 0; k < v_hyperlanes[random_gal][j].size(); ++k)
-                                        {
-                                            file << v_hyperlanes[random_gal][j][k].from << "  " << v_hyperlanes[random_gal][j][k].to << std::endl;
-
-                                            v_hyperlanes_copy.emplace_back();
-                                            v_hyperlanes_copy[hyper_sum + k_sum + k].from = v_hyperlanes[random_gal][j][k].from + sum;
-                                            v_hyperlanes_copy[hyper_sum + k_sum + k].to = v_hyperlanes[random_gal][j][k].to + sum;
-                                            
-                                        }
-                                        k_sum += v_hyperlanes[random_gal][j].size();
-                                    }
-                                }
-                                for (int j = 0; j < v_hyperlanes[random_gal].size(); ++j)
-                                {
-                                    hyper_sum += v_hyperlanes[random_gal][j].size();
-                                }
-                                
-                                sum += v_galaxy_generation[random_gal].i_star;
-                            }
-                            if (mapversion >= 60)
-                            {
-                                if ((export_mode_multi))
-                                {
-                                    int current_player = 1;
-                                    auto rd = std::random_device{};
-                                    auto rng = std::default_random_engine{ rd() };
-                                    std::shuffle(std::begin(v_system_data_copy), std::end(v_system_data_copy), rng);
-                                    file << sum << std::endl;
-                                    if (initializers_loaded)
-                                    {
-                                        for (int i = 0; i < sum; i++)
-                                        {
-                                            if (v_system_data_copy[i].init_type == 10)
-                                            {
-                                                if (v_system_data_copy[i].player_id == current_player)
-                                                {
-                                                    file << v_system_data_copy[i].gal_id << " " << v_system_data_copy[i].gal_x
-                                                        << " " << v_system_data_copy[i].gal_y << " " << v_system_data_copy[i].con
-                                                        << " " << v_system_data_copy[i].con_max << " " << v_system_data_copy[i].inicjalizer
-                                                        << " " << v_system_data_copy[i].init_type << " " << v_system_data_copy[i].init_number << std::endl;;
-                                                    current_player++;
-                                                    i = 0;
-                                                }
-                                            }
-                                        }
-                                    }
-                                    for (int i = 0; i < sum; i++)
-                                    {
-                                        if (initializers_loaded)
-                                        {
-                                            if (v_system_data_copy[i].init_type != 10)
-                                            {
-                                                file << v_system_data_copy[i].gal_id << " " << v_system_data_copy[i].gal_x
-                                                    << " " << v_system_data_copy[i].gal_y << " " << v_system_data_copy[i].con
-                                                    << " " << v_system_data_copy[i].con_max << " " << v_system_data_copy[i].inicjalizer
-                                                    << " " << v_system_data_copy[i].init_type << " " << v_system_data_copy[i].init_number << std::endl;;
-                                            }
-                                            else
-                                            {
-                                                file << std::endl;
-                                            }
-                                        }
-                                        else
-                                        {
-                                            file << v_system_data_copy[i].gal_id << " " << v_system_data_copy[i].gal_x
-                                                << " " << v_system_data_copy[i].gal_y << " " << v_system_data_copy[i].con
-                                                << " " << v_system_data_copy[i].con_max;
-                                        }
-                                    }
-                                    file << v_hyperlanes_copy.size() << std::endl;
-
-                                    for (int i = 0; i < v_hyperlanes_copy.size(); i++)
-                                    {
-                                        file << v_hyperlanes_copy[i].from << "  " << v_hyperlanes_copy[i].to << std::endl;
-                                    }
-                                }
-                            }
-                            else if ((export_mode_multi) && (mapversion < 60))
-                            {
-                                auto rd = std::random_device{};
-                                auto rng = std::default_random_engine{ rd() };
-                                std::shuffle(std::begin(v_system_data_copy), std::end(v_system_data_copy), rng);
-                                file << sum << std::endl;
-                                for (int i = 0; i < sum; i++)
-                                {
-                                    file << v_system_data_copy[i].gal_id << " " << v_system_data_copy[i].gal_x
-                                        << " " << v_system_data_copy[i].gal_y << " " << v_system_data_copy[i].con
-                                        << " " << v_system_data_copy[i].con_max << " ";
-                                    if (initializers_loaded)
-                                    {
-                                        file << v_system_data_copy[i].inicjalizer
-                                            << " " << v_system_data_copy[i].init_type << " " << v_system_data_copy[i].init_number << std::endl;;
-                                    }
-                                    else
-                                    {
-                                        file << std::endl;
-                                    }
-                                }
-                                file << v_hyperlanes_copy.size() << std::endl;
-
-                                for (int i = 0; i < v_hyperlanes_copy.size(); i++)
-                                {
-                                    file << v_hyperlanes_copy[i].from << "  " << v_hyperlanes_copy[i].to << std::endl;
-                                }
-                            }
-                            for (int i = 0; i < v_galaxy_generation.size(); i++)
-                            {
-                                v_galaxy_generation[i].exported = false;
-                                for (int j = 0; j < v_system_data[i].size(); j++)
-                                {
-                                    v_system_data[i][j].exported = false;
-                                }
-                            }
-                            file.close();
-                        }
                         CoTaskMemFree(pszFilePath);
                     }
                     pItem->Release();
@@ -1182,6 +858,7 @@ void LoadRandomDefaultSettings()
     */
 }
 
+/*
 PWSTR File_Operation::SaveMap() {
     std::string path = "";
     IFileSaveDialog* pFileSave;
@@ -1238,7 +915,7 @@ PWSTR File_Operation::SaveMap() {
                         std::ofstream file(path);
                         if (file.is_open())
                         {
-                            
+
                             file.close();
                         }
                         CoTaskMemFree(pszFilePath);
@@ -1250,7 +927,7 @@ PWSTR File_Operation::SaveMap() {
         }
     }
     return 0;
-}
+}*/
 
 void File_Operation::create_folder()
 {
@@ -1260,8 +937,8 @@ void File_Operation::create_folder()
 
     if (file.is_open())
     {
-        file << "Path" << " " << "TXTName" << " " << "Name" << " " << "Status" << "\n";
-        file << pathget + "/workshop/content/281990/2602794523/map/setup_scenarios/sps_multigalaxy.txt" << " " << "sps_multigalaxy.txt" << " " << "MultiGalaxy" << " " << "1" << "\n";
+        file << "Path" << "|" << "TXTName" << "|" << "Name" << "|" << "Status" << "\n";
+        file << pathget + "/workshop/content/281990/2602794523/map/setup_scenarios/sps_multigalaxy.txt" << "|" << "sps_multigalaxy.txt" << "|" << "MultiGalaxy" << "|" << "1" << "\n";
     }
     file.close();
 
@@ -1277,10 +954,10 @@ void File_Operation::save_maps()
     std::fstream file(path, std::ios_base::out);
     if (file.is_open())
     {
-        file << "Path" << " " << "TXTName" << " " << "Name" << " " << "Status" << std::endl;
+        file << "Path" << "|" << "TXTName" << "|" << "Name" << "|" << "Status" << std::endl;
         for (int i = 0; i < v_local_maps.size(); ++i)
         {
-            file << v_local_maps[i].map_steam << " " << v_local_maps[i].map_local << " " << v_local_maps[i].map_name << " " << v_local_maps[i].enabled << std::endl;
+            file << v_local_maps[i].map_steam << "|" << v_local_maps[i].map_local << "|" << v_local_maps[i].map_name << "|" << v_local_maps[i].enabled << std::endl;
         }
     }
     file.close();
@@ -1291,6 +968,7 @@ void File_Operation::add_map()
     GE.text_render_v2("Galaxy name", 1020, 200);
 }
 
+/*
 void File_Operation::load_files_from_steammod_folder()
 {
     for (const auto& file : std::filesystem::recursive_directory_iterator(pathget + "/workshop/content/281990/2602794523/map/setup_scenarios"))
@@ -1313,7 +991,7 @@ void File_Operation::load_files_from_steammod_folder()
                 }
             }
         }
-        if(path_string != "D:/SGry/steamapps/workshop/content/281990/2602794523/map/setup_scenarios/huge.txt" && 
+        if(path_string != "D:/SGry/steamapps/workshop/content/281990/2602794523/map/setup_scenarios/huge.txt" &&
             path_string != "D:/SGry/steamapps/workshop/content/281990/2602794523/map/setup_scenarios/large.txt" &&
             path_string != "D:/SGry/steamapps/workshop/content/281990/2602794523/map/setup_scenarios/medium.txt" &&
             path_string != "D:/SGry/steamapps/workshop/content/281990/2602794523/map/setup_scenarios/small.txt" &&
@@ -1326,14 +1004,11 @@ void File_Operation::load_files_from_steammod_folder()
         v_local_maps.push_back(pushing);
         //file.path() = temp;
     }
-}
+}*/
 
 void File_Operation::map_name()
 {
     map_name_bool = true;
-    GE.text_render_v2("Map name: ", 1240, 190);
-    GE.text_input(center_width + 1420, center_height + 190, 30);
-    std::cout << mapname << "--- " << std::endl;
     std::string temp = mapname;
     for (int i = 0; i < temp.length(); ++i)
     {
@@ -1342,23 +1017,30 @@ void File_Operation::map_name()
             temp.replace(i, 1, "_");
         }
     }
-    std::cout << temp << "\n";
     local_maps pushing;
     pushing.map_steam = pathget + "/workshop/content/281990/2602794523/map/setup_scenarios/" + temp + ".txt";
     pushing.map_local = temp + ".txt";
-    pushing.map_name = temp;
-    pushing.map_name_with_spaces = mapname;
+    pushing.map_name = mapname;
     pushing.enabled = "1";
+    for (int i = 0; i < v_local_maps.size(); ++i)
+    {
+        if (pushing.map_steam == v_local_maps[i].map_steam)
+        {
+            std::string modify = F_O.v_local_maps[i].map_local;
+            modify.erase(modify.length() - 4, 4);
+            std::filesystem::remove(F_O.slash_to_backslashes(F_O.v_local_maps[i].map_steam));
+            std::filesystem::remove(F_O.slash_to_backslashes(constpath + "/Maps/" + F_O.v_local_maps[i].map_local));
+            std::filesystem::remove(F_O.slash_to_backslashes(constpath + "/Maps/" + modify + "_data.txt"));
+            F_O.v_local_maps.erase(F_O.v_local_maps.begin() + i);
+            Map_Checkbox_Buttons.erase(Map_Checkbox_Buttons.begin() + i);
+        }
+    }
     F_O.v_local_maps.push_back(pushing);
     Map_Checkbox_Buttons.emplace_back();
     save_maps();
     osfile(pathget + "/workshop/content/281990/2602794523/map/setup_scenarios/" + temp + ".txt", mapname);
     osfile(constpath + "/Maps/" + temp + ".txt", mapname);
-}
-
-void File_Operation::overwrite_data_map()
-{
-
+    export_file(constpath + "/Maps/" + temp + "_data.txt");
 }
 
 void File_Operation::maps_menu()
@@ -1371,19 +1053,32 @@ void File_Operation::maps_menu()
     {
         load_maps();
     }
-    gModulatedTexture.setAlpha(233);
+    gModulatedTexture.setAlpha(243);
     gModulatedTexture.render(center_width + 160, center_height + 120, 1660, 840);
     GE.text_render_v2("Maps", 900, 130);
     GE.text_render_v2("Name", 300, 165);
     GE.text_render_v2("Status", 500, 165);
-    GE.render_button_with_text(0, 27, 860, 200, "Save As", 890, 204);
+    GE.render_button_with_text(0, 27, 860, 195, "Save As", 890, 199);
+    GE.render_button_with_text(0, 10, 860, 255, "Import", 900, 259);
+    GE.render_button_with_text(0, 11, 860, 315, "Export", 900, 319);
+
+    GE.render_checkbox(97, 1225, 267, 30, 30);
+    GE.render_checkbox(99, 1225, 325, 30, 30);
+
+    GE.render_button_with_text_dynamic(1, 98, 1200, 200, 200, 40, "Map name:", 1050, 200);
+    if (!mapname_input_on)
+    {
+        GE.text_render_v2(mapname, 1200, 200);
+    }
+    GE.text_render_v2("Multiplayer", 1055, 265);
+    GE.text_render_v2("MultiGalaxy", 1055, 325);
     if (F_O.v_local_maps.size() > 0)
     {
         if (F_O.v_local_maps.size() < 15)
         {
             for (int i = 0; i < F_O.v_local_maps.size(); ++i)
             {
-                GE.text_render_v2(F_O.v_local_maps[i].map_name_with_spaces, 240, 210 + (45 * i) - (F_O.top_showed * 45));
+                GE.text_render_v2(F_O.v_local_maps[i].map_name, 240, 210 + (45 * i) - (F_O.top_showed * 45));
                 if (F_O.v_local_maps[i].enabled)
                 {
                     GE.render_checkbox_v2(2, i, 530, 210 + (45 * i) - (F_O.top_showed * 45), 35, 35);
@@ -1400,7 +1095,7 @@ void File_Operation::maps_menu()
         {
             for (int i = F_O.top_showed; i < F_O.top_showed + 15; ++i)
             {
-                GE.text_render_v2(F_O.v_local_maps[i].map_name_with_spaces, 240, 210 + (45 * i) - (F_O.top_showed * 45));
+                GE.text_render_v2(F_O.v_local_maps[i].map_name, 240, 210 + (45 * i) - (F_O.top_showed * 45));
                 if (F_O.v_local_maps[i].enabled)
                 {
                     GE.render_checkbox_v2(2, i, 530, 210 + (45 * i) - (F_O.top_showed * 45), 35, 35);
@@ -1429,25 +1124,435 @@ void File_Operation::load_maps()
     {
         while (getline(file, line))
         {
-            std::string temp = "";
             local_maps pushing;
-            file >> pushing.map_steam >> pushing.map_local >> 
-                temp >> pushing.enabled;
-            pushing.map_name = temp;
-            for (int i = 0; i < temp.length(); ++i)
+            int number = 0;
+            std::string hold = "", str_map_steam, str_map_local, str_map_name, str_enabled;
+            for (int i = 0; i < line.length(); ++i)
             {
-                if (temp[i] == 95)
+                if(line[i] != 124)
                 {
-                    temp.replace(i, 1, " ");
+                    hold += line[i];
+                }
+                if (number == 3)
+                {
+                    if (hold == "1")
+                    {
+                        pushing.enabled = 1;
+                    }
+                    else
+                    {
+                        pushing.enabled = 0;
+                    }
+                }
+                if (line[i] == 124)
+                {
+                    switch (number)
+                    {
+                    case 0:
+                        pushing.map_steam = hold;
+                        break;
+                    case 1:
+                        pushing.map_local = hold;
+                        break;
+                    case 2:
+                        pushing.map_name = hold;
+                        break;
+                    }
+                    number++;
+                    hold = "";
                 }
             }
-            pushing.map_name_with_spaces = temp;
-            if (pushing.map_steam != "")
+            number = 0, hold = " ";
+            if (pushing.map_steam != "Path")
             {
                 v_local_maps.push_back(pushing);
                 Map_Checkbox_Buttons.emplace_back();
             }
         }
     }
+    std::cout << v_local_maps.size() << std::endl;
     file.close();
+}
+
+void File_Operation::export_file(std::string path)
+{
+    std::ofstream file(path);
+    if (file.is_open())
+    {
+        if (export_mode_multi)
+        {
+            export_mode = 1;
+        }
+        int mapversion = 64;
+        file << mapversion << std::endl;
+        if (mapversion >= 64)
+        {
+            std::string temp = backspace_to_under(mapname);
+            file << temp << std::endl;
+        }
+        file << export_mode << std::endl;
+        file << initializers_loaded << std::endl;
+        file << hyperlanes_loaded << std::endl;
+        file << v_galaxy_generation.size() << std::endl;
+        file << empire_am << std::endl;
+        file << fallen_am << std::endl;
+        file << maruder_am << std::endl;
+        if (mapversion >= 60)
+        {
+            file << Det_Gen.player_am << std::endl;
+        }
+        int sum = 0, hyper_sum = 0;
+        for (int i = 0; i < v_galaxy_generation.size(); i++)
+        {
+            int random_gal = rand() % v_system_data.size();
+            while (v_galaxy_generation[random_gal].exported)
+            {
+                random_gal = rand() % v_system_data.size();
+            }
+            v_galaxy_generation[random_gal].exported = true;
+
+            file << v_galaxy_generation[random_gal].galtype << " " << v_galaxy_generation[random_gal].star
+                << " " << v_galaxy_generation[random_gal].gsize
+                << " " << v_galaxy_generation[random_gal].cen_posX << " " << v_galaxy_generation[random_gal].cen_posY
+                << " " << v_galaxy_generation[random_gal].max_hyp_dis << " " << v_galaxy_generation[random_gal].numArms
+                << " " << v_galaxy_generation[random_gal].armOffsetMax << " " << v_galaxy_generation[random_gal].rotationFactor
+                << " " << v_galaxy_generation[random_gal].randomOffsetXY << " ";
+            if (mapversion >= 60)
+            {
+                file << v_galaxy_generation[random_gal].players_am;
+            }
+            file << std::endl;
+            for (int j = 0; j < v_galaxy_generation[random_gal].i_star; j++)
+            {
+                //std::cout << v_galaxy_generation[random_gal].i_star << "    " << v_system_data[random_gal].size() << std::endl;
+                file << v_system_data[random_gal][j].gal_id << " " << v_system_data[random_gal][j].gal_x
+                    << " " << v_system_data[random_gal][j].gal_y << " " << v_system_data[random_gal][j].con
+                    << " " << v_system_data[random_gal][j].con_max << " ";
+                if (initializers_loaded)
+                {
+                    file << v_system_data[random_gal][j].inicjalizer
+                        << " " << v_system_data[random_gal][j].init_type << " " << v_system_data[random_gal][j].init_number << std::endl;
+                }
+                else
+                {
+                    file << std::endl;
+                }
+                if (export_mode_multi)
+                {
+                    v_system_data_copy.emplace_back();
+                    //std::cout << sum << std::endl;
+                    v_system_data_copy[sum + j] = v_system_data[random_gal][j];
+                    v_system_data_copy[sum + j].gal_id = v_system_data[random_gal][j].gal_id + sum;
+                }
+                v_system_data[random_gal][j].exported = true;
+            }
+            if ((!export_mode_multi) && (setting_hyperlanes))
+            {
+                file << v_hyperlanes[random_gal].size() << std::endl;
+                for (int j = 0; j < v_hyperlanes[random_gal].size(); j++)
+                {
+                    file << v_hyperlanes[random_gal][j].size() << std::endl;
+                    for (int k = 0; k < v_hyperlanes[random_gal][j].size(); ++k)
+                    {
+                        file << v_hyperlanes[random_gal][j][k].from << "  " << v_hyperlanes[random_gal][j][k].to << std::endl;
+                    }
+                }
+            }
+            else
+            {
+                int k_sum = 0;
+                file << v_hyperlanes[random_gal].size() << std::endl;
+                for (int j = 0; j < v_hyperlanes[random_gal].size(); j++)
+                {
+                    file << v_hyperlanes[random_gal][j].size() << std::endl;
+                    for (int k = 0; k < v_hyperlanes[random_gal][j].size(); ++k)
+                    {
+                        file << v_hyperlanes[random_gal][j][k].from << "  " << v_hyperlanes[random_gal][j][k].to << std::endl;
+
+                        v_hyperlanes_copy.emplace_back();
+                        v_hyperlanes_copy[hyper_sum + k_sum + k].from = v_hyperlanes[random_gal][j][k].from + sum;
+                        v_hyperlanes_copy[hyper_sum + k_sum + k].to = v_hyperlanes[random_gal][j][k].to + sum;
+
+                    }
+                    k_sum += v_hyperlanes[random_gal][j].size();
+                }
+            }
+            for (int j = 0; j < v_hyperlanes[random_gal].size(); ++j)
+            {
+                hyper_sum += v_hyperlanes[random_gal][j].size();
+            }
+
+            sum += v_galaxy_generation[random_gal].i_star;
+        }
+        if (mapversion >= 60)
+        {
+            if ((export_mode_multi))
+            {
+                int current_player = 1;
+                auto rd = std::random_device{};
+                auto rng = std::default_random_engine{ rd() };
+                std::shuffle(std::begin(v_system_data_copy), std::end(v_system_data_copy), rng);
+                file << sum << std::endl;
+                if (initializers_loaded)
+                {
+                    for (int i = 0; i < sum; i++)
+                    {
+                        if (v_system_data_copy[i].init_type == 10)
+                        {
+                            if (v_system_data_copy[i].player_id == current_player)
+                            {
+                                file << v_system_data_copy[i].gal_id << " " << v_system_data_copy[i].gal_x
+                                    << " " << v_system_data_copy[i].gal_y << " " << v_system_data_copy[i].con
+                                    << " " << v_system_data_copy[i].con_max << " " << v_system_data_copy[i].inicjalizer
+                                    << " " << v_system_data_copy[i].init_type << " " << v_system_data_copy[i].init_number << std::endl;;
+                                current_player++;
+                                i = 0;
+                            }
+                        }
+                    }
+                }
+                for (int i = 0; i < sum; i++)
+                {
+                    if (initializers_loaded)
+                    {
+                        if (v_system_data_copy[i].init_type != 10)
+                        {
+                            file << v_system_data_copy[i].gal_id << " " << v_system_data_copy[i].gal_x
+                                << " " << v_system_data_copy[i].gal_y << " " << v_system_data_copy[i].con
+                                << " " << v_system_data_copy[i].con_max << " " << v_system_data_copy[i].inicjalizer
+                                << " " << v_system_data_copy[i].init_type << " " << v_system_data_copy[i].init_number << std::endl;;
+                        }
+                        else
+                        {
+                            file << std::endl;
+                        }
+                    }
+                    else
+                    {
+                        file << v_system_data_copy[i].gal_id << " " << v_system_data_copy[i].gal_x
+                            << " " << v_system_data_copy[i].gal_y << " " << v_system_data_copy[i].con
+                            << " " << v_system_data_copy[i].con_max;
+                    }
+                }
+                file << v_hyperlanes_copy.size() << std::endl;
+
+                for (int i = 0; i < v_hyperlanes_copy.size(); i++)
+                {
+                    file << v_hyperlanes_copy[i].from << "  " << v_hyperlanes_copy[i].to << std::endl;
+                }
+            }
+        }
+        else if ((export_mode_multi) && (mapversion < 60))
+        {
+            auto rd = std::random_device{};
+            auto rng = std::default_random_engine{ rd() };
+            std::shuffle(std::begin(v_system_data_copy), std::end(v_system_data_copy), rng);
+            file << sum << std::endl;
+            for (int i = 0; i < sum; i++)
+            {
+                file << v_system_data_copy[i].gal_id << " " << v_system_data_copy[i].gal_x
+                    << " " << v_system_data_copy[i].gal_y << " " << v_system_data_copy[i].con
+                    << " " << v_system_data_copy[i].con_max << " ";
+                if (initializers_loaded)
+                {
+                    file << v_system_data_copy[i].inicjalizer
+                        << " " << v_system_data_copy[i].init_type << " " << v_system_data_copy[i].init_number << std::endl;;
+                }
+                else
+                {
+                    file << std::endl;
+                }
+            }
+            file << v_hyperlanes_copy.size() << std::endl;
+
+            for (int i = 0; i < v_hyperlanes_copy.size(); i++)
+            {
+                file << v_hyperlanes_copy[i].from << "  " << v_hyperlanes_copy[i].to << std::endl;
+            }
+        }
+        for (int i = 0; i < v_galaxy_generation.size(); i++)
+        {
+            v_galaxy_generation[i].exported = false;
+            for (int j = 0; j < v_system_data[i].size(); j++)
+            {
+                v_system_data[i][j].exported = false;
+            }
+        }
+        file.close();
+    }
+}
+
+void File_Operation::import_map(std::string path)
+{
+    clear_map();
+    //std::cout << "Import open" << std::endl;
+    std::ifstream file(path);
+    int mapversion = 0;
+    file >> mapversion;
+    if (mapversion >= 64)
+    {
+        std::string temp;
+        file >> temp;
+        under_to_backspace(temp);
+        mapname = temp;
+    }
+    file >> export_mode;
+    file >> initializers_loaded;
+    file >> hyperlanes_loaded;
+    file >> galaxies_am;
+    file >> empire_am;
+    file >> fallen_am;
+    file >> maruder_am;
+    if (mapversion >= 60)
+    {
+        file >> Det_Gen.player_am;
+    }
+    for (int i = 0; i < galaxies_am; i++)
+    {
+        //std::cout << "Galaxy number " << i << std::endl;
+        current_gal_id = i;
+        v_galaxy_generation.emplace_back();
+        SystemButtons.emplace_back();
+        int gal_type = 0;
+        file >> gal_type;
+        v_galaxy_generation[i].galtype = gal_type;
+        //std::cout << "Galaxy number before galaxy " << gal_type << std::endl;
+        if (gal_type == 0)
+        {
+            file >> v_galaxy_generation[current_gal_id].star >> v_galaxy_generation[i].gsize
+                >> v_galaxy_generation[i].cen_posX >> v_galaxy_generation[i].cen_posY
+                >> v_galaxy_generation[i].max_hyp_dis;
+            v_galaxy_generation[current_gal_id].i_star = std::stoi(v_galaxy_generation[current_gal_id].star);
+            v_galaxy_generation[current_gal_id].i_gsize = std::stoi(v_galaxy_generation[current_gal_id].gsize);
+            v_galaxy_generation[current_gal_id].i_cen_posX = std::stoi(v_galaxy_generation[current_gal_id].cen_posX);
+            v_galaxy_generation[current_gal_id].i_cen_posY = std::stoi(v_galaxy_generation[current_gal_id].cen_posY);
+            v_galaxy_generation[current_gal_id].i_max_hyp_dis = std::stoi(v_galaxy_generation[current_gal_id].max_hyp_dis);
+        }
+        else
+        {
+            file >> v_galaxy_generation[i].star >> v_galaxy_generation[i].gsize
+                >> v_galaxy_generation[i].cen_posX >> v_galaxy_generation[i].cen_posY
+                >> v_galaxy_generation[i].max_hyp_dis >> v_galaxy_generation[i].numArms
+                >> v_galaxy_generation[i].armOffsetMax >> v_galaxy_generation[i].rotationFactor
+                >> v_galaxy_generation[i].randomOffsetXY;
+
+            v_galaxy_generation[current_gal_id].i_star = std::stoi(v_galaxy_generation[current_gal_id].star);
+            v_galaxy_generation[current_gal_id].i_gsize = std::stoi(v_galaxy_generation[current_gal_id].gsize);
+            v_galaxy_generation[current_gal_id].i_cen_posX = std::stoi(v_galaxy_generation[current_gal_id].cen_posX);
+            v_galaxy_generation[current_gal_id].i_cen_posY = std::stoi(v_galaxy_generation[current_gal_id].cen_posY);
+            v_galaxy_generation[current_gal_id].i_max_hyp_dis = std::stoi(v_galaxy_generation[current_gal_id].max_hyp_dis);
+
+
+            v_galaxy_generation[current_gal_id].i_numArms = std::stoi(v_galaxy_generation[current_gal_id].numArms);
+            v_galaxy_generation[current_gal_id].f_armOffsetMax = std::stof(v_galaxy_generation[current_gal_id].armOffsetMax);
+            v_galaxy_generation[current_gal_id].f_randomOffsetXY = std::stof(v_galaxy_generation[current_gal_id].randomOffsetXY);
+            v_galaxy_generation[current_gal_id].f_rotationFactor = std::stof(v_galaxy_generation[current_gal_id].rotationFactor);
+        }
+        if (mapversion >= 60)
+        {
+            file >> v_galaxy_generation[i].players_am;
+        }
+        v_system_data.emplace_back();
+        //std::cout << "Galaxy number before systems " << i << std::endl;
+        for (int j = 0; j < v_galaxy_generation[i].i_star; j++)
+        {
+            SystemButtons[i].emplace_back();
+            //std::cout << j << std::endl;
+            system_data pushing;
+            file >> pushing.gal_id >> pushing.gal_x
+                >> pushing.gal_y >> pushing.con
+                >> pushing.con_max;
+
+            v_system_data[i].push_back(pushing);
+
+            if (initializers_loaded == true)
+            {
+                file >> v_system_data[i][j].inicjalizer
+                    >> v_system_data[i][j].init_type >> v_system_data[i][j].init_number;
+            }
+        }
+        //std::cout << "Galaxy number before hyperlanes " << i << std::endl;
+        if (hyperlanes_loaded == true)
+        {
+            v_galaxy_generation[i].hyperlanes_generated = true;
+            v_hyperlanes.emplace_back();
+            int amount = 0;
+            file >> amount;
+            for (int j = 0; j < amount; j++)
+            {
+                v_hyperlanes[i].emplace_back();
+                int amount_2 = 0;
+                file >> amount_2;
+                for (int k = 0; k < amount_2; ++k)
+                {
+                    v_hyperlanes[i][j].emplace_back();
+                    file >> v_hyperlanes[i][j][k].from >> v_hyperlanes[i][j][k].to;
+                }
+            }
+        }
+        sys_sum += std::stoi(v_galaxy_generation[i].star);
+    }
+    //std::cout << "Export mode below" << std::endl;
+    if ((export_mode_multi) && (export_mode == 1))
+    {
+        int size = 0;
+        file >> size;
+        for (int i = 0; i < size; i++)
+        {
+            v_system_data_copy.emplace_back();
+            file >> v_system_data_copy[i].gal_id >> v_system_data_copy[i].gal_x
+                >> v_system_data_copy[i].gal_y >> v_system_data_copy[i].con
+                >> v_system_data_copy[i].con_max;
+            if (initializers_loaded)
+            {
+                file >> v_system_data_copy[i].inicjalizer
+                    >> v_system_data_copy[i].init_type >> v_system_data_copy[i].init_number;
+            }
+        }
+        int size_hyperlanes = 0;
+        file >> size_hyperlanes;
+        for (int i = 0; i < size_hyperlanes; i++)
+        {
+            v_hyperlanes_copy.emplace_back();
+            file >> v_hyperlanes_copy[i].from;
+            file >> v_hyperlanes_copy[i].to;
+        }
+    }
+}
+
+std::string File_Operation::slash_to_backslashes(std::string text)
+{
+    for (int i = 0; i < text.length(); ++i)
+    {
+        if (text[i] == 47)
+        {
+            text[i] = 92;
+            text.insert(i, "\\");
+        }
+    }
+    return text;
+}
+
+std::string File_Operation::backspace_to_under(std::string text)
+{
+    for (int i = 0; i < text.length(); ++i)
+    {
+        if (text[i] == 32)
+        {
+            text.replace(i, 1, "_");
+        }
+    }
+    return text;
+}
+
+std::string File_Operation::under_to_backspace(std::string text)
+{
+    for (int i = 0; i < text.length(); ++i)
+    {
+        if (text[i] == 95)
+        {
+            text.replace(i, 1, " ");
+        }
+    }
+    return text;
 }

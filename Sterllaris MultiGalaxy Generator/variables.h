@@ -51,6 +51,7 @@ int min_hyperlane_am = 0,
     max_hyperlane_am = 0;
 
 int export_mode = 0;
+int scrolling_level = 0;
 
 int sys_sum = 0;
 
