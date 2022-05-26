@@ -32,6 +32,7 @@ public:
     void setAlpha(Uint8 alpha);
 
     void render(int x, int y, int w, int h, SDL_Rect* clip = NULL);
+    void render_mode(int mode, SDL_Texture* texture, int x, int y, int w, int h, SDL_Rect* clip);
     void renderButton(int x, int y, SDL_Rect* clip = NULL, double angle = 0.0, SDL_Point* center = NULL, SDL_RendererFlip flip = SDL_FLIP_NONE);
     void renderButtonDynamicSize(int x, int y, int w, int h, SDL_Rect* clip = NULL, double angle = 0.0, SDL_Point* center = NULL, SDL_RendererFlip flip = SDL_FLIP_NONE);
     void renderButtonafterText(int id, int x, int y, SDL_Rect* clip = NULL, double angle = 0.0, SDL_Point* center = NULL, SDL_RendererFlip flip = SDL_FLIP_NONE);
@@ -151,7 +152,7 @@ SDL_Rect gSpriteClips[BUTTON_SPRITE_TOTAL];
 LTexture gButtonSpriteSheetTexture;
 LTexture mButtonSpriteSheetTexture;
 
-
+LTexture photo_Text;
 // Font mng
 SDL_Color SilverTextColor = { 172, 172, 172, 0xFF };
 TTF_Font* gFont = NULL;
@@ -205,16 +206,16 @@ void LTexture::renderButton(int x, int y, SDL_Rect* clip, double angle, SDL_Poin
     SDL_RenderCopyEx(gRenderer, mTexture, clip, &renderQuad, angle, center, flip);
 }
 
-void LTexture::renderButtonDynamicSize(int x, int y, int wi, int he, SDL_Rect* clip, double angle, SDL_Point* center, SDL_RendererFlip flip)
+void LTexture::renderButtonDynamicSize(int x, int y, int w, int h, SDL_Rect* clip, double angle, SDL_Point* center, SDL_RendererFlip flip)
 {
     //Set rendering space and render to screen
-    SDL_Rect renderQuad = { x, y, mWidth, mHeight };
+    SDL_Rect renderQuad = { x, y, w, h };
 
     //Set clip rendering dimensions
     if (clip != NULL)
     {
-        renderQuad.w = wi;
-        renderQuad.h = he;
+        renderQuad.w = w;
+        renderQuad.h = h;
     }
 
     //Render to screen
@@ -248,6 +249,7 @@ bool LTexture::loadFromFile(std::string path)
 
     //Load image
     SDL_Surface* loadedSurface = IMG_Load(path.c_str());
+    std::cout << path.c_str() << std::endl;
     if (loadedSurface == NULL)
     {
         std::cout << "Error in LTexture::loadFromFile" << std::endl;
@@ -499,7 +501,7 @@ bool loadMedia()
     {
         gButtons.emplace_back();
     }
-    for (int i = 0; i < 50; ++i)
+    for (int i = 0; i < 500; ++i)
     {
         D_S_E_Buttons.emplace_back();
     }
@@ -666,9 +668,9 @@ void Graphics_Engine::text_input(int x, int y, int target_string_id)
             }
             break;
         case 2:
-            if (std::stoi(inputText) < 500)
+            if (isNumber(inputText))
             {
-                isNumber(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+                ((std::stoi(inputText) < 500) && (std::stoi(inputText) > -500)) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
             }
             else
             {
@@ -676,9 +678,9 @@ void Graphics_Engine::text_input(int x, int y, int target_string_id)
             }
             break;
         case 3:
-            if (std::stoi(inputText) < 500)
+            if (isNumber(inputText))
             {
-                isNumber(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+                ((std::stoi(inputText) < 500) && (std::stoi(inputText) > -500)) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
             }
             else
             {
@@ -692,9 +694,9 @@ void Graphics_Engine::text_input(int x, int y, int target_string_id)
             isNumber(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
             break;
         case 6:
-            //if (std::stof(inputText) > 0.01 && std::stof(inputText) < 3)
+            //if (isNumber(inputText))
             {
-                isNumber(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+                (std::stof(inputText) > 0.01 && std::stof(inputText) < 3) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
             }
             //else
             {
@@ -743,9 +745,9 @@ void Graphics_Engine::text_input(int x, int y, int target_string_id)
             pathget = inputText;
             break;
         case 113:
-            if (std::stoi(inputText) > 25 && std::stoi(inputText) < 500)
+            if (isNumber_not_negative(inputText))
             {
-                isNumber_not_negative(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+                (std::stoi(inputText) > 25 && std::stoi(inputText) < 500) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
             }
             else
             {
@@ -753,9 +755,9 @@ void Graphics_Engine::text_input(int x, int y, int target_string_id)
             }
             break;
         case 114:
-            if (std::stoi(inputText) > 25 && std::stoi(inputText) < 500)
+            if (isNumber_not_negative(inputText))
             {
-                isNumber_not_negative(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+                (std::stoi(inputText) > 25 && std::stoi(inputText) < 500) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
             }
             else
             {
@@ -763,9 +765,9 @@ void Graphics_Engine::text_input(int x, int y, int target_string_id)
             }
             break;
         case 115:
-            if (std::stoi(inputText) > 0)
+            if (isNumber_not_negative(inputText))
             {
-                isNumber_not_negative(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+                (std::stoi(inputText) > 0) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
             }
             else
             {
@@ -773,9 +775,9 @@ void Graphics_Engine::text_input(int x, int y, int target_string_id)
             }
             break;
         case 116:
-            if (std::stoi(inputText) > 0)
+            if (isNumber_not_negative(inputText))
             {
-                isNumber_not_negative(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+                (std::stoi(inputText) > 0) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
             }
             else
             {
@@ -783,9 +785,9 @@ void Graphics_Engine::text_input(int x, int y, int target_string_id)
             }
             break;
         case 117:
-            if (std::stoi(inputText) > 0)
+            if (isNumber_not_negative(inputText))
             {
-                isNumber_not_negative(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+                (std::stoi(inputText) > 0) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
             }
             else
             {
@@ -793,9 +795,9 @@ void Graphics_Engine::text_input(int x, int y, int target_string_id)
             }
             break;
         case 118:
-            if (std::stoi(inputText) > 0)
+            if (isNumber_not_negative(inputText))
             {
-                isNumber_not_negative(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+                (std::stoi(inputText) > 0) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
             }
             else
             {
@@ -803,9 +805,9 @@ void Graphics_Engine::text_input(int x, int y, int target_string_id)
             }
             break;
         case 119:
-            if (std::stoi(inputText) > 0)
+            if (isNumber_not_negative(inputText))
             {
-                isNumber_not_negative(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+                (std::stoi(inputText) > 0) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
             }
             else
             {
@@ -813,9 +815,9 @@ void Graphics_Engine::text_input(int x, int y, int target_string_id)
             }
             break;
         case 120:
-            if (std::stoi(inputText) > 0)
+            if (isNumber_not_negative(inputText))
             {
-                isNumber_not_negative(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+                (std::stoi(inputText) > 0) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
             }
             else
             {
@@ -833,9 +835,9 @@ void Graphics_Engine::text_input(int x, int y, int target_string_id)
             }
             break;
         case 122:
-            if (std::stof(inputText) > 0.01 && std::stof(inputText) < 3)
+            if (isNumber_not_negative(inputText))
             {
-                isNumber_not_negative(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+                (std::stof(inputText) > 0.01 && std::stof(inputText) < 3) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
             }
             else
             {
@@ -843,9 +845,9 @@ void Graphics_Engine::text_input(int x, int y, int target_string_id)
             }
             break;
         case 123:
-            if (std::stof(inputText) > 0.01 && std::stof(inputText) < 3)
+            if (isNumber_not_negative(inputText))
             {
-                isNumber_not_negative(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+                (std::stof(inputText) > 0.01 && std::stof(inputText) < 3) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
             }
             else
             {
@@ -853,9 +855,9 @@ void Graphics_Engine::text_input(int x, int y, int target_string_id)
             }
             break;
         case 124:
-            if (std::stof(inputText) > 0.01 && std::stof(inputText) < 0.9999)
+            if (isNumber_not_negative(inputText))
             {
-                isNumber_not_negative(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+                (std::stof(inputText) > 0.01 && std::stof(inputText) < 0.9999) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
             }
             else
             {
@@ -863,9 +865,9 @@ void Graphics_Engine::text_input(int x, int y, int target_string_id)
             }
             break;
         case 125:
-            if (std::stof(inputText) > 0.01 && std::stof(inputText) < 0.9999)
+            if (isNumber_not_negative(inputText))
             {
-                isNumber_not_negative(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+                (std::stof(inputText) > 0.01 && std::stof(inputText) < 0.9999) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
             }
             else
             {
@@ -873,9 +875,9 @@ void Graphics_Engine::text_input(int x, int y, int target_string_id)
             }
             break;
         case 126:
-            if (std::stoi(inputText) > 0)
+            if (isNumber_not_negative(inputText))
             {
-                isNumber_not_negative(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+                (std::stoi(inputText) > 0) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
             }
             else
             {
@@ -883,9 +885,9 @@ void Graphics_Engine::text_input(int x, int y, int target_string_id)
             }
             break;
         case 128:
-            if (std::stoi(inputText) > 0)
+            if (isNumber_not_negative(inputText))
             {
-                isNumber_not_negative(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+                (std::stoi(inputText) > 0) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
             }
             else
             {
@@ -893,9 +895,9 @@ void Graphics_Engine::text_input(int x, int y, int target_string_id)
             }
             break;
         case 129:
-            if (std::stoi(inputText) > 0)
+            if (isNumber_not_negative(inputText))
             {
-                isNumber_not_negative(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+                (std::stoi(inputText) > 0) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
             }
             else
             {
@@ -903,9 +905,9 @@ void Graphics_Engine::text_input(int x, int y, int target_string_id)
             }
             break;
         case 130:
-            if (std::stof(inputText) > 0)
+            if (isNumber_not_negative(inputText))
             {
-                isNumber_not_negative(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+                (std::stof(inputText) > 0) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
             }
             else
             {
@@ -913,9 +915,9 @@ void Graphics_Engine::text_input(int x, int y, int target_string_id)
             }
             break;
         case 131:
-            if (std::stof(inputText) > 0)
+            if (isNumber_not_negative(inputText))
             {
-                isNumber_not_negative(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+                (std::stof(inputText) > 0) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
             }
             else
             {
@@ -923,9 +925,9 @@ void Graphics_Engine::text_input(int x, int y, int target_string_id)
             }
             break;
         case 132:
-            if (std::stof(inputText) > 0)
+            if (isNumber_not_negative(inputText))
             {
-                isNumber_not_negative(inputText) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
+                (std::stof(inputText) > 0) ? save_as(inputText, target_string_id) : wrong_text_input(x, y, target_string_id);
             }
             else
             {
@@ -1117,6 +1119,11 @@ void save_as(std::string inputText, int id)
         CRS.arm_width_ratio = std::stof(inputText);
         break;
     }
+    if ((id < 9) && (edit))
+    {
+        redraw_galaxy();
+        rerender();
+    }
     rerender();
 }
 
@@ -1225,8 +1232,6 @@ void Graphics_Engine::scrolling_function()
     }
     for (int i = 0; i < SystemButtons.size(); i++)
     {
-        if (v_galaxy_generation[i].hyperlanes_generated == true)
-        {
             if (v_hyperlanes.size() != 0)
             {
                 if (v_hyperlanes[i].size() != 0)
@@ -1249,7 +1254,6 @@ void Graphics_Engine::scrolling_function()
                     }
                 }
             }
-        }
         for (int j = 0; j < SystemButtons[i].size(); j++)
         {
             //std::cout << v_system_data[i][j].gal_x + 550 << " " << x << std::endl;
@@ -1264,8 +1268,8 @@ void Graphics_Engine::scrolling_function()
                 {
                     SDL_SetRenderDrawColor(gRenderer, 255, 255, 0, 0);
                     SDL_Rect Rect;
-                    Rect.x = x_base_formula + 548 - scrolling_level;
-                    Rect.y = y_base_formula + 548 - scrolling_level;
+                    Rect.x = x_base_formula + 550 - scrolling_level;
+                    Rect.y = y_base_formula + 550 - scrolling_level;
                     Rect.w = (scrolling_level * 2 - 1);
                     Rect.h = (scrolling_level * 2 - 1);
                     SDL_RenderDrawRect(gRenderer, &Rect);
@@ -1277,8 +1281,8 @@ void Graphics_Engine::scrolling_function()
                     {
                         if (v_system_data[i][j].inicjalizer)
                         {
-                            int static_X_cord_ini_boxes{ x_base_formula + 546 - scrolling_level },
-                                static_Y_cord_ini_boxes{ y_base_formula + 546 - scrolling_level },
+                            int static_X_cord_ini_boxes{ x_base_formula + 549 - scrolling_level },
+                                static_Y_cord_ini_boxes{ y_base_formula + 549 - scrolling_level },
                                 box_width = (scrolling_level * 2) + 2,
                                 box_height = (scrolling_level * 2) + 2;
                             if (v_system_data[i][j].init_type == 1)
@@ -1309,6 +1313,10 @@ void Graphics_Engine::scrolling_function()
                             else if (v_system_data[i][j].init_type == 99)
                             {
                                 GE.render_color_box(122, 122, 122, static_X_cord_ini_boxes, static_Y_cord_ini_boxes, box_width, box_height);
+                            }
+                            else if(db.debug_initializers)
+                            {
+                                GE.render_color_box(255, 255, 255, static_X_cord_ini_boxes, static_Y_cord_ini_boxes, box_width, box_height);
                             }
                         }
                     }
@@ -1486,7 +1494,7 @@ void Graphics_Engine::system_box_info(int i, int offsetX, int offsetY)
         static_Y_cord{ (center_width + ((v_system_data[C_S.current_gal][C_S.current_system].gal_y - (C_S.doney - 550)) * scrolling_level) + 550) };
     gModulatedTexture.render(static_X_cord - offsetX,
         static_Y_cord - offsetY,
-        380, 300);
+        500, 300);
     GE.text_render_v2("Current system " + std::to_string(C_S.current_system), static_X_cord - offsetX + (2 * scrolling_level), static_Y_cord - offsetY + (2 * scrolling_level));
     GE.text_render_v2("X position " + std::to_string(v_system_data[C_S.current_gal][C_S.current_system].gal_x), static_X_cord - offsetX + (2 * scrolling_level), static_Y_cord - offsetY + 50);
     GE.text_render_v2("Y position " + std::to_string(v_system_data[C_S.current_gal][C_S.current_system].gal_y), static_X_cord - offsetX + (2 * scrolling_level), static_Y_cord - offsetY + 90);
@@ -1526,10 +1534,10 @@ void Graphics_Engine::system_box_info(int i, int offsetX, int offsetY)
                 lev_type = "Stellarite";
                 break;
             case 1:
-                lev_type = "Drake";
+                lev_type = "Ether Drake";
                 break;
             case 2:
-                lev_type = "Dimensiona Horror";
+                lev_type = "Dimensional Horror";
                 break;
             case 3:
                 lev_type = "Dreadnought";
@@ -1545,6 +1553,15 @@ void Graphics_Engine::system_box_info(int i, int offsetX, int offsetY)
                 break;
             case 7:
                 lev_type = "Wraith";
+                break;
+            case 8:
+                lev_type = "Void Spawn";
+                break;
+            case 9:
+                lev_type = "Scavenger";
+                break;
+            case 10:
+                lev_type = "Tiyanki Matriarch";
                 break;
 
             }
@@ -1573,6 +1590,28 @@ void Graphics_Engine::system_box_info(int i, int offsetX, int offsetY)
             case 3:
                 mega_type = "Ring World";
                 break;
+            case 4:
+                mega_type = "Matter Decompresor";
+                break;
+            case 5:
+                mega_type = "Coordination Center";
+                break;
+            case 6:
+                mega_type = "Mega Art Installation";
+                break;
+            case 7:
+                mega_type = "Interstellar Assembly";
+                break;
+            case 8:
+                mega_type = "Mega Shipyard";
+                break;
+            case 9:
+                mega_type = "Quantum Catapult";
+                break;
+            case 10:
+                mega_type = "Orbital Ring";
+                break;
+
             }
             GE.text_render_v2("Ruined megaconstruction:", static_X_cord - offsetX + (2 * scrolling_level), static_Y_cord - offsetY + 130);
             GE.text_render_v2(mega_type, static_X_cord - offsetX + (2 * scrolling_level), static_Y_cord - offsetY + 170);
@@ -1617,8 +1656,8 @@ void Detailed_System_Edit::menu()
     GE.text_render_v2("Edit System", 1310, 220);
     GE.render_button_with_text(10, 0, 1270, 260, "Remove", 1307, 265);
     GE.render_button_with_text(10, 4, 1270, 320, "Add", 1335, 325);
-    //GE.render_button_with_text(10, 5, 1270, 380, "Move", 1290, 385);
-    GE.text_render_v2("Edit Hyperlanes", 1310, 520);
+    GE.render_button_with_text(10, 5, 1270, 380, "Move", 1325, 385);
+    GE.text_render_v2("Edit Hyperlanes", 1260, 520);
     GE.render_button_with_text(10, 1, 1270, 570, "Remove", 1307, 575);
     GE.render_button_with_text(10, 6, 1270, 630, "Add", 1335, 635);
     GE.text_render_v2("Initializers", 1660, 220);
@@ -1630,7 +1669,12 @@ void Detailed_System_Edit::menu()
     }
     GE.render_button_with_text(10, 8, 1640, 300, "Remove", 1675, 305);
     GE.render_button_with_text(10, 9, 1640, 360, "Add", 1707, 365);
+
     //GE.render_button_with_text(10, 7, 1640, 420, "Change", 1710, 425);
+    GE.text_render_v2("Empires: " + std::to_string(empire_am), 1620, 430);
+    GE.text_render_v2("Fallen Empires: " + std::to_string(fallen_am), 1620, 470);
+    GE.text_render_v2("Marauders: " + std::to_string(maruder_am), 1620, 510);
+    
     GE.text_render_v2("Colors", 1660, 600);
     GE.text_render_v2("Player", 1520, 640);
     GE.render_color_box(0, 255, 0, 1620, 652, 9, 9);
@@ -1658,7 +1702,7 @@ void Detailed_System_Edit::add_initializer_menu()
     GE.render_button_with_text(10, 14, 1290, 440, "Marauder", 1320, 445);
     GE.render_button_with_text_dynamic(10, 15, 1270, 500, 220, 45, "Ruined Mega", 1295, 505);
     GE.render_button_with_text(10, 16, 1290, 560, "Leviathan", 1315, 565);
-    GE.render_button_with_text(10, 17, 1290, 620, "Mods", 1345, 625);
+    GE.render_button_with_text(10, 17, 1290, 620, "Central BH", 1300, 625);
 }
 
 void Detailed_System_Edit::add_initializer_mega()
@@ -1667,18 +1711,28 @@ void Detailed_System_Edit::add_initializer_mega()
     GE.render_button_with_text_dynamic(10, 21, 1620, 320, 240, 45, "Science Nexus", 1640, 325);
     GE.render_button_with_text_dynamic(10, 22, 1620, 380, 240, 45, "Sentry Array", 1652, 385);
     GE.render_button_with_text_dynamic(10, 23, 1620, 440, 240, 45, "Ring World", 1670, 445);
+    GE.render_button_with_text_dynamic(10, 24, 1590, 500, 300, 45, "Matter Decompresor", 1597, 505);
+    GE.render_button_with_text_dynamic(10, 25, 1590, 560, 300, 45, "Coordination Center", 1605, 565);
+    GE.render_button_with_text_dynamic(10, 26, 1590, 620, 300, 45, "Mega Art Installation", 1605, 625);
+    GE.render_button_with_text_dynamic(10, 27, 1590, 680, 300, 45, "Interstellar Assembly", 1597, 685);
+    GE.render_button_with_text_dynamic(10, 28, 1620, 740, 240, 45, "Mega Shipyard", 1640, 745);
+    GE.render_button_with_text_dynamic(10, 29, 1590, 800, 300, 45, "Quantum Catapult", 1620, 805);
+    GE.render_button_with_text_dynamic(10, 201, 1620, 860, 240, 45, "Orbital Ring", 1668, 865);
 }
 
 void Detailed_System_Edit::add_initializer_leviathan()
 {
-    GE.render_button_with_text(10, 30, 1650, 260, "Stellarite", 1665, 265);
+    GE.render_button_with_text(10, 30, 1650, 260, "Stellarite", 1685, 265);
     GE.render_button_with_text_dynamic(10, 31, 1620, 320, 240, 45, "Ether Drake", 1662, 325);
-    GE.render_button_with_text(10, 32, 1650, 380, "Horror", 1685, 385);
+    GE.render_button_with_text(10, 32, 1650, 380, "Horror", 1700, 385);
     GE.render_button_with_text_dynamic(10, 33, 1620, 440, 240, 45, "Dreadnought", 1658, 445);
-    GE.render_button_with_text(10, 34, 1650, 500, "Hive", 1710, 505);
+    GE.render_button_with_text(10, 34, 1650, 500, "Hive", 1715, 505);
     GE.render_button_with_text_dynamic(10, 35, 1620, 560, 240, 45, "Technosphere", 1650, 565);
     GE.render_button_with_text(10, 36, 1650, 620,  "Fortress", 1682, 625);
-    GE.render_button_with_text(10, 37, 1650, 680, "Wraith", 1690, 685);
+    GE.render_button_with_text(10, 37, 1650, 680, "Wraith", 1700, 685);
+    GE.render_button_with_text(10, 38, 1650, 740, "Void Spawn", 1657, 745);
+    GE.render_button_with_text(10, 39, 1650, 800, "Scavenger", 1665, 805);
+    GE.render_button_with_text(10, 40, 1650, 860, "Matriarch", 1675, 865);
 }
 
 void Detailed_Generation::set_default_button()
@@ -1687,4 +1741,94 @@ void Detailed_Generation::set_default_button()
     {
         D_S_E_Buttons[i].mCurrentSprite = BUTTON_SPRITE_MOUSE_BIG;
     }
+}
+
+void Image_To_Map::window()
+{
+    gModulatedTexture.setAlpha(240);
+    gModulatedTexture.render(center_width + 20, center_height + 20, 1880, 1040);
+    GE.text_render_v2("Image to map converter", 1200, 60);
+    GE.render_button_with_text(0, 40, 1260, 120, "Load", 1320, 125);
+
+    Print_Image();
+}
+
+void Image_To_Map::Print_Image()
+{
+    photo_Text.render(center_width + 30, center_height + 30, 1000, 1000);
+}
+
+void Image_To_Map::photo_patch_windows()
+{
+    using namespace cv;
+    //photo = loadTexture(F_O.backslashes_to_slashes(pwstr_to_string(LoadFile(1))));
+    //photo_Text.loadFromFile(F_O.backslashes_to_slashes(pwstr_to_string(LoadFile(1))));
+    Mat img = imread(F_O.backslashes_to_slashes(pwstr_to_string(LoadFile(1))));
+
+    while (1)
+    {
+        imshow("Image", img);
+    }
+    photo = SDL_CreateTexture(
+        gRenderer, SDL_PIXELFORMAT_BGR24, SDL_TEXTUREACCESS_STREAMING, img.cols,
+        img.rows);
+    SDL_UpdateTexture(photo, NULL, (void*)img.data, img.step1());
+}
+
+std::string wstring_to_string(const std::wstring& source_str) {
+    if (source_str.size() == 0) {
+        // empty source string, we're done
+        return std::string{};
+    }
+
+    // work out how much storage space we need
+    auto new_size = WideCharToMultiByte(
+        CP_UTF8,   // assuming you want UTF-8 text
+        WC_ERR_INVALID_CHARS,
+        source_str.data(),
+        static_cast<int>(source_str.size()),
+        nullptr,   // no output yet
+        0,         // we just want to see how much space we need
+        nullptr,
+        nullptr
+    );
+
+    // check for errors
+    if (new_size == 0) {
+        throw std::system_error(GetLastError(), std::system_category());
+    }
+
+    // allocate memory for the new string
+    std::string dest_str(static_cast<std::string::size_type>(new_size), '\0');
+
+    // write into the string the values
+    auto result = WideCharToMultiByte(
+        CP_UTF8,
+        0,   // already checked that there's no invalid chars, we're good
+        source_str.data(),
+        static_cast<int>(source_str.size()),
+        dest_str.data(),  // now we pass the string to do
+        static_cast<int>(dest_str.size()),
+        nullptr,
+        nullptr
+    );
+
+    // double-check we didn't mysteriously get another error
+    if (result == 0) {
+        throw std::system_error(GetLastError(), std::system_category());
+    }
+
+    // otherwise return the string
+    return dest_str;
+}
+
+std::string pwstr_to_string(PWSTR path)
+{
+    wchar_t* localAppData = path;
+
+    std::wstring ws(localAppData);
+    
+    std::string string = wstring_to_string(ws);
+
+    return string;
 }

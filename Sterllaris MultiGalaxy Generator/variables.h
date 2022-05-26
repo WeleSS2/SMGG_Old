@@ -13,7 +13,7 @@ bool empiresettings_window = false;
 bool patchsettings_window = false;
 bool settings_window = false;
 bool random_window = false;
-
+bool ITM_window = false;
 
 bool no_space_found = false;
 bool failed_initializers = false;
@@ -35,6 +35,9 @@ bool local_maps_created = false;
 bool map_name_bool = false;
 bool maps_menu_bool = false;
 
+bool steam_on = false;
+bool DLC_Cheated = false;
+
 std::string appdata = getenv("APPDATA");
 std::string constpath = appdata + "\\SMGGLocal";
 std::string modfolderpath;
@@ -55,12 +58,16 @@ int scrolling_level = 0;
 
 int sys_sum = 0;
 
+struct debug_mode {
+    bool debug_initializers = false;
+};
+debug_mode db;
+
 // Empire variables
 int empire_am = 0,
 fallen_am = 0,
 maruder_am = 0;
-bool Empires_Random = false,
-    savetoagame = false;
+bool Empires_Random = false;
 std::string marauder_init_tab[3] = {
     "marauder_1_1",
     "marauder_2_1",
@@ -91,15 +98,22 @@ public:
     bool exist[10];
 };
 fallen_empires C_fallen;
-std::string mega_ruined_init_tab[4] = {
+std::string mega_ruined_init_tab[11] = {
     "dyson_sphere_init_01",
     "science_nexus_init_01",
     "sentry_array_init_01",
     "ring_world_init_01",
+    "megacorp_matter_decompressor_init_01",
+    "megacorp_strategic_coordination_center_init_01",
+    "megacorp_mega_art_installation_init_01",
+    "megacorp_interstellar_assembly_init_01",
+    "mega_shipyard_init_01",
+    "quantum_catapult_init_01",
+    "orbital_ring_init_01"
 };
 class leviathans {
 public:
-    std::string name[8] = {
+    std::string name[11] = {
     "guardians_init_stellarites",
     "guardians_init_dragon",
     "guardians_init_horror",
@@ -108,8 +122,11 @@ public:
     "guardians_init_technosphere",
     "guardians_init_fortress",
     "guardians_init_wraith",
+    "guardians_init_hatchling",
+    "scavenger_system",
+    "elderly_tiyanki_system"
     };
-    bool exist[8];
+    bool exist[11];
     std::string enclaves = {
 
     };

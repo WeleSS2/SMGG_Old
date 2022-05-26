@@ -72,34 +72,31 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(SolutionDir)Dependencies\SDL\include;$(SolutionDir)Dependencies\SDL_image\include;$(SolutionDir)Dependencies\SDL_TFF\include;$(SolutionDir)Dependencies\STEAM_API\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Dependencies\SDL_image\lib\x86;$(SolutionDir)Dependencies\SDL\lib\x86;$(SolutionDir)Dependencies\SDL_TFF\lib\x86;$(SolutionDir)Dependencies\STEAM_API\lib\win64;$(LibraryPath)</LibraryPath>
     <PostBuildEventUseInBuild>true</PostBuildEventUseInBuild>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(SolutionDir)Dependencies\SDL\include;$(SolutionDir)Dependencies\SDL_image\include;$(SolutionDir)Dependencies\SDL_TFF\include;$(SolutionDir)Dependencies\STEAM_API\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Dependencies\SDL_image\lib\x86;$(SolutionDir)Dependencies\SDL\lib\x86;$(SolutionDir)Dependencies\SDL_TFF\lib\x86;$(SolutionDir)Dependencies\STEAM_API\lib\win64;$(LibraryPath)</LibraryPath>
     <PostBuildEventUseInBuild>true</PostBuildEventUseInBuild>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(SolutionDir)Dependencies\SDL\include;$(SolutionDir)Dependencies\SDL_image\include;$(SolutionDir)Dependencies\SDL_TTF\include;$(SolutionDir)Dependencies\STEAM_API\include;$(SolutionDir)Dependencies\OPENCV\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)Dependencies\SDL\lib\x64;$(SolutionDir)Dependencies\SDL_IMAGE\lib\x64;$(SolutionDir)Dependencies\SDL_TTF\lib\x64;$(SolutionDir)Dependencies\STEAM_API\lib\win64;$(SolutionDir)Dependencies\OPENCV\x64\vc15\lib;$(ReferencePath);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(SolutionDir)Dependencies\SDL\include;$(SolutionDir)Dependencies\SDL_image\include;$(SolutionDir)Dependencies\SDL_TTF\include;$(SolutionDir)Dependencies\STEAM_API\include;$(SolutionDir)Dependencies\OPENCV\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)Dependencies\SDL\lib\x64;$(SolutionDir)Dependencies\SDL_IMAGE\lib\x64;$(SolutionDir)Dependencies\SDL_TTF\lib\x64;$(SolutionDir)Dependencies\STEAM_API\lib\win64;$(SolutionDir)Dependencies\OPENCV\x64\vc15\lib;$(ReferencePath);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <SDLCheck>false</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\SDL\include;$(SolutionDir)Dependencies\SDL_image\include;$(SolutionDir)Dependencies\SDL_TFF\include;$(SolutionDir)Dependencies\STEAM_API\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\SDL\lib\x86;$(SolutionDir)Dependencies\SDL_image\lib\x86;$(SolutionDir)Dependencies\SDL_TFF\lib\x86;$(SolutionDir)Dependencies\STEAM_API\lib\win64;$(SolutionDir)Dependencies\STEAM_API\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;steam_api64.lib;steam_api.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <UACExecutionLevel>AsInvoker</UACExecutionLevel>
     </Link>
@@ -114,10 +111,8 @@ xcopy /y /d "$(SolutionDir)Dependencies\SDL_TFF\lib\x86\SDL2_ttf.dll" "$(OutDir)
       <WarningLevel>Level3</WarningLevel>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <SDLCheck>false</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\SDL\include;$(SolutionDir)Dependencies\SDL_image\include;$(SolutionDir)Dependencies\SDL_TFF\include;$(SolutionDir)Dependencies\STEAM_API\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
@@ -125,7 +120,6 @@ xcopy /y /d "$(SolutionDir)Dependencies\SDL_TFF\lib\x86\SDL2_ttf.dll" "$(OutDir)
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\SDL\lib\x86;$(SolutionDir)Dependencies\SDL_image\lib\x86;$(SolutionDir)Dependencies\SDL_TFF\lib\x86;$(SolutionDir)Dependencies\STEAM_API\lib\win64;$(SolutionDir)Dependencies\STEAM_API\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;steam_api64.lib;steam_api.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <UACExecutionLevel>AsInvoker</UACExecutionLevel>
     </Link>
@@ -138,36 +132,48 @@ xcopy /y /d "$(SolutionDir)Dependencies\SDL_TFF\lib\x86\SDL2_ttf.dll" "$(OutDir)
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\SDL\include;$(SolutionDir)Dependencies\SDL_image\include;$(SolutionDir)Dependencies\SDL_TTF\include;$(SolutionDir)Dependencies\STEAM_API\include;$(SolutionDir)Dependencies\OPENCV\include;$(IncludePath)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;steam_api64.lib;opencv_world455.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\SDL\include;$(SolutionDir)Dependencies\SDL_image\include;$(SolutionDir)Dependencies\SDL_TTF\include;$(SolutionDir)Dependencies\STEAM_API\include;$(SolutionDir)Dependencies\OPENCV\include;$(IncludePath)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
       <Command>    xcopy "$(SolutionDir)Dependencies\*.*" "$(OutDir)*.*" /Y</Command>
     </PostBuildEvent>
+    <ProjectReference>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+    </ProjectReference>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\SDL\include;$(SolutionDir)Dependencies\SDL_image\include;$(SolutionDir)Dependencies\SDL_TTF\include;$(SolutionDir)Dependencies\STEAM_API\include;$(SolutionDir)Dependencies\OPENCV\include;$(IncludePath)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;steam_api64.lib;opencv_world455.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\SDL\include;$(SolutionDir)Dependencies\SDL_image\include;$(SolutionDir)Dependencies\SDL_TTF\include;$(SolutionDir)Dependencies\STEAM_API\include;$(SolutionDir)Dependencies\OPENCV\include;$(IncludePath)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
       <Command>    xcopy "$(SolutionDir)Dependencies\*.*" "$(OutDir)*.*" /Y</Command>
     </PostBuildEvent>
+    <ProjectReference>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+    </ProjectReference>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />

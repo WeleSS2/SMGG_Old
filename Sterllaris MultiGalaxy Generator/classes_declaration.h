@@ -121,8 +121,9 @@ public:
         add_initializer_marauder = 0,
         add_initializer_mega = 0,
         add_initializer_leviathan = 0,
+        add_initializer_centralBH,
         add_initializer_mods = 0;
-    int previous_id = 0, player_am = 0;
+    int previous_id = 0, player_am = 0, anchored_system_to_move = -10, anchored_galaxy_to_move = -1;
     /*
     Detailed_Generation(bool con_remove_system, bool con_remove_hyperlanes, bool con_add_initializer, bool con_remove_initializer)
     {
@@ -134,7 +135,7 @@ public:
     */
     void false_all_bools()
     {
-        remove_system = 0,
+            remove_system = 0,
             add_system = 0,
             move_system = 0,
             remove_hyperlanes = 0,
@@ -150,15 +151,16 @@ public:
         add_initializer_marauder = 0,
         add_initializer_mega = 0,
         add_initializer_leviathan = 0,
+        add_initializer_centralBH = 0,
         add_initializer_mods = 0;
     }
 
-    std::bitset<8> bits_mega{ 0b0000'0000 };
-    std::bitset<8> bits_leviathan{ 0b0000'0000 };
+    std::bitset<16> bits_mega;
+    std::bitset<16> bits_leviathan;
 
     void reset_bits()
     {
-        for (int i = 0; i < 8; ++i)
+        for (int i = 0; i < 16; ++i)
         {
             bits_mega.reset(i);
             bits_leviathan.reset(i);
@@ -192,9 +194,55 @@ public:
     void export_file(std::string path);
     void import_map(std::string path);
     std::string slash_to_backslashes(std::string text);
+    std::string backslashes_to_slashes(std::string text);
     std::string backspace_to_under(std::string text);
     std::string under_to_backspace(std::string text);
     //void overwrite_data_map();
     //PWSTR SaveMap();
 };
 File_Operation F_O;
+
+
+class Image_To_Map {
+public:
+    SDL_Texture* photo = NULL;
+
+    void window();
+    void photo_patch_windows();
+    //std::string pwstr_to_string(PWSTR path);
+    void Print_Image();
+};
+Image_To_Map ITM;
+
+class Dynamic_Mods_Initializers
+{
+public:
+    void list_directories();
+    std::string get_stem(const std::filesystem::path& p) { return (p.stem().string()); }
+
+    bool PathExist(const std::string& s)
+    {
+        struct stat buffer;
+        return (stat(s.c_str(), &buffer) == 0);
+    }
+
+};
+Dynamic_Mods_Initializers C_DMI;
+
+void Dynamic_Mods_Initializers::list_directories()
+{
+    namespace fs = std::filesystem;
+    std::string path = pathget + "/workshop/content/281990";
+    for (const auto& entry : fs::directory_iterator(path))
+    {
+        std::string init_path = path + "/" + get_stem(entry.path());
+
+        if (PathExist(init_path + "/common/solar_system_initializers"))
+        {
+            for (const auto& files : fs::directory_iterator(init_path + "/common/solar_system_initializers"))
+            {
+                std::cout << files << std::endl;
+            }
+        }
+    }
+}

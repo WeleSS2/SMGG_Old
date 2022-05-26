@@ -14,6 +14,10 @@
 #include <chrono>
 #include <thread>
 #include <bitset>
+#include <system_error>
+#include <opencv2/highgui.hpp>
+#include <opencv2/imgcodecs.hpp>
+#include <opencv2/imgproc.hpp>
 
 #define NOMINMAX
 

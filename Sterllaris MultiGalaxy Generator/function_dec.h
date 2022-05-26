@@ -69,12 +69,14 @@ void osfile(std::string path, std::string name);
 void savepath();
 void loadsettings();
 void SaveSettings();
-PWSTR LoadFile();
-PWSTR SaveFile();
+PWSTR LoadFile(int mode);
+PWSTR SaveFile(int mode);
 void LoadRandomDefaultSettings();
 void RandomDefaultSettings();
 void LoadRandomSettings();
 void SaveRandomSettings();
+std::string wstring_to_string(const std::wstring& source_str);
+std::string pwstr_to_string(PWSTR path);
 
 void HideConsole();
 void ShowConsole();
